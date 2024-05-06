@@ -1,10 +1,9 @@
 import { useForm } from "react-hook-form";
 
-const InformationForm = () => {
+const ContactUsInformationForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
 
   const handleFormSubmit = (data) =>{
@@ -16,8 +15,8 @@ const InformationForm = () => {
   }
 
   return (
-    <section>
-      <form action="" className="mx-20 my-14" onSubmit={handleSubmit(handleFormSubmit)}>
+    <section className="flex justify-center">
+      <form action="" className="my-10 max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl	2xl:max-w-screen-2xl" onSubmit={handleSubmit(handleFormSubmit)}>
         <div>
           <input
             type="text"
@@ -27,7 +26,7 @@ const InformationForm = () => {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-5 my-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5">
           <div>
             <input
               type="text"
@@ -60,16 +59,16 @@ const InformationForm = () => {
             Please type the characters you see in the image for security
             purposes.
           </p>
-          <div className="flex items-center gap-7">
+          <div className="md:flex items-center gap-7">
             <div>
               <input
                 type="text"
                 placeholder="Enter the code shown"
-                className="border border-[#84E1EA] rounded-md p-2 w-[250px]"
+                className="border border-[#84E1EA] rounded-md p-2 mb-5"
                 {...register("captchaCode")}
               />
             </div>
-            <div className="bg-primary text-2xl text-white p-4 w-[300px]">
+            <div className="bg-primary text-2xl text-white p-4 mb-5">
                 <p className="text-center font-medium">J23ndAjd4</p>
             </div>
           </div>
@@ -81,4 +80,4 @@ const InformationForm = () => {
   );
 };
 
-export default InformationForm;
+export default ContactUsInformationForm;

@@ -2,10 +2,10 @@ import GlobalAddressItems from "../components/ContactUs/GlobalAddressItems";
 import LocationPinIcon from "../assets/icons/location-pin-svgrepo-com.png";
 import PhoneFaxIcon from "../assets/icons/telephone-free-svgrepo-com.png";
 import EmailIcon from "../assets/icons/email-9-svgrepo-com.png";
-import InformationForm from "../components/ContactUs/InformationForm";
+import ContactUsInformationForm from "../components/ContactUs/ContactUsInformationForm";
 const ContactUs = () => {
   return (
-    <section>
+    <section className="mx-2 md:mx-16 lg:mx-20">
       <div>
         <img
           src="https://cdn.pixabay.com/photo/2014/04/02/14/09/world-map-306338_960_720.png"
@@ -18,10 +18,10 @@ const ContactUs = () => {
       </p>
 
       <div>
-        <InformationForm/>
+        <ContactUsInformationForm/>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mx-20">
+      <div className="grid justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:mx-auto max-w-screen-sm md:max-w-screen-md	lg:max-w-screen-lg xl:max-w-screen-xl	2xl:max-w-screen-2xl">
         <div className="bg-slate-100 p-5 rounded-xl">
           <GlobalAddressItems
             addressDetails={{
