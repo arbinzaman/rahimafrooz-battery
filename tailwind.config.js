@@ -6,8 +6,20 @@ export default {
     extend: {
       colors: {
         base: "#ffffff",
-        primary: "#0ea5e9",
-        secondary: "#000000",
+        primary: "#0d72b9",
+        secondary: "#0962ae",
+        button:"#0d72b8",
+        border_primary:"#75aed6"
+      },
+      fontSize:{
+        large:"33.33px",
+        medium:"20px",
+        regular:"17px",
+        small:"13px",
+        xsmall:"12px",
+      },
+      fontFamily:{
+        body:['Roboto','sans-serif'],
       },
     },
   },
