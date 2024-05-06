@@ -5,9 +5,9 @@ const GlobalAddressItems = ({ addressDetails }) => {
       <div className="my-3">
         <div className="flex items-center text-lg gap-2">
           <img src={imgLink} className="w-[20px]" alt="" />
-          <p className="text-primary font-medium">{itemName}</p>
+          <p className="text-primary text-regular font-medium">{itemName}</p>
         </div>
-        <div className="text-md">
+        <div className="text-small">
           <p>
             <span className="font-medium">{itemHeading}</span> {itemText}
           </p>

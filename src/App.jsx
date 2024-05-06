@@ -5,7 +5,7 @@ import routes from './routes/routes'
 function App() {
 
   return (
-    <section>
+    <section className='font-primary'>
       <RouterProvider router={routes}></RouterProvider>
     </section>
   )
