@@ -3,6 +3,7 @@ import Main from "../layouts/Main";
 import Home from "../pages/Home";
 import ContactUs from "../pages/ContactUs";
 import BecomeADealer from "../pages/BecomeADealer";
+import Bangladesh from "../pages/Products/Bangladesh";
 
 const routes = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const routes = createBrowserRouter([
       {
         path: "/become-a-dealer",
         element: <BecomeADealer />,
+      },
+      {
+        path: "/products-bangladesh",
+        element: <Bangladesh />,
       },
     ],
   },
