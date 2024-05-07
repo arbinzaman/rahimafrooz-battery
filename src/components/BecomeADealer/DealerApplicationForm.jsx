@@ -15,7 +15,7 @@ const DealerApplicationForm = () => {
     <section>
       <form
         action=""
-        className="my-10 max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl 2xl:max-w-screen-2xl"
+        className="my-5 max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl 2xl:max-w-screen-2xl"
         onSubmit={handleSubmit(handleFormSubmit)}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5">
