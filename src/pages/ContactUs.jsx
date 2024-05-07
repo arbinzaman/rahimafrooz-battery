@@ -2,19 +2,19 @@ import GlobalAddressItems from "../components/ContactUs/GlobalAddressItems";
 import LocationPinIcon from "../assets/icons/location-pin-svgrepo-com.png";
 import PhoneFaxIcon from "../assets/icons/telephone-free-svgrepo-com.png";
 import EmailIcon from "../assets/icons/email-9-svgrepo-com.png";
+import ContactUsBanner from "../assets/images/Contact-us-banner.jpg"
 import ContactUsInformationForm from "../components/ContactUs/ContactUsInformationForm";
 const ContactUs = () => {
   return (
     <section>
       <div>
         <img
-          src="https://cdn.pixabay.com/photo/2014/04/02/14/09/world-map-306338_960_720.png"
-          className="w-full h-[300px]"
-          alt=""
+          src={ContactUsBanner}
+          alt="A banner showing world map picture and outlets of Rahimafrooz battery worldwide."
         />
       </div>
-      <section className="mx-2 md:mx-16 lg:mx-20">
-        <p className="text-primary text-large font-bold text-center my-3">
+      <section className="mx-5 md:mx-16 lg:mx-20">
+        <p className="text-primary text-large font-bold text-center my-10">
           CONTACT US
         </p>
         <div>

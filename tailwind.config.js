@@ -13,6 +13,7 @@ export default {
       },
       fontSize:{
         large:"33.33px",
+        semi_large:"30px",
         medium:"20px",
         regular:"17px",
         small:"13px",
