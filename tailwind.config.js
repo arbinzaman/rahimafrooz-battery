@@ -12,12 +12,14 @@ export default {
         border_primary:"#75aed6"
       },
       fontSize:{
+        xlarge:"46.47px",
         large:"33.33px",
         semi_large:"30px",
         medium:"20px",
         regular:"17px",
         small:"13px",
         xsmall:"12px",
+        xxsmall:"10px",
       },
       fontFamily:{
         body:['Roboto','sans-serif'],
