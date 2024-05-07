@@ -1,4 +1,5 @@
 import Slider from "react-slick";
+import banner from "../assets/images/7. Global Presence-ai.png";
 
 const GlobalPresence = () => {
   var settings = {
@@ -10,11 +11,14 @@ const GlobalPresence = () => {
     arrows: false,
   };
   return (
-    <section className="bg-background w-screen">
-      <div className="grid grid-cols-2 gap-48 text-center lg:p-36 ">
+    <section className="">
+      <div>
+        <img src={banner} alt="" className="w-full"/>
+      </div>
+      <div className="grid lg:grid-cols-2 gap-48 text-center lg:p-36  bg-background">
         <div className="">
           <div>
-            <h1 className="bg-primary text-base text-5xl font-bold py-1 mb-8">INTERNATIONAL OPERATIONS</h1>
+            <h1 className="bg-primary text-base text-xlarge font-bold py-4 mb-8">INTERNATIONAL OPERATIONS</h1>
             <p className="font-medium text-justify hyphens-auto text-2xl  mb-24">
               The global demand for lead-acid batteries, which is primarily
               driven by the automotive segment, remains robust, and the market
