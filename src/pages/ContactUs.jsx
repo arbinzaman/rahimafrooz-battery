@@ -13,8 +13,8 @@ const ContactUs = () => {
           alt="A banner showing world map picture and outlets of Rahimafrooz battery worldwide."
         />
       </div>
-      <section className="mx-5 md:mx-16 lg:mx-20">
-        <p className="text-primary text-large font-bold text-center my-10">
+      <section className="mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28  ">
+        <p className="text-primary text-large font-bold text-center">
           CONTACT US
         </p>
         <div>
