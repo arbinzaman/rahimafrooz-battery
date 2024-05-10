@@ -16,7 +16,7 @@ const ContactUsInformationForm = () => {
 
   return (
     <section className="flex justify-center">
-      <form action="" className="my-10 max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl	2xl:max-w-screen-2xl" onSubmit={handleSubmit(handleFormSubmit)}>
+      <form action="" className="my-5 max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl	2xl:max-w-screen-2xl" onSubmit={handleSubmit(handleFormSubmit)}>
         <div>
           <input
             type="text"

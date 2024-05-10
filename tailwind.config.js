@@ -9,7 +9,8 @@ export default {
         primary: "#0d72b9",
         secondary: "#0962ae",
         button:"#0d72b8",
-        border_primary:"#75aed6"
+        border_primary:"#75aed6",
+        background:"#deebf6",
       },
       fontSize:{
         xlarge:"46.47px",
@@ -22,8 +23,12 @@ export default {
         xxsmall:"10px",
       },
       fontFamily:{
-        body:['Roboto','sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
       },
+      backgroundImage: {
+        'cross-pattern': "url('src/assets/images/Texture.png')",
+        'circuit-texture': "url('src/assets/images/Circuit-texture.png')",
+      }
     },
   },
   plugins: [daisyui],

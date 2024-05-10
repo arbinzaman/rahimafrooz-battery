@@ -4,6 +4,9 @@ import Home from "../pages/Home";
 import ContactUs from "../pages/ContactUs";
 import BecomeADealer from "../pages/BecomeADealer";
 import Bangladesh from "../pages/Products/Bangladesh";
+import International from "../pages/Products/International";
+import GlobalPresence from "../pages/GlobalPresence";
+
 
 const routes = createBrowserRouter([
   {
@@ -26,6 +29,14 @@ const routes = createBrowserRouter([
         path: "/products-bangladesh",
         element: <Bangladesh />,
       },
+      {
+        path: "/products-international",
+        element: <International />,
+      },
+      {
+        path: "/global-presence",
+        element: <GlobalPresence/>,
+      }
     ],
   },
 ]);
