@@ -1,0 +1,68 @@
+import { useForm } from "react-hook-form";
+import WarrantyStatus from "./WarrantyStatus";
+import { errorPopup } from "../../utils/Toasts/WarrantyRelated/warrantyToasts";
+
+const CheckWarranty = () => {
+  const { register, handleSubmit } = useForm();
+  const warrantyInformation = JSON.parse(
+    localStorage.getItem("warrantyInformation")
+  );
+  const handleGetStatus = (data) => {
+    console.log(data);
+    try {
+      if (data?.serialNumber == "") {
+        errorPopup();
+        return;
+      }
+
+      if (
+        data?.serialNumber === warrantyInformation?.serialNumber &&
+        data?.phoneNumber === warrantyInformation?.phoneNumber
+      ) {
+        warrantyInformation.remainingDays = "59 days (1 Year Warrienty)";
+        warrantyInformation.batteryType = "ABC";
+        warrantyInformation.isVerified = true;
+        console.log(warrantyInformation);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  return (
+    <section>
+      <form
+        action=""
+        onSubmit={handleSubmit(handleGetStatus)}
+        className="my-5 mx-auto max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl 2xl:max-w-screen-2xl"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          <div className="col-span-2">
+            <input
+              type="text"
+              placeholder="Phone Number*"
+              className="border border-border_primary rounded-md p-1 w-full"
+              {...register("phoneNumber")}
+            />
+          </div>
+
+          <div className="col-span-2">
+            <input
+              type="number"
+              placeholder="Serial Number*"
+              className="border border-border_primary rounded-md p-1 w-full"
+              {...register("serialNumber")}
+            />
+          </div>
+          <div className="lg:flex justify-end">
+            <button className="bg-button px-8 py-1 text-2xl text-base font-bold rounded-md lg:w-full">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+      <WarrantyStatus warrantyInformation={warrantyInformation} />
+    </section>
+  );
+};
+
+export default CheckWarranty;
