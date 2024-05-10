@@ -5,7 +5,7 @@ import InternationalPageBanner from "../../assets/images/ProductPageImages/Inter
 const International = () => {
   return (
     <div>
-      <section>
+      <section className="bg-cross-pattern">
         <div className="relative">
           <div className="absolute text-center bg-primary top-6 left-12 md:top-12 md:left-20 lg:top-20 lg:left-32 text-regular md:text-large lg:text-xlarge text-base px-3 md:px-6 md:py-3 lg:px-10 lg:py-6">
             <p>INTERNATIONAL</p>
