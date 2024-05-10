@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PhoneIcon, EnvelopeIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
+import { PhoneIcon, EnvelopeIcon, ShoppingCartIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 
 import Logo from '../../assets/Rahimafrooz_Logo.png';
 import Facebook from '../../assets/facebook-icon.svg';
@@ -101,21 +101,50 @@ const Header = () => {
                 <ul
                   className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0">
                   <li>
-                    <a href="#"
-                      className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                      aria-current="page">Home</a>
+                    <a href="#" className="block p-0 text-cyan-300 opacity-80 rounded bg-transparent font-semibold" aria-current="page">
+                      Home
+                    </a>
                   </li>
                   <li>
-                    <a href="#"
-                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                    <div className="dropdown dropdown-bottom">
+                      <div className='flex' tabIndex={0} role="button">
+                        <div className="btn text-cyan-300 opacity-80 h-0 min-h-0 border-none text-base">About</div>
+                        <ChevronDownIcon className='w-4 h-4 mt-1 text-cyan-300' />
+                      </div>
+                      <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-cyan-50 mt-5 w-64">
+                        <li><a>Rahimafrooz Group</a></li>
+                        <li><a>Founder & Board Members</a></li>
+                        <li><a>Rahimafrooz Storage Power</a></li>
+                        <li><a>Manufacturing</a></li>
+                        <li><a>Special Awards & Achievement</a></li>
+                      </ul>
+                    </div>
                   </li>
                   <li>
-                    <a href="#"
-                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Products</a>
+                    <div className="dropdown dropdown-bottom">
+                      <div tabIndex={0} role="button" className='flex'>
+                        <div className="btn text-cyan-300 opacity-80 h-0 min-h-0 border-none text-base">Products</div>
+                        <ChevronDownIcon className='w-4 h-4 mt-1 text-cyan-300' />
+                      </div>
+                      <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-cyan-50 mt-5 w-32">
+                        <li><a>Bangladesh</a></li>
+                        <li><a>International</a></li>
+                      </ul>
+                    </div>
                   </li>
                   <li>
-                    <a href="#"
-                      className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+                    <div className="dropdown dropdown-bottom">
+                      <div tabIndex={0} role="button" className="btn text-cyan-300 opacity-80 h-0 min-h-0 border-none text-base">Services</div>
+                      <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><a>Item 1</a></li>
+                        <li><a>Item 2</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li>
+                    <a href="#" className="block p-0 text-cyan-300 opacity-80 rounded bg-transparent font-semibold">
+                      Contact Us
+                    </a>
                   </li>
                 </ul>
               </div>
