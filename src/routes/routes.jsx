@@ -5,7 +5,6 @@ import ContactUs from "../pages/ContactUs";
 import BecomeADealer from "../pages/BecomeADealer";
 import Bangladesh from "../pages/Products/Bangladesh";
 import International from "../pages/Products/International";
-import ManageMyBattery from "../pages/ManageMyBattery";
 
 const routes = createBrowserRouter([
   {
@@ -31,10 +30,6 @@ const routes = createBrowserRouter([
       {
         path: "/products-international",
         element: <International />,
-      },
-      {
-        path: "/manage-my-battery",
-        element: <ManageMyBattery />,
       },
     ],
   },
