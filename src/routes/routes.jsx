@@ -31,10 +31,11 @@ const routes = createBrowserRouter([
       {
         path: "/products-international",
         element: <International />,
-      },{
+      },
+      {
         path: "/manage-my-battery",
-        element: <ManageMyBattery/>
-      }
+        element: <ManageMyBattery />,
+      },
     ],
   },
 ]);
