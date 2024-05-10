@@ -7,7 +7,7 @@ const BecomeADealer = () => {
       <div>
         <img src={BecomeADealerBanner} alt="" />
       </div>
-      <section className="mx-5 md:mx-16 lg:mx-20">
+      <section className="mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28">
         <div className="text-center my-10">
           <p className="text-primary text-large font-bold">DEALER ENLISTMENT FORM</p>
           <p className="text-secondary text-medium">Input your Information for become a dealer</p>

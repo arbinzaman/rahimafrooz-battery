@@ -23,7 +23,7 @@ export default {
         xxsmall:"10px",
       },
       fontFamily:{
-        body:['Roboto','sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
       },
     },
   },

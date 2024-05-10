@@ -1,4 +1,4 @@
-import BangladeshProductsImage from "../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
+import BangladeshPageBanner from "../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
 import ProductsCarousel from "../../components/Products/ProductsCarousel";
 import { brandAndProducts } from "../../utils/Products/Brands";
 
@@ -10,7 +10,7 @@ const Bangladesh = () => {
           LOCAL PRODUCTS
         </p>
         <img
-          src={BangladeshProductsImage}
+          src={BangladeshPageBanner}
           className="w-full"
           alt="A banner showing Rahimafrooz's Globat Ace in a scenario"
         />
