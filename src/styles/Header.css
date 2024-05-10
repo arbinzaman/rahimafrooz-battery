@@ -9,7 +9,7 @@
     font-weight: 700;
 }
 
-.btn{
+.header-btn{
     display: flex;
     border: 4px double;
     border-radius: 10px;

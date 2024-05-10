@@ -31,23 +31,27 @@ const Header = () => {
                 <div className='flex'>
                   <div className='flex '>
                     <PhoneIcon className='w-4 h-4 mt-1 mr-1' />
-                    <a className='text-sm' href="tel:+880258153128">+880 2 5815 3128</a>
+                    <a className='text-sm text-cyan-100 opacity-80' href="tel:+880258153128">+880 2 5815 3128</a>
                   </div>
                   <span className='horizontal-line'>|</span>
                   <div className='flex ml-4'>
                     <EnvelopeIcon className='w-4 h-4 mt-1 mr-2' />
-                    <a className='text-sm' href="mailto:battery@rahimafrooz.com">battery@rahimafrooz.com</a>
+                    <a className='text-sm text-cyan-100 opacity-80' href="mailto:battery@rahimafrooz.com">battery@rahimafrooz.com</a>
                   </div>
                   <div className='flex gap-2 ml-4'>
                     <img src={Facebook} alt="fb" width={20} height={20} />
-                    <img src={Instagram} alt="fb" width={20} height={20} />
-                    <img src={Linkedin} alt="fb" width={20} height={20} />
+                    <img src={Instagram} alt="ig" width={20} height={20} />
+                    <img src={Linkedin} alt="li" width={20} height={20} />
                   </div>
                 </div>
                 <div className='mt-2 flex gap-2'>
-                  <button className='btn'> <ShoppingCartIcon className='w-4 h-4 mt-1 mr-1' />Buy Now</button>
-                  <button className='btn'> <img className='w-4 h-4 mt-1 mr-1' src={Battery} alt='icon' />Manage My Battery</button>
-                  <button className='btn'>English</button>
+                  <button className='header-btn'> <ShoppingCartIcon className='w-4 h-4 mt-1 mr-1' />Buy Now</button>
+                  <button className='header-btn'> <img className='w-4 h-4 mt-1 mr-1' src={Battery} alt='icon' />Manage My Battery</button>
+                  <select className="select select-info w-full max-w-28 min-h-8 h-8 bg-primary text-cyan-100 opacity-80">
+                    <option defaultValue={'English'}>English</option>
+                    <option>Japanese</option>
+                    <option>Italian</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -74,8 +78,8 @@ const Header = () => {
                   </div>
                   <input type="text" id="search-navbar" className="search block w-full p-2 pl-10 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." />
                 </div>
-                <button className='btn'>Become A Partner</button>
-                <button className='btn'>Global Presence</button>
+                <button className='header-btn'>Become A Partner</button>
+                <button className='header-btn'>Global Presence</button>
                 <button data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
                   <span className="sr-only">Open main menu</span>
                   <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
