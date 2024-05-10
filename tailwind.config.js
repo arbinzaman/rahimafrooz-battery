@@ -24,6 +24,10 @@ export default {
       fontFamily:{
         'roboto': ['Roboto', 'sans-serif'],
       },
+      backgroundImage: {
+        'cross-pattern': "url('src/assets/images/Texture.png')",
+        'circuit-texture': "url('src/assets/images/Circuit-texture.png')",
+      }
     },
   },
   plugins: [daisyui],
