@@ -7,6 +7,7 @@ import Bangladesh from "../pages/Products/Bangladesh";
 import International from "../pages/Products/International";
 import GlobalPresence from "../pages/GlobalPresence";
 import ManageMyBattery from "../pages/ManageMyBattery";
+import ProductFinalPage from "../pages/ProductFinalPage";
 
 const routes = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const routes = createBrowserRouter([
       {
         path: "/manage-my-battery",
         element: <ManageMyBattery/>,
+      },
+      {
+        path: "/product-final-page",
+        element: <ProductFinalPage/>,
       }
     ],
   },
