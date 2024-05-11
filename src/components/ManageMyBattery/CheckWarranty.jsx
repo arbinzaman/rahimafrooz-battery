@@ -1,12 +1,18 @@
 import { useForm } from "react-hook-form";
 import WarrantyStatus from "./WarrantyStatus";
-import { errorPopup } from "../../utils/Toasts/WarrantyRelated/warrantyToasts";
+import {
+  errorPopup,
+} from "../../utils/Toasts/WarrantyRelated/warrantyToasts";
+import { useState } from "react";
 
 const CheckWarranty = () => {
   const { register, handleSubmit } = useForm();
+  const [isVerified, setIsVerified] = useState();
+
   const warrantyInformation = JSON.parse(
     localStorage.getItem("warrantyInformation")
   );
+
   const handleGetStatus = (data) => {
     console.log(data);
     try {
@@ -19,10 +25,11 @@ const CheckWarranty = () => {
         data?.serialNumber === warrantyInformation?.serialNumber &&
         data?.phoneNumber === warrantyInformation?.phoneNumber
       ) {
-        warrantyInformation.remainingDays = "59 days (1 Year Warrienty)";
-        warrantyInformation.batteryType = "ABC";
-        warrantyInformation.isVerified = true;
+        setIsVerified(true);
         console.log(warrantyInformation);
+      } else {
+        errorPopup("No records found. Please try again!")
+        setIsVerified(false);
       }
     } catch (error) {
       console.log(error.message);
@@ -60,7 +67,9 @@ const CheckWarranty = () => {
           </div>
         </div>
       </form>
-      <WarrantyStatus warrantyInformation={warrantyInformation} />
+      {isVerified && (
+        <WarrantyStatus warrantyInformation={warrantyInformation} />
+      ) }
     </section>
   );
 };

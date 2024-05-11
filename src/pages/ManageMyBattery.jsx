@@ -1,4 +1,5 @@
 import ManageMyBatteryBanner from "../assets/images/ManageMyBatteryImages/Manage_My_Battery_Registration_Page_Banner.jpg";
+import Accordion from "../components/ManageMyBattery/Accordion";
 import CheckWarranty from "../components/ManageMyBattery/CheckWarranty";
 import WarrantyApplicationForm from "../components/ManageMyBattery/WarrantyApplicationForm";
 const ManageMyBattery = () => {
@@ -28,6 +29,7 @@ const ManageMyBattery = () => {
             </p>
             <CheckWarranty />
           </div>
+          <Accordion/>
         </section>
       </section>
     </section>
