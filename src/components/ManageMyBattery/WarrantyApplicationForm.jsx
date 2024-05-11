@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
-import { errorPopup, successPopup } from "../../utils/Toasts/WarrantyRelated/warrantyToasts";
+import {
+  errorPopup,
+  successPopup,
+} from "../../utils/Toasts/WarrantyRelated/warrantyToasts";
 
 const WarrantyApplicationForm = () => {
   const { register, handleSubmit } = useForm();
@@ -7,12 +10,14 @@ const WarrantyApplicationForm = () => {
   const handleApplicationSubmit = (data) => {
     try {
       if (data?.serialNumber == "") {
-        errorPopup();
+        errorPopup("Something went wrong, Please try again!");
         return;
       }
+      data.remainingDays = "59 days (1 Year Warrienty)";
+      data.batteryType = "ABC";
       console.log(data);
       localStorage.setItem("warrantyInformation", JSON.stringify(data));
-      successPopup();
+      successPopup("Application Submitted.");
     } catch (error) {
       console.log(error.message);
     }
