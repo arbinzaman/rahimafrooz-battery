@@ -1,26 +1,32 @@
 import img1 from "../assets/images/BatteryFinalPage/Product-01.png";
 import img2 from "../assets/images/BatteryFinalPage/Product Final Page.png";
 import { FaAngleRight } from "react-icons/fa6";
+import { useState } from "react";
 
 const ProductFinalPage = () => {
+  const [img, setImg] = useState();
+  console.log(img);
+  const featuresImg = (imgSrc) => {
+    setImg(imgSrc);
+  };
   return (
     <section className="bg-background">
       {/* hero section start for battery final page  */}
       <div className="grid grid-cols-2 ">
         <div className="mx-auto">
-          <img src={img1} className=" lg:my-10" alt="" />
+          <img src={img} className=" lg:my-10" width="510px" alt="" />
           <div className="flex lg:my-10 ">
             <div>
-              <img src={img2} alt="" className="bg-white p-5 h-28 mr-5" />
+              <img src={img2} alt="" className="bg-white p-5 h-28 mr-5" onClick={()=>featuresImg(img2)} />
             </div>
             <div>
-              <img src={img1} alt="" className="bg-white p-5 h-28 mr-5" />
+              <img src={img1} alt="" className="bg-white p-5 h-28 mr-5" onClick={()=>featuresImg(img1)} />
             </div>
             <div>
-              <img src={img2} alt="" className="bg-white p-5 h-28 mr-5" />
+              <img src={img2} alt="" className="bg-white p-5 h-28 mr-5" onClick={()=>featuresImg(img2)} />
             </div>
             <div>
-              <img src={img1} alt="" className="bg-white p-5 h-28 mr-5" />
+              <img src={img1} alt="" className="bg-white p-5 h-28 mr-5" onClick={()=>featuresImg(img1)} />
             </div>
           </div>
         </div>
