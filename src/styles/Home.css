@@ -6,3 +6,25 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.our-brands{
+    width: 100%;
+    height: 440px;
+    background-image: url("../assets/images/HomePage/side-icon-left.png"), url("../assets/images/HomePage/side-icon-right.png");
+    background-repeat: no-repeat;
+    background-position: left, right;
+}
+
+.Home-Slider .slick-arrow{
+    display: none !important;
+}
+
+.home-counter{
+    width: 100%;
+    height: 360px;
+    background-color: #005cab;
+    background-image: url('../assets/images/HomePage/Counter-Bg-texture.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: inherit;
+}
