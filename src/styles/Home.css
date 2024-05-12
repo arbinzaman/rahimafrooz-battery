@@ -1,10 +1,31 @@
 .icon-BG{
     width: 100%;
-    height: 500px;
+    height: 680px;
     background-image: url('../assets/images/HomePage/Icon-Bg.png'), url('../assets/images/HomePage/Icon-Bg-texture.png');
     background-blend-mode: darken;
-    background-repeat: no-repeat;
+    background-repeat: round;
     background-size: cover;
+    top: -32px;
+    z-index: 999;
+    position: relative;
+}
+.icon-BG .slick-prev{
+    left: -26px;
+}
+.icon-BG .slick-prev::before{
+    font-size: 24px;
+    color: #deebf6;
+    line-height: 0;
+    opacity: 1;
+}
+.icon-BG .slick-next{
+    right: -21px;
+}
+.icon-BG .slick-next::before{
+    font-size: 24px;
+    color: #deebf6;
+    line-height: 0;
+    opacity: 1;
 }
 
 .our-brands{
@@ -27,4 +48,23 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: inherit;
+}
+
+.slick-prev{
+    left: -40px;
+}
+.slick-prev::before{
+    font-size: 40px;
+    color: #005cab;
+    line-height: 0;
+    opacity: 1;
+}
+.slick-next{
+    right: -20px;
+}
+.slick-next::before{
+    font-size: 40px;
+    color: #005cab;
+    line-height: 0;
+    opacity: 1;
 }
