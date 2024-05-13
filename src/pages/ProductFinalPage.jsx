@@ -17,16 +17,36 @@ const ProductFinalPage = () => {
           <img src={img} className=" lg:my-10" width="510px" alt="" />
           <div className="flex lg:my-10 ">
             <div>
-              <img src={img2} alt="" className="bg-white p-5 h-28 mr-5" onClick={()=>featuresImg(img2)} />
+              <img
+                src={img2}
+                alt=""
+                className="bg-white p-5 h-28 mr-5"
+                onClick={() => featuresImg(img2)}
+              />
             </div>
             <div>
-              <img src={img1} alt="" className="bg-white p-5 h-28 mr-5" onClick={()=>featuresImg(img1)} />
+              <img
+                src={img1}
+                alt=""
+                className="bg-white p-5 h-28 mr-5"
+                onClick={() => featuresImg(img1)}
+              />
             </div>
             <div>
-              <img src={img2} alt="" className="bg-white p-5 h-28 mr-5" onClick={()=>featuresImg(img2)} />
+              <img
+                src={img2}
+                alt=""
+                className="bg-white p-5 h-28 mr-5"
+                onClick={() => featuresImg(img2)}
+              />
             </div>
             <div>
-              <img src={img1} alt="" className="bg-white p-5 h-28 mr-5" onClick={()=>featuresImg(img1)} />
+              <img
+                src={img1}
+                alt=""
+                className="bg-white p-5 h-28 mr-5"
+                onClick={() => featuresImg(img1)}
+              />
             </div>
           </div>
         </div>
@@ -65,6 +85,10 @@ const ProductFinalPage = () => {
       </div>
 
       {/* hero section end for battery final page */}
+
+      {/* product information section start */}
+
+      {/* product information section  end */}
     </section>
   );
 };
