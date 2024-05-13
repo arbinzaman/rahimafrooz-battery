@@ -2,7 +2,7 @@ const Product = ({productInfo}) => {
     const {productImageSrc, productName } = productInfo;
   return (
     <section className="w-auto flex flex-col justify-center items-center mr-5">
-        <div className="bg-base border border-border_primary">
+        <div className="border border-border_primary">
             <img src={productImageSrc} alt="" className=""/>
         </div>
         <div className="flex flex-col justify-center items-center">
