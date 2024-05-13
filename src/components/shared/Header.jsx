@@ -78,7 +78,9 @@ const Header = () => {
                   </div>
                   <input type="text" id="search-navbar" className="search block w-full p-2 pl-10 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." />
                 </div>
-                <button className='header-btn'>Become A Partner</button>
+                <button className='header-btn'>
+                  <a href="/become-a-dealer">Become A Partner</a>
+                </button>
                 <button className='header-btn'>Global Presence</button>
                 <button data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
                   <span className="sr-only">Open main menu</span>
@@ -101,7 +103,7 @@ const Header = () => {
                 <ul
                   className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0">
                   <li>
-                    <a href="#" className="block p-0 text-cyan-300 opacity-80 rounded bg-transparent font-semibold" aria-current="page">
+                    <a href="/" className="block p-0 text-cyan-300 opacity-80 rounded bg-transparent font-semibold" aria-current="page">
                       Home
                     </a>
                   </li>
@@ -133,16 +135,12 @@ const Header = () => {
                     </div>
                   </li>
                   <li>
-                    <div className="dropdown dropdown-bottom">
-                      <div tabIndex={0} role="button" className="btn text-cyan-300 opacity-80 h-0 min-h-0 border-none text-base">Services</div>
-                      <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a>Item 1</a></li>
-                        <li><a>Item 2</a></li>
-                      </ul>
-                    </div>
+                    <a href="#" className="block p-0 text-cyan-300 opacity-80 rounded bg-transparent font-semibold">
+                      Services
+                    </a>
                   </li>
                   <li>
-                    <a href="#" className="block p-0 text-cyan-300 opacity-80 rounded bg-transparent font-semibold">
+                    <a href="/contact-us" className="block p-0 text-cyan-300 opacity-80 rounded bg-transparent font-semibold">
                       Contact Us
                     </a>
                   </li>
