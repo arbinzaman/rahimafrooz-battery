@@ -1,12 +1,13 @@
 .diagonal-background{
     background-color: #005cab;
-    background-image: -webkit-linear-gradient(130deg, #005cab 42%, #ddebf6 42.1%);
+    background-image: -webkit-linear-gradient(130deg, #005cab 43%, #ddebf6 43.1%);
 }
 
 .horizontal-line{
-    margin-left: 15px;
+    margin-left: 8px;
     font-size: 13px;
     font-weight: 700;
+    color:#95E7F4
 }
 
 .header-btn{
@@ -29,7 +30,29 @@
 .main-nav{
     margin-top: 3px;
     background-color: #005cab;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .main-nav .search{
     background-color: #ddebf6;
+    padding: 4px;
+    margin-top: 3px;
+}
+
+@media screen and (max-width: 1100px) and (min-width: 1024px)  {
+    .diagonal-background{
+        background-image: -webkit-linear-gradient(130deg, #005cab 50%, #ddebf6 50.1%);
+    }
+}
+
+@media screen and (max-width: 1220px) and (min-width: 1101px)  {
+    .diagonal-background{
+        background-image: -webkit-linear-gradient(130deg, #005cab 47%, #ddebf6 47.1%);
+    }
+}
+
+@media screen and (min-width: 1441px)  {
+    .diagonal-background{
+        background-image: -webkit-linear-gradient(130deg, #005cab 45%, #ddebf6 45.1%);
+    }
 }
