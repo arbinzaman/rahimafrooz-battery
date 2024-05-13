@@ -11,6 +11,7 @@ export default {
         button:"#0d72b8",
         border_primary:"#75aed6",
         background:"#deebf6",
+        button2: "#94e7f3",
       },
       fontSize:{
         xlarge:"46.47px",

@@ -8,6 +8,7 @@ import International from "../pages/Products/International";
 import GlobalPresence from "../pages/GlobalPresence";
 import ManageMyBattery from "../pages/ManageMyBattery";
 import ProductFinalPage from "../pages/ProductFinalPage";
+import ProductSearchPage from "../pages/ProductSearchPage";
 
 const routes = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const routes = createBrowserRouter([
       {
         path: "/product-final-page",
         element: <ProductFinalPage/>,
+      },
+      {
+        path: "/product-search",
+        element: <ProductSearchPage/>
       }
     ],
   },
