@@ -1,5 +1,6 @@
 import BangladeshPageBanner from "../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
 import ProductSearchField from "../components/ProductSearch/ProductSearchField";
+import RelatedProducts from "../components/ProductSearch/RelatedProducts";
 import Table from "../components/ProductSearch/Table";
 
 const ProductSearchPage = () => {
@@ -23,6 +24,7 @@ const ProductSearchPage = () => {
       {/* Product Section */}
       <div className="mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28">
         <Table/>
+        <RelatedProducts/>
       </div>
     </section>
   );
