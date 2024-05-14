@@ -9,6 +9,7 @@ import GlobalPresence from "../pages/GlobalPresence";
 import ManageMyBattery from "../pages/ManageMyBattery";
 import ProductFinalPage from "../pages/ProductFinalPage";
 import ProductSearchPage from "../pages/ProductSearchPage";
+import StoragePower from "../pages/About/StoragePower";
 
 const routes = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const routes = createBrowserRouter([
       {
         path: "/product-search",
         element: <ProductSearchPage/>
+      },
+      {
+        path:'/about/storage-power',
+        element: <StoragePower/>,
       }
     ],
   },
