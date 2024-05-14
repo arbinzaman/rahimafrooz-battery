@@ -11,6 +11,9 @@ export default {
         button:"#0d72b8",
         border_primary:"#75aed6",
         background:"#deebf6",
+        tableBackground1:"#1b5ba9",
+        tableBackground2:"#2471b7",
+        cookieList:"#d7dde3",
         button2: "#94e7f3",
       },
       fontSize:{

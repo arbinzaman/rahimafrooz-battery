@@ -47,7 +47,7 @@ const GlobalPresence = () => {
         <div className="bg-primary">
           <Slider {...settings}>
             <div className=" text-base p-16" >
-              <h3 className="text-xlarge mb-10">AFRICA</h3>
+              <h3 className="text-5xl mb-10">AFRICA</h3>
               <div className="grid grid-cols-2 mt-12 gap-10 text-medium text-left justify-items-center">
                 <div className="flex flex-col gap-5">
                   <p>Algeria</p>
