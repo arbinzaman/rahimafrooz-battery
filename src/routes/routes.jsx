@@ -10,6 +10,8 @@ import ManageMyBattery from "../pages/ManageMyBattery";
 import ProductFinalPage from "../pages/ProductFinalPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import FounderAndBoardMembers from "../pages/About/FounderAndBoardMembers";
+import ProductSearchPage from "../pages/ProductSearchPage";
+
 
 const routes = createBrowserRouter([
   {
@@ -55,7 +57,11 @@ const routes = createBrowserRouter([
       {
         path: "/Founder-and-Board-Members",
         element: <FounderAndBoardMembers/>,
-      }
+      },
+      {
+        path: "/product-search",
+        element: <ProductSearchPage/>
+      },
     ],
   },
 ]);

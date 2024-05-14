@@ -14,6 +14,7 @@ export default {
         tableBackground1:"#1b5ba9",
         tableBackground2:"#2471b7",
         cookieList:"#d7dde3",
+        button2: "#94e7f3",
       },
       fontSize:{
         xlarge:"46.47px",
