@@ -40,6 +40,7 @@ const StoragePower = () => {
             (VRLA) batteries for both starting and deep cycle applications.
           </div>
         </div>
+        
         {/* Video */}
         <div>
           <iframe
