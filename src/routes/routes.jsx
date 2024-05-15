@@ -11,6 +11,7 @@ import ProductFinalPage from "../pages/ProductFinalPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import FounderAndBoardMembers from "../pages/About/FounderAndBoardMembers";
 import ProductSearchPage from "../pages/ProductSearchPage";
+import StoragePower from "../pages/About/StoragePower";
 
 
 const routes = createBrowserRouter([
@@ -62,6 +63,10 @@ const routes = createBrowserRouter([
         path: "/product-search",
         element: <ProductSearchPage/>
       },
+      {
+        path:'/about/storage-power',
+        element: <StoragePower/>,
+      }
     ],
   },
 ]);
