@@ -369,28 +369,29 @@ const Home = () => {
               <div className="grid grid-cols-4 gap-4 text-center text-white pt-20">
                 <div>
                   <BuildingOffice2Icon className="w-12 h-12 mt-1 mx-auto" />
-                  <p className="text-xl pt-5 pb-5">ESTABLISHED IN</p>
-                  <h1 className="text-5xl font-bold">1954</h1>
+                  <p className="lg:text-xl text-xs pt-5 pb-5">ESTABLISHED IN</p>
+                  <h1 className="text-xl lg:text-5xl font-bold">1954</h1>
                 </div>
                 <div>
                   <BuildingOffice2Icon className="w-12 h-12 mt-1 mx-auto" />
-                  <p className="text-xl pt-5 leading-3">BUSINESS PARTNERS</p>
-                  <span className="text-xs">NATIONAL & INTERNATIONAL</span>
-                  <h1 className="text-5xl font-bold pt-5">
+                  <p className="text-xl hidden lg:block pt-5 leading-3">BUSINESS PARTNERS</p>
+                  <span className="text-xs hidden lg:block">NATIONAL & INTERNATIONAL</span>
+                  <p className="uppercase text-xs pt-5 lg:hidden">presence in countries</p>
+                  <h1 className="text-xl lg:text-5xl font-bold pt-5">
                     {counterOn && <CountUp start={0} end={75} duration={2} delay={0} />}
                   </h1>
                 </div>
                 <div>
                   <BuildingOffice2Icon className="w-12 h-12 mt-1 mx-auto" />
-                  <p className="text-xl pt-5 pb-5">DEALERS</p>
-                  <h1 className="text-5xl font-bold">
+                  <p className="lg:text-xl text-xs pt-5 pb-5">DEALERS</p>
+                  <h1 className="text-xl lg:text-5xl font-bold">
                     {counterOn && <CountUp start={0} end={1000} duration={2} delay={0} />}
                   </h1>
                 </div>
                 <div>
                   <BuildingOffice2Icon className="w-12 h-12 mt-1 mx-auto" />
-                  <p className="text-xl pt-5 pb-5">PRODUCT IN-USE</p>
-                  <h1 className="text-5xl font-bold">
+                  <p className="lg:text-xl text-xs pt-5 pb-5">PRODUCT IN-USE</p>
+                  <h1 className="text-xl lg:text-5xl font-bold">
                     {counterOn && <CountUp start={0} end={1000} duration={2} delay={0} />}
                   </h1>
                 </div>
@@ -416,11 +417,11 @@ const Home = () => {
       </section>
       <section>
         <div className="max-w-screen-xl mx-auto">
-          <div className="grid grid-cols-2 gap-16 text-center text-white pt-16 pb-16">
-            <div>
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/6GolJa3RKDQ?si=vQcNIUfZ3WfAt3xw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div className="lg:grid lg:grid-cols-2 lg:gap-16 text-center text-white pt-16 pb-16">
+            <div className="HomeSocial">
+              <iframe src="https://www.youtube.com/embed/6GolJa3RKDQ?si=vQcNIUfZ3WfAt3xw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
-            <div>
+            <div className="hidden lg:block">
               {buttons.map((button) => (
                 <button key={button.id} className="btn btn-outline m-2 mt-0 mb-0">{button.buttonName}</button>
               ))}
@@ -445,15 +446,15 @@ const Home = () => {
         </div>
       </section>
       {/* For Small Devices */}
-      <section>
+      <section className="lg:hidden">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 pt-16 pb-16">CERTIFICATIONS</h1>
           <div className="slider-container max-w-7xl mx-auto">
             <Slider {...settingsForCertificatesSmall}>
               {homeCertificates?.map((certificate) => (
                 <div key={certificate?.id}>
-                  <img className="max-w-60 max-h-60 mx-auto" src={certificate?.certificateImage} alt={certificate?.certificateAlt} />
-                  <h1 className="text-sm text-cyan-600 pt-8 font-semibold">{certificate.certificateText}</h1>
+                  <img className="max-w-60 max-h-20 mx-auto" src={certificate?.certificateImage} alt={certificate?.certificateAlt} />
+                  <h1 className="text-sm text-cyan-600 pt-2 font-semibold">{certificate.certificateText}</h1>
                 </div>
               ))}
             </Slider>
