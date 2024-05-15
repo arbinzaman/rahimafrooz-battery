@@ -83,7 +83,7 @@ const routes = createBrowserRouter([
         element: <FindDealer />
       },
       {
-        path: "/about/manufacturing",
+        path: "/manufacturing",
         element: <Manufacturing/>
       },
     ],
