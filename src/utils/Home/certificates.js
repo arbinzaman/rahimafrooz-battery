@@ -1,25 +1,30 @@
+import Certificate1 from "../../assets/images/HomePage/Certificates/Image-01.png"
+import Certificate2 from "../../assets/images/HomePage/Certificates/Image-02.png"
+import Certificate3 from "../../assets/images/HomePage/Certificates/Image-03.png"
+import Certificate4 from "../../assets/images/HomePage/Certificates/Image-04.png"
+
 export const homeCertificates = [
     {
         id: 1,
-        certificateImage: "src/assets/images/HomePage/Certificates/Image-01.png",
+        certificateImage: Certificate1,
         certificateAlt: "ISO",
         certificateText: "ISO 14001 Certification"
     },
     {
         id: 2,
-        certificateImage: "src/assets/images/HomePage/Certificates/Image-02.png",
+        certificateImage: Certificate2,
         certificateAlt: "SGS",
         certificateText: "SGS Certification"
     },
     {
         id: 3,
-        certificateImage: "src/assets/images/HomePage/Certificates/Image-03.png",
+        certificateImage: Certificate3,
         certificateAlt: "ISO",
         certificateText: "ISO 14001 Certification"
     },
     {
         id: 4,
-        certificateImage: "src/assets/images/HomePage/Certificates/Image-04.png",
+        certificateImage: Certificate4,
         certificateAlt: "SGS",
         certificateText: "SGS Certification"
     },
