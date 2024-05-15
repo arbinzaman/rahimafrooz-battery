@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
 import HomeGoogleTranslate from '../Home/HomeGoogleTranslate';
 
 import Logo from '../../assets/70-Years-Logo.png';
@@ -11,8 +11,18 @@ import FooterLogo from '../../assets/Rahimafrooz_Logo_White.svg';
 import "../../styles/Footer.css"
 
 const Footer = () => {
+const scrollUp = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+}
+
   return (
     <div className="bg-primary">
+      <div>
+        <button onClick={scrollUp} className='absolute bottom-32 right-8'><ArrowUpIcon className='w-10 h-10 rounded-full bg-sky-300 text-sky-700 font-bold'/></button>
+      </div>
       <div className='max-w-screen-xl mx-auto pt-12 pl-4 pr-4'>
         <div className='flex justify-between'>
           <img src={Logo} alt="logo" width={135} height={135} />
@@ -169,7 +179,7 @@ const Footer = () => {
             <p className='opacity-60 pl-4'>Copyright © 2017-2023 Rahimafrooz Batteries Ltd. All rights reserved.</p>
           </div>
           <div>
-          <HomeGoogleTranslate />
+            <HomeGoogleTranslate />
           </div>
         </div>
       </div>
