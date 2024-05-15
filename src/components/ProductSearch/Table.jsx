@@ -68,7 +68,7 @@ const Table = () => {
                 <img
                   src={Product2}
                   alt="Lucas Ultima SMF battery"
-                  className="h-24 md:h-48 lg:52"
+                  className="h-24 md:h-48 lg:h-52"
                 />
                 <p className="text-black text-sm md:text-regular lg:text-medium">Lucas Ultima Battery</p>
                 <button className="px-6 border border-button  text-xxsmall text-button">
@@ -81,7 +81,7 @@ const Table = () => {
                 <img
                   src={Product1}
                   alt="Globatt ACE battery"
-                  className="h-24 md:h-40 lg:h-52"
+                  className="h-24 md:h-48 lg:h-52"
                 />
                 <p className="text-black text-sm md:text-regular lg:text-medium">Globatt</p>
                 <button className="px-6 border border-button  text-xxsmall text-button">

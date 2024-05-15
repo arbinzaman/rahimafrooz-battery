@@ -8,8 +8,11 @@ import International from "../pages/Products/International";
 import GlobalPresence from "../pages/GlobalPresence";
 import ManageMyBattery from "../pages/ManageMyBattery";
 import ProductFinalPage from "../pages/ProductFinalPage";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import FounderAndBoardMembers from "../pages/About/FounderAndBoardMembers";
 import ProductSearchPage from "../pages/ProductSearchPage";
 import StoragePower from "../pages/About/StoragePower";
+
 
 const routes = createBrowserRouter([
   {
@@ -47,6 +50,14 @@ const routes = createBrowserRouter([
       {
         path: "/product-final-page",
         element: <ProductFinalPage/>,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy/>,
+      },
+      {
+        path: "/Founder-and-Board-Members",
+        element: <FounderAndBoardMembers/>,
       },
       {
         path: "/product-search",
