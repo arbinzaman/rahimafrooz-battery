@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { GlobeAltIcon, ChevronDownIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
+import HomeGoogleTranslate from '../Home/HomeGoogleTranslate';
+
 import Logo from '../../assets/Rahimafrooz_Logo_Color.png';
 import Facebook from '../../assets/icons/facebook-icon.svg';
 import Instagram from '../../assets/icons/instagram-icon.svg';
@@ -57,11 +59,7 @@ const Header = () => {
                   <a href="/manage-my-battery">
                     <button className='header-btn'><img className='w-4 h-4 mt-1 mr-2 opacity-60' src={Battery} alt='icon' />Manage My Battery</button>
                   </a>
-                  <select className="select select-info w-full max-w-28 min-h-8 h-8 bg-primary text-cyan-100 opacity-80">
-                    <option defaultValue={'English'}>English</option>
-                    <option>Japanese</option>
-                    <option>Italian</option>
-                  </select>
+                  <HomeGoogleTranslate />
                 </div>
               </div>
               {/* Mobile Nav */}
