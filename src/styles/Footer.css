@@ -11,3 +11,14 @@
     color: #95E7F4;
     opacity: 1;
 }
+
+.footer-title-mobile{
+    text-transform: capitalize;
+    color: #95E7F4;
+    opacity: 1;
+    padding: 0 !important;
+    min-height: 0 !important;
+}
+.collapse-content a {
+    color: #ddebf6;
+}
