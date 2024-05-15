@@ -1,4 +1,5 @@
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import HomeGoogleTranslate from '../Home/HomeGoogleTranslate';
 
 import Logo from '../../assets/70-Years-Logo.png';
 import Facebook from '../../assets/icons/facebook-icon.svg';
@@ -157,11 +158,7 @@ const Footer = () => {
           <a href="https://www.youtube.com/@RahimafroozBangladesh" target='_blank'>
             <img src={Youtube} alt="fb" width={20} height={20} />
           </a>
-          <select className="select select-info w-full max-w-32 bg-primary text-cyan-100 opacity-80">
-            <option defaultValue={"English"}>English</option>
-            <option>Japanese</option>
-            <option>Italian</option>
-          </select>
+          <HomeGoogleTranslate />
         </div>
       </footer>
       <div className='max-w-screen-xl mx-auto text-white text-xs pb-6 font-semibold'>
@@ -170,6 +167,9 @@ const Footer = () => {
           <div className='flex pl-4 pr-4'>
             <img src={FooterLogo} alt="yt" width={120} height={120} />
             <p className='opacity-60 pl-4'>Copyright © 2017-2023 Rahimafrooz Batteries Ltd. All rights reserved.</p>
+          </div>
+          <div>
+          <HomeGoogleTranslate />
           </div>
         </div>
       </div>
