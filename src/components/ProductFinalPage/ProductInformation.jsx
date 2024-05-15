@@ -3,6 +3,10 @@ import { BsTelephoneOutbound } from "react-icons/bs";
 import { SlCalender } from "react-icons/sl";
 import maintaince1 from "../../assets/icons/maintaince1.svg";
 const ProductInformation = () => {
+
+  const handleChangeTab = () => {
+    document.getElementById("demo").innerHTML = "High Cranking Power"
+  };
   return (
     <div>
       <h1 className="text-5xl text-primary font-bold text-center mb-10">
@@ -12,8 +16,8 @@ const ProductInformation = () => {
         <div>
           <section className="">
             <div className="flex gap-4 text-xl">
-              <p>Details</p>
-              <p>Additional Information</p>
+              <button>Details</button>
+              <button onClick={()=>handleChangeTab()}>Additional Information</button>
             </div>
             <div className="container flex flex-col justify-center px-4 py-8 mx-auto md:p-8 border-primary border-r border-t">
               <h2 className="mb-12 text-3xl font-bold leadi text-left">
@@ -64,8 +68,8 @@ const ProductInformation = () => {
             </div>
           </section>
         </div>
-        <div className=" border-primary border-l border-t mt-7 text-xl ">
-          <p className="mt-5  ml-5 flex gap-4">
+        <div className=" border-primary border-l border-t mt-7 text-xl " id="demo">
+          <p className="mt-28  ml-5 flex gap-4 ">
             <img
               src={maintaince1}
               alt=""

@@ -6,7 +6,7 @@ import ProductInformation from "../components/ProductFinalPage/ProductInformatio
 import SimilarProduct from "../components/ProductFinalPage/SimilarProduct";
 
 const ProductFinalPage = () => {
-  const [img, setImg] = useState();
+  const [img, setImg] = useState(img1);
   console.log(img);
   const featuresImg = (imgSrc) => {
     setImg(imgSrc);
