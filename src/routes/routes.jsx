@@ -15,6 +15,7 @@ import StoragePower from "../pages/About/StoragePower";
 import TermsAndCondition from "../pages/TermsAndCondition";
 import SpecialAwards from "../pages/About/SpecialAwards";
 import FindDealer from "../pages/FindDealer";
+import Manufacturing from "../pages/About/Manufacturing";
 
 const routes = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const routes = createBrowserRouter([
       {
         path: "/find-dealer",
         element: <FindDealer />
+      },
+      {
+        path: "/about/manufacturing",
+        element: <Manufacturing/>
       },
     ],
   },
