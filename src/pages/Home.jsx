@@ -25,6 +25,8 @@ import whyChoose from "../assets/images/HomePage/Why-Choose-Rahimafrooz-01.png";
 import reviews from "../assets/images/HomePage/Review-01.png";
 import newsEvent from "../assets/images/HomePage/News-01.png";
 
+import HomeGoogleMap from "../components/Home/HomeGoogleMap";
+
 import "../styles/Home.css";
 
 const Home = () => {
@@ -313,7 +315,7 @@ const Home = () => {
         </div>
       </section>
       <section className="border-y-2">
-        <h1 className="text-center text-cyan-600 text-3xl mt-8 mb-8">Deader Location Under Constuction...</h1>
+        <HomeGoogleMap />
       </section>
       <section className="bg-white pt-16 pb-16 hidden lg:block">
         <div className="text-center max-w-4xl mx-auto">
