@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <footer className="footer hidden lg:block text-white grid-cols-5 gap-6 pb-10 max-w-screen-xl mx-auto pl-4 pr-4">
+      <footer className="footer hidden lg:grid text-white grid-cols-5 gap-6 pb-10 max-w-screen-xl mx-auto pl-4 pr-4">
         <nav className="col-span-2 max-w-sm">
 
           <p className='text-justify pt-10'>
