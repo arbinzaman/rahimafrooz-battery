@@ -13,6 +13,9 @@ import FounderAndBoardMembers from "../pages/About/FounderAndBoardMembers";
 import ProductSearchPage from "../pages/ProductSearchPage";
 import StoragePower from "../pages/About/StoragePower";
 import TermsAndCondition from "../pages/TermsAndCondition";
+import SpecialAwards from "../pages/About/SpecialAwards";
+import FindDealer from "../pages/FindDealer";
+import Manufacturing from "../pages/About/Manufacturing";
 
 const routes = createBrowserRouter([
   {
@@ -64,12 +67,24 @@ const routes = createBrowserRouter([
         element: <ProductSearchPage />,
       },
       {
-        path: "/about/storage-power",
+        path: "/rahimafrooz-storage-power",
         element: <StoragePower />,
       },
       {
         path: "/terms-and-conditions",
         element: <TermsAndCondition />,
+      },
+        {
+        path: "/special-awards-achievement",
+        element: <SpecialAwards />,
+      },
+      {
+        path: "/find-dealer",
+        element: <FindDealer />
+      },
+      {
+        path: "/about/manufacturing",
+        element: <Manufacturing/>
       },
     ],
   },
