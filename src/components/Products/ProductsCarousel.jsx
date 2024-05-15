@@ -3,7 +3,7 @@ import Product from "./Product";
 
 const ProductsCarousel = ({ products }) => {
   const settingsForLargeScreen = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -13,7 +13,7 @@ const ProductsCarousel = ({ products }) => {
   };
 
   const settingsForMediumScreen = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 2,
     slidesToScroll: 1,
@@ -23,7 +23,7 @@ const ProductsCarousel = ({ products }) => {
   };
 
   const settingsForSmallScreen = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
