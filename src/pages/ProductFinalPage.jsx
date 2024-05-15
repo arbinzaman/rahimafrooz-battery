@@ -2,9 +2,11 @@ import img1 from "../assets/images/BatteryFinalPage/Product-01.png";
 import img2 from "../assets/images/BatteryFinalPage/Product Final Page.png";
 import { FaAngleRight } from "react-icons/fa6";
 import { useState } from "react";
+import ProductInformation from "../components/ProductFinalPage/ProductInformation";
+import SimilarProduct from "../components/ProductFinalPage/SimilarProduct";
 
 const ProductFinalPage = () => {
-  const [img, setImg] = useState();
+  const [img, setImg] = useState(img1);
   console.log(img);
   const featuresImg = (imgSrc) => {
     setImg(imgSrc);
@@ -87,8 +89,16 @@ const ProductFinalPage = () => {
       {/* hero section end for battery final page */}
 
       {/* product information section start */}
-
+      <div className="w-4/5 mx-auto mb-10">
+        <ProductInformation />
+      </div>
       {/* product information section  end */}
+
+      {/* Similar product section  Start */}
+      <div className="">
+        <SimilarProduct />
+      </div>
+      {/* Similar product section  End */}
     </section>
   );
 };
