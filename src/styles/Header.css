@@ -20,6 +20,21 @@
     font-weight: 600;
 }
 
+.header-btn-mobile {
+    display: flex;
+    padding: 0 8px 2px;
+    background-color: #95E7F4;
+    color: #005cab;
+    font-weight: 600;
+    margin-top: 11px;
+    margin-right: 12px;
+}
+
+.nav-logo{
+    width: 338px;
+    height: 100%;
+}
+
 .dropdown-language{
     border: 1px solid #95E7F4;
     border-radius: 10px;
@@ -37,6 +52,31 @@
     background-color: #ddebf6;
     padding: 4px;
     margin-top: 3px;
+}
+.nav-active-bg:active{
+    background-color: #ddebf6 !important;
+}
+
+@media screen and (max-width: 767px)  {
+    .diagonal-background{
+        background-image: -webkit-linear-gradient(130deg, #005cab 53%, #ddebf6 53.2%);
+    }
+    .nav-logo{
+        width: 160px;
+    }
+    .header-btn-mobile{
+        font-size: 12px;
+        margin-top: 10px;
+    }
+    .header-btn-mobile svg{
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .dropdown-content {
+        position: relative !important;
+    }
 }
 
 @media screen and (max-width: 1100px) and (min-width: 1024px)  {

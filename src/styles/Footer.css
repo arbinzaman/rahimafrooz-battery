@@ -1,0 +1,13 @@
+.footer-btn {
+    border-radius: 10px;
+    padding: 4px 12px 5px;
+    background-color: #95E7F4;
+    color: #005cab;
+    font-weight: 600;
+    margin-left: 12px;
+}
+
+.footer-title{
+    color: #95E7F4;
+    opacity: 1;
+}
