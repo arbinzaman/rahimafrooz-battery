@@ -51,7 +51,7 @@ const Footer = () => {
         <nav>
           <h6 className="footer-title">Policies</h6>
           <a className='link link-hover opacity-80' href="#">Terms and Conditions</a>
-          <a className='link link-hover opacity-80' href="#">Privacy policy</a>
+          <a className='link link-hover opacity-80' href="/privacy-policy">Privacy policy</a>
           <a className='link link-hover opacity-80' href="#">Cookies ppolicy</a>
           <a className='link link-hover opacity-80' href="#">Copyright notification</a>
           <a className='link link-hover opacity-80' href="#">Cookies Settings</a>
@@ -114,7 +114,7 @@ const Footer = () => {
           </h6>
           <div className="collapse-content mt-4 leading-8">
             <a className='link link-hover opacity-80' href="#">Terms and Conditions</a> <br />
-            <a className='link link-hover opacity-80' href="#">Privacy policy</a> <br />
+            <a className='link link-hover opacity-80' href="/privacy-policy">Privacy policy</a> <br />
             <a className='link link-hover opacity-80' href="#">Cookies ppolicy</a><br />
             <a className='link link-hover opacity-80' href="#">Copyright notification</a><br />
             <a className='link link-hover opacity-80' href="#">Cookies Settings</a><br />
