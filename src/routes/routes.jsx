@@ -12,7 +12,7 @@ import PrivacyPolicy from "../pages/PrivacyPolicy";
 import FounderAndBoardMembers from "../pages/About/FounderAndBoardMembers";
 import ProductSearchPage from "../pages/ProductSearchPage";
 import StoragePower from "../pages/About/StoragePower";
-
+import TermsAndCondition from "../pages/TermsAndCondition";
 
 const routes = createBrowserRouter([
   {
@@ -41,32 +41,36 @@ const routes = createBrowserRouter([
       },
       {
         path: "/global-presence",
-        element: <GlobalPresence/>,
+        element: <GlobalPresence />,
       },
       {
         path: "/manage-my-battery",
-        element: <ManageMyBattery/>,
+        element: <ManageMyBattery />,
       },
       {
         path: "/product-final-page",
-        element: <ProductFinalPage/>,
+        element: <ProductFinalPage />,
       },
       {
         path: "/privacy-policy",
-        element: <PrivacyPolicy/>,
+        element: <PrivacyPolicy />,
       },
       {
         path: "/Founder-and-Board-Members",
-        element: <FounderAndBoardMembers/>,
+        element: <FounderAndBoardMembers />,
       },
       {
         path: "/product-search",
-        element: <ProductSearchPage/>
+        element: <ProductSearchPage />,
       },
       {
-        path:'/about/storage-power',
-        element: <StoragePower/>,
-      }
+        path: "/about/storage-power",
+        element: <StoragePower />,
+      },
+      {
+        path: "/terms-and-conditions",
+        element: <TermsAndCondition />,
+      },
     ],
   },
 ]);
