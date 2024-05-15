@@ -75,7 +75,6 @@ const SpecialAwards = () => {
         </section>
       </section>
       <section className="mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28">
-        {/* Slider Section */}
         <AwardSlider />
       </section>
     </section>
