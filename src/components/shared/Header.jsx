@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { GlobeAltIcon, ChevronDownIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
+import HomeGoogleTranslate from '../Home/HomeGoogleTranslate';
+
 import Logo from '../../assets/Rahimafrooz_Logo_Color.png';
 import Facebook from '../../assets/icons/facebook-icon.svg';
 import Instagram from '../../assets/icons/instagram-icon.svg';
@@ -57,11 +59,7 @@ const Header = () => {
                   <a href="/manage-my-battery">
                     <button className='header-btn'><img className='w-4 h-4 mt-1 mr-2 opacity-60' src={Battery} alt='icon' />Manage My Battery</button>
                   </a>
-                  <select className="select select-info w-full max-w-28 min-h-8 h-8 bg-primary text-cyan-100 opacity-80">
-                    <option defaultValue={'English'}>English</option>
-                    <option>Japanese</option>
-                    <option>Italian</option>
-                  </select>
+                  <HomeGoogleTranslate />
                 </div>
               </div>
               {/* Mobile Nav */}
@@ -119,11 +117,11 @@ const Header = () => {
                         <ChevronDownIcon style={{ marginLeft: "-10px" }} className='w-4 h-4 mt-1 text-cyan-300' />
                       </div>
                       <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-sky-100 text-sky-600 mt-6 rounded-sm w-64">
-                        <li><a className='nav-active-bg'>Rahimafrooz Group</a></li>
-                        <li><a className='nav-active-bg'>Founder & Board Members</a></li>
-                        <li><a className='nav-active-bg'>Rahimafrooz Storage Power</a></li>
+                        <li><a href='https://www.rahimafrooz.com/' target='_blank' className='nav-active-bg'>Rahimafrooz Group</a></li>
+                        <li><a href='/Founder-and-Board-Members' className='nav-active-bg'>Founder & Board Members</a></li>
+                        <li><a href='/rahimafrooz-storage-power' className='nav-active-bg'>Rahimafrooz Storage Power</a></li>
                         <li><a className='nav-active-bg'>Manufacturing</a></li>
-                        <li><a className='nav-active-bg'>Special Awards & Achievement</a></li>
+                        <li><a href='/special-awards-achievement' className='nav-active-bg'>Special Awards & Achievement</a></li>
                       </ul>
                     </div>
                   </li>
@@ -183,11 +181,11 @@ const Header = () => {
                     <ChevronDownIcon style={{ marginLeft: "-10px" }} className='w-4 h-4 mt-1 text-sky-600' />
                   </div>
                   <ul tabIndex={0} className=" menu p-2 shadow bg-sky-100 text-sky-600 mt-6 rounded-sm w-64">
-                    <li><a className='nav-active-bg'>Rahimafrooz Group</a></li>
-                    <li><a className='nav-active-bg'>Founder & Board Members</a></li>
-                    <li><a className='nav-active-bg'>Rahimafrooz Storage Power</a></li>
+                    <li><a href='https://www.rahimafrooz.com/' target='_blank' className='nav-active-bg'>Rahimafrooz Group</a></li>
+                    <li><a href='/Founder-and-Board-Members' className='nav-active-bg'>Founder & Board Members</a></li>
+                    <li><a href='/rahimafrooz-storage-power' className='nav-active-bg'>Rahimafrooz Storage Power</a></li>
                     <li><a className='nav-active-bg'>Manufacturing</a></li>
-                    <li><a className='nav-active-bg'>Special Awards & Achievement</a></li>
+                    <li><a href='/special-awards-achievement' className='nav-active-bg'>Special Awards & Achievement</a></li>
                   </ul>
                 </div>
               </li>
