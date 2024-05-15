@@ -20,7 +20,7 @@ const ContactUsInformationForm = () => {
         <div>
           <input
             type="text"
-            placeholder="Full Name"
+            placeholder="Full Name*"
             className="border border-border_primary rounded-md p-1 w-full"
             {...register("fullName")}
           />
@@ -30,7 +30,7 @@ const ContactUsInformationForm = () => {
           <div>
             <input
               type="text"
-              placeholder="Phone No"
+              placeholder="Phone No*"
               className="border border-border_primary rounded-md p-1 w-full"
               {...register("phoneNo")}
             />
@@ -39,7 +39,7 @@ const ContactUsInformationForm = () => {
           <div>
             <input
               type="email"
-              placeholder="E-mail"
+              placeholder="E-mail*"
               className="border border-border_primary rounded-md p-1 w-full"
               {...register("email")}
             />

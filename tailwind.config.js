@@ -9,7 +9,13 @@ export default {
         primary: "#0d72b9",
         secondary: "#0962ae",
         button:"#0d72b8",
-        border_primary:"#75aed6"
+        border_primary:"#75aed6",
+        background:"#deebf6",
+        tableBackground1:"#1b5ba9",
+        tableBackground2:"#2471b7",
+        cookieList:"#d7dde3",
+        button2: "#94e7f3",
+        background2:"#d7dde3",
       },
       fontSize:{
         xlarge:"46.47px",
@@ -24,6 +30,10 @@ export default {
       fontFamily:{
         'roboto': ['Roboto', 'sans-serif'],
       },
+      backgroundImage: {
+        'cross-pattern': "url('src/assets/images/Texture.png')",
+        'circuit-texture': "url('src/assets/images/Circuit-texture.png')",
+      }
     },
   },
   plugins: [daisyui],

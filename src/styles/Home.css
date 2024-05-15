@@ -1,0 +1,93 @@
+.icon-BG{
+    width: 100%;
+    height: 680px;
+    background-image: url('../assets/images/HomePage/Icon-Bg.png'), url('../assets/images/HomePage/Icon-Bg-texture.png');
+    background-blend-mode: darken;
+    background-repeat: round;
+    background-size: cover;
+    top: -32px;
+    z-index: 10;
+    position: relative;
+}
+.icon-BG .slick-prev{
+    left: -26px;
+}
+.icon-BG .slick-prev::before{
+    font-size: 24px;
+    color: #deebf6;
+    line-height: 0;
+    opacity: 1;
+}
+.icon-BG .slick-next{
+    right: -21px;
+}
+.icon-BG .slick-next::before{
+    font-size: 24px;
+    color: #deebf6;
+    line-height: 0;
+    opacity: 1;
+}
+
+.our-brands{
+    width: 100%;
+    height: 440px;
+    background-image: url("../assets/images/HomePage/side-icon-left.png"), url("../assets/images/HomePage/side-icon-right.png");
+    background-repeat: no-repeat;
+    background-position: left, right;
+}
+
+.Home-Slider .slick-arrow{
+    display: none !important;
+}
+
+.home-counter{
+    width: 100%;
+    height: 360px;
+    background-color: #005cab;
+    background-image: url('../assets/images/HomePage/Counter-Bg-texture.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: inherit;
+}
+
+.slick-prev{
+    left: -40px;
+}
+.slick-prev::before{
+    font-size: 40px;
+    color: #005cab;
+    line-height: 0;
+    opacity: 1;
+}
+.slick-next{
+    right: -20px;
+}
+.slick-next::before{
+    font-size: 40px;
+    color: #005cab;
+    line-height: 0;
+    opacity: 1;
+}
+
+.HomeSocial iframe{
+    width: 560px;
+    height: 315px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 767px) {
+    .HomeSocial iframe{
+        width: 380px;
+        height: 220px;
+    }
+    .slick-next {
+        right: 22px;
+    }
+    .slick-next::before, .slick-prev::before {
+        font-size: 26px;
+    }
+    .slick-prev{
+        left: 12px;
+    }
+}

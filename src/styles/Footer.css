@@ -1,0 +1,44 @@
+.footer-btn {
+    border-radius: 10px;
+    padding: 4px 12px 5px;
+    background-color: #95E7F4;
+    color: #005cab;
+    font-weight: 600;
+    margin-left: 12px;
+}
+
+.footer-title{
+    color: #95E7F4;
+    opacity: 1;
+}
+
+.footer-title-mobile{
+    text-transform: capitalize;
+    color: #95E7F4;
+    opacity: 1;
+    padding: 0 !important;
+    min-height: 0 !important;
+}
+.collapse-content a {
+    color: #ddebf6;
+}
+
+.goog-te-gadget-simple {
+    border: 4px double;
+    border-radius: 10px;
+    padding: 2px 4px 4px;
+    background-color: #95E7F4;
+    color: #005cab;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.goog-te-gadget-simple span{
+    color: #005cab !important;
+    border: none !important;
+    margin-left: 2px;
+}
+
+.goog-te-gadget img {
+    display: none !important;
+}

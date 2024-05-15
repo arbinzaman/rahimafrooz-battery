@@ -1,0 +1,118 @@
+.diagonal-background{
+    background-color: #005cab;
+    background-image: -webkit-linear-gradient(130deg, #005cab 43%, #ddebf6 43.1%);
+}
+
+.horizontal-line{
+    margin-left: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color:#95E7F4
+}
+
+.header-btn{
+    display: flex;
+    border: 4px double;
+    border-radius: 10px;
+    padding: 0 8px 2px;
+    background-color: #95E7F4;
+    color: #005cab;
+    font-weight: 600;
+}
+
+.header-btn-mobile {
+    display: flex;
+    padding: 0 8px 2px;
+    background-color: #95E7F4;
+    color: #005cab;
+    font-weight: 600;
+    margin-top: 11px;
+    margin-right: 12px;
+}
+
+.nav-logo{
+    width: 338px;
+    height: 100%;
+}
+
+.dropdown-language{
+    border: 1px solid #95E7F4;
+    border-radius: 10px;
+    width: 132px;
+    background-color: #005cab;
+}
+
+.main-nav{
+    margin-top: 3px;
+    background-color: #005cab;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.main-nav .search{
+    background-color: #ddebf6;
+    padding: 4px;
+    margin-top: 3px;
+}
+.nav-active-bg:active{
+    background-color: #ddebf6 !important;
+}
+
+.goog-te-gadget-simple {
+    border: 4px double;
+    border-radius: 10px;
+    padding: 2px 4px 4px;
+    background-color: #95E7F4;
+    color: #005cab;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.goog-te-gadget-simple span{
+    color: #005cab !important;
+    border: none !important;
+    margin-left: 2px;
+}
+
+.goog-te-gadget img {
+    display: none !important;
+}
+
+@media screen and (max-width: 767px)  {
+    .diagonal-background{
+        background-image: -webkit-linear-gradient(130deg, #005cab 53%, #ddebf6 53.2%);
+    }
+    .nav-logo{
+        width: 160px;
+    }
+    .header-btn-mobile{
+        font-size: 12px;
+        margin-top: 10px;
+    }
+    .header-btn-mobile svg{
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .dropdown-content {
+        position: relative !important;
+    }
+}
+
+@media screen and (max-width: 1100px) and (min-width: 1024px)  {
+    .diagonal-background{
+        background-image: -webkit-linear-gradient(130deg, #005cab 50%, #ddebf6 50.1%);
+    }
+}
+
+@media screen and (max-width: 1220px) and (min-width: 1101px)  {
+    .diagonal-background{
+        background-image: -webkit-linear-gradient(130deg, #005cab 47%, #ddebf6 47.1%);
+    }
+}
+
+@media screen and (min-width: 1441px)  {
+    .diagonal-background{
+        background-image: -webkit-linear-gradient(130deg, #005cab 45%, #ddebf6 45.1%);
+    }
+}
