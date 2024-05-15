@@ -78,12 +78,24 @@ const Home = () => {
     cssEase: "linear"
   };
 
-  const settingsForCertificates = {
+  const settingsForCertificatesLarge = {
     dots: false,
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 4000,
+    pauseOnHover: false,
+    cssEase: "linear"
+  };
+
+  const settingsForCertificatesSmall = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    autoplay: false,
     speed: 1000,
     autoplaySpeed: 4000,
     pauseOnHover: false,
@@ -416,15 +428,32 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section>
+      {/* For Large Devices */}
+      <section className="hidden lg:block">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 pt-16 pb-16">CERTIFICATIONS</h1>
           <div className="slider-container max-w-7xl mx-auto">
-            <Slider {...settingsForCertificates}>
+            <Slider {...settingsForCertificatesLarge}>
               {homeCertificates?.map((certificate) => (
                 <div key={certificate?.id}>
                   <img className="max-w-60 max-h-60 mx-auto" src={certificate?.certificateImage} alt={certificate?.certificateAlt} />
                   <h1 className="text-xl text-cyan-600 pt-8 font-semibold">{certificate.certificateText}</h1>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </div>
+      </section>
+      {/* For Small Devices */}
+      <section>
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 pt-16 pb-16">CERTIFICATIONS</h1>
+          <div className="slider-container max-w-7xl mx-auto">
+            <Slider {...settingsForCertificatesSmall}>
+              {homeCertificates?.map((certificate) => (
+                <div key={certificate?.id}>
+                  <img className="max-w-60 max-h-60 mx-auto" src={certificate?.certificateImage} alt={certificate?.certificateAlt} />
+                  <h1 className="text-sm text-cyan-600 pt-8 font-semibold">{certificate.certificateText}</h1>
                 </div>
               ))}
             </Slider>
