@@ -14,6 +14,7 @@ import ProductSearchPage from "../pages/ProductSearchPage";
 import StoragePower from "../pages/About/StoragePower";
 import TermsAndCondition from "../pages/TermsAndCondition";
 import SpecialAwards from "../pages/About/SpecialAwards";
+import FindDealer from "../pages/FindDealer";
 
 const routes = createBrowserRouter([
   {
@@ -72,9 +73,13 @@ const routes = createBrowserRouter([
         path: "/terms-and-conditions",
         element: <TermsAndCondition />,
       },
-      {
+        {
         path: "/about/special-awards",
         element: <SpecialAwards />,
+      },
+      {
+        path: "/find-dealer",
+        element: <FindDealer />
       },
     ],
   },
