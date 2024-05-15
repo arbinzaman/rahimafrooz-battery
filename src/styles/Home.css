@@ -68,3 +68,26 @@
     line-height: 0;
     opacity: 1;
 }
+
+.HomeSocial iframe{
+    width: 560px;
+    height: 315px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 767px) {
+    .HomeSocial iframe{
+        width: 380px;
+        height: 220px;
+    }
+    .slick-next {
+        right: 22px;
+    }
+    .slick-next::before, .slick-prev::before {
+        font-size: 26px;
+    }
+    .slick-prev{
+        left: 12px;
+    }
+}
