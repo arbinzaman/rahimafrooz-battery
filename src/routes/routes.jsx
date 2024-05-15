@@ -66,7 +66,7 @@ const routes = createBrowserRouter([
         element: <ProductSearchPage />,
       },
       {
-        path: "/about/storage-power",
+        path: "/rahimafrooz-storage-power",
         element: <StoragePower />,
       },
       {
@@ -74,7 +74,7 @@ const routes = createBrowserRouter([
         element: <TermsAndCondition />,
       },
         {
-        path: "/about/special-awards",
+        path: "/special-awards-achievement",
         element: <SpecialAwards />,
       },
       {
