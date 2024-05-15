@@ -59,7 +59,7 @@ const routes = createBrowserRouter([
         element: <PrivacyPolicy />,
       },
       {
-        path: "/Founder-and-Board-Members",
+        path: "/founder-and-board-members",
         element: <FounderAndBoardMembers />,
       },
       {
