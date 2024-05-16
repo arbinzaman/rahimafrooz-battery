@@ -7,7 +7,7 @@ const SimilarProduct = () => {
       <h2 className="text-medium text-primary ">
         Best Price Commercial Vehicles Battery Online at RAHIMAFROOZ
       </h2>
-      <p className="text-regular text-justify mt-5">
+      <p className="text-regular text-black text-justify mt-5">
         Welcome to Rahimafrooz, your trusted source for high-performance bus and
         truck batteries that keep your commercial vehicles running smoothly for
         miles. We understand the need for uninterrupted operations to sustain

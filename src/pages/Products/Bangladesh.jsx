@@ -16,7 +16,7 @@ const Bangladesh = () => {
         />
       </div>
 
-      <section className="mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28">
+      <section className="my-10 max-w-screen-2xl mx-10 lg:mx-auto">
         {brandAndProducts?.map((brand) => (
           <div className="my-10" key={brand?.id}>
             <p className="text-semi_large text-primary font-bold mb-2">{brand?.brandName}</p>

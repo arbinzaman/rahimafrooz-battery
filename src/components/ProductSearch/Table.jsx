@@ -102,7 +102,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.name}
@@ -117,7 +117,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.series}
@@ -132,7 +132,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.itemCode}
@@ -147,7 +147,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.model}
@@ -162,7 +162,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.productDimension}
@@ -177,7 +177,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.voltage}
@@ -192,7 +192,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.ah}
@@ -207,7 +207,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.cca}
@@ -222,7 +222,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.totalWarrantyMo}
@@ -237,7 +237,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.freeWarrantyMo}
@@ -252,7 +252,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.proRataWarrantyMo}
@@ -267,7 +267,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.id==1?"Terminal Layout":<img className="mx-auto" src={battery.terminalLayout} width={"100px"} alt="" />}
@@ -282,7 +282,7 @@ const Table = () => {
                 className={
                   battery.id == 1
                     ? "bg-primary text-base border border-primary border-b-base"
-                    : "text-center  border border-primary"
+                    : "text-center text-black border border-primary"
                 }
               >
                 {battery.originCountry}

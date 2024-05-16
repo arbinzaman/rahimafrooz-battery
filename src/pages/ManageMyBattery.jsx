@@ -12,7 +12,7 @@ const ManageMyBattery = () => {
           alt="A picture represnting batter with waranty paper on the left side, text in the middle and another new battery on the right side."
         />
       </div>
-      <section className="mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28">
+      <section className="my-10 max-w-screen-2xl mx-10 lg:mx-auto">
         <div className="text-center text-primary my-10">
           <p className="text-medium md:text-large font-bold uppercase">
             Register For 24/7 Nation-Wide

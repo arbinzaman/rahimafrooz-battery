@@ -12,7 +12,7 @@ const ProductFinalPage = () => {
     setImg(imgSrc);
   };
   return (
-    <section className="bg-background">
+    <section className="bg-background my-10 max-w-screen-2xl mx-10 lg:mx-auto">
       {/* hero section start for battery final page  */}
       <div className="grid grid-cols-2 ">
         <div className="mx-auto">
@@ -52,11 +52,11 @@ const ProductFinalPage = () => {
             </div>
           </div>
         </div>
-        <div className="my-auto p-10 mt-28 ">
+        <div className="p-10 mt-10">
           <h1 className="text-large font-bold text-primary mb-10">
             Globatt Ace N50ZL Battery
           </h1>
-          <div className="text-regular mb-5 font-medium ">
+          <div className="text-regular text-black mb-5 font-medium ">
             <p className="flex ">
               <FaAngleRight className="h-6 mr-3 mt-1" />{" "}
               <span className="">Warranty: 24 Months Warranty </span>
@@ -71,7 +71,7 @@ const ProductFinalPage = () => {
             </p>
           </div>
           <p className="text-regular ml-3 font-medium mt-20">
-            MRP :{" "}
+            <span className="text-black">MRP :</span>{" "}
             <span className="text-primary font-bold">&#2547; 14,740.00</span>
           </p>
 

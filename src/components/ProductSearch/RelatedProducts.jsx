@@ -77,7 +77,7 @@ const RelatedProducts = () => {
                 alt="Product Image"
               />
             </div>
-            <p>{product.name}</p>
+            <p className="text-black">{product.name}</p>
             <button className="px-6 border border-button  text-xxsmall text-button">
               VIEW DETAILS
             </button>
