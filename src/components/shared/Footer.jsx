@@ -172,7 +172,7 @@ const scrollUp = () => {
         </div>
       </footer>
       <div className='max-w-screen-xl mx-auto text-white text-xs pb-6 font-semibold'>
-        <div className="divider divider-primary"></div>
+        <div className="border border-u-base mb-3"></div>
         <div className='flex justify-between items-center'>
           <div className='flex pl-4 pr-4'>
             <img src={FooterLogo} alt="yt" width={120} height={120} />
