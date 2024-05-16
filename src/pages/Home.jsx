@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
-import { BuildingOffice2Icon } from "@heroicons/react/24/outline";
 import { homeSlider } from "../utils/Home/slider";
 import { homeProducts } from "../utils/Home/products";
 import { homeCertificates } from "../utils/Home/certificates";
@@ -19,6 +18,10 @@ import Tractor from "../assets/images/HomePage/Icons/Tractor.png";
 import GolfCart from "../assets/images/HomePage/Icons/Golf-Cart.png";
 import Forklift from "../assets/images/HomePage/Icons/Forklift.png";
 import ElectricVehicle from "../assets/images/HomePage/Icons/Electric-Vehicle.png";
+import EstablishedIcon from "../assets/icons/factory.png";
+import WorldIcon from "../assets/icons/world.png";
+import HandShake from "../assets/icons/handshake.png";
+import CarBattery from "../assets/icons/battery.png";
 
 import homeVideo from "../assets/images/HomePage/rahimafrooz-motion-Gif.gif";
 import whyChoose from "../assets/images/HomePage/Why-Choose-Rahimafrooz-01.png";
@@ -97,7 +100,7 @@ const Home = () => {
     infinite: true,
     slidesToShow: 2,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     speed: 1000,
     autoplaySpeed: 4000,
     pauseOnHover: false,
@@ -174,39 +177,41 @@ const Home = () => {
               <div className="bg-sky-100 rounded-3xl p-8">
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
                   <option disabled selected>CATEGORY</option>
-                  <option>Item</option>
+                  <option>Passenger Car</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-40">
                   <option disabled selected>TECHNOLOGY</option>
-                  <option>Item</option>
+                  <option>Hybrid</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
                   <option disabled selected>BRAND</option>
-                  <option>Item</option>
+                  <option>Hyundai</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
                   <option disabled selected>MODEL</option>
-                  <option>Item</option>
+                  <option>Tucson</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
                   <option disabled selected>YEAR</option>
-                  <option>Item</option>
+                  <option>2024</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
                   <option disabled selected>CC</option>
-                  <option>Item</option>
+                  <option>1997</option>
                 </select>
-                <div className="relative hidden md:inline-block">
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    <svg className="w-4 h-4 text-sky-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                      fill="none" viewBox="0 0 20 20">
-                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                    </svg>
-                    <span className="sr-only">Search icon</span>
+                <a href="/product-final-page">
+                  <div className="relative hidden md:inline-block">
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <svg className="w-4 h-4 text-sky-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                      </svg>
+                      <span className="sr-only">Search icon</span>
+                    </div>
+                    <input type="text" id="search-navbar" className="search cursor-pointer inline-block max-w-36 p-3 text-sm border border-blue-600 rounded-lg bg-sky-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sky-700 placeholder:font-semibold" placeholder="FIND BATTERY" />
                   </div>
-                  <input type="text" id="search-navbar" className="search inline-block max-w-36 p-3 text-sm border border-blue-600 rounded-lg bg-sky-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sky-700 placeholder:font-semibold" placeholder="FIND BATTERY" />
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -271,34 +276,35 @@ const Home = () => {
                 </div>
               </div>
             </Slider>
-            <div className="bg-sky-100 p-6 rounded-lg mx-auto mt-8" style={{maxWidth: "21.5rem"}}>
+            <div className="bg-sky-100 p-6 rounded-lg mx-auto mt-8" style={{ maxWidth: "21.5rem" }}>
               <div className="grid grid-cols-2 gap-2">
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
                   <option disabled selected>CATEGORY</option>
-                  <option>Item</option>
+                  <option>Passenger Car</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
                   <option disabled selected>MODEL</option>
-                  <option>Item</option>
+                  <option>Tucson</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
                   <option disabled selected>TECHNOLOGY</option>
-                  <option>Item</option>
+                  <option>Hybrid</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
                   <option disabled selected>YEAR</option>
-                  <option>Item</option>
+                  <option>2024</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
                   <option disabled selected>BRAND</option>
-                  <option>Item</option>
+                  <option>Hyundai</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
                   <option disabled selected>CC</option>
-                  <option>Item</option>
+                  <option>1997</option>
                 </select>
               </div>
-              <div className="relative text-center mt-4">
+              <a href="/product-final-page">
+                <div className="relative text-center mt-4">
                   <div className="absolute inset-y-0 right-16 flex items-center pr-5 pointer-events-none">
                     <svg className="w-4 h-4 text-sky-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                       fill="none" viewBox="0 0 20 20">
@@ -307,18 +313,19 @@ const Home = () => {
                     </svg>
                     <span className="sr-only">Search icon</span>
                   </div>
-                  <input type="text" id="search-navbar" className="search inline-block max-w-40 p-3 text-sm border border-blue-600 rounded-lg bg-sky-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sky-700 placeholder:font-semibold" placeholder="FIND BATTERY" />
+                  <input type="text" id="search-navbar" className="search cursor-pointer inline-block max-w-40 p-3 text-sm border border-blue-600 rounded-lg bg-sky-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sky-700 placeholder:font-semibold" placeholder="FIND BATTERY" />
                 </div>
+              </a>
             </div>
           </div>
 
         </div>
       </section>
-      <section className="border-y-2">
+      <section className="border-y-2 relative" style={{ top: "-32px" }}>
         <HomeGoogleMap />
       </section>
-      <section className="bg-white pt-16 pb-16 hidden lg:block">
-        <div className="text-center max-w-4xl mx-auto">
+      <section className="bg-white pt-8 pb-8 hidden lg:block relative" style={{ top: "-32px" }}>
+        <div className="text-center max-w-6xl mx-auto">
           <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 mb-8">ABOUT US</h1>
           <p className="text-2xl font-medium text-gray-500 opacity-95 mb-8">
             Rahimafrooz was founded in 1954 as a pioneer in the Bangladeshi battery industry.
@@ -327,12 +334,14 @@ const Home = () => {
             acid batteries in Bangladesh with the latest technology of batteries, RSPB serves the
             most extensive network of dealers and retailers.
           </p>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">
-            More Details
-          </button>
+          <a href="/manufacturing">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">
+              More Details
+            </button>
+          </a>
         </div>
       </section>
-      <section className="bg-white pt-16 pb-16">
+      <section className="bg-white pt-16 pb-16 relative" style={{ top: "-32px" }}>
         <div className="text-center max-w-7xl mx-auto">
           <img src={homeVideo} alt="video" />
         </div>
@@ -352,7 +361,7 @@ const Home = () => {
           </button>
         </div>
       </section>
-      <section>
+      <section className="relative" style={{ top: "-32px" }}>
         <div className="our-brands text-center">
           <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 pt-16">OUR BRANDS</h1>
           <div className="slider-container w-10/12 mx-auto">
@@ -364,19 +373,19 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section className="relative" style={{ top: "-32px" }}>
         <div className="home-counter">
           <div className="max-w-screen-xl mx-auto">
             <ScrollTrigger onEnter={() => setCounterOn(true)} onExit={() => setCounterOn(false)}>
               <div className="grid grid-cols-4 gap-4 text-center text-white pt-20">
                 <div>
-                  <BuildingOffice2Icon className="w-12 h-12 mt-1 mx-auto" />
+                  <img src={EstablishedIcon} alt="icon" className="w-12 h-12 mt-1 mx-auto" />
                   <p className="lg:text-xl text-xs pt-5 pb-5">ESTABLISHED IN</p>
                   <h1 className="text-xl lg:text-5xl font-bold">1954</h1>
                 </div>
                 <div>
-                  <BuildingOffice2Icon className="w-12 h-12 mt-1 mx-auto" />
-                  <p className="text-xl hidden lg:block pt-5 leading-3">BUSINESS PARTNERS</p>
+                  <img src={WorldIcon} alt="icon" className="w-12 h-12 mt-1 mx-auto" />
+                  <p className="text-xl hidden lg:block pt-5 leading-5">BUSINESS PARTNERS</p>
                   <span className="text-xs hidden lg:block">NATIONAL & INTERNATIONAL</span>
                   <p className="uppercase text-xs pt-5 lg:hidden">presence in countries</p>
                   <h1 className="text-xl lg:text-5xl font-bold pt-5">
@@ -384,14 +393,14 @@ const Home = () => {
                   </h1>
                 </div>
                 <div>
-                  <BuildingOffice2Icon className="w-12 h-12 mt-1 mx-auto" />
-                  <p className="lg:text-xl text-xs pt-5 pb-5">DEALERS</p>
+                  <img src={HandShake} alt="icon" className="w-16 h-16 mx-auto" />
+                  <p className="lg:text-xl text-xs pt-3 pb-5">DEALERS</p>
                   <h1 className="text-xl lg:text-5xl font-bold">
                     {counterOn && <CountUp start={0} end={1000} duration={2} delay={0} />}
                   </h1>
                 </div>
                 <div>
-                  <BuildingOffice2Icon className="w-12 h-12 mt-1 mx-auto" />
+                  <img src={CarBattery} alt="icon" className="w-12 h-12 mt-1 mx-auto" />
                   <p className="lg:text-xl text-xs pt-5 pb-5">PRODUCT IN-USE</p>
                   <h1 className="text-xl lg:text-5xl font-bold">
                     {counterOn && <CountUp start={0} end={1000} duration={2} delay={0} />}
@@ -404,7 +413,7 @@ const Home = () => {
       </section>
       <section>
         <div className="max-w-screen-xl mx-auto">
-          <div className="grid grid-cols-3 gap-16 text-center text-white pt-16 pb-16">
+          <div className="grid grid-cols-3 gap-4 mr-4 ml-4 lg:gap-16 text-center text-white pt-8 pb-8">
             <div className="shadow-2xl">
               <img src={whyChoose} alt="RAHIMAFROOZ" />
             </div>
@@ -419,14 +428,12 @@ const Home = () => {
       </section>
       <section>
         <div className="max-w-screen-xl mx-auto">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-16 text-center text-white pt-16 pb-16">
+          <div className="lg:grid lg:grid-cols-2 lg:gap-16 text-center text-white pt-8 pb-8">
             <div className="HomeSocial">
               <iframe src="https://www.youtube.com/embed/6GolJa3RKDQ?si=vQcNIUfZ3WfAt3xw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div className="hidden lg:block">
-              {buttons.map((button) => (
-                <button key={button.id} className="btn btn-outline m-2 mt-0 mb-0">{button.buttonName}</button>
-              ))}
+              <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FRahimafrooz&tabs=timeline&width=450&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="450" height="320" style={{border:'none', overflow:"hidden"}} scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
           </div>
         </div>
@@ -434,7 +441,7 @@ const Home = () => {
       {/* For Large Devices */}
       <section className="hidden lg:block">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 pt-16 pb-16">CERTIFICATIONS</h1>
+          <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 pt-8 pb-8">CERTIFICATIONS</h1>
           <div className="slider-container max-w-7xl mx-auto">
             <Slider {...settingsForCertificatesLarge}>
               {homeCertificates?.map((certificate) => (

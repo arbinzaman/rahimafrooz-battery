@@ -52,15 +52,15 @@ const HomeGoogleMap = () => {
               <div className="bg-sky-100 rounded-3xl p-8">
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
                   <option disabled selected>DIVISION</option>
-                  <option>Item</option>
+                  <option>Dhaka</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-40">
                   <option disabled selected>DISTRICT</option>
-                  <option>Item</option>
+                  <option>Dhaka</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
                   <option disabled selected>THANA</option>
-                  <option>Item</option>
+                  <option>Khilgoan</option>
                 </select>
                 <div className="relative hidden md:inline-block">
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -71,7 +71,7 @@ const HomeGoogleMap = () => {
                     </svg>
                     <span className="sr-only">Search icon</span>
                   </div>
-                  <input type="text" id="search-navbar" className="search inline-block max-w-36 p-3 text-sm border border-blue-600 rounded-lg bg-sky-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sky-700 placeholder:font-semibold" placeholder="FIND BATTERY" />
+                  <input type="text" id="search-navbar" className="search cursor-pointer inline-block max-w-36 p-3 text-sm border border-blue-600 rounded-lg bg-sky-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sky-700 placeholder:font-semibold" placeholder="FIND DEALER" />
                 </div>
               </div>
             </div>
@@ -79,19 +79,22 @@ const HomeGoogleMap = () => {
 
           <div className="slider-container w-10/12 mx-auto xl:hidden max-w-sm">
             <h1 className="uppercase text-center text-lg text-sky-100 font-semibold pt-8 pb-8">choose your product</h1>
-            <div className="bg-sky-100 p-6 rounded-lg mx-auto mt-8" style={{maxWidth: "21.5rem"}}>
+            <div className="bg-sky-100 p-6 rounded-lg mx-auto mt-32" style={{maxWidth: "21.5rem"}}>
               <div className="grid grid-cols-2 gap-2">
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
                   <option disabled selected>DIVISION</option>
-                  <option>Item</option>
+                  <option>Dhaka</option>
                 </select>
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
                   <option disabled selected>DISTRICT</option>
-                  <option>Item</option>
+                  <option>Dhaka</option>
                 </select>
-              </div>
-              <div className="relative text-center mt-4">
-                  <div className="absolute inset-y-0 right-16 flex items-center pr-5 pointer-events-none">
+                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
+                  <option disabled selected>Thana</option>
+                  <option>Khilgoan</option>
+                </select>
+                <div className="relative text-center">
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                     <svg className="w-4 h-4 text-sky-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                       fill="none" viewBox="0 0 20 20">
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -99,8 +102,10 @@ const HomeGoogleMap = () => {
                     </svg>
                     <span className="sr-only">Search icon</span>
                   </div>
-                  <input type="text" id="search-navbar" className="search inline-block max-w-40 p-3 text-sm border border-blue-600 rounded-lg bg-sky-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sky-700 placeholder:font-semibold" placeholder="FIND BATTERY" />
+                  <input type="text" id="search-navbar" className="search inline-block max-w-36 p-3 text-sm border border-blue-600 rounded-lg bg-sky-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sky-700 placeholder:font-semibold" placeholder="FIND DEALER" />
                 </div>
+              </div>
+              
             </div>
           </div>
 
