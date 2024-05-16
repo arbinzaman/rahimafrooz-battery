@@ -14,7 +14,7 @@ const Manufacturing = () => {
       <div>
         <img src={ManufacturingBanner} alt="" />
       </div>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start my-10 max-w-screen-2xl mx-10 lg:mx-auto">
         {/* Left Side */}
         <section className="">
           <div className="bg-primary text-left p-10 lg:p-20 leading-relaxed">
@@ -32,7 +32,7 @@ const Manufacturing = () => {
               <p className="font-semibold">Cast ON Strap (COS)</p>
               <p>Machine</p>
             </div>
-            <p className="my-10">
+            <p className="my-10 text-black">
               Our modernized COS (Cast –On- Strap) machine has four working
               stations with rotary table which speeds up the assembly process
               and ensures high quality group building. This automated machine is
@@ -53,7 +53,7 @@ const Manufacturing = () => {
               <p className="font-semibold">Injection</p>
               <p>Molding Facility</p>
             </div>
-            <p className="my-10">
+            <p className="my-10 text-black">
               Our injection molding facilities produce all the major containers
               required to assemble batteries. Superior quality of Polypropylene
               (PP) granules from Lyondell Basell, Korea and Exxon Mobil, Singa-
@@ -72,7 +72,7 @@ const Manufacturing = () => {
               <p className="font-semibold">Quality</p>
               <p>Assurance Lab</p>
             </div>
-            <p className="my-10">
+            <p className="my-10 text-black">
               Our Quality Assurance laboratory inspects quality of incoming raw
               materials, in-process semi-ﬁnished products and components and
               100% ﬁnished products before releasing for delivery. The laborato-
@@ -92,7 +92,7 @@ const Manufacturing = () => {
               <p className="font-semibold">Material</p>
               <p>Management</p>
             </div>
-            <p className="my-10">
+            <p className="my-10 text-black">
               The factory has built a modern warehouse with access pathway for
               trucks and container transport. The warehouse provides ample space
               for storage, sorting, loading and unloading of ﬁnished goods and
@@ -112,7 +112,7 @@ const Manufacturing = () => {
               <p className="font-semibold">Cominco Line</p>
               <p>Canada</p>
             </div>
-            <p className="my-10">
+            <p className="my-10 text-black">
               We use Canadian based Cominco line’s expanded grid technology to
               produce negative grids for our MF/SMFbatteries. We use only
               superior quality lead calcium alloy to produce the grids, which
@@ -131,7 +131,7 @@ const Manufacturing = () => {
               <p className="font-semibold">Die Casting</p>
               <p>Machine</p>
             </div>
-            <p className="my-10">
+            <p className="my-10 text-black">
               Our pressure die casting machine ensures ﬂawless & high-pres- sure
               casted spine for Industrial battery. It also makes sure of high
               operational life using superﬁne void-free grain structure under
@@ -149,7 +149,7 @@ const Manufacturing = () => {
               <p className="font-semibold">Oxide Mill</p>
               <p>Sovema, Italy</p>
             </div>
-            <p className="my-10">
+            <p className="my-10 text-black">
               The assembled batteries are taken to formation tanks to charge the
               batteries in circulating water cooling system. We use advanced
               current transducers for the DC current to ensure high stability of
@@ -167,7 +167,7 @@ const Manufacturing = () => {
               <p className="font-semibold">ATP & ETP</p>
               <p>Sovema, Italy</p>
             </div>
-            <p className="my-10">
+            <p className="my-10 text-black">
               The assembled batteries are taken to formation tanks to charge the
               batteries in circulating water cooling system. We use advanced
               current transducers for the DC current to ensure high stability of
