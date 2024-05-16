@@ -106,15 +106,15 @@ const Header = () => {
                 <ul
                   className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:flex-row md:mt-0 md:border-0">
                   <li>
-                    <a href="/" className="block p-0 text-cyan-300 opacity-80 rounded bg-transparent font-semibold" aria-current="page">
+                    <a href="/" className="block p-0 text-base opacity-80 rounded bg-transparent font-semibold" aria-current="page">
                       Home
                     </a>
                   </li>
                   <li className='md:ml-0 xl:ml-4'>
                     <div className="dropdown dropdown-bottom">
                       <div className='flex' tabIndex={0} role="button">
-                        <div className="btn text-cyan-300 opacity-80 h-0 min-h-0 border-none text-base">About</div>
-                        <ChevronDownIcon style={{ marginLeft: "-10px" }} className='w-4 h-4 mt-1 text-cyan-300' />
+                        <div className="btn text-white opacity-80 h-0 min-h-0 border-none text-base">About</div>
+                        <ChevronDownIcon style={{ marginLeft: "-10px" }} className='w-4 h-4 mt-1 text-base' />
                       </div>
                       <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-sky-100 text-sky-600 mt-6 rounded-sm w-64">
                         <li><a href='https://www.rahimafrooz.com/' target='_blank' className='nav-active-bg'>Rahimafrooz Group</a></li>
@@ -128,8 +128,8 @@ const Header = () => {
                   <li className='md:ml-0 xl:ml-4'>
                     <div className="dropdown dropdown-bottom">
                       <div tabIndex={0} role="button" className='flex'>
-                        <div className="btn text-cyan-300 opacity-80 h-0 min-h-0 border-none text-base">Products</div>
-                        <ChevronDownIcon style={{ marginLeft: "-10px" }} className='w-4 h-4 mt-1 text-cyan-300' />
+                        <div className="btn text-white opacity-80 h-0 min-h-0 border-none text-base">Products</div>
+                        <ChevronDownIcon style={{ marginLeft: "-10px" }} className='w-4 h-4 mt-1 text-white' />
                       </div>
                       <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-sky-100 text-sky-600 mt-6 rounded-sm w-32">
                         <li><a href='/products-bangladesh' className='nav-active-bg'>Bangladesh</a></li>
@@ -138,12 +138,12 @@ const Header = () => {
                     </div>
                   </li>
                   <li className='md:ml-4 xl:ml-8'>
-                    <a href="#" className="block p-0 text-cyan-300 opacity-80 rounded bg-transparent font-semibold">
+                    <a href="#" className="block p-0 text-white opacity-80 rounded bg-transparent font-semibold">
                       Services
                     </a>
                   </li>
                   <li className='md:ml-4 xl:ml-8'>
-                    <a href="/contact-us" className="block p-0 text-cyan-300 opacity-80 rounded bg-transparent font-semibold">
+                    <a href="/contact-us" className="block p-0 text-white opacity-80 rounded bg-transparent font-semibold">
                       Contact Us
                     </a>
                   </li>
