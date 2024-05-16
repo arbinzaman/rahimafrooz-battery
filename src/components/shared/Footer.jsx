@@ -23,7 +23,7 @@ const scrollUp = () => {
       <div>
         <button onClick={scrollUp} className='absolute bottom-32 right-8'><ArrowUpIcon className='w-10 h-10 rounded-full bg-sky-300 text-sky-700 font-bold'/></button>
       </div>
-      <div className='max-w-screen-xl mx-auto pt-12 pl-4 pr-4'>
+      <div className='max-w-screen-2xl mx-auto pt-12 pl-4 pr-4'>
         <div className='flex justify-between'>
           <img src={Logo} alt="logo" width={135} height={135} />
           <div className='flex pt-6'>
@@ -36,7 +36,7 @@ const scrollUp = () => {
           </div>
         </div>
       </div>
-      <footer className="footer hidden lg:grid text-white grid-cols-5 gap-6 pb-10 max-w-screen-xl mx-auto pl-4 pr-4">
+      <footer className="footer hidden lg:grid text-white grid-cols-5 gap-6 pb-10 max-w-screen-2xl mx-auto pl-4 pr-4">
         <nav className="col-span-2 max-w-sm">
 
           <p className='text-justify pt-10'>
@@ -171,7 +171,7 @@ const scrollUp = () => {
           <HomeGoogleTranslate />
         </div>
       </footer>
-      <div className='max-w-screen-xl mx-auto text-white text-xs pb-6 font-semibold'>
+      <div className='max-w-screen-2xl mx-auto text-white text-xs pb-6 font-semibold'>
         <div className="border border-u-base mb-3"></div>
         <div className='flex justify-between items-center'>
           <div className='flex pl-4 pr-4'>

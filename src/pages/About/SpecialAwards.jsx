@@ -10,7 +10,7 @@ const SpecialAwards = () => {
       <div>
         <img src={SpecialAwardBanner} alt="" />
       </div>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start max-w-screen-2xl mx-auto">
         {/* Left Side */}
         <section className="">
           <div className=" bg-primary text-left p-10 lg:p-20 leading-relaxed">

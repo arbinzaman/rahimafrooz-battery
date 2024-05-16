@@ -15,14 +15,14 @@ const StoragePower = () => {
       <div>
         <img src={BannerImage} alt="" />
       </div>
-      <section className="mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28">
+      <section className="my-10 max-w-screen-2xl mx-10 lg:mx-auto">
         {/* Heading */}
         <div className="text-center text-large text-primary font-semibold">
           <p>RAHIMAFROOZ</p>
           <p>STORAGE POWER BUSINESS (RSPB)</p>
         </div>
         {/* Paragraphs */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-10 my-10 text-justify">
+        <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-10 my-10 text-justify text-black">
           <div>
             Rahimafrooz was founded in 1954 as a pioneer in the Bangladeshi bat-
             tery industry. Rahimafrooz Storage Power Business (RSPB) is the core
@@ -133,7 +133,7 @@ const StoragePower = () => {
           <div className="flex justify-center my-5 lg:my-10">
             <img src={MilestonesImage} alt="" />
           </div>
-          <p className="text-center text-xsmall lg:text-regular my-5">
+          <p className="text-center text-black text-xsmall lg:text-regular my-5">
             Rahimafrooz batteries deliver an optimal combination of power and
             durability. The high-quality performance of the batteries is
             guaranteed by ensuring that every critical function of the batteries
@@ -149,7 +149,7 @@ const StoragePower = () => {
           <p className="text-center text-large text-primary font-semibold">
             OUR VALUES
           </p>
-          <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-items-center gap-16 ">
+          <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-items-center gap-16 text-black">
             <div className="flex flex-col justify-center items-center">
               <img
                 src={ValueIcon1}

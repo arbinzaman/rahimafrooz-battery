@@ -20,9 +20,9 @@ const Header = () => {
 
   return (
     <div>
-      <nav>
+      <nav  >
         <div className="p-6 text-white diagonal-background">
-          <div className="max-w-screen-xl mx-auto">
+          <div className="max-w-screen-2xl mx-auto">
             <div className="flex justify-between items-center">
               <div className="flex items-center">
                 <a href="/">
@@ -76,7 +76,7 @@ const Header = () => {
         </div>
         <div>
           <div className="main-nav hidden lg:block">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto pt-4 pb-4">
+            <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto pt-4 pb-4">
               <div className="flex md:order-2 gap-2">
                 <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" className="md:hidden  hover:bg-gray-100  focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 mr-1" >
                   <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
