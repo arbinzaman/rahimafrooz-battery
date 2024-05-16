@@ -40,14 +40,14 @@ const CheckWarranty = () => {
       <form
         action=""
         onSubmit={handleSubmit(handleGetStatus)}
-        className="my-5 mx-auto max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl 2xl:max-w-screen-2xl"
+        className="my-5 max-w-screen-2xl mx-10 lg:mx-auto"
       >
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
           <div className="col-span-2">
             <input
               type="text"
               placeholder="Phone Number*"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("phoneNumber")}
             />
           </div>
@@ -56,7 +56,7 @@ const CheckWarranty = () => {
             <input
               type="number"
               placeholder="Serial Number*"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("serialNumber")}
             />
           </div>

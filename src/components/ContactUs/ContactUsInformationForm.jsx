@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const ContactUsInformationForm = () => {
   const {
@@ -8,7 +9,9 @@ const ContactUsInformationForm = () => {
 
   const handleFormSubmit = (data) =>{
     try {
-        console.log(data);
+      if(data){
+        toast.success('Thank your for getting in touch with us.')
+      }
     } catch (error) {
         console.log(error.message);
     }
@@ -21,7 +24,7 @@ const ContactUsInformationForm = () => {
           <input
             type="text"
             placeholder="Full Name*"
-            className="border border-border_primary rounded-md p-1 w-full"
+            className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("fullName")}
           />
         </div>
@@ -31,7 +34,7 @@ const ContactUsInformationForm = () => {
             <input
               type="text"
               placeholder="Phone No*"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("phoneNo")}
             />
           </div>
@@ -40,7 +43,7 @@ const ContactUsInformationForm = () => {
             <input
               type="email"
               placeholder="E-mail*"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("email")}
             />
           </div>
@@ -49,7 +52,7 @@ const ContactUsInformationForm = () => {
         <div>
           <textarea
             placeholder="Message"
-            className="border border-border_primary rounded-md p-1 w-full"
+            className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("message")}
           ></textarea>
         </div>
@@ -64,7 +67,7 @@ const ContactUsInformationForm = () => {
               <input
                 type="text"
                 placeholder="Enter the code shown"
-                className="border border-border_primary rounded-md p-1 mb-5"
+                className="bg-base border border-border_primary rounded-md p-1 mb-5"
                 {...register("captchaCode")}
               />
             </div>

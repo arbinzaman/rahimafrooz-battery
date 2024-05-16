@@ -1,7 +1,7 @@
 const Accordion = () => {
   return (
     <section className="my-10">
-      <div className="collapse collapse-arrow bg-base-200 rounded-none">
+      <div className="collapse collapse-arrow  rounded-none">
         <input type="radio" name="my-accordion-2" defaultChecked />
         <div className="collapse-title text-xl font-medium bg-primary text-base text-medium">
           Maintenance Guideline
@@ -15,7 +15,7 @@ const Accordion = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-base-200 rounded-none">
+      <div className="collapse collapse-arrow  rounded-none">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium bg-primary text-base text-medium">
           Warranty Policy
@@ -29,7 +29,7 @@ const Accordion = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-base-200 rounded-none">
+      <div className="collapse collapse-arrow  rounded-none">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium bg-primary text-base text-medium">
           Emergency Service/Call Center
@@ -43,7 +43,7 @@ const Accordion = () => {
           </p>
         </div>
       </div>
-      <div className="collapse collapse-arrow bg-base-200 rounded-none">
+      <div className="collapse collapse-arrow  rounded-none">
         <input type="radio" name="my-accordion-2" />
         <div className="collapse-title text-xl font-medium bg-primary text-base text-medium">
           Request For Service Contract
