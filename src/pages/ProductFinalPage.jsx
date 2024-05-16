@@ -53,10 +53,10 @@ const ProductFinalPage = () => {
           </div>
         </div>
         <div className="my-auto p-10 mt-28 ">
-          <h1 className="text-xlarge font-bold text-primary mb-10">
+          <h1 className="text-large font-bold text-primary mb-10">
             Globatt Ace N50ZL Battery
           </h1>
-          <div className="text-2xl mb-5 font-medium ">
+          <div className="text-regular mb-5 font-medium ">
             <p className="flex ">
               <FaAngleRight className="h-6 mr-3 mt-1" />{" "}
               <span className="">Warranty: 24 Months Warranty </span>
@@ -70,16 +70,16 @@ const ProductFinalPage = () => {
               <span>Battery Voltage: 12 </span>
             </p>
           </div>
-          <p className="text-2xl ml-3 font-medium mt-20">
+          <p className="text-regular ml-3 font-medium mt-20">
             MRP :{" "}
             <span className="text-primary font-bold">&#2547; 14,740.00</span>
           </p>
 
           <div className="mt-40">
-            <button className="btn btn-ghost text-white bg-primary mr-5 px-10 text-medium">
+            <button className="btn btn-ghost text-white bg-primary mr-5 px-10 text-xsmall">
               Buy Now
             </button>
-            <button className="btn btn-ghost text-white bg-primary px-10 text-medium">
+            <button className="btn btn-ghost text-white bg-primary px-10 text-xsmall ">
               Nearest Tester
             </button>
           </div>

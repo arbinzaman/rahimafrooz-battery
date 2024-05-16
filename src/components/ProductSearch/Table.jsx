@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Product1 from "../../assets/images/BatteryFinalPage/Product-01.png";
 import Product2 from "../../assets/images/BatteryFinalPage/Product-02.png";
 const Table = () => {
@@ -53,6 +54,7 @@ const Table = () => {
       originCountry: "Bangladesh",
     },
   ];
+  const navigate = useNavigate();
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -71,7 +73,7 @@ const Table = () => {
                   className="h-24 md:h-48 lg:h-52"
                 />
                 <p className="text-black text-sm md:text-regular lg:text-medium">Lucas Ultima Battery</p>
-                <button className="px-6 border border-button  text-xxsmall text-button">
+                <button onClick={()=>navigate("/product-final-page")} className="px-6 border border-button  text-xxsmall text-button">
                   VIEW DETAILS
                 </button>
               </div>
@@ -84,7 +86,7 @@ const Table = () => {
                   className="h-24 md:h-48 lg:h-52"
                 />
                 <p className="text-black text-sm md:text-regular lg:text-medium">Globatt</p>
-                <button className="px-6 border border-button  text-xxsmall text-button">
+                <button onClick={()=>navigate("/product-final-page")} className="px-6 border border-button  text-xxsmall text-button">
                   VIEW DETAILS
                 </button>
               </div>
