@@ -1,11 +1,16 @@
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const DealerApplicationForm = () => {
   const { register, handleSubmit } = useForm();
 
   const handleFormSubmit = (data) => {
     try {
-      console.log(data);
+      if(data?.email!=""){
+        toast.success('Your record has been saved.')
+      }else{
+        toast.error("Please enter your proper details.")
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -15,7 +20,7 @@ const DealerApplicationForm = () => {
     <section>
       <form
         action=""
-        className="my-5 max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl 2xl:max-w-screen-2xl"
+        className="my-10 max-w-screen-2xl mx-10 lg:mx-auto"
         onSubmit={handleSubmit(handleFormSubmit)}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5">
@@ -23,7 +28,7 @@ const DealerApplicationForm = () => {
             <input
               type="text"
               placeholder="Full Name*"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("fullName")}
             />
           </div>
@@ -32,7 +37,7 @@ const DealerApplicationForm = () => {
             <input
               type="text"
               placeholder="Company Name"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("companyName")}
             />
           </div>
@@ -41,7 +46,7 @@ const DealerApplicationForm = () => {
             <input
               type="text"
               placeholder="Phone Number*"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("phoneNumber")}
             />
           </div>
@@ -50,7 +55,7 @@ const DealerApplicationForm = () => {
             <input
               type="text"
               placeholder="Email"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("email")}
             />
           </div>
@@ -59,7 +64,7 @@ const DealerApplicationForm = () => {
             <input
               type="text"
               placeholder="District*"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("district")}
             />
           </div>
@@ -68,7 +73,7 @@ const DealerApplicationForm = () => {
             <input
               type="text"
               placeholder="Thana"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("thana")}
             />
           </div>
@@ -77,7 +82,7 @@ const DealerApplicationForm = () => {
             <input
               type="text"
               placeholder="ZIP Code"
-              className="border border-border_primary rounded-md p-1 w-full"
+              className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("zip")}
             />
           </div>
@@ -93,7 +98,7 @@ const DealerApplicationForm = () => {
               <input
                 type="text"
                 placeholder="Enter the code shown"
-                className="border border-border_primary rounded-md p-1 mb-5"
+                className="bg-base border border-border_primary rounded-md p-1 mb-5"
                 {...register("captchaCode")}
               />
             </div>

@@ -199,7 +199,7 @@ const Home = () => {
                   <option disabled selected>CC</option>
                   <option>1997</option>
                 </select>
-                <a href="/product-final-page">
+                <a href="/product-search">
                   <div className="relative hidden md:inline-block">
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                       <svg className="w-4 h-4 text-sky-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

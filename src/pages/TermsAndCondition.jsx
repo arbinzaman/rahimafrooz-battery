@@ -7,7 +7,7 @@ const TermsAndCondition = () => {
           <span className="text-regular md:text-medium lg:text-xlarge text-primary font-bold">
             TERMS AND CONDITIONS{" "}
           </span>
-          <span className="text-small md:text-regular lg:text-large font-semibold">OF WEBSITE USE</span>
+          <span className="text-small md:text-regular text-black lg:text-large font-semibold">OF WEBSITE USE</span>
         </p>
         <div>
           The Terms and Conditions contained on this web page shall govern your

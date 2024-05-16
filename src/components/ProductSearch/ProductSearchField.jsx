@@ -77,7 +77,7 @@ const ProductSearchField = () => {
     years = [{ id: 1, value: "Year" }];
   }
   return (
-    <div className="bg-[#005bab] p-6 rounded-xl border border-background mx-8 my-5 md:mx-16 lg:mx-32 ">
+    <div className="bg-[#005bab] p-6 rounded-xl border border-background bg-primary my-10 max-w-screen-2xl mx-10 lg:mx-auto ">
       <div className="bg-background mx-2 py-6 rounded-md">
         <form action="" className="grid grid-cols-1 lg:grid-cols-6 gap-4 mx-5">
           <select

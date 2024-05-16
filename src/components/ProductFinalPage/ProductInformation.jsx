@@ -6,9 +6,6 @@ import { useState } from "react";
 import { LuDot } from "react-icons/lu";
 const ProductInformation = () => {
   const [tab, setTab] = useState("DetailsTab");
-  const handleChangeTab = () => {
-    document.getElementById("demo").innerHTML = "High Cranking Power";
-  };
   return (
     <div>
       <h1 className="text-large text-primary font-bold text-center mb-10">
@@ -17,7 +14,7 @@ const ProductInformation = () => {
       <div className="grid grid-cols-2 gap-6">
         <div>
           <section className="">
-            <div className="flex gap-4 text-xl">
+            <div className="flex gap-4 text-xl text-black">
               <button onClick={() => setTab("DetailsTab")} className={tab==="DetailsTab" ? "border border-b-primary" : ""}>Details</button>
               <button onClick={() => setTab("AdditionalTab")} className={tab==="AdditionalTab" ? "border border-b-primary" : ""}>
                 Additional Information
@@ -26,10 +23,10 @@ const ProductInformation = () => {
             <div className="container flex flex-col justify-center px-4 py-8 mx-auto md:p-8 border-primary border-r border-t">
               {tab === "DetailsTab" ? (
                 <div>
-                  <h2 className="mb-4 text-3xl font-bold leadi text-left">
+                  <h2 className="mb-4 text-3xl text-black font-bold leadi text-left">
                     GLOBATT ACE N50ZL Battery
                   </h2>
-                  <div className="divide-y text-small ">
+                  <div className="divide-y text-smal text-black">
                     <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
                       <h3 className="md:col-span-5">Brand</h3>
                       <p className="md:pl-0 md:col-span-7">GLOBATT</p>
@@ -75,7 +72,7 @@ const ProductInformation = () => {
                   </div>
                 </div>
               ) : (
-                <div className="text-regular my-10">
+                <div className="text-regular text-black my-10">
                   <p className="flex gap-3 items-center">
                     <LuDot color="#0d72b9"/>
                     High Cranking Power
@@ -110,7 +107,7 @@ const ProductInformation = () => {
           </section>
         </div>
         <div
-          className=" border-primary border-l border-t mt-7 text-xl "
+          className=" border-primary border-l border-t mt-7 text-xl text-black"
           id="demo"
         >
           <p className="mt-20  ml-5 flex gap-4 ">

@@ -33,7 +33,7 @@ const WarrantyApplicationForm = () => {
           <input
             type="text"
             placeholder="Name*"
-            className="border border-border_primary rounded-md p-1 w-full"
+            className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("name")}
           />
         </div>
@@ -42,7 +42,7 @@ const WarrantyApplicationForm = () => {
           <input
             type="text"
             placeholder="Phone Number*"
-            className="border border-border_primary rounded-md p-1 w-full"
+            className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("phoneNumber")}
           />
         </div>
@@ -51,7 +51,7 @@ const WarrantyApplicationForm = () => {
           <input
             type="number"
             placeholder="Product Serial Number*"
-            className="border border-border_primary rounded-md p-1 w-full"
+            className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("serialNumber")}
           />
         </div>
@@ -60,7 +60,7 @@ const WarrantyApplicationForm = () => {
           <input
             type="text"
             placeholder="Vehicle/Device/Application"
-            className="border border-border_primary rounded-md p-1 w-full"
+            className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("vehicleType")}
           />
         </div>
@@ -69,7 +69,7 @@ const WarrantyApplicationForm = () => {
           <input
             type="date"
             placeholder="Purchase Date*"
-            className="border border-border_primary rounded-md p-1 w-full"
+            className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("purchaseDate")}
           />
         </div>
@@ -78,7 +78,7 @@ const WarrantyApplicationForm = () => {
           <input
             type="text"
             placeholder="Purchase DLR*"
-            className="border border-border_primary rounded-md p-1 w-full"
+            className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("purchaseDLR")}
           />
         </div>
