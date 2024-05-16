@@ -2,74 +2,118 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { BsTelephoneOutbound } from "react-icons/bs";
 import { SlCalender } from "react-icons/sl";
 import maintaince1 from "../../assets/icons/maintaince1.svg";
+import { useState } from "react";
+import { LuDot } from "react-icons/lu";
 const ProductInformation = () => {
-
+  const [tab, setTab] = useState("DetailsTab");
   const handleChangeTab = () => {
-    document.getElementById("demo").innerHTML = "High Cranking Power"
+    document.getElementById("demo").innerHTML = "High Cranking Power";
   };
   return (
     <div>
-      <h1 className="text-5xl text-primary font-bold text-center mb-10">
+      <h1 className="text-large text-primary font-bold text-center mb-10">
         Product Information
       </h1>
       <div className="grid grid-cols-2 gap-6">
         <div>
           <section className="">
             <div className="flex gap-4 text-xl">
-              <button>Details</button>
-              <button onClick={()=>handleChangeTab()}>Additional Information</button>
+              <button onClick={() => setTab("DetailsTab")} className={tab==="DetailsTab" ? "border border-b-primary" : ""}>Details</button>
+              <button onClick={() => setTab("AdditionalTab")} className={tab==="AdditionalTab" ? "border border-b-primary" : ""}>
+                Additional Information
+              </button>
             </div>
             <div className="container flex flex-col justify-center px-4 py-8 mx-auto md:p-8 border-primary border-r border-t">
-              <h2 className="mb-12 text-3xl font-bold leadi text-left">
-                GLOBATT ACE N50ZL Battery
-              </h2>
-              <div className="divide-y text-xl ">
-                <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
-                  <h3 className="md:col-span-5">Brand</h3>
-                  <p className="md:pl-0 md:col-span-7">GLOBATT</p>
+              {tab === "DetailsTab" ? (
+                <div>
+                  <h2 className="mb-4 text-3xl font-bold leadi text-left">
+                    GLOBATT ACE N50ZL Battery
+                  </h2>
+                  <div className="divide-y text-small ">
+                    <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+                      <h3 className="md:col-span-5">Brand</h3>
+                      <p className="md:pl-0 md:col-span-7">GLOBATT</p>
+                    </div>
+                    <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+                      <h3 className="md:col-span-5">Series</h3>
+                      <p className="md:pl-0 md:col-span-7">ACE</p>
+                    </div>
+                    <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+                      <h3 className="md:col-span-5">Item Code</h3>
+                      <p className="md:pl-0 md:col-span-7">ACE N50ZL</p>
+                    </div>
+                    <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+                      <h3 className="md:col-span-5">Model</h3>
+                      <p className="md:pl-0 md:col-span-7">N50ZL</p>
+                    </div>
+                    <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+                      <h3 className="md:col-span-5">Product Dimensions</h3>
+                      <p className="md:pl-0 md:col-span-7"></p>
+                    </div>
+                    <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+                      <h3 className="md:col-span-5">Voltage (V)</h3>
+                      <p className="md:pl-0 md:col-span-7">12</p>
+                    </div>
+                    <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+                      <h3 className="md:col-span-5">Ref. Amphere Hour (AH)</h3>
+                      <p className="md:pl-0 md:col-span-7">100</p>
+                    </div>
+                    <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+                      <h3 className="md:col-span-5">
+                        Cold Cranking Ability (CCA)
+                      </h3>
+                      <p className="md:pl-0 md:col-span-7">600</p>
+                    </div>
+                    <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+                      <h3 className="md:col-span-5">Total Warranty (Months)</h3>
+                      <p className="md:pl-0 md:col-span-7">24</p>
+                    </div>
+                    <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+                      <h3 className="md:col-span-5">Country Origin</h3>
+                      <p className="md:pl-0 md:col-span-7">Bangladesh</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
-                  <h3 className="md:col-span-5">Series</h3>
-                  <p className="md:pl-0 md:col-span-7">ACE</p>
+              ) : (
+                <div className="text-regular my-10">
+                  <p className="flex gap-3 items-center">
+                    <LuDot color="#0d72b9"/>
+                    High Cranking Power
+                  </p>
+                  <p className="flex gap-3 items-center">
+                    <LuDot color="#0d72b9"/>
+                    Zero-Maintenance
+                  </p>
+                  <p className="flex gap-3 items-center">
+                    <LuDot color="#0d72b9"/>
+                    Improved Safety
+                  </p>
+                  <p className="flex gap-3 items-center">
+                    <LuDot color="#0d72b9"/>
+                    Long Life
+                  </p>
+                  <p className="flex gap-3 items-center">
+                    <LuDot color="#0d72b9"/>
+                    Vibration Resistance
+                  </p>
+                  <p className="flex gap-3 items-center">
+                    <LuDot color="#0d72b9"/>
+                    High Reserve Capacity
+                  </p>
+                  <p className="flex gap-3 items-center">
+                    <LuDot color="#0d72b9"/>
+                    Heat Tolerance
+                  </p>
                 </div>
-                <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
-                  <h3 className="md:col-span-5">Item Code</h3>
-                  <p className="md:pl-0 md:col-span-7">ACE N50ZL</p>
-                </div>
-                <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
-                  <h3 className="md:col-span-5">Model</h3>
-                  <p className="md:pl-0 md:col-span-7">N50ZL</p>
-                </div>
-                <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
-                  <h3 className="md:col-span-5">Product Dimensions</h3>
-                  <p className="md:pl-0 md:col-span-7"></p>
-                </div>
-                <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
-                  <h3 className="md:col-span-5">Voltage (V)</h3>
-                  <p className="md:pl-0 md:col-span-7">12</p>
-                </div>
-                <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
-                  <h3 className="md:col-span-5">Ref. Amphere Hour (AH)</h3>
-                  <p className="md:pl-0 md:col-span-7">100</p>
-                </div>
-                <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
-                  <h3 className="md:col-span-5">Cold Cranking Ability (CCA)</h3>
-                  <p className="md:pl-0 md:col-span-7">600</p>
-                </div>
-                <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
-                  <h3 className="md:col-span-5">Total Warranty (Months)</h3>
-                  <p className="md:pl-0 md:col-span-7">24</p>
-                </div>
-                <div className="space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
-                  <h3 className="md:col-span-5">Country Origin</h3>
-                  <p className="md:pl-0 md:col-span-7">Bangladesh</p>
-                </div>
-              </div>
+              )}
             </div>
           </section>
         </div>
-        <div className=" border-primary border-l border-t mt-7 text-xl " id="demo">
-          <p className="mt-28  ml-5 flex gap-4 ">
+        <div
+          className=" border-primary border-l border-t mt-7 text-xl "
+          id="demo"
+        >
+          <p className="mt-20  ml-5 flex gap-4 ">
             <img
               src={maintaince1}
               alt=""
