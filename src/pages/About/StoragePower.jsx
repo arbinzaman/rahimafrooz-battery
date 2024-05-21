@@ -8,6 +8,7 @@ import ValueIcon2 from "../../assets/images/AboutPage/02.png";
 import ValueIcon3 from "../../assets/images/AboutPage/03.png";
 import ValueIcon4 from "../../assets/images/AboutPage/04.png";
 import ValueIcon5 from "../../assets/images/AboutPage/05.png";
+import { allDeviceMaxWidth } from "../../styles/maxWidth";
 
 const StoragePower = () => {
   return (
@@ -15,14 +16,14 @@ const StoragePower = () => {
       <div>
         <img src={BannerImage} alt="" />
       </div>
-      <section className="my-10 max-w-screen-2xl mx-10 lg:mx-auto">
+      <section className={allDeviceMaxWidth + " my-10"}>
         {/* Heading */}
-        <div className="text-center text-large text-primary font-semibold">
+        <div className="text-center text-regular md:text-semi_large lg:text-large text-primary font-semibold">
           <p>RAHIMAFROOZ</p>
           <p>STORAGE POWER BUSINESS (RSPB)</p>
         </div>
         {/* Paragraphs */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-10 my-10 text-justify text-black">
+        <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-10 my-10 mx-3 text-justify text-black">
           <div>
             Rahimafrooz was founded in 1954 as a pioneer in the Bangladeshi bat-
             tery industry. Rahimafrooz Storage Power Business (RSPB) is the core
@@ -51,7 +52,7 @@ const StoragePower = () => {
           </div>
         </div>
         {/* Video */}
-        <div>
+        <div className="mx-5">
           <iframe
             className="w-[100%] h-[250px] lg:h-[450px]"
             src="https://www.youtube.com/embed/6GolJa3RKDQ?si=tsns12z2-x2QYTs-"
@@ -62,7 +63,7 @@ const StoragePower = () => {
           ></iframe>
         </div>
         {/* Factory Images */}
-        <div className="my-10">
+        <div className="my-10 mx-3">
           {/* Factory Image 1 */}
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
             <div>
@@ -86,7 +87,7 @@ const StoragePower = () => {
           {/* Factory Image 2 */}
           <div className="flex flex-col lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
             <div className="">
-              <img src={FactoryImage2} alt="Rahimafrooz Batteries Factory" />
+              <img src={FactoryImage2} className="w-full" alt="Rahimafrooz Batteries Factory" />
             </div>
             <div>
               <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
@@ -126,7 +127,7 @@ const StoragePower = () => {
           </div>
         </div>
         {/* Milestones */}
-        <div className="my-10">
+        <div className="my-10 mx-3">
           <p className="text-center text-large text-primary font-semibold">
             RSPB MILESTONES
           </p>
@@ -145,11 +146,11 @@ const StoragePower = () => {
           </p>
         </div>
         {/* Values */}
-        <div className="my-10">
+        <div className="my-10 mx-3">
           <p className="text-center text-large text-primary font-semibold">
             OUR VALUES
           </p>
-          <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-items-center gap-16 text-black">
+          <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-items-center content-start gap-16 text-black">
             <div className="flex flex-col justify-center items-center">
               <img
                 src={ValueIcon1}
