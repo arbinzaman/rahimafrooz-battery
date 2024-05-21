@@ -4,13 +4,16 @@ import Achievement2 from "../../assets/images/AboutPage/Achievement-Image-02.png
 import Achievement3 from "../../assets/images/AboutPage/Achievement-Image-03.png";
 import Achievement4 from "../../assets/images/AboutPage/Achievement-Image-04.png";
 import AwardSlider from "../../components/AboutPage/AwardSlider";
+import { allDeviceMaxWidth } from "../../styles/maxWidth";
 const SpecialAwards = () => {
   return (
     <section className="">
       <div>
         <img src={SpecialAwardBanner} alt="" />
       </div>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start max-w-screen-2xl mx-auto">
+      <section
+        className={`${allDeviceMaxWidth} grid grid-cols-1 lg:grid-cols-2 gap-20 items-start`}
+      >
         {/* Left Side */}
         <section className="">
           <div className=" bg-primary text-left p-10 lg:p-20 leading-relaxed">

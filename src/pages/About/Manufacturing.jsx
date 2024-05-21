@@ -7,6 +7,7 @@ import Image5 from "../../assets/images/AboutPage/Manufacturing/Manufacturing-05
 import Image6 from "../../assets/images/AboutPage/Manufacturing/Manufacturing-06.png";
 import Image7 from "../../assets/images/AboutPage/Manufacturing/Manufacturing-07.png";
 import Image8 from "../../assets/images/AboutPage/Manufacturing/Manufacturing-08.png";
+import { allDeviceMaxWidth } from "../../styles/maxWidth";
 
 const Manufacturing = () => {
   return (
@@ -14,7 +15,7 @@ const Manufacturing = () => {
       <div>
         <img src={ManufacturingBanner} alt="" />
       </div>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start my-10 max-w-screen-2xl mx-10 lg:mx-auto">
+      <section className={`${allDeviceMaxWidth} grid grid-cols-1 lg:grid-cols-2 gap-20 items-start my-10`}>
         {/* Left Side */}
         <section className="">
           <div className="bg-primary text-left p-10 lg:p-20 leading-relaxed">
