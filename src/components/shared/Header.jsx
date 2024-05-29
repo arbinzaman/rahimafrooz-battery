@@ -184,7 +184,7 @@ const Header = () => {
                     <li><a href='https://www.rahimafrooz.com/' target='_blank' className='nav-active-bg'>Rahimafrooz Group</a></li>
                     <li><a href='/Founder-and-Board-Members' className='nav-active-bg'>Founder & Board Members</a></li>
                     <li><a href='/rahimafrooz-storage-power' className='nav-active-bg'>Rahimafrooz Storage Power</a></li>
-                    <li><a className='nav-active-bg'>Manufacturing</a></li>
+                    <li><a className='nav-active-bg' href='/manufacturing'>Manufacturing</a></li>
                     <li><a href='/special-awards-achievement' className='nav-active-bg'>Special Awards & Achievement</a></li>
                   </ul>
                 </div>

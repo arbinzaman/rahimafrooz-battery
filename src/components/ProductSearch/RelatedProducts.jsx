@@ -2,7 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 import Product1 from "../../assets/images/BatteryFinalPage/Product-01.png";
 import Product2 from "../../assets/images/BatteryFinalPage/Product-02.png";
-import { useNavigate } from "react-router-dom";
 
 const RelatedProducts = () => {
   const slider = React.useRef(null);

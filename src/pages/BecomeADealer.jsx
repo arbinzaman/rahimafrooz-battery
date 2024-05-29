@@ -1,5 +1,6 @@
 import DealerApplicationForm from "../components/BecomeADealer/DealerApplicationForm";
 import BecomeADealerBanner from "../assets/images/Become-a-dealer-banner.jpg"
+import { allDeviceMaxWidth } from "../styles/maxWidth";
 
 const BecomeADealer = () => {
   return (
@@ -7,7 +8,7 @@ const BecomeADealer = () => {
       <div>
         <img src={BecomeADealerBanner} alt="" />
       </div>
-      <section className="mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28">
+      <section className={allDeviceMaxWidth}>
         <div className="text-center my-10">
           <p className="text-primary text-large font-bold">DEALER ENLISTMENT FORM</p>
           <p className="text-secondary text-medium">Input your Information for become a dealer</p>
