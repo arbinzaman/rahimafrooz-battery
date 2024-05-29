@@ -2,6 +2,7 @@ import ManageMyBatteryBanner from "../assets/images/ManageMyBatteryImages/Manage
 import Accordion from "../components/ManageMyBattery/Accordion";
 import CheckWarranty from "../components/ManageMyBattery/CheckWarranty";
 import WarrantyApplicationForm from "../components/ManageMyBattery/WarrantyApplicationForm";
+import { allDeviceMaxWidth } from "../styles/maxWidth";
 const ManageMyBattery = () => {
   return (
     <section className="bg-cross-pattern">
@@ -12,7 +13,7 @@ const ManageMyBattery = () => {
           alt="A picture represnting batter with waranty paper on the left side, text in the middle and another new battery on the right side."
         />
       </div>
-      <section className="my-10 max-w-screen-2xl mx-10 lg:mx-auto">
+      <section className={allDeviceMaxWidth}>
         <div className="text-center text-primary my-10">
           <p className="text-medium md:text-large font-bold uppercase">
             Register For 24/7 Nation-Wide

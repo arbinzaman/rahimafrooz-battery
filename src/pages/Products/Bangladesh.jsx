@@ -1,5 +1,6 @@
 import BangladeshPageBanner from "../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
 import ProductsCarousel from "../../components/Products/ProductsCarousel";
+import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import { brandAndProducts } from "../../utils/Products/Brands";
 
 const Bangladesh = () => {
@@ -16,7 +17,7 @@ const Bangladesh = () => {
         />
       </div>
 
-      <section className="my-10 max-w-screen-2xl mx-10 lg:mx-auto">
+      <section className={allDeviceMaxWidth}>
         {brandAndProducts?.map((brand) => (
           <div className="my-10" key={brand?.id}>
             <p className="text-semi_large text-primary font-bold mb-2">{brand?.brandName}</p>

@@ -6,17 +6,13 @@ import { allDeviceMaxWidth } from "../styles/maxWidth";
 const ProductFinalPage = () => {
   return (
     <section
-      className={`
-      ${allDeviceMaxWidth}
-       bg-background 
-       my-10 max-w-screen-2xl 
-       mx-10 lg:mx-auto`}
+      className={`${allDeviceMaxWidth} bg-background `}
     >
       <ProductSelectionSection />
-      <div className="w-4/5 mx-auto mb-10">
+      <div className="mb-10 mx-3">
         <ProductInformation />
       </div>
-      <div className="">
+      <div className="mx-3">
         <SimilarProduct />
       </div>
     </section>

@@ -12,7 +12,7 @@ const SpecialAwards = () => {
         <img src={SpecialAwardBanner} alt="" />
       </div>
       <section
-        className={`${allDeviceMaxWidth} grid grid-cols-1 lg:grid-cols-2 gap-20 items-start`}
+        className={`${allDeviceMaxWidth} grid grid-cols-1 lg:grid-cols-2 gap-20 items-start my-5 text-justify`}
       >
         {/* Left Side */}
         <section>
@@ -23,7 +23,7 @@ const SpecialAwards = () => {
             </p>
           </div>
           {/* Achievement 2 */}
-          <div className="grid mx-3 mt-20 lg:mt-32 lg:mb-44">
+          <div className="grid  mt-20 lg:mt-32 lg:mb-44">
             <div>
               <img src={Achievement2} alt="" width={"100%"} />
             </div>
@@ -34,7 +34,7 @@ const SpecialAwards = () => {
             <p className="border border-b-primary"></p>
           </div>
           {/* Achievement 4 */}
-          <div className="grid mx-3 mt-20 lg:mt-32">
+          <div className="grid  mt-20 lg:mt-32">
             <div>
               <img src={Achievement4} alt="" width={"100%"} />
             </div>
@@ -48,7 +48,7 @@ const SpecialAwards = () => {
           </div>
         </section>
         {/* Right Side */}
-        <section className="mx-3">
+        <section>
           {/* Achievement 1 */}
           <div className="lg:mb-16">
             <div>
@@ -78,8 +78,8 @@ const SpecialAwards = () => {
         </section>
       </section>
       <section className={allDeviceMaxWidth}>
-          <AwardSlider />
-        </section>
+        <AwardSlider />
+      </section>
     </section>
   );
 };

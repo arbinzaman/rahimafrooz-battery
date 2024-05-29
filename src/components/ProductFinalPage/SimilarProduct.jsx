@@ -2,7 +2,7 @@ import RelatedProducts from "../ProductSearch/RelatedProducts";
 
 const SimilarProduct = () => {
   return (
-    <div className="mb-16 w-4/5 mx-auto">
+    <div className="mb-16">
       <RelatedProducts />
       <h2 className="text-medium text-primary ">
         Best Price Commercial Vehicles Battery Online at RAHIMAFROOZ

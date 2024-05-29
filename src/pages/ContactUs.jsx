@@ -2,23 +2,23 @@ import GlobalAddressItems from "../components/ContactUs/GlobalAddressItems";
 import LocationPinIcon from "../assets/icons/location-pin-svgrepo-com.png";
 import PhoneFaxIcon from "../assets/icons/telephone-free-svgrepo-com.png";
 import EmailIcon from "../assets/icons/email-9-svgrepo-com.png";
-import ContactUsBanner from "../assets/images/Contact-us-banner.jpg"
 import ContactUsInformationForm from "../components/ContactUs/ContactUsInformationForm";
 import Map from "../components/ContactUs/Map";
+import { allDeviceMaxWidth } from "../styles/maxWidth";
 const ContactUs = () => {
   return (
     <section>
       <div>
         <Map/>
       </div>
-      <section className="mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28  ">
+      <section className={allDeviceMaxWidth+"my-10"}>
         <p className="text-primary text-large font-bold text-center">
           CONTACT US
         </p>
         <div>
           <ContactUsInformationForm />
         </div>
-        <div className="grid justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:mx-auto max-w-screen-sm md:max-w-screen-md	lg:max-w-screen-lg xl:max-w-screen-xl	2xl:max-w-screen-2xl">
+        <div className="grid justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           <div className="bg-slate-100 p-5 rounded-xl">
             <GlobalAddressItems
               addressDetails={{
