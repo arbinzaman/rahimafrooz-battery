@@ -3,11 +3,11 @@ import { allDeviceMaxWidth } from "../styles/maxWidth";
 
 const PrivacyPolicy = () => {
   return (
-    <section className={`mt-20`}>
+    <section className={`mt-10`}>
       <div className={`${allDeviceMaxWidth}`}>
         {/* hero section of privacy policy start */}
         <div className="mx-3">
-          <h1 className="text-semi_large lg:text-large  font-bold text-primary ">
+          <h1 className="text-semi_large lg:text-large font-bold text-primary ">
             PRIVACY & COOKIES POLICY
           </h1>
           <h3 className="text-black   text-2xl font-bold mt-10">
@@ -25,7 +25,7 @@ const PrivacyPolicy = () => {
             disable browser cookies.
           </p>
 
-          <h3 className="text-black   text-2xl font-bold mt-10">
+          <h3 className="text-black text-2xl font-bold mt-10">
             HOW WE USE COOKIES
           </h3>
 
