@@ -17,6 +17,7 @@ import SpecialAwards from "../pages/About/SpecialAwards";
 import FindDealer from "../pages/FindDealer";
 import Manufacturing from "../pages/About/Manufacturing";
 import DashboardLayout from "../layouts/DashboardLayout";
+import Login from "../pages/Dashboard/Login";
 
 const routes = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const routes = createBrowserRouter([
         element: <Manufacturing />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "/dashboard",
