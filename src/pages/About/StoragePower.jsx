@@ -23,7 +23,7 @@ const StoragePower = () => {
           <p>STORAGE POWER BUSINESS (RSPB)</p>
         </div>
         {/* Paragraphs */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-10 my-10 mx-3 text-justify text-black">
+        <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-10 my-10 text-justify text-black">
           <div>
             Rahimafrooz was founded in 1954 as a pioneer in the Bangladeshi bat-
             tery industry. Rahimafrooz Storage Power Business (RSPB) is the core
@@ -63,7 +63,7 @@ const StoragePower = () => {
           ></iframe>
         </div>
         {/* Factory Images */}
-        <div className="my-10 mx-3">
+        <div className="my-10">
           {/* Factory Image 1 */}
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
             <div>
@@ -127,7 +127,7 @@ const StoragePower = () => {
           </div>
         </div>
         {/* Milestones */}
-        <div className="my-10 mx-3">
+        <div className="my-10">
           <p className="text-center text-large text-primary font-semibold">
             RSPB MILESTONES
           </p>
@@ -146,7 +146,7 @@ const StoragePower = () => {
           </p>
         </div>
         {/* Values */}
-        <div className="my-10 mx-3">
+        <div className="my-10">
           <p className="text-center text-large text-primary font-semibold">
             OUR VALUES
           </p>

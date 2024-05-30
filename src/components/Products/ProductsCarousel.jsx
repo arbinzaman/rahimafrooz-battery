@@ -9,7 +9,8 @@ const ProductsCarousel = ({ products }) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed:4000,
-    cssEase: "linear"
+    cssEase: "linear",
+    arrows:false,
   };
 
   const settingsForMediumScreen = {
@@ -19,7 +20,8 @@ const ProductsCarousel = ({ products }) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed:4000,
-    cssEase: "linear"
+    cssEase: "linear",
+    arrows:false,
   };
 
   const settingsForSmallScreen = {
@@ -29,7 +31,8 @@ const ProductsCarousel = ({ products }) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed:4000,
-    cssEase: "linear"
+    cssEase: "linear",
+    arrows:false,
   };
   return (
     <section>

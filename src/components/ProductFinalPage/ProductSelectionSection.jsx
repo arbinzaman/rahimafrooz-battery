@@ -10,7 +10,7 @@ const ProductSelectionSection = () => {
   };
   return (
     <div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mx-3">
         <div className="mx-auto">
           <img src={img} className=" lg:my-10 w-40 lg:w-auto mx-auto" alt="" />
           <div className="flex lg:my-10 mt-5">
@@ -71,12 +71,12 @@ const ProductSelectionSection = () => {
             <span className="text-primary font-bold">&#2547; 14,740.00</span>
           </p>
 
-          <div className="mt-10 lg:mt-48">
-            <button className="btn btn-ghost text-white bg-primary mr-5 px-10 text-regular">
+          <div className="mt-10 lg:mt-48 flex flex-col gap-5 items-center justify-center lg:flex-row lg:justify-start">
+            <button className="btn btn-ghost text-white bg-primary px-10 text-regular">
               Buy Now
             </button>
-            <button className="btn btn-ghost text-white bg-primary  px-10 text-regular">
-              Nearest Tester
+            <button className="btn btn-ghost text-white bg-primary px-10 text-regular">
+              Nearest Dealer
             </button>
           </div>
         </div>
