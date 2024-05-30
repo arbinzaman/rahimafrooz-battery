@@ -1,6 +1,7 @@
 import ProductsCarousel from "../../components/Products/ProductsCarousel";
 import { brandAndProducts } from "../../utils/Products/Brands";
 import InternationalPageBanner from "../../assets/images/ProductPageImages/International-products-banner.jpg";
+import { allDeviceMaxWidth } from "../../styles/maxWidth";
 
 const International = () => {
   return (
@@ -17,7 +18,7 @@ const International = () => {
           />
         </div>
 
-      <section className="mx-5 my-5 md:my-8 lg:my-16 md:mx-16 lg:mx-28">
+      <section className={allDeviceMaxWidth}>
         {brandAndProducts?.map((brand) => (
           <div className="my-10" key={brand?.id}>
             <p className="text-semi_large text-primary font-bold mb-2">
