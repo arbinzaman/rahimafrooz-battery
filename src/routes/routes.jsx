@@ -91,7 +91,7 @@ const routes = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
+    path: "/admin-login",
     element: <Login />,
   },
   {
