@@ -16,6 +16,7 @@ import TermsAndCondition from "../pages/TermsAndCondition";
 import SpecialAwards from "../pages/About/SpecialAwards";
 import FindDealer from "../pages/FindDealer";
 import Manufacturing from "../pages/About/Manufacturing";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 const routes = createBrowserRouter([
   {
@@ -74,17 +75,27 @@ const routes = createBrowserRouter([
         path: "/terms-and-conditions",
         element: <TermsAndCondition />,
       },
-        {
+      {
         path: "/special-awards-achievement",
         element: <SpecialAwards />,
       },
       {
         path: "/find-dealer",
-        element: <FindDealer />
+        element: <FindDealer />,
       },
       {
         path: "/manufacturing",
-        element: <Manufacturing/>
+        element: <Manufacturing />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard/home",
+        element: <Home />,
       },
     ],
   },
