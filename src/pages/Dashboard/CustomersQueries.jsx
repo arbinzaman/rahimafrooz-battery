@@ -1,10 +1,23 @@
 import { BiDetail } from "react-icons/bi";
 import customersQueries from "../../demoData/contactUsFrom.json";
+import Modal from "../../components/Dashboard/CustomerQueries/Modal";
 
 const CustomersQueries = () => {
   return (
     <div>
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">Dealers List</h1>
+      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+        Dealers List
+      </h1>
+
+      <dialog
+        id="customerDetails"
+        className="modal modal-bottom sm:modal-middle"
+      >
+        {customersQueries.map((customersQuery) => (
+          <Modal key={customersQuery.id} customersQuery={customersQuery} />
+        ))}
+      </dialog>
+
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
@@ -30,7 +43,12 @@ const CustomersQueries = () => {
                     : customersQuery.message}
                 </td>
                 <td>
-                  <button className="btn btn-xs">
+                  <button
+                    className="btn btn-xs"
+                    onClick={() =>
+                      document.getElementById("customerDetails").showModal()
+                    }
+                  >
                     <BiDetail />
                   </button>
                 </td>
