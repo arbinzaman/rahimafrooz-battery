@@ -9,7 +9,7 @@ const Login = () => {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
         <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-white shadow-md">
-          <h1 className="text-2xl font-bold text-center text-gray-800">Login</h1>
+          <h1 className="text-2xl font-bold text-center text-gray-800">Admin Login</h1>
           <form onSubmit={handleLogin} noValidate="" action="" className="space-y-6">
             <div className="space-y-1 text-sm">
               <label htmlFor="email" className="block text-gray-700">
