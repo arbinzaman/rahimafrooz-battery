@@ -22,6 +22,11 @@ const DashboardLayout = () => {
                 <a>Passenger Car Batteries</a>
               </Link>
             </li>
+            <li>
+              <Link to="/dashboard/dealers-application-list">
+                <a>Dealers Application List</a>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

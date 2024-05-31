@@ -5,7 +5,9 @@ const DealerApplicationForm = () => {
   const { register, handleSubmit } = useForm();
 
   const handleFormSubmit = (data) => {
+
     try {
+      console.log(data);
       if(data?.email!=""){
         toast.success('Your record has been saved.')
       }else{
