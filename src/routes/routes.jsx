@@ -19,6 +19,7 @@ import Manufacturing from "../pages/About/Manufacturing";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/Dashboard/Login";
 import PassengerCarBatteries from "../pages/Dashboard/PassengerCarBatteries";
+import DealerApplicationList from "../pages/Dashboard/DealerApplicationList";
 
 const routes = createBrowserRouter([
   {
@@ -102,6 +103,14 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/passenger-car-batteries",
         element: <PassengerCarBatteries />,
+      },
+      {
+        path: "/dashboard",
+        element: <PassengerCarBatteries />,
+      },
+      {
+        path: "/dashboard/dealers-application-list",
+        element: <DealerApplicationList />,
       },
     ],
   },

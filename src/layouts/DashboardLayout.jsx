@@ -7,19 +7,24 @@ const DashboardLayout = () => {
       <DashboardHeader />
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content p-5">
+        <div className="drawer-content p-5 lg:ml-80 overflow-y-auto">
           <Outlet />
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side  lg:fixed ">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
-            className="drawer-overlay"
+            className="drawer-overlay lg:hidden"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content mt-20 lg:mt-0">
+          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content mt-20 lg:mt-0  lg:fixed ">
             <li>
               <Link to="/dashboard/passenger-car-batteries">
-                <a>Passenger Car Batteries</a>
+                Passenger Car Batteries
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/dealers-application-list">
+                Dealers Application List
               </Link>
             </li>
           </ul>
