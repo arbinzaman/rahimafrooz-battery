@@ -1,11 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCarBattery } from "react-icons/fa";
-import passengerCarBatteries from "../../demoData/passengerCarBatteries.json";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../components/shared/Loader";
 
 const PassengerCarBatteries = () => {
   const [selectedIds, setSelectedIds] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
+  const [filteredBatteries, setFilteredBatteries] = useState([]);
+
+  const url = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries`;
+
+  const {
+    data: passengerCarBatteries = [],
+    isLoading,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["passengerCarBatteries"],
+    queryFn: async () => {
+      const res = await fetch(url);
+      const data = await res.json();
+      return data;
+    },
+    refetchInterval: 60000,
+    refetchOnWindowFocus: true,
+  });
+  useEffect(() => {
+    const filtered = passengerCarBatteries.filter((battery) =>
+      battery.applications.includes("Passenger Car")
+    );
+    setFilteredBatteries(filtered);
+  }, [passengerCarBatteries]);
 
   const handleCheckboxChange = (id) => {
     setSelectedIds((prevSelectedIds) => {
@@ -13,7 +39,7 @@ const PassengerCarBatteries = () => {
         ? prevSelectedIds.filter((selectedId) => selectedId !== id)
         : [...prevSelectedIds, id];
 
-      setSelectAll(updatedSelectedIds.length === passengerCarBatteries.length);
+      setSelectAll(updatedSelectedIds.length === filteredBatteries.length);
       return updatedSelectedIds;
     });
   };
@@ -22,40 +48,31 @@ const PassengerCarBatteries = () => {
     if (selectAll) {
       setSelectedIds([]);
     } else {
-      const allIds = passengerCarBatteries.map((battery) => battery.id);
+      const allIds = filteredBatteries.map((battery) => battery.id);
       setSelectedIds(allIds);
     }
     setSelectAll(!selectAll);
   };
 
   const handleDelete = async () => {
-    //   Uncomment the following lines for actual delete operation
-    //   try {
-    //     const response = await fetch('/api/deleteBatteries', {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify({ ids: selectedIds }),
-    //     });
-
-    //     if (response.ok) {
-    //       // Remove the deleted items from the local state
-    //       const updatedBatteries = passengerCarBatteries.filter(
-    //         (battery) => !selectedIds.includes(battery.id)
-    //       );
-    //       setPassengerCarBatteries(updatedBatteries);
-    //       setSelectedIds([]);
-    //       setSelectAll(false);
-    //     } else {
-    //       console.error('Failed to delete items');
-    //     }
-    //   } catch (error) {
-    //     console.error('Error:', error);
-    //   }
-
     console.log(selectedIds);
+    // await fetch(url, {
+    //   method: "DELETE",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ ids: selectedIds }),
+    // });
+    refetch();
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
+  refetch();
+  if (error) {
+    return <div>Error fetching data</div>;
+  }
 
   return (
     <div>
@@ -86,14 +103,13 @@ const PassengerCarBatteries = () => {
               </th>
               <th>Serial</th>
               <th>Technology</th>
-              <th>Vehicle Make</th>
-              <th>Model</th>
+              <th>Vehicle Make & Model</th>
               <th>Make Year</th>
               <th>Recommended Battery</th>
             </tr>
           </thead>
           <tbody>
-            {passengerCarBatteries.map((passengerCarBattery, i) => (
+            {filteredBatteries.map((passengerCarBattery, i) => (
               <tr key={passengerCarBattery.id}>
                 <td>
                   <input
@@ -106,10 +122,45 @@ const PassengerCarBatteries = () => {
                 </td>
                 <th>{i + 1}</th>
                 <td>{passengerCarBattery.technology}</td>
-                <td>{passengerCarBattery.vehicleMake}</td>
-                <td>{passengerCarBattery.model}</td>
-                <td>{passengerCarBattery.makeYear}</td>
-                <td>{passengerCarBattery.recommendedBattery}</td>
+                <td>
+                  {passengerCarBattery.supported_vehicle_models.map(
+                    (makeModel, index) => (
+                      <div key={index}>
+                        <strong>{makeModel.make}</strong>:
+                        {makeModel.models
+                          .join(", ")
+                          .split(" ")
+                          .map((word, idx) => (
+                            <span
+                              key={idx}
+                              className={idx % 4 === 3 ? "block" : ""}
+                            >
+                              {word}
+                            </span>
+                          ))}
+                      </div>
+                    )
+                  )}
+                </td>
+                <td>
+                  {passengerCarBattery.make_years.map((makeYear, idx) => (
+                    <div key={idx}>
+                      <strong>{makeYear.model}</strong>:{" "}
+                      {makeYear.years
+                        .join(", ")
+                        .split(" ")
+                        .map((word, index) => (
+                          <span
+                            key={index}
+                            className={index % 4 === 3 ? "block" : ""}
+                          >
+                            {word}
+                          </span>
+                        ))}
+                    </div>
+                  ))}
+                </td>
+                <td>{passengerCarBattery.brand}</td>
               </tr>
             ))}
           </tbody>

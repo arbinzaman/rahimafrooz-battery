@@ -20,6 +20,9 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/Dashboard/Login";
 import PassengerCarBatteries from "../pages/Dashboard/PassengerCarBatteries";
 import DealerApplicationList from "../pages/Dashboard/DealerApplicationList";
+import CustomersQueries from "../pages/Dashboard/CustomersQueries";
+import CommercialVehicleBatteries from "../pages/Dashboard/CommercialVehicleBatteries";
+import TwoWheelerBatteries from "../pages/Dashboard/TwoWheelerBatteries";
 
 const routes = createBrowserRouter([
   {
@@ -105,12 +108,24 @@ const routes = createBrowserRouter([
         element: <PassengerCarBatteries />,
       },
       {
+        path: "/dashboard/commercial-car-batteries",
+        element: <CommercialVehicleBatteries />,
+      },
+      {
+        path: "/dashboard/two-wheeler-batteries",
+        element: <TwoWheelerBatteries />,
+      },
+      {
         path: "/dashboard",
         element: <PassengerCarBatteries />,
       },
       {
         path: "/dashboard/dealers-application-list",
         element: <DealerApplicationList />,
+      },
+      {
+        path: "/dashboard/customers-queries",
+        element: <CustomersQueries />,
       },
     ],
   },
