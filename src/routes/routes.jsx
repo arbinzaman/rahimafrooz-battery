@@ -18,6 +18,7 @@ import FindDealer from "../pages/FindDealer";
 import Manufacturing from "../pages/About/Manufacturing";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/Dashboard/Login";
+import PassengerCarBatteries from "../pages/Dashboard/PassengerCarBatteries";
 
 const routes = createBrowserRouter([
   {
@@ -91,7 +92,7 @@ const routes = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
+    path: "/admin-login",
     element: <Login />,
   },
   {
@@ -99,8 +100,8 @@ const routes = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       {
-        path: "/dashboard/home",
-        element: <Home />,
+        path: "/dashboard/passenger-car-batteries",
+        element: <PassengerCarBatteries />,
       },
     ],
   },

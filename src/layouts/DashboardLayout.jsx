@@ -1,20 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import DashboardHeader from "../components/shared/DashboardHeader";
 
 const DashboardLayout = () => {
   return (
     <div>
-        <DashboardHeader />
+      <DashboardHeader />
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content p-5">
           <Outlet />
-          <label
-            htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
-          >
-            Open drawer
-          </label>
         </div>
         <div className="drawer-side">
           <label
@@ -22,13 +16,11 @@ const DashboardLayout = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-            {/* Sidebar content here */}
+          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content mt-20 lg:mt-0">
             <li>
-              <a>Sidebar Item 1</a>
-            </li>
-            <li>
-              <a>Sidebar Item 2</a>
+              <Link to="/dashboard/passenger-car-batteries">
+                <a>Passenger Car Batteries</a>
+              </Link>
             </li>
           </ul>
         </div>

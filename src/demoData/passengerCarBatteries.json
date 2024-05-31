@@ -1,0 +1,82 @@
+[
+    {
+        "id": "e65b60d1",
+        "technology": "Non-hybrid",
+        "vehicleMake": "Daewoo",
+        "model": "Cello (Taxi Cab.)",
+        "makeYear": "1986-2008",
+        "recommendedBattery": "DIN55"
+    },
+    {
+        "id": "c54a82f7",
+        "technology": "Non-hybrid",
+        "vehicleMake": "Daewoo",
+        "model": "Matiz",
+        "makeYear": "1986-2008",
+        "recommendedBattery": "NS402"
+    },
+    {
+        "id": "a29e16b3",
+        "technology": "Non-hybrid",
+        "vehicleMake": "Daihatsu",
+        "model": "Charade",
+        "makeYear": "1986-2008",
+        "recommendedBattery": "NS402"
+    },
+    {
+        "id": "7f815c40",
+        "technology": "Non-hybrid",
+        "vehicleMake": "Daihatsu",
+        "model": "Charade",
+        "makeYear": "1986-2008",
+        "recommendedBattery": "NS60"
+    },
+    {
+        "id": "3b695ae1",
+        "technology": "Non-hybrid",
+        "vehicleMake": "Daihatsu",
+        "model": "Charade",
+        "makeYear": "1986-2008",
+        "recommendedBattery": "NS402"
+    },
+    {
+        "id": "9104b03f",
+        "technology": "Non-hybrid",
+        "vehicleMake": "Daihatsu",
+        "model": "Charade",
+        "makeYear": "1986-2008",
+        "recommendedBattery": "NS60"
+    },
+    {
+        "id": "c706e1e9",
+        "technology": "Non-hybrid",
+        "vehicleMake": "Daihatsu",
+        "model": "Cuore",
+        "makeYear": "1986-2008",
+        "recommendedBattery": "NS402"
+    },
+    {
+        "id": "aef3cd2c",
+        "technology": "Non-hybrid",
+        "vehicleMake": "Daihatsu",
+        "model": "Dai-Hijet",
+        "makeYear": "1986-2008",
+        "recommendedBattery": "NS40"
+    },
+    {
+        "id": "fb9d4d78",
+        "technology": "Non-hybrid",
+        "vehicleMake": "Daihatsu",
+        "model": "Dai-Hijet",
+        "makeYear": "1986-2008",
+        "recommendedBattery": "NS402"
+    },
+    {
+        "id": "e348df1b",
+        "technology": "Non-hybrid",
+        "vehicleMake": "Daihatsu",
+        "model": "Dai-Hijet",
+        "makeYear": "1986-2008",
+        "recommendedBattery": "NS402L"
+    }
+]
