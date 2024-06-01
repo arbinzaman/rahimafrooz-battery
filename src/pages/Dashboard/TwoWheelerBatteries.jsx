@@ -33,7 +33,7 @@ const TwoWheelerBatteries = () => {
   useEffect(() => {
     // console.log("Filtering data...");
     const filtered = twoWheelerBatteries.filter((battery) =>
-      battery.applications.includes("Two Wheeler")
+      battery.applicable_categories.includes("Two Wheeler")
     );
     setFilteredBatteries(filtered);
     // setLastFetched(new Date().toLocaleTimeString());

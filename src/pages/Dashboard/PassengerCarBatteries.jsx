@@ -29,7 +29,7 @@ const PassengerCarBatteries = () => {
 
   useEffect(() => {
     const filtered = passengerCarBatteries.filter((battery) =>
-      battery.applications.includes("Passenger Car")
+      battery.applicable_categories.includes("Passenger Car")
     );
     setFilteredBatteries(filtered);
   }, [passengerCarBatteries]);

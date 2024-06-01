@@ -14,13 +14,13 @@ const BatteryDetailsModal = ({ Vehicle }) => {
     productdimensions_lxbxh_mm,
     voltage,
     ref_amperehour_ah,
-    coldcrankingability_cca,
-    totalwarranty,
-    freewarranty,
-    proratawarranty,
-    terminallayout,
-    exchangeableformatcompatiblewith,
-    countryoforigin,
+    cold_cranking_ability_cca,
+    total_warranty,
+    free_warranty,
+    pro_rata_warranty,
+    terminal_layout,
+    exchangeable_format_compatible_with,
+    country_of_origin,
   } = Vehicle;
 
   return (
@@ -43,7 +43,7 @@ const BatteryDetailsModal = ({ Vehicle }) => {
         <strong>Supported Vehicle Models:</strong>
         {supported_vehicle_models.map((makeModel, index) => (
           <div key={index}>
-            <strong>{makeModel.make}:</strong> {makeModel.models.join(", ")}
+            <strong>{makeModel.make}:</strong> {makeModel.models?.join(", ")}
           </div>
         ))}
       </p>
@@ -51,12 +51,12 @@ const BatteryDetailsModal = ({ Vehicle }) => {
         <strong>Make Years:</strong>
         {make_years.map((makeYear, idx) => (
           <div key={idx}>
-            <strong>{makeYear.model}:</strong> {makeYear.years.join(", ")}
+            <strong>{makeYear.model}:</strong> {makeYear.years?.join(", ")}
           </div>
         ))}
       </p>
       <p>
-        <strong>Applications:</strong> {applications.join(", ")}
+        <strong>Applications:</strong> {applications?.join(", ")}
       </p>
       <p>
         <strong>Brand:</strong> {brand}
@@ -81,27 +81,27 @@ const BatteryDetailsModal = ({ Vehicle }) => {
         <strong>Reference Ampere Hour (Ah):</strong> {ref_amperehour_ah}
       </p>
       <p>
-        <strong>Cold Cranking Ability (CCA):</strong> {coldcrankingability_cca}
+        <strong>Cold Cranking Ability (CCA):</strong> {cold_cranking_ability_cca}
       </p>
       <p>
-        <strong>Total Warranty:</strong> {totalwarranty} months
+        <strong>Total Warranty:</strong> {total_warranty} months
       </p>
       <p>
-        <strong>Free Warranty:</strong> {freewarranty} months
+        <strong>Free Warranty:</strong> {free_warranty} months
       </p>
       <p>
-        <strong>Pro-Rata Warranty:</strong> {proratawarranty} months
+        <strong>Pro-Rata Warranty:</strong> {pro_rata_warranty} months
       </p>
       <p>
         <strong>Terminal Layout:</strong>{" "}
-        {terminallayout ? terminallayout : "N/A"}
+        {terminal_layout ? terminal_layout : "N/A"}
       </p>
       <p>
         <strong>Exchangeable Format Compatible With:</strong>{" "}
-        {exchangeableformatcompatiblewith}
+        {exchangeable_format_compatible_with}
       </p>
       <p>
-        <strong>Country of Origin:</strong> {countryoforigin}
+        <strong>Country of Origin:</strong> {country_of_origin}
       </p>
       <div className="modal-action">
         <form method="dialog">
