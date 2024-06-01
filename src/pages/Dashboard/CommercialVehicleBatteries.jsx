@@ -31,7 +31,7 @@ const CommercialVehicleBatteries = () => {
   });
 
   useEffect(() => {
-    console.log("Filtering data...");
+    // console.log("Filtering data...");
     const filtered = commercialVehicleBatteries.filter((battery) =>
       battery.applications.includes("Commercial Vehicle")
     );

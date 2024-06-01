@@ -1,8 +1,16 @@
+import { useState } from "react";
 import { BiDetail } from "react-icons/bi";
 import customersQueries from "../../demoData/contactUsFrom.json";
 import Modal from "../../components/Dashboard/CustomerQueries/Modal";
 
 const CustomersQueries = () => {
+  const [selectedQuery, setSelectedQuery] = useState(null);
+
+  const handleModalOpen = (query) => {
+    setSelectedQuery(query);
+    document.getElementById("customerDetails").showModal();
+  };
+
   return (
     <div>
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
@@ -13,9 +21,7 @@ const CustomersQueries = () => {
         id="customerDetails"
         className="modal modal-bottom sm:modal-middle"
       >
-        {customersQueries.map((customersQuery) => (
-          <Modal key={customersQuery.id} customersQuery={customersQuery} />
-        ))}
+        {selectedQuery && <Modal customersQuery={selectedQuery} />}
       </dialog>
 
       <div className="overflow-x-auto">
@@ -45,9 +51,7 @@ const CustomersQueries = () => {
                 <td>
                   <button
                     className="btn btn-xs"
-                    onClick={() =>
-                      document.getElementById("customerDetails").showModal()
-                    }
+                    onClick={() => handleModalOpen(customersQuery)}
                   >
                     <BiDetail />
                   </button>
