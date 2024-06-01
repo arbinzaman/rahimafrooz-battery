@@ -34,13 +34,13 @@ const DealerApplicationList = () => {
                 <td>{becomeADealer.address.thana}</td>
                 <td>{becomeADealer.address.zip}</td>
                 <td>
-                  <button className="btn btn-xs">
-                    <SiTicktick />
+                  <button className="btn btn-xs bg-green-500">
+                    <SiTicktick className="text-white"/>
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-xs">
-                  <MdDeleteForever />
+                  <button className="btn btn-xs bg-red-400">
+                  <MdDeleteForever className="text-white" />
                   </button>
                 </td>
               </tr>
