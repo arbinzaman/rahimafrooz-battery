@@ -113,10 +113,10 @@ const BatteryDetailsTable = ({ prompts }) => {
               </td>
               <td>
                 <button
-                  className="btn btn-xs"
+                  className="btn btn-xs bg-blue-400"
                   onClick={() => handleModalOpen(Vehicle)}
                 >
-                  <BiDetail />
+                  <BiDetail className="text-white" />
                 </button>
               </td>
             </tr>

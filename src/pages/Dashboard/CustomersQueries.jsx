@@ -50,10 +50,10 @@ const CustomersQueries = () => {
                 </td>
                 <td>
                   <button
-                    className="btn btn-xs"
+                    className="btn btn-xs bg-blue-400"
                     onClick={() => handleModalOpen(customersQuery)}
                   >
-                    <BiDetail />
+                    <BiDetail className="text-white"/>
                   </button>
                 </td>
               </tr>
