@@ -76,6 +76,19 @@
     margin-right: auto;
 }
 
+.HomeSocialButtom{
+    padding: 6px 10px;
+    background-color: #f2f2f2;
+    color: #167ac6;
+    font-weight: 600;
+}
+.HomeSocialButtomSelect{
+    padding: 6px 10px;
+    background-color: #fff;
+    color: #167ac6;
+    font-weight: 600;
+}
+
 @media screen and (max-width: 767px) {
     .HomeSocial iframe{
         width: 380px;
