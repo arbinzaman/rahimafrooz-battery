@@ -47,7 +47,7 @@ const BatteryDetailsTable = ({ prompts }) => {
                 onChange={handleSelectAllChange}
                 checked={selectAll}
               />
-              Select All
+              
             </th>
             <th>Serial</th>
             <th>Brand</th>
