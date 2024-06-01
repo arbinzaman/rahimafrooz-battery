@@ -1,4 +1,4 @@
-const BatteryDetailsModal = ({ Vehicle }) => {
+const BatteryDetailsModal = ({ battery }) => {
   const {
     id,
     short_code,
@@ -21,7 +21,7 @@ const BatteryDetailsModal = ({ Vehicle }) => {
     terminal_layout,
     exchangeable_format_compatible_with,
     country_of_origin,
-  } = Vehicle;
+  } = battery;
 
   return (
     <div className="modal-box">
@@ -37,11 +37,11 @@ const BatteryDetailsModal = ({ Vehicle }) => {
       </p>
       <p>
         <strong>Supported Vehicle Makes:</strong>{" "}
-        {supported_vehicle_makes.join(", ")}
+        {supported_vehicle_makes?.join(", ")}
       </p>
       <p>
         <strong>Supported Vehicle Models:</strong>
-        {supported_vehicle_models.map((makeModel, index) => (
+        {supported_vehicle_models?.map((makeModel, index) => (
           <div key={index}>
             <strong>{makeModel.make}:</strong> {makeModel.models?.join(", ")}
           </div>
@@ -49,7 +49,7 @@ const BatteryDetailsModal = ({ Vehicle }) => {
       </p>
       <p>
         <strong>Make Years:</strong>
-        {make_years.map((makeYear, idx) => (
+        {make_years?.map((makeYear, idx) => (
           <div key={idx}>
             <strong>{makeYear.model}:</strong> {makeYear.years?.join(", ")}
           </div>
