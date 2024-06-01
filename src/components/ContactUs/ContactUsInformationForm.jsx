@@ -2,24 +2,26 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const ContactUsInformationForm = () => {
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  const handleFormSubmit = (data) =>{
+  const handleFormSubmit = (data) => {
+    console.log(data);
     try {
-      if(data){
-        toast.success('Thank your for getting in touch with us.')
+      if (data) {
+        toast.success("Thank your for getting in touch with us.");
       }
     } catch (error) {
-        console.log(error.message);
+      console.log(error.message);
     }
-  }
+  };
 
   return (
     <section className="flex justify-center">
-      <form action="" className="my-5 max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl	2xl:max-w-screen-2xl" onSubmit={handleSubmit(handleFormSubmit)}>
+      <form
+        action=""
+        className="my-5 max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl	2xl:max-w-screen-2xl"
+        onSubmit={handleSubmit(handleFormSubmit)}
+      >
         <div>
           <input
             type="text"
@@ -72,12 +74,14 @@ const ContactUsInformationForm = () => {
               />
             </div>
             <div className="bg-primary text-2xl text-white p-4 mb-5">
-                <p className="text-center font-medium">J23ndAjd4</p>
+              <p className="text-center font-medium">J23ndAjd4</p>
             </div>
           </div>
         </div>
 
-        <button className="bg-button px-8 py-2 text-2xl text-base font-bold rounded-md">SUBMIT</button>
+        <button className="bg-button px-8 py-2 text-2xl text-base font-bold rounded-md">
+          SUBMIT
+        </button>
       </form>
     </section>
   );
