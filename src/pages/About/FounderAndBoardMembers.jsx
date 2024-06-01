@@ -4,14 +4,17 @@ import { ImFacebook2 } from "react-icons/im";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
+import { sample } from "../../utils/Products/sample";
 const FounderAndBoardMembers = () => {
+  console.log(sample)
+  
   return (
     <section className="">
       <div>
         <img src={img1} className="" alt="" />
       </div>
 
-      <div className={`${allDeviceMaxWidth} text-justify xm:mx-10 md:mx-5`}>
+      <div className={`${allDeviceMaxWidth} text-justify`}>
         <div className="mx-3">
           <div className="grid grid-cols-1 lg:grid-cols-[300px_minmax(30%,70%)] gap-5 justify-items-center mt-20">
             <div className="flex justify-center">

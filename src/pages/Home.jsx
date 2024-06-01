@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Slider from "react-slick";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";

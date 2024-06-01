@@ -15,7 +15,7 @@ const Manufacturing = () => {
       <div>
         <img src={ManufacturingBanner} alt="" />
       </div>
-      <section className={`${allDeviceMaxWidth} grid grid-cols-1 lg:grid-cols-2 gap-20 items-start my-10`}>
+      <section className={`${allDeviceMaxWidth} grid grid-cols-1 lg:grid-cols-2 gap-20 items-start my-5 text-justify`}>
         {/* Left Side */}
         <section className="">
           <div className="bg-primary text-left p-10 lg:p-20 leading-relaxed">
