@@ -324,7 +324,7 @@ const Home = () => {
       <section className="border-y-2 relative" style={{ top: "-32px" }}>
         <HomeGoogleMap />
       </section>
-      <section className="bg-white pt-8 pb-8 hidden lg:block relative" style={{ top: "-32px" }}>
+      <section className="pt-8 pb-8 hidden lg:block relative" style={{ top: "-32px", backgroundColor: "#fbfbfb" }}>
         <div className="text-center max-w-6xl mx-auto">
           <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 mb-8">ABOUT US</h1>
           <p className="text-2xl font-medium text-gray-500 opacity-95 mb-8">
@@ -341,7 +341,7 @@ const Home = () => {
           </a>
         </div>
       </section>
-      <section className="bg-white pt-16 pb-16 relative" style={{ top: "-32px" }}>
+      <section className="pt-16 pb-16 relative" style={{ top: "-32px", backgroundColor: "#fbfbfb" }}>
         <div className="text-center max-w-7xl mx-auto">
           <img src={homeVideo} alt="video" />
         </div>
