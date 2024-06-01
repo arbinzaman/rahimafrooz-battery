@@ -33,7 +33,7 @@ const CommercialVehicleBatteries = () => {
   useEffect(() => {
     // console.log("Filtering data...");
     const filtered = commercialVehicleBatteries.filter((battery) =>
-      battery.applications.includes("Commercial Vehicle")
+      battery.applicable_categories.includes("Commercial Vehicle")
     );
     setFilteredBatteries(filtered);
     // setLastFetched(new Date().toLocaleTimeString());
