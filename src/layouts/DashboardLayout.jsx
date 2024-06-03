@@ -17,7 +17,7 @@ const DashboardLayout = () => {
             className="drawer-overlay lg:hidden"
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content mt-20 lg:mt-0  lg:fixed ">
-            <li>
+            {/* <li>
               <Link to="/dashboard/passenger-car-batteries">
                 Passenger Car Batteries
               </Link>
@@ -31,7 +31,12 @@ const DashboardLayout = () => {
               <Link to="/dashboard/two-wheeler-batteries">
                 Two Wheeler Batteries
               </Link>
-            </li>
+            </li> */}
+              <li>
+                <Link to="/dashboard/all-battery-details-list">
+                  All Battery Details
+                </Link>
+              </li>
             <li>
               <Link to="/dashboard/dealers-application-list">
                 Dealers Application List

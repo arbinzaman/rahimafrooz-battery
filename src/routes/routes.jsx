@@ -18,11 +18,12 @@ import FindDealer from "../pages/FindDealer";
 import Manufacturing from "../pages/About/Manufacturing";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/Dashboard/Login";
-import PassengerCarBatteries from "../pages/Dashboard/PassengerCarBatteries";
+// import PassengerCarBatteries from "../pages/Dashboard/PassengerCarBatteries";
 import DealerApplicationList from "../pages/Dashboard/DealerApplicationList";
 import CustomersQueries from "../pages/Dashboard/CustomersQueries";
-import CommercialVehicleBatteries from "../pages/Dashboard/CommercialVehicleBatteries";
-import TwoWheelerBatteries from "../pages/Dashboard/TwoWheelerBatteries";
+// import CommercialVehicleBatteries from "../pages/Dashboard/CommercialVehicleBatteries";
+// import TwoWheelerBatteries from "../pages/Dashboard/TwoWheelerBatteries";
+import AllBatteryDetails from "../pages/Dashboard/AllBatteryDetails";
 
 const routes = createBrowserRouter([
   {
@@ -103,25 +104,29 @@ const routes = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [
-      {
-        path: "/dashboard/passenger-car-batteries",
-        element: <PassengerCarBatteries />,
-      },
-      {
-        path: "/dashboard/commercial-car-batteries",
-        element: <CommercialVehicleBatteries />,
-      },
-      {
-        path: "/dashboard/two-wheeler-batteries",
-        element: <TwoWheelerBatteries />,
-      },
+      // {
+      //   path: "/dashboard/passenger-car-batteries",
+      //   element: <PassengerCarBatteries />,
+      // },
+      // {
+      //   path: "/dashboard/commercial-car-batteries",
+      //   element: <CommercialVehicleBatteries />,
+      // },
+      // {
+      //   path: "/dashboard/two-wheeler-batteries",
+      //   element: <TwoWheelerBatteries />,
+      // },
       {
         path: "/dashboard",
-        element: <PassengerCarBatteries />,
+        element: <AllBatteryDetails />,
       },
       {
         path: "/dashboard/dealers-application-list",
         element: <DealerApplicationList />,
+      },
+      {
+        path: "/dashboard/all-battery-details-list",
+        element: <AllBatteryDetails />,
       },
       {
         path: "/dashboard/customers-queries",
