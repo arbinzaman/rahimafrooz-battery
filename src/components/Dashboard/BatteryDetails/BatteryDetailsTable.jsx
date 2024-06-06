@@ -4,39 +4,57 @@ import { BiDetail } from "react-icons/bi";
 
 const BatteryDetailsTable = ({ prompts }) => {
   const [selectAll, setSelectAll] = useState(false);
-  const [selectedQuery, setSelectedQuery] = useState(null);
+  const [selectTableDetailsForModal, setSelectTableDetailsForModal] =
+    useState(null);
   const { allBatteryDetails, selectedIds, setSelectedIds } = prompts;
 
-  const handleCheckboxChange = (shortCode) => {
+  const handleCheckboxChange = (short_code) => {
     setSelectedIds((prevSelectedIds) => {
-      const updatedSelectedIds = prevSelectedIds.includes(shortCode)
-        ? prevSelectedIds.filter((selectedId) => selectedId !== shortCode)
-        : [...prevSelectedIds, shortCode];
-
+      const updatedSelectedIds = prevSelectedIds.includes(short_code)
+        ? prevSelectedIds.filter((selectedId) => selectedId !== short_code)
+        : [...prevSelectedIds, short_code];
       setSelectAll(updatedSelectedIds.length === allBatteryDetails.length);
       return updatedSelectedIds;
     });
   };
 
-  const handleModalOpen = (query) => {
-    setSelectedQuery(query);
-    document.getElementById("batteryDetails").showModal();
+  const handleModalOpen = async (short_code) => {
+    try {
+      const response = await fetch(
+        `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries/${short_code}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch battery details");
+      }
+      const data = await response.json();
+      setSelectTableDetailsForModal(data);
+      document.getElementById("batteryDetails").showModal();
+    } catch (error) {
+      console.error("Error fetching battery details:", error);
+    }
   };
 
   const handleSelectAllChange = () => {
     if (selectAll) {
       setSelectedIds([]);
     } else {
-      const allShortCodes = allBatteryDetails.map((battery) => battery.short_code);
-      setSelectedIds(allShortCodes);
+      const allshort_codes = allBatteryDetails.map(
+        (battery) => battery.short_code
+      );
+      setSelectedIds(allshort_codes);
     }
     setSelectAll(!selectAll);
   };
 
   return (
     <div className="overflow-x-auto">
-      <dialog id="batteryDetails" className="modal modal-bottom sm:modal-middle">
-        {selectedQuery && <BatteryDetailsModal battery={selectedQuery} />}
+      <dialog
+        id="batteryDetails"
+        className="modal modal-bottom sm:modal-middle"
+      >
+        {selectTableDetailsForModal && (
+          <BatteryDetailsModal battery={selectTableDetailsForModal} />
+        )}
       </dialog>
       <table className="table w-full">
         <thead>
@@ -47,7 +65,6 @@ const BatteryDetailsTable = ({ prompts }) => {
                 onChange={handleSelectAllChange}
                 checked={selectAll}
               />
-              
             </th>
             <th>Serial</th>
             <th>Brand</th>
@@ -83,7 +100,7 @@ const BatteryDetailsTable = ({ prompts }) => {
               <td>
                 <button
                   className="btn btn-xs bg-blue-400"
-                  onClick={() => handleModalOpen(battery)}
+                  onClick={() => handleModalOpen(battery.short_code)}
                 >
                   <BiDetail className="text-white" />
                 </button>

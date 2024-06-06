@@ -6,12 +6,12 @@ const BatteryDetailsModal = ({ battery }) => {
     supported_vehicle_makes,
     supported_vehicle_models,
     make_years,
-    applications,
+    applicable_categories,
     brand,
     series,
     itemcode,
     model,
-    productdimensions_lxbxh_mm,
+    product_dimensions_lxbxh_mm,
     voltage,
     ref_amperehour_ah,
     cold_cranking_ability_cca,
@@ -22,6 +22,7 @@ const BatteryDetailsModal = ({ battery }) => {
     exchangeable_format_compatible_with,
     country_of_origin,
   } = battery;
+  console.log(battery);
 
   return (
     <div className="modal-box">
@@ -32,32 +33,7 @@ const BatteryDetailsModal = ({ battery }) => {
       <p>
         <strong>Short Code:</strong> {short_code}
       </p>
-      <p>
-        <strong>Technology:</strong> {technology}
-      </p>
-      <p>
-        <strong>Supported Vehicle Makes:</strong>{" "}
-        {supported_vehicle_makes?.join(", ")}
-      </p>
-      <p>
-        <strong>Supported Vehicle Models:</strong>
-        {supported_vehicle_models?.map((makeModel, index) => (
-          <div key={index}>
-            <strong>{makeModel.make}:</strong> {makeModel.models?.join(", ")}
-          </div>
-        ))}
-      </p>
-      <p>
-        <strong>Make Years:</strong>
-        {make_years?.map((makeYear, idx) => (
-          <div key={idx}>
-            <strong>{makeYear.model}:</strong> {makeYear.years?.join(", ")}
-          </div>
-        ))}
-      </p>
-      <p>
-        <strong>Applications:</strong> {applications?.join(", ")}
-      </p>
+
       <p>
         <strong>Brand:</strong> {brand}
       </p>
@@ -72,7 +48,7 @@ const BatteryDetailsModal = ({ battery }) => {
       </p>
       <p>
         <strong>Product Dimensions (LxBxH):</strong>{" "}
-        {productdimensions_lxbxh_mm}
+        {product_dimensions_lxbxh_mm}
       </p>
       <p>
         <strong>Voltage:</strong> {voltage}
@@ -81,7 +57,8 @@ const BatteryDetailsModal = ({ battery }) => {
         <strong>Reference Ampere Hour (Ah):</strong> {ref_amperehour_ah}
       </p>
       <p>
-        <strong>Cold Cranking Ability (CCA):</strong> {cold_cranking_ability_cca}
+        <strong>Cold Cranking Ability (CCA):</strong>{" "}
+        {cold_cranking_ability_cca}
       </p>
       <p>
         <strong>Total Warranty:</strong> {total_warranty} months
@@ -103,6 +80,40 @@ const BatteryDetailsModal = ({ battery }) => {
       <p>
         <strong>Country of Origin:</strong> {country_of_origin}
       </p>
+
+      {applicable_categories?.includes(
+        "Passenger Car" || "Commercial Vehicle"
+      ) && (
+        <>
+          <p>
+            <strong>Technology:</strong> {technology}
+          </p>
+          <p>
+            <strong>Supported Vehicle Makes:</strong>{" "}
+            {supported_vehicle_makes?.join(", ")}
+          </p>
+          <p>
+            <strong>Supported Vehicle Models:</strong>
+            {supported_vehicle_models?.map((makeModel, index) => (
+              <div key={index}>
+                <strong>{makeModel.make}:</strong>{" "}
+                {makeModel.models?.join(", ")}
+              </div>
+            ))}
+          </p>
+          <p>
+            <strong>Make Years:</strong>
+            {make_years?.map((makeYear, idx) => (
+              <div key={idx}>
+                <strong>{makeYear.model}:</strong> {makeYear.years?.join(", ")}
+              </div>
+            ))}
+          </p>
+          <p>
+            <strong>Applications:</strong> {applicable_categories?.join(", ")}
+          </p>
+        </>
+      )}
       <div className="modal-action">
         <form method="dialog">
           {/* if there is a button in form, it will close the modal */}
