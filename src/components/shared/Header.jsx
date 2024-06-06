@@ -5,7 +5,6 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import HomeGoogleTranslate from "../Home/HomeGoogleTranslate";
 import Logo from "../../assets/Rahimafrooz_Logo_Color.png";
 import Facebook from "../../assets/icons/facebook-icon.svg";
 import Instagram from "../../assets/icons/instagram-icon.svg";
@@ -104,7 +103,11 @@ const Header = () => {
                       Manage My Battery
                     </button>
                   </a>
-                  <HomeGoogleTranslate />
+                  <select className="header-btn">
+                    <option selected>English</option>
+                    <option>বাংলা</option>
+                    <option>Arabic</option>
+                  </select>
                 </div>
               </div>
               {/* Mobile Nav */}
