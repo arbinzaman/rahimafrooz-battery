@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
@@ -7,9 +7,72 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 23.810331,
-  lng: 90.412521
+  lat: 23.80877701641804,
+  lng: 90.41659572154543
 };
+
+const dealerLocations = [
+  {
+    lat: 23.805321812817635,
+    lng: 90.41419246228946
+  },
+  {
+    lat: 25.6239445425306,
+    lng: 88.64470615491153
+  },
+  {
+    lat: 21.24560425883141,
+    lng: 92.13884431593026
+  },
+  {
+    lat: 20.858307994681518,
+    lng: 92.29705430327084
+  },
+  {
+    lat: 23.86136128847517,
+    lng: 90.00006428161618
+  },
+  {
+    lat: 23.997847461055187,
+    lng: 90.25178419471742
+  },
+  {
+    lat: 24.009775401587362,
+    lng: 91.11451504876106
+  },
+  {
+    lat: 24.90558572740873,
+    lng: 91.86103476447003
+  },
+  {
+    lat: 23.451025884973767,
+    lng: 91.18435743820645
+  },
+  {
+    lat: 23.99102909293552,
+    lng: 90.38771254726828
+  },
+  {
+    lat: 24.105685939708085,
+    lng: 90.10471334196873
+  },
+  {
+    lat: 24.39072291298003,
+    lng: 89.99315498926845
+  },
+  {
+    lat: 24.612333824118316,
+    lng: 90.03144272649921
+  },
+  {
+    lat: 23.6450199438615,
+    lng: 90.49230705040574
+  },
+  {
+    lat: 24.012929769911047,
+    lng: 89.24660146593992
+  },
+]
 
 const HomeGoogleMap = () => {
   const { isLoaded } = useJsApiLoader({
@@ -20,7 +83,6 @@ const HomeGoogleMap = () => {
   const [map, setMap] = React.useState(null)
 
   const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
 
@@ -40,10 +102,14 @@ const HomeGoogleMap = () => {
         onUnmount={onUnmount}
         options={{
             streetViewControl: false,
-            mapTypeControl: false
+            mapTypeControl: false,
+            fullscreenControl: false
         }}
       >
         { /* Child components, such as markers, info windows, etc. */ }
+        {dealerLocations.map((location) => (
+          <MarkerF position={location} />
+        ))}
         <section>
         <div className="relative">
 
