@@ -656,16 +656,16 @@ const Home = () => {
               <iframe
                 src="https://www.youtube.com/embed/6GolJa3RKDQ?si=vQcNIUfZ3WfAt3xw"
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowfullscreen
               ></iframe>
             </div>
             <div className="hidden lg:block text-left bg-white">
               {socialSelectButtons.map((button, index) => {
                 return (
-                  <button
+                  <button key={index}
                     className={socialSelect == index ? "HomeSocialButtomSelect" : "HomeSocialButtom"}
                     onClick={() => setSocialSelect(index)}
                   >
