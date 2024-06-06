@@ -33,7 +33,7 @@ const ProductSearchField = () => {
       const data = await res.json();
       return data;
     },
-    refetchInterval: 60,
+    refetchInterval: 600,
     refetchOnWindowFocus: true,
   });
 
@@ -47,7 +47,7 @@ const ProductSearchField = () => {
       const data = await res.json();
       return data;
     },
-    refetchInterval: 60,
+    refetchInterval: 600,
     refetchOnWindowFocus: true,
   });
   // console.log(vehicleMakes);
@@ -62,7 +62,7 @@ const ProductSearchField = () => {
       const data = await res.json();
       return data;
     },
-    refetchInterval: 60,
+    refetchInterval: 600,
     refetchOnWindowFocus: true,
   });
   // console.log(vehicleModels);
@@ -77,7 +77,7 @@ const ProductSearchField = () => {
       const data = await res.json();
       return data;
     },
-    refetchInterval: 60,
+    refetchInterval: 600,
     refetchOnWindowFocus: true,
   });
   // console.log(makeYears);
