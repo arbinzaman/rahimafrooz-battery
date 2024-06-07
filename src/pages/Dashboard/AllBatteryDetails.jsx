@@ -4,6 +4,7 @@ import BatteryDetailsTable from "../../components/Dashboard/BatteryDetails/Batte
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCarBattery } from "react-icons/fa";
 import { useState } from "react";
+import { LuRefreshCcw } from "react-icons/lu";
 
 const AllBatteryDetails = () => {
   const [selectedIds, setSelectedIds] = useState([]);
@@ -57,7 +58,13 @@ const AllBatteryDetails = () => {
           </button>
         </div>
         <div>
-          <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white" onClick={refetch()}>Refresh</button>
+          <button
+            className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-teal-300 hover:text-white"
+            onClick={refetch()}
+          >
+            Refresh
+            <LuRefreshCcw />
+          </button>
         </div>
       </div>
 
