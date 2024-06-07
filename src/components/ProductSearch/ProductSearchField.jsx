@@ -26,8 +26,6 @@ const ProductSearchField = () => {
       const data = await res.json();
       return data;
     },
-    refetchInterval: 600,
-    refetchOnWindowFocus: true,
   });
   // console.log(categories);
 
@@ -68,11 +66,11 @@ const ProductSearchField = () => {
   };
 
   // Fetching Batteries
-  const fetchBatteries = async(makeYear) =>{
-    const BATTERY_SHORT_CODES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}/${model}/${makeYear}`
+  const fetchBatteries = async (makeYear) => {
+    const BATTERY_SHORT_CODES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}/${model}/${makeYear}`;
     const res = await axios.get(BATTERY_SHORT_CODES_API_URL);
     console.log(res.data);
-  }
+  };
 
   return (
     <div className="bg-[#005bab] p-6 rounded-xl border border-background my-10 max-w-screen-2xl mx-10 lg:mx-auto ">
@@ -88,9 +86,8 @@ const ProductSearchField = () => {
               fetchTechnologies(e.target.value);
             }}
           >
-            {categories.length === 0 || categories === undefined ? (
-              <option>Category</option>
-            ) : (
+            <option>Select Category</option>
+            {(categories.length !== 0 || categories !== undefined) &&
               categories?.map((category) => (
                 <option
                   key={category?.category_id}
@@ -98,8 +95,7 @@ const ProductSearchField = () => {
                 >
                   {category?.category_name}
                 </option>
-              ))
-            )}
+              ))}
           </select>
 
           {/* Hybrid/Non-hybrid Select */}
@@ -163,7 +159,7 @@ const ProductSearchField = () => {
             name="year"
             id="cars"
             className="select select-bordered bg-secondary text-white font-semibold px-3 py-2 rounded-md"
-            onChange={(e)=> fetchBatteries(e.target.value)}
+            onChange={(e) => fetchBatteries(e.target.value)}
             disabled={category == 1 || category == 2 ? false : true}
           >
             <option>Select Year</option>
