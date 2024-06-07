@@ -13,22 +13,20 @@ const ProductSearchField = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      // console.log("Fetching data...");
       const res = await fetch(CATEGORIES_API_URL);
       const data = await res.json();
       return data;
     },
-    refetchInterval: 60000,
+    refetchInterval: 600,
     refetchOnWindowFocus: true,
   });
-  // console.log(category)
+  console.log(categories)
 
   // Fetching Technologies
   const TECHNOLOGIES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}`;
   const { data: technologies = [] } = useQuery({
     queryKey: ["technologies"],
     queryFn: async () => {
-      // console.log("Fetching data...");
       const res = await fetch(TECHNOLOGIES_API_URL);
       const data = await res.json();
       return data;
@@ -37,12 +35,11 @@ const ProductSearchField = () => {
     refetchOnWindowFocus: true,
   });
 
-  // Fetching Brands
+  // // Fetching Brands
   const VEHICLE_MAKES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}`;
   const { data: vehicleMakes = [] } = useQuery({
     queryKey: ["vehicleMakes"],
     queryFn: async () => {
-      // console.log("Fetching data...");
       const res = await fetch(VEHICLE_MAKES_API_URL);
       const data = await res.json();
       return data;
@@ -50,14 +47,13 @@ const ProductSearchField = () => {
     refetchInterval: 600,
     refetchOnWindowFocus: true,
   });
-  // console.log(vehicleMakes);
+  console.log(vehicleMakes);
 
   // Fetching Models according to brands
   const BRANDS_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}`;
   const { data: vehicleModels = [] } = useQuery({
     queryKey: ["vehicleModels"],
     queryFn: async () => {
-      // console.log("Fetching data...");
       const res = await fetch(BRANDS_API_URL);
       const data = await res.json();
       return data;
@@ -72,7 +68,6 @@ const ProductSearchField = () => {
   const { data: makeYears = [] } = useQuery({
     queryKey: ["makeYears"],
     queryFn: async () => {
-      // console.log("Fetching data...");
       const res = await fetch(MAKE_YEARS_API_URL);
       const data = await res.json();
       return data;
@@ -95,7 +90,9 @@ const ProductSearchField = () => {
               setCategory(e.target.value);
             }}
           >
-            {categories.length !== 0 || categories !== undefined ? (
+            {categories.length === 0 || categories === undefined ? (
+              <option>Category</option>
+            ) : (
               categories?.map((category) => (
                 <option
                   key={category?.category_id}
@@ -104,8 +101,6 @@ const ProductSearchField = () => {
                   {category?.category_name}
                 </option>
               ))
-            ) : (
-              <option>Category</option>
             )}
           </select>
 
@@ -118,14 +113,14 @@ const ProductSearchField = () => {
             disabled={category == 1 || category == 2 ? false : true}
             defaultValue={"Hybrid"}
           >
-            {technologies.length !== 0 || technologies !== undefined ? (
+            {technologies.length === 0 || technologies === undefined ? (
+              <option>Hybrid/Non-Hybrid</option>
+            ) : (
               technologies?.map((tech, i) => (
                 <option value={tech.technology} key={i}>
                   {tech.technology}
                 </option>
               ))
-            ) : (
-              <option>Hybrid/Non-Hybrid</option>
             )}
           </select>
 
@@ -137,14 +132,14 @@ const ProductSearchField = () => {
             onChange={(e) => setBrand(e.target.value)}
             disabled={category == 1 || category == 2 ? false : true}
           >
-            {vehicleMakes.length !== 0 || vehicleMakes !== undefined ? (
+            {vehicleMakes.length === 0 || vehicleMakes === undefined ? (
+              <option>Select Brand</option>
+            ) : (
               vehicleMakes?.map((make, i) => (
                 <option key={i} value={make.supported_vehicle_make}>
                   {make.supported_vehicle_make}
                 </option>
               ))
-            ) : (
-              <option>Select Brand</option>
             )}
           </select>
 
@@ -156,12 +151,15 @@ const ProductSearchField = () => {
             onChange={(e) => setModel(e.target.value)}
             disabled={category == 1 || category == 2 ? false : true}
           >
-            {(vehicleMakes.length !== 0 || vehicleMakes !== undefined) &&
+            {vehicleModels.length === 0 || vehicleModels === undefined ? (
+              <option>Select Model</option>
+            ) : (
               vehicleModels?.map((model, i) => (
                 <option key={i} value={model.model}>
                   {model.model}
                 </option>
-              ))}
+              ))
+            )}
           </select>
 
           {/* Select Year */}
@@ -171,11 +169,15 @@ const ProductSearchField = () => {
             className="select select-bordered bg-secondary text-white font-semibold px-3 py-2 rounded-md"
             disabled={category == 1 || category == 2 ? false : true}
           >
-            {(makeYears.length !== 0 || makeYears !== undefined) ? makeYears.map((year,i) => (
-              <option key={i} value={year.year}>
-                {year.year}
-              </option>
-            )):<option>Select Year</option>}
+            {makeYears.length === 0 || makeYears === undefined ? (
+              <option>Select Year</option>
+            ) : (
+              makeYears.map((year, i) => (
+                <option key={i} value={year.year}>
+                  {year.year}
+                </option>
+              ))
+            )}
           </select>
 
           <button className="flex items-center justify-center bg-button2 text-primary font-semibold px-3 py-2 rounded-md border border-primary">
