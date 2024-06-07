@@ -1,86 +1,76 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 
 const ProductSearchField = () => {
   const [category, setCategory] = useState("");
-  const [technology, setTechnology] = useState("Hybrid");
-  const [brand, setBrand] = useState("Brand");
-  const [model, setModel] = useState("Model");
+
+  const [technologies, setTechnologies] = useState([]);
+  const [technology, setTechnology] = useState("");
+
+  const [vehicleMakes, setVehicleMakes] = useState([]);
+  const [brand, setBrand] = useState("");
+
+  const [vehicleModels, setVehicleModels] = useState([]);
+  const [model, setModel] = useState("");
+
+  const [makeYears, setMakeYears] = useState([]);
 
   // Fetching Categories
   const CATEGORIES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/categories`;
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      // console.log("Fetching data...");
       const res = await fetch(CATEGORIES_API_URL);
       const data = await res.json();
       return data;
     },
-    refetchInterval: 60000,
-    refetchOnWindowFocus: true,
   });
-  // console.log(category)
+  // console.log(categories);
 
   // Fetching Technologies
-  const TECHNOLOGIES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}`;
-  const { data: technologies = [] } = useQuery({
-    queryKey: ["technologies"],
-    queryFn: async () => {
-      // console.log("Fetching data...");
-      const res = await fetch(TECHNOLOGIES_API_URL);
-      const data = await res.json();
-      return data;
-    },
-    refetchInterval: 600,
-    refetchOnWindowFocus: true,
-  });
+  const fetchTechnologies = async (category_id) => {
+    setCategory(category_id);
+    const TECHNOLOGIES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category_id}`;
+    const res = await axios.get(TECHNOLOGIES_API_URL);
+    setTechnologies(res.data);
+    console.log(res.data);
+  };
 
   // Fetching Brands
-  const VEHICLE_MAKES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}`;
-  const { data: vehicleMakes = [] } = useQuery({
-    queryKey: ["vehicleMakes"],
-    queryFn: async () => {
-      // console.log("Fetching data...");
-      const res = await fetch(VEHICLE_MAKES_API_URL);
-      const data = await res.json();
-      return data;
-    },
-    refetchInterval: 600,
-    refetchOnWindowFocus: true,
-  });
-  // console.log(vehicleMakes);
+  const fetchBrands = async (technology) => {
+    setTechnology(technology);
+    const VEHICLE_MAKES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}`;
+    const res = await axios.get(VEHICLE_MAKES_API_URL);
+    setVehicleMakes(res.data);
+    console.log(res.data);
+  };
 
   // Fetching Models according to brands
-  const BRANDS_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}`;
-  const { data: vehicleModels = [] } = useQuery({
-    queryKey: ["vehicleModels"],
-    queryFn: async () => {
-      // console.log("Fetching data...");
-      const res = await fetch(BRANDS_API_URL);
-      const data = await res.json();
-      return data;
-    },
-    refetchInterval: 600,
-    refetchOnWindowFocus: true,
-  });
-  // console.log(vehicleModels);
+  const fetchModels = async (brand) => {
+    setBrand(brand);
+    const MODELS_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}`;
+    const res = await axios.get(MODELS_API_URL);
+    setVehicleModels(res.data);
+    console.log(res.data);
+  };
 
   // Fetching Make Years
-  const MAKE_YEARS_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}/${model}`;
-  const { data: makeYears = [] } = useQuery({
-    queryKey: ["makeYears"],
-    queryFn: async () => {
-      // console.log("Fetching data...");
-      const res = await fetch(MAKE_YEARS_API_URL);
-      const data = await res.json();
-      return data;
-    },
-    refetchInterval: 600,
-    refetchOnWindowFocus: true,
-  });
-  // console.log(makeYears);
+  const fetchMakeYears = async (model) => {
+    setModel(model);
+    const MAKE_YEARS_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}/${model}`;
+    const res = await axios.get(MAKE_YEARS_API_URL);
+    setMakeYears(res.data);
+    console.log(res.data);
+  };
+
+  // Fetching Batteries
+  const fetchBatteries = async (makeYear) => {
+    const BATTERY_SHORT_CODES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}/${model}/${makeYear}`;
+    const res = await axios.get(BATTERY_SHORT_CODES_API_URL);
+    console.log(res.data);
+  };
 
   return (
     <div className="bg-[#005bab] p-6 rounded-xl border border-background my-10 max-w-screen-2xl mx-10 lg:mx-auto ">
@@ -91,11 +81,13 @@ const ProductSearchField = () => {
             name="category"
             id="cars"
             className="select select-bordered bg-secondary text-white font-semibold px-3 py-2 rounded-md"
+            defaultValue={"Hybrid"}
             onChange={(e) => {
-              setCategory(e.target.value);
+              fetchTechnologies(e.target.value);
             }}
           >
-            {categories.length !== 0 || categories !== undefined ? (
+            <option>Select Category</option>
+            {(categories.length !== 0 || categories !== undefined) &&
               categories?.map((category) => (
                 <option
                   key={category?.category_id}
@@ -103,10 +95,7 @@ const ProductSearchField = () => {
                 >
                   {category?.category_name}
                 </option>
-              ))
-            ) : (
-              <option>Category</option>
-            )}
+              ))}
           </select>
 
           {/* Hybrid/Non-hybrid Select */}
@@ -114,19 +103,19 @@ const ProductSearchField = () => {
             name="technology"
             id="cars"
             className="select select-bordered bg-secondary text-white font-semibold px-3 py-2 rounded-md"
-            onChange={(e) => setTechnology(e.target.value)}
+            onChange={(e) => {
+              fetchBrands(e.target.value);
+            }}
             disabled={category == 1 || category == 2 ? false : true}
             defaultValue={"Hybrid"}
           >
-            {technologies.length !== 0 || technologies !== undefined ? (
+            <option>Hybrid/Non-Hybrid</option>
+            {(technologies.length !== 0 || technologies !== undefined) &&
               technologies?.map((tech, i) => (
                 <option value={tech.technology} key={i}>
                   {tech.technology}
                 </option>
-              ))
-            ) : (
-              <option>Hybrid/Non-Hybrid</option>
-            )}
+              ))}
           </select>
 
           {/* Brand Select */}
@@ -134,18 +123,18 @@ const ProductSearchField = () => {
             name="brand"
             id="cars"
             className="select select-bordered bg-secondary text-white font-semibold px-3 py-2 rounded-md"
-            onChange={(e) => setBrand(e.target.value)}
+            onChange={(e) => {
+              fetchModels(e.target.value);
+            }}
             disabled={category == 1 || category == 2 ? false : true}
           >
-            {vehicleMakes.length !== 0 || vehicleMakes !== undefined ? (
+            <option>Select Brand</option>
+            {(vehicleMakes.length !== 0 || vehicleMakes !== undefined) &&
               vehicleMakes?.map((make, i) => (
                 <option key={i} value={make.supported_vehicle_make}>
                   {make.supported_vehicle_make}
                 </option>
-              ))
-            ) : (
-              <option>Select Brand</option>
-            )}
+              ))}
           </select>
 
           {/* Model Select */}
@@ -153,10 +142,11 @@ const ProductSearchField = () => {
             name="model"
             id="cars"
             className="select select-bordered bg-secondary text-white font-semibold px-3 py-2 rounded-md"
-            onChange={(e) => setModel(e.target.value)}
+            onChange={(e) => fetchMakeYears(e.target.value)}
             disabled={category == 1 || category == 2 ? false : true}
           >
-            {(vehicleMakes.length !== 0 || vehicleMakes !== undefined) &&
+            <option>Select Model</option>
+            {(vehicleModels.length !== 0 || vehicleModels !== undefined) &&
               vehicleModels?.map((model, i) => (
                 <option key={i} value={model.model}>
                   {model.model}
@@ -169,13 +159,16 @@ const ProductSearchField = () => {
             name="year"
             id="cars"
             className="select select-bordered bg-secondary text-white font-semibold px-3 py-2 rounded-md"
+            onChange={(e) => fetchBatteries(e.target.value)}
             disabled={category == 1 || category == 2 ? false : true}
           >
-            {(makeYears.length !== 0 || makeYears !== undefined) ? makeYears.map((year,i) => (
-              <option key={i} value={year.year}>
-                {year.year}
-              </option>
-            )):<option>Select Year</option>}
+            <option>Select Year</option>
+            {(makeYears.length !== 0 || makeYears !== undefined) &&
+              makeYears.map((year, i) => (
+                <option key={i} value={year.year}>
+                  {year.year}
+                </option>
+              ))}
           </select>
 
           <button className="flex items-center justify-center bg-button2 text-primary font-semibold px-3 py-2 rounded-md border border-primary">
