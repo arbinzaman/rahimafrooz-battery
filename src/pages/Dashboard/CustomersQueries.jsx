@@ -14,7 +14,7 @@ const CustomersQueries = () => {
   return (
     <div>
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
-        Dealers List
+        Customer Queries
       </h1>
 
       <dialog
@@ -25,9 +25,9 @@ const CustomersQueries = () => {
       </dialog>
 
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table w-full text-black">
           <thead>
-            <tr>
+            <tr className="text-black">
               <th></th>
               <th>Email</th>
               <th>Full Name</th>
@@ -50,10 +50,10 @@ const CustomersQueries = () => {
                 </td>
                 <td>
                   <button
-                    className="btn btn-xs bg-blue-400"
+                    className="btn btn-xs bg-blue-400 border-0"
                     onClick={() => handleModalOpen(customersQuery)}
                   >
-                    <BiDetail className="text-white"/>
+                    <BiDetail className="text-white "/>
                   </button>
                 </td>
               </tr>

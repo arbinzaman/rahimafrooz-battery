@@ -1,11 +1,13 @@
 import { useState } from "react";
 import BatteryDetailsModal from "./BatteryDetailsModal";
 import { BiDetail } from "react-icons/bi";
+import ButtonLoader from "../../shared/ButtonLoader";
 
 const BatteryDetailsTable = ({ prompts }) => {
   const [selectAll, setSelectAll] = useState(false);
   const [selectTableDetailsForModal, setSelectTableDetailsForModal] =
     useState(null);
+  const [loading, setLoading] = useState(false);
   const { allBatteryDetails, selectedIds, setSelectedIds } = prompts;
 
   const handleCheckboxChange = (short_code) => {
@@ -19,6 +21,7 @@ const BatteryDetailsTable = ({ prompts }) => {
   };
 
   const handleModalOpen = async (short_code) => {
+    setLoading(true);
     try {
       const response = await fetch(
         `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries/${short_code}`
@@ -31,6 +34,8 @@ const BatteryDetailsTable = ({ prompts }) => {
       document.getElementById("batteryDetails").showModal();
     } catch (error) {
       console.error("Error fetching battery details:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,17 +58,18 @@ const BatteryDetailsTable = ({ prompts }) => {
         className="modal modal-bottom sm:modal-middle"
       >
         {selectTableDetailsForModal && (
-          <BatteryDetailsModal battery={selectTableDetailsForModal} />
+          <BatteryDetailsModal prompts={{selectTableDetailsForModal,loading}} />
         )}
       </dialog>
-      <table className="table w-full">
+      <table className="table w-full text-black">
         <thead>
-          <tr>
+          <tr className="text-black">
             <th>
               <input
                 type="checkbox"
                 onChange={handleSelectAllChange}
                 checked={selectAll}
+                className="bg-white border-0"
               />
             </th>
             <th>Serial</th>
@@ -99,10 +105,14 @@ const BatteryDetailsTable = ({ prompts }) => {
               <td>{battery.country_of_origin}</td>
               <td>
                 <button
-                  className="btn btn-xs bg-blue-400"
+                  className="btn btn-xs bg-blue-400 border-0"
                   onClick={() => handleModalOpen(battery.short_code)}
                 >
-                  <BiDetail className="text-white" />
+                  {loading ? (
+                    <ButtonLoader  />
+                  ) : (
+                    <BiDetail className="text-white" />
+                  )}
                 </button>
               </td>
             </tr>

@@ -16,7 +16,7 @@ const DashboardLayout = () => {
             aria-label="close sidebar"
             className="drawer-overlay lg:hidden"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content mt-20 lg:mt-0  lg:fixed ">
+          <ul className="menu p-4 w-80 min-h-full bg-white text-black mt-20 lg:mt-0 lg:fixed  ">
             {/* <li>
               <Link to="/dashboard/passenger-car-batteries">
                 Passenger Car Batteries

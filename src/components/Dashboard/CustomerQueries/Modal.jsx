@@ -2,7 +2,7 @@ const Modal = ({ customersQuery }) => {
   const { fullName, email, phoneNo, message } = customersQuery;
 
   return (
-    <div className="modal-box shadow-none">
+    <div className="modal-box shadow-none bg-background text-black">
       <h3 className="font-bold text-lg">Contact Details</h3>
       <div className="flex flex-col gap-4">
         <div>
@@ -24,7 +24,7 @@ const Modal = ({ customersQuery }) => {
       </div>
       <div className="modal-action">
         <form method="dialog">
-          <button className="btn">Close</button>
+          <button className="btn btn-xs bg-sky-400 border-0 text-black hover:bg-red-500 hover:text-white">Close</button>
         </form>
       </div>
     </div>

@@ -7,9 +7,9 @@ const DealerApplicationList = () => {
     <div>
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">Dealers List</h1>
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table w-full text-black">
           <thead>
-            <tr>
+            <tr className="text-black">
               <th></th>
               <th>Email</th>
               <th>Full Name</th>
@@ -34,12 +34,12 @@ const DealerApplicationList = () => {
                 <td>{becomeADealer.address.thana}</td>
                 <td>{becomeADealer.address.zip}</td>
                 <td>
-                  <button className="btn btn-xs bg-green-500">
+                  <button className="btn btn-xs border-0 bg-green-500">
                     <SiTicktick className="text-white"/>
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-xs bg-red-400">
+                  <button className="btn btn-xs border-0 bg-red-400">
                   <MdDeleteForever className="text-white" />
                   </button>
                 </td>

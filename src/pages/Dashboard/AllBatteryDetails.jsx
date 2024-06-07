@@ -45,10 +45,10 @@ const AllBatteryDetails = () => {
        Batteries Table
       </h1>
       <div className="flex gap-4">
-        <button className="flex gap-2 btn btn-xs">
+        <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white">
           Add Battery <FaCarBattery />
         </button>
-        <button className="flex gap-2 btn btn-xs" onClick={handleDelete}>
+        <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-red-500 hover:text-white" onClick={handleDelete}>
           Delete
           <MdDeleteOutline />
         </button>
