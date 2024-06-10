@@ -1,8 +1,10 @@
 import ManageMyBatteryBanner from "../assets/images/ManageMyBatteryImages/Manage_My_Battery_Registration_Page_Banner.jpg";
 import Accordion from "../components/ManageMyBattery/Accordion";
 import CheckWarranty from "../components/ManageMyBattery/CheckWarranty";
+import Faq from "../components/ManageMyBattery/BatteryFaq";
 import WarrantyApplicationForm from "../components/ManageMyBattery/WarrantyApplicationForm";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
+import HomeDeliverySection from "../components/ManageMyBattery/HomeDeliverySection";
 const ManageMyBattery = () => {
   return (
     <section className="bg-cross-pattern">
@@ -30,7 +32,13 @@ const ManageMyBattery = () => {
             </p>
             <CheckWarranty />
           </div>
-          <Accordion/>
+          <HomeDeliverySection />
+        </section>
+        <section>
+          <Accordion />
+        </section>
+        <section>
+          <Faq />
         </section>
       </section>
     </section>
