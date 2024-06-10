@@ -4,6 +4,7 @@ import CheckWarranty from "../components/ManageMyBattery/CheckWarranty";
 import Faq from "../components/ManageMyBattery/BatteryFaq";
 import WarrantyApplicationForm from "../components/ManageMyBattery/WarrantyApplicationForm";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
+import HomeDeliverySection from "../components/ManageMyBattery/HomeDeliverySection";
 const ManageMyBattery = () => {
   return (
     <section className="bg-cross-pattern">
@@ -34,7 +35,10 @@ const ManageMyBattery = () => {
           <Accordion />
         </section>
         <section>
-          <Faq/>
+          <HomeDeliverySection />
+        </section>
+        <section>
+          <Faq />
         </section>
       </section>
     </section>
