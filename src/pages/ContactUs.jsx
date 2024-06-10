@@ -3,13 +3,13 @@ import LocationPinIcon from "../assets/icons/location-pin-svgrepo-com.png";
 import PhoneFaxIcon from "../assets/icons/telephone-free-svgrepo-com.png";
 import EmailIcon from "../assets/icons/email-9-svgrepo-com.png";
 import ContactUsInformationForm from "../components/ContactUs/ContactUsInformationForm";
-import Map from "../components/ContactUs/Map";
+import ContactUsGoogleMap from "../components/ContactUs/ContactUsGoogleMap";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
 const ContactUs = () => {
   return (
     <section>
       <div>
-        <Map/>
+        <ContactUsGoogleMap />
       </div>
       <section className={allDeviceMaxWidth+"my-10"}>
         <p className="text-primary text-large font-bold text-center">
