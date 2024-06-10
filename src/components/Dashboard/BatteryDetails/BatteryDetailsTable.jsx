@@ -1,7 +1,7 @@
 import { useState } from "react";
 import BatteryDetailsModal from "./BatteryDetailsModal";
 import { BiDetail } from "react-icons/bi";
-import ButtonLoader from "../../shared/ButtonLoader";
+import ButtonLoader from "../../shared/Loaders/ButtonLoader";
 
 const BatteryDetailsTable = ({ prompts }) => {
   const [selectAll, setSelectAll] = useState(false);

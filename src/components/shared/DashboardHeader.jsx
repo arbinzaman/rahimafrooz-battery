@@ -3,6 +3,7 @@ import Logo from "../../assets/images/RahimAfrozRLogo/RahimafroozRLogo.png";
 import { RiMenuUnfold4Line } from "react-icons/ri";
 import { RiMenuUnfold3Line2 } from "react-icons/ri";
 import "../../styles/Header.css";
+import { Link } from "react-router-dom";
 
 const DashboardHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,14 +18,16 @@ const DashboardHeader = () => {
         <div className="p-6 text-white diagonal-background">
           <div className="max-w-screen-2xl mx-auto">
             <div className="flex justify-between items-center">
-              <div className="flex items-center">
-                <a href="/">
-                  <img className="w-5 lg:w-8" src={Logo} alt="logo" />
-                </a>
-                <p className="text-primary ml-3 text-medium lg:text-semi_large font-bold">
-                  Dashboard
-                </p>
-              </div>
+              <Link to="/dashboard">
+                <div className="flex items-center">
+                  <a href="/dashboard">
+                    <img className="w-5 lg:w-8" src={Logo} alt="logo" />
+                  </a>
+                  <p className="text-primary ml-3 text-medium lg:text-semi_large font-bold">
+                    Dashboard
+                  </p>
+                </div>
+              </Link>
               <label
                 htmlFor="my-drawer-2"
                 className="drawer-button lg:hidden"

@@ -5,7 +5,6 @@ import ScrollTrigger from "react-scroll-trigger";
 import { homeSlider } from "../utils/Home/slider";
 import { homeProducts } from "../utils/Home/products";
 import { homeCertificates } from "../utils/Home/certificates";
-
 import Car from "../assets/images/HomePage/Icons/CAR.png";
 import CommercialVehicle from "../assets/images/HomePage/Icons/Commercial-Vehicle.png";
 import ThreeWheeler from "../assets/images/HomePage/Icons/Three-Wheeler.png";
@@ -22,21 +21,29 @@ import EstablishedIcon from "../assets/icons/factory.png";
 import WorldIcon from "../assets/icons/world.png";
 import HandShake from "../assets/icons/handshake.png";
 import CarBattery from "../assets/icons/battery.png";
-
 import homeVideo from "../assets/images/HomePage/rahimafrooz-motion-Gif.gif";
 import whyChoose from "../assets/images/HomePage/Why-Choose-Rahimafrooz-01.png";
 import reviews from "../assets/images/HomePage/Review-01.png";
 import newsEvent from "../assets/images/HomePage/News-01.png";
-
 import HomeGoogleMap from "../components/Home/HomeGoogleMap";
-
 import "../styles/Home.css";
-
 import { InstagramEmbed } from "react-social-media-embed";
+import Loader from "../components/shared/Loaders/Loader";
+import { useLoading } from "../contexts/LoadingContext";
 
 const Home = () => {
+  const { isLoading, setIsLoading } = useLoading();
   const [counterOn, setCounterOn] = useState(false);
   const [socialSelect, setSocialSelect] = useState(0);
+
+  const handleLoadStart = () => {
+    setIsLoading(true);
+  };
+
+  // Set isLoading to false when the iframe finishes loading
+  const handleLoadEnd = () => {
+    setIsLoading(false);
+  };
 
   const socialSelectButtons = [
     {
@@ -57,36 +64,66 @@ const Home = () => {
     switch (index) {
       case 0:
         return (
-          <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FRahimafrooz&tabs=timeline&width=560&height=320&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-            width="560"
-            height="280"
-            style={{ border: "none", overflow: "hidden" }}
-            scrolling="no"
-            frameborder="0"
-            allowfullscreen="true"
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe>
+          <>
+            {isLoading && <Loader />}
+            <iframe
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FRahimafrooz&tabs=timeline&width=560&height=320&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+              width="560"
+              height="280"
+              style={{ border: "none", overflow: "hidden" }}
+              scrolling="no"
+              // eslint-disable-next-line react/no-unknown-property
+              frameborder="0"
+              allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              onLoad={handleLoadEnd}
+              // eslint-disable-next-line react/no-unknown-property
+              onLoadStart={handleLoadStart}
+            ></iframe>
+          </>
         );
-        break;
       case 1:
         return (
-          <InstagramEmbed
-            url="https://www.instagram.com/rahimafroozbd/"
-            width={560}
-            height={280}
-          />
+          <>
+            {isLoading && <Loader />}
+            <InstagramEmbed
+              url="https://www.instagram.com/rahimafroozbd/"
+              width={560}
+              height={280}
+              onLoad={handleLoadEnd}
+              // eslint-disable-next-line react/no-unknown-property
+              onLoadStart={handleLoadStart}
+            />
+          </>
         );
+        // eslint-disable-next-line no-unreachable
         break;
       case 2:
         return (
-          <iframe
-            src="https://widgets.sociablekit.com/linkedin-page-posts/iframe/25420059"
-            frameborder="0"
-            width="560"
-            height="280"
-          ></iframe>
+          <>
+            {" "}
+            {isLoading && <Loader />}
+            <InstagramEmbed
+              url="https://www.instagram.com/rahimafroozbd/"
+              width={560}
+              height={280}
+              onLoad={handleLoadEnd}
+              // eslint-disable-next-line react/no-unknown-property
+              onLoadStart={handleLoadStart}
+            />
+            <iframe
+              src="https://widgets.sociablekit.com/linkedin-page-posts/iframe/25420059"
+              // eslint-disable-next-line react/no-unknown-property
+              frameborder="0"
+              width="560"
+              height="280"
+              onLoad={handleLoadEnd}
+              // eslint-disable-next-line react/no-unknown-property
+              onLoadStart={handleLoadStart}
+            ></iframe>
+          </>
         );
+        // eslint-disable-next-line no-unreachable
         break;
 
       default:
@@ -665,8 +702,13 @@ const Home = () => {
             <div className="hidden lg:block text-left bg-white">
               {socialSelectButtons.map((button, index) => {
                 return (
-                  <button key={index}
-                    className={socialSelect == index ? "HomeSocialButtomSelect" : "HomeSocialButtom"}
+                  <button
+                    key={index}
+                    className={
+                      socialSelect == index
+                        ? "HomeSocialButtomSelect"
+                        : "HomeSocialButtom"
+                    }
                     onClick={() => setSocialSelect(index)}
                   >
                     {button.buttonName}
