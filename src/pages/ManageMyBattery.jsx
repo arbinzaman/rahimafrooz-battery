@@ -32,10 +32,10 @@ const ManageMyBattery = () => {
             </p>
             <CheckWarranty />
           </div>
-          <Accordion />
+          <HomeDeliverySection />
         </section>
         <section>
-          <HomeDeliverySection />
+          <Accordion />
         </section>
         <section>
           <Faq />
