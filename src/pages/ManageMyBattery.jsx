@@ -1,6 +1,7 @@
 import ManageMyBatteryBanner from "../assets/images/ManageMyBatteryImages/Manage_My_Battery_Registration_Page_Banner.jpg";
 import Accordion from "../components/ManageMyBattery/Accordion";
 import CheckWarranty from "../components/ManageMyBattery/CheckWarranty";
+import Faq from "../components/ManageMyBattery/BatteryFaq";
 import WarrantyApplicationForm from "../components/ManageMyBattery/WarrantyApplicationForm";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
 const ManageMyBattery = () => {
@@ -30,7 +31,10 @@ const ManageMyBattery = () => {
             </p>
             <CheckWarranty />
           </div>
-          <Accordion/>
+          <Accordion />
+        </section>
+        <section>
+          <Faq/>
         </section>
       </section>
     </section>
