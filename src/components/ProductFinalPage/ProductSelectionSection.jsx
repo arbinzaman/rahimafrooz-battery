@@ -4,7 +4,7 @@ import img2 from "../../assets/images/BatteryFinalPage/Product Final Page.png";
 import { FaAngleRight } from "react-icons/fa6";
 const ProductSelectionSection = () => {
   const [img, setImg] = useState(img1);
-  console.log(img);
+  
   const featuresImg = (imgSrc) => {
     setImg(imgSrc);
   };
@@ -18,7 +18,7 @@ const ProductSelectionSection = () => {
               <img
                 src={img2}
                 alt=""
-                className="bg-white p-3 h-24 lg:h-28   mr-5"
+                className="bg-white p-3 h-24 lg:h-28 mr-5"
                 onClick={() => featuresImg(img2)}
               />
             </div>

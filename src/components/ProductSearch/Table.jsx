@@ -36,7 +36,7 @@ const Table = () => {
               </p>
             </th>
 
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <th key={battery.id} className="">
                 <div className="grid justify-items-center gap-3">
                   <img
@@ -48,7 +48,7 @@ const Table = () => {
                     {battery?.brand}
                   </p>
                   <button
-                    onClick={() => navigate("/product-final-page")}
+                    onClick={() => navigate(`/product-final-page/${battery?.short_code}`)}
                     className="px-6 border border-button  text-xxsmall text-button"
                   >
                     VIEW DETAILS
@@ -64,7 +64,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Brand
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -78,7 +78,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Series
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -92,7 +92,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Item Code
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -106,7 +106,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Model
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -120,7 +120,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Product Dimensions
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -134,7 +134,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Voltage
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -148,7 +148,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Ref. Ampere Hour
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -162,7 +162,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Cold Cranking Ability
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -176,7 +176,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Total Warranty
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -190,7 +190,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Free Warranty
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -204,7 +204,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Pro-rata Warranty
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -218,7 +218,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Terminal Layout
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
@@ -237,7 +237,7 @@ const Table = () => {
             <td className="bg-primary text-base border border-primary border-b-base">
               Country of Origin
             </td>
-            {batteries.map((battery) => (
+            {batteries?.map((battery) => (
               <td
                 key={battery.id}
                 className={"text-center text-black border border-primary"}
