@@ -1,5 +1,5 @@
 import RelatedProducts from "../ProductSearch/RelatedProducts";
-import Brochure from "../../assets/Rahimafrooz.pdf"
+import Brochure from "../../assets/Rahimafrooz.pdf";
 
 const SimilarProduct = () => {
   return (
@@ -15,7 +15,7 @@ const SimilarProduct = () => {
         and grow in this hyper-competitive business environment.
       </p>
       <div className="flex justify-center">
-        <a download={Brochure} className="rounded-md btn btn-md text-regular bg-primary text-white mt-5  ">
+        <a href={Brochure} download="document.pdf" className="rounded-md btn btn-md text-regular bg-primary text-white mt-5">
           Download E-brochure
         </a>
       </div>
