@@ -33,6 +33,7 @@ import HomeGoogleMap from "../components/Home/HomeGoogleMap";
 import "../styles/Home.css";
 
 import { InstagramEmbed } from "react-social-media-embed";
+import ProductSearchField from "../components/ProductSearch/ProductSearchField";
 
 const Home = () => {
   const [counterOn, setCounterOn] = useState(false);
@@ -255,76 +256,8 @@ const Home = () => {
                 <h1 className="text-sky-100 text-xl">Electric Vehicle</h1>
               </div>
             </div>
-            <div className="max-w-7xl bg-sky-700 p-3 pl-6 pr-6 rounded-xl mt-20">
-              <div className="bg-sky-100 rounded-3xl p-8">
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
-                  <option disabled selected>
-                    CATEGORY
-                  </option>
-                  <option>Passenger Car</option>
-                </select>
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-40">
-                  <option disabled selected>
-                    TECHNOLOGY
-                  </option>
-                  <option>Hybrid</option>
-                </select>
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
-                  <option disabled selected>
-                    BRAND
-                  </option>
-                  <option>Hyundai</option>
-                </select>
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
-                  <option disabled selected>
-                    MODEL
-                  </option>
-                  <option>Tucson</option>
-                </select>
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
-                  <option disabled selected>
-                    YEAR
-                  </option>
-                  <option>2024</option>
-                </select>
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36">
-                  <option disabled selected>
-                    CC
-                  </option>
-                  <option>1997</option>
-                </select>
-                <a href="/product-search">
-                  <div className="relative hidden md:inline-block">
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                      <svg
-                        className="w-4 h-4 text-sky-700"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                        />
-                      </svg>
-                      <span className="sr-only">Search icon</span>
-                    </div>
-                    <input
-                      type="text"
-                      id="search-navbar"
-                      className="search cursor-pointer inline-block max-w-36 p-3 text-sm border border-blue-600 rounded-lg bg-sky-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sky-700 placeholder:font-semibold"
-                      placeholder="FIND BATTERY"
-                    />
-                  </div>
-                </a>
-              </div>
-            </div>
+            <ProductSearchField/>
           </div>
-
           <div className="slider-container w-10/12 mx-auto xl:hidden max-w-sm">
             <h1 className="uppercase text-center text-lg text-sky-100 font-semibold pt-8 pb-8">
               choose your product
@@ -420,77 +353,7 @@ const Home = () => {
                 </div>
               </div>
             </Slider>
-            <div
-              className="bg-sky-100 p-6 rounded-lg mx-auto mt-8"
-              style={{ maxWidth: "21.5rem" }}
-            >
-              <div className="grid grid-cols-2 gap-2">
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
-                  <option disabled selected>
-                    CATEGORY
-                  </option>
-                  <option>Passenger Car</option>
-                </select>
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
-                  <option disabled selected>
-                    MODEL
-                  </option>
-                  <option>Tucson</option>
-                </select>
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
-                  <option disabled selected>
-                    TECHNOLOGY
-                  </option>
-                  <option>Hybrid</option>
-                </select>
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
-                  <option disabled selected>
-                    YEAR
-                  </option>
-                  <option>2024</option>
-                </select>
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
-                  <option disabled selected>
-                    BRAND
-                  </option>
-                  <option>Hyundai</option>
-                </select>
-                <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
-                  <option disabled selected>
-                    CC
-                  </option>
-                  <option>1997</option>
-                </select>
-              </div>
-              <a href="/product-final-page">
-                <div className="relative text-center mt-4">
-                  <div className="absolute inset-y-0 right-16 flex items-center pr-5 pointer-events-none">
-                    <svg
-                      className="w-4 h-4 text-sky-700"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                      />
-                    </svg>
-                    <span className="sr-only">Search icon</span>
-                  </div>
-                  <input
-                    type="text"
-                    id="search-navbar"
-                    className="search cursor-pointer inline-block max-w-40 p-3 text-sm border border-blue-600 rounded-lg bg-sky-300 focus:ring-blue-500 focus:border-blue-500 placeholder:text-sky-700 placeholder:font-semibold"
-                    placeholder="FIND BATTERY"
-                  />
-                </div>
-              </a>
-            </div>
+           <ProductSearchField/>
           </div>
         </div>
       </section>
