@@ -1,9 +1,42 @@
+import { useEffect, useState } from "react";
 import BangladeshPageBanner from "../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
 import ProductsCarousel from "../../components/Products/ProductsCarousel";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
-import { brandAndProducts } from "../../utils/Products/Brands";
+import { Hourglass } from "react-loader-spinner";
+import axios from "axios";
 
 const Bangladesh = () => {
+  const [batteries, setBatteries] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const fetchBatteries = async () => {
+      setIsLoading(true);
+      const batteries = await axios.get(
+        `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries`
+      );
+      setBatteries(batteries.data);
+      setIsLoading(false);
+    };
+    fetchBatteries();
+  }, []);
+
+  const getBatteryByBrandCode = (batteries, brandCode) => {
+    return batteries.filter((battery) => battery?.brand_code === brandCode);
+  };
+
+  const brandAndProducts = [
+    {
+      id: 1,
+      brandName: "LUCAS",
+      products: getBatteryByBrandCode(batteries, "LUCAS"),
+    },
+    {
+      id: 2,
+      brandName: "GLOBATT",
+      products: getBatteryByBrandCode(batteries, "GLOBATT"),
+    },
+  ];
+
   return (
     <section>
       <div className="relative">
@@ -18,12 +51,30 @@ const Bangladesh = () => {
       </div>
 
       <section className={allDeviceMaxWidth}>
-        {brandAndProducts?.map((brand) => (
-          <div className="my-10" key={brand?.id}>
-            <p className="text-semi_large text-primary font-bold mb-2">{brand?.brandName}</p>
-            <ProductsCarousel products={brand?.products} />
+        {isLoading ? (
+          <div className="flex justify-center my-20">
+            <Hourglass
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="hourglass-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              colors={["#306cce", "#72a1ed"]}
+            />
           </div>
-        ))}
+        ) : (
+          <>
+            {brandAndProducts?.map((brand) => (
+              <div className="my-10" key={brand?.id}>
+                <p className="text-semi_large text-primary font-bold mb-2">
+                  {brand?.brandName}
+                </p>
+                <ProductsCarousel products={brand?.products} />
+              </div>
+            ))}
+          </>
+        )}
       </section>
     </section>
   );

@@ -59,7 +59,7 @@ const routes = createBrowserRouter([
         element: <ManageMyBattery />,
       },
       {
-        path: "/product-final-page",
+        path: `/product-final-page/:shortCode`,
         element: <ProductFinalPage />,
       },
       {
