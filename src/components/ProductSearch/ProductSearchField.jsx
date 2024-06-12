@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
+import ButtonLoader from "../shared/Loaders/ButtonLoader";
 import { useNavigate } from "react-router-dom";
 
 const ProductSearchField = () => {
@@ -28,9 +29,15 @@ const ProductSearchField = () => {
 
   const navigate = useNavigate()
 
+  //Loading States
+  const [loadingTechnologies, setLoadingTechnologies] = useState(false);
+  const [loadingBrands, setLoadingBrands] = useState(false);
+  const [loadingModels, setLoadingModels] = useState(false);
+  const [loadingMakeYears, setLoadingMakeYears] = useState(false);
+
   // Fetching Categories
   const CATEGORIES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/categories`;
-  const { data: categories = [] } = useQuery({
+  const { data: categories = [], isLoading: categoriesLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await fetch(CATEGORIES_API_URL);
@@ -42,33 +49,41 @@ const ProductSearchField = () => {
   // Fetching Technologies
   const fetchTechnologies = async (category_id) => {
     setCategory(category_id);
+    setLoadingTechnologies(true); // Set loading to true
     const TECHNOLOGIES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category_id}`;
     const res = await axios.get(TECHNOLOGIES_API_URL);
     setTechnologies(res.data);
+    setLoadingTechnologies(false); // Set loading to false
   };
 
   // Fetching Brands
   const fetchBrands = async (technology) => {
     setTechnology(technology);
+    setLoadingBrands(true); // Set loading to true
     const VEHICLE_MAKES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}`;
     const res = await axios.get(VEHICLE_MAKES_API_URL);
     setVehicleMakes(res.data);
+    setLoadingBrands(false); // Set loading to false
   };
 
   // Fetching Models according to brands
   const fetchModels = async (brand) => {
     setBrand(brand);
+    setLoadingModels(true); // Set loading to true
     const MODELS_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}`;
     const res = await axios.get(MODELS_API_URL);
     setVehicleModels(res.data);
+    setLoadingModels(false); // Set loading to false
   };
 
   // Fetching Make Years
   const fetchMakeYears = async (model) => {
     setModel(model);
+    setLoadingMakeYears(true); // Set loading to true
     const MAKE_YEARS_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}/${model}`;
     const res = await axios.get(MAKE_YEARS_API_URL);
     setMakeYears(res.data);
+    setLoadingMakeYears(false); // Set loading to false
   };
 
   // Fetching Batteries

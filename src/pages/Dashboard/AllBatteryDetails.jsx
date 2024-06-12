@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../../components/shared/Loader";
+import Loader from "../../components/shared/Loaders/Loader";
 import BatteryDetailsTable from "../../components/Dashboard/BatteryDetails/BatteryDetailsTable";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCarBattery } from "react-icons/fa";

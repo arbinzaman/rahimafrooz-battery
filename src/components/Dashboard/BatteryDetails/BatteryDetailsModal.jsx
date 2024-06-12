@@ -1,4 +1,4 @@
-import Loader from "../../shared/Loader";
+import Loader from "../../shared/Loaders/Loader";
 
 const BatteryDetailsModal = ({ prompts }) => {
   const { selectTableDetailsForModal: battery, loading } = prompts;
