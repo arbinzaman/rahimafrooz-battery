@@ -7,7 +7,7 @@ import GlobalLoader from "./components/shared/Loaders/GlobalLoader";
 function App() {
   return (
     <section className="">
-      <RouterProvider router={routes}></RouterProvider>
+      <RouterProvider router={routes} />
       <GlobalLoader />
       <Toaster />
     </section>
