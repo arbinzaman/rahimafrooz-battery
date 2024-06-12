@@ -5,7 +5,7 @@ import maintaince1 from "../../assets/icons/maintaince1.svg";
 import { useState } from "react";
 import AdditionalInformation from "./AdditionalInformation";
 import ProductDetailsSection   from "./ProductDetailsSection";
-const ProductInformation = () => {
+const ProductInformation = ({battery}) => {
   const [tab, setTab] = useState("DetailsTab");
   return (
     <div>
@@ -37,12 +37,12 @@ const ProductInformation = () => {
               {tab === "DetailsTab" ? (
                 <div>
                   <h2 className="mb-4 text-medium lg:text-semi_large text-black font-bold leadi text-left">
-                    GLOBATT ACE N50ZL Battery
+                    {battery.brand}
                   </h2>
-                  <ProductDetailsSection /> 
+                  <ProductDetailsSection battery={battery}/> 
                 </div>
               ) : (
-                <AdditionalInformation />
+                <AdditionalInformation/>
               )}
             </div>
           </section>
@@ -73,7 +73,7 @@ const ProductInformation = () => {
           <p className="mt-5 ml-5 flex gap-4">
             {" "}
             <SlCalender className="bg-primary text-white text-3xl p-1 rounded" />
-            24 Months Warranty
+            {battery.total_warranty} Months Warranty
           </p>
         </div>
       </div>

@@ -3,21 +3,50 @@ import ProductInformation from "../components/ProductFinalPage/ProductInformatio
 import ProductSelectionSection from "../components/ProductFinalPage/ProductSelectionSection";
 import SimilarProduct from "../components/ProductFinalPage/SimilarProduct";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
+import { useQuery } from "@tanstack/react-query";
+import { Hourglass } from "react-loader-spinner";
 
 const ProductFinalPage = () => {
-  const {shortCode} = useParams();
-  console.log(shortCode)
+  const { shortCode } = useParams();
+  
+  const { data: battery = [], isLoading } = useQuery({
+    queryKey: ["battery"],
+    queryFn: async () => {
+      // console.log("Fetching data...");
+      const res = await fetch(
+        `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries/${shortCode}`
+      );
+      const data = await res.json();
+      // console.log("Data fetched:", data);
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
   return (
-    <section
-      className={`${allDeviceMaxWidth} bg-background `}
-    >
-      <ProductSelectionSection />
-      <div className="mb-10 mx-3">
-        <ProductInformation />
-      </div>
-      <div className="mx-3">
-        <SimilarProduct />
-      </div>
+    <section className={`${allDeviceMaxWidth} bg-background `}>
+      {isLoading ? (
+        <div className="flex justify-center my-20">
+          <Hourglass
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="hourglass-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            colors={["#306cce", "#72a1ed"]}
+          />
+        </div>
+      ) : (
+        <>
+          <ProductSelectionSection battery={battery}/>
+          <div className="mb-10 mx-3">
+            <ProductInformation battery={battery}/>
+          </div>
+          <div className="mx-3">
+            <SimilarProduct />
+          </div>
+        </>
+      )}
     </section>
   );
 };
