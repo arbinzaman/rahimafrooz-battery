@@ -28,9 +28,9 @@ import newsEvent from "../assets/images/HomePage/News-01.png";
 import HomeGoogleMap from "../components/Home/HomeGoogleMap";
 import "../styles/Home.css";
 import { InstagramEmbed } from "react-social-media-embed";
-import ProductSearchField from "../components/ProductSearch/ProductSearchField";
 import Loader from "../components/shared/Loaders/Loader";
 import { useLoading } from "../contexts/LoadingContext";
+import ProductSearchField from "../components/ProductSearch/ProductSearchField";
 
 const Home = () => {
   const { isLoading, setIsLoading } = useLoading();
