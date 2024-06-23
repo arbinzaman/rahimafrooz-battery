@@ -20,20 +20,31 @@ const Bangladesh = () => {
     fetchBatteries();
   }, []);
 
-  const getBatteryByBrandCode = (batteries, brandCode) => {
-    return batteries.filter((battery) => battery?.brand_code === brandCode);
+  const getBangladeshiBatteriesByBrand = (batteries, brandCode) => {
+    const brandedBatteries =  batteries.filter((battery) => battery?.brand_code === brandCode);
+    return brandedBatteries.filter(battery=> battery?.country_of_origin === 'Bangladesh');
   };
 
   const brandAndProducts = [
     {
       id: 1,
       brandName: "LUCAS",
-      products: getBatteryByBrandCode(batteries, "LUCAS"),
+      products: getBangladeshiBatteriesByBrand(batteries, "LUCAS"),
     },
     {
       id: 2,
       brandName: "GLOBATT",
-      products: getBatteryByBrandCode(batteries, "GLOBATT"),
+      products: getBangladeshiBatteriesByBrand(batteries, "GLOBATT"),
+    },
+    {
+      id: 3,
+      brandName: "DELTA",
+      products: getBangladeshiBatteriesByBrand(batteries, "DELTA"),
+    },
+    {
+      id: 4,
+      brandName: "SPARK",
+      products: getBangladeshiBatteriesByBrand(batteries, "SPARK"),
     },
   ];
 

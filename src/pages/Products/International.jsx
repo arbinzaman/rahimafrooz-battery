@@ -1,9 +1,52 @@
 import ProductsCarousel from "../../components/Products/ProductsCarousel";
-import { brandAndProducts } from "../../utils/Products/Brands";
 import InternationalPageBanner from "../../assets/images/ProductPageImages/International-products-banner.jpg";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Hourglass } from "react-loader-spinner";
 
 const International = () => {
+  const [batteries, setBatteries] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const fetchBatteries = async () => {
+      setIsLoading(true);
+      const batteries = await axios.get(
+        `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries`
+      );
+      setBatteries(batteries.data);
+      setIsLoading(false);
+    };
+    fetchBatteries();
+  }, []);
+
+  const getBangladeshiBatteriesByBrand = (batteries, brandCode) => {
+    const brandedBatteries =  batteries.filter((battery) => battery?.brand_code === brandCode);
+    return brandedBatteries.filter(battery=> battery?.country_of_origin !== 'Bangladesh');
+  };
+
+  const brandAndProducts = [
+    {
+      id: 1,
+      brandName: "LUCAS",
+      products: getBangladeshiBatteriesByBrand(batteries, "LUCAS"),
+    },
+    {
+      id: 2,
+      brandName: "GLOBATT",
+      products: getBangladeshiBatteriesByBrand(batteries, "GLOBATT"),
+    },
+    {
+      id: 3,
+      brandName: "DELTA",
+      products: getBangladeshiBatteriesByBrand(batteries, "DELTA"),
+    },
+    {
+      id: 4,
+      brandName: "SPARK",
+      products: getBangladeshiBatteriesByBrand(batteries, "SPARK"),
+    },
+  ];
   return (
       <section>
         <div className="relative">
@@ -18,15 +61,31 @@ const International = () => {
           />
         </div>
 
-      <section className={allDeviceMaxWidth}>
-        {brandAndProducts?.map((brand) => (
-          <div className="my-10" key={brand?.id}>
-            <p className="text-semi_large text-primary font-bold mb-2">
-              {brand?.brandName}
-            </p>
-            <ProductsCarousel products={brand?.products} />
+        <section className={allDeviceMaxWidth}>
+        {isLoading ? (
+          <div className="flex justify-center my-20">
+            <Hourglass
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="hourglass-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              colors={["#306cce", "#72a1ed"]}
+            />
           </div>
-        ))}
+        ) : (
+          <>
+            {brandAndProducts?.map((brand) => (
+              <div className="my-10" key={brand?.id}>
+                <p className="text-semi_large text-primary font-bold mb-2">
+                  {brand?.brandName}
+                </p>
+                <ProductsCarousel products={brand?.products} />
+              </div>
+            ))}
+          </>
+        )}
       </section>
     </section>
   );
