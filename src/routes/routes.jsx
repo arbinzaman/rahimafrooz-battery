@@ -18,12 +18,10 @@ import FindDealer from "../pages/FindDealer";
 import Manufacturing from "../pages/About/Manufacturing";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/Dashboard/Login";
-// import PassengerCarBatteries from "../pages/Dashboard/PassengerCarBatteries";
 import DealerApplicationList from "../pages/Dashboard/DealerApplicationList";
 import CustomersQueries from "../pages/Dashboard/CustomersQueries";
-// import CommercialVehicleBatteries from "../pages/Dashboard/CommercialVehicleBatteries";
-// import TwoWheelerBatteries from "../pages/Dashboard/TwoWheelerBatteries";
 import AllBatteryDetails from "../pages/Dashboard/AllBatteryDetails";
+import CategoryWiseBatteries from "../pages/Products/CategoryWiseBatteries";
 
 const routes = createBrowserRouter([
   {
@@ -93,6 +91,10 @@ const routes = createBrowserRouter([
       {
         path: "/manufacturing",
         element: <Manufacturing />,
+      },
+      {
+        path: "/categories/:category_name",
+        element: <CategoryWiseBatteries />,
       },
     ],
   },
