@@ -208,7 +208,7 @@ const Home = () => {
         <div className="icon-BG">
           <div className="max-w-screen-xl mx-auto hidden xl:block">
             <h1 className="uppercase text-center text-3xl text-sky-100 font-semibold pt-16 pb-16">
-              choose your product
+              Find The Right Battery
             </h1>
             <div className="grid grid-cols-6 gap-4 text-center">
               <div>
@@ -293,11 +293,11 @@ const Home = () => {
                 <h1 className="text-sky-100 text-xl">Electric Vehicle</h1>
               </div>
             </div>
-            <ProductSearchField/>
+            <ProductSearchField />
           </div>
           <div className="slider-container w-10/12 mx-auto xl:hidden max-w-sm">
             <h1 className="uppercase text-center text-lg text-sky-100 font-semibold pt-8 pb-8">
-              choose your product
+              Find The Right Battery
             </h1>
             <Slider {...settingsForIconSmallScreen}>
               <div>
@@ -390,7 +390,7 @@ const Home = () => {
                 </div>
               </div>
             </Slider>
-           <ProductSearchField/>
+            <ProductSearchField />
           </div>
         </div>
       </section>

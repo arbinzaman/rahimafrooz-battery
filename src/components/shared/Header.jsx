@@ -100,7 +100,7 @@ const Header = () => {
                         src={Battery}
                         alt="icon"
                       />
-                      Manage My Battery
+                      Warranty & Services
                     </button>
                   </a>
                   <select className="header-btn">
