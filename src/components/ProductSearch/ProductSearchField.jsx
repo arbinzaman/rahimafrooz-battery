@@ -26,7 +26,7 @@ const ProductSearchField = () => {
     year: "",
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Fetching Categories
   const CATEGORIES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/categories`;
@@ -96,9 +96,12 @@ const ProductSearchField = () => {
       "query_datas",
       JSON.stringify(queryDatas || "")
     );
-    if(window.location.href === 'http://localhost:5173/'){
-      navigate('/product-search')
-      return
+    if (
+      window.location.href === "http://localhost:5173/" ||
+      window.location.href === "https://rahimafrooz-battery.vercel.app/"
+    ) {
+      navigate("/product-search");
+      return;
     }
     window.location.reload();
   };
