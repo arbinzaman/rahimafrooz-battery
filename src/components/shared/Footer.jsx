@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ArrowUpIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
 import HomeGoogleTranslate from '../Home/HomeGoogleTranslate';
 
 import Logo from '../../assets/70-Years-Logo.png';
@@ -11,25 +11,38 @@ import FooterLogo from '../../assets/Rahimafrooz_Logo_White.svg';
 import "../../styles/Footer.css"
 
 const Footer = () => {
-const scrollUp = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  })
-}
+  const scrollUp = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
 
   return (
     <div className="bg-primary">
-      <div>
-        <button onClick={scrollUp} className='absolute bottom-32 right-8'><ArrowUpIcon className='w-10 h-10 rounded-full bg-sky-300 text-sky-700 font-bold'/></button>
-      </div>
       <div className='max-w-screen-2xl mx-auto pt-12 pl-4 pr-4'>
         <div className='flex justify-between'>
           <img src={Logo} alt="logo" width={135} height={135} />
           <div className='flex pt-6'>
-            <a href="/global-presence">
-              <button className='footer-btn'> Global Presence</button>
-            </a>
+            <div className='sm:flex'>
+              <a href="/global-presence">
+                <button className='footer-btn flex'><GlobeAltIcon className="w-4 h-4 mt-1 mr-1" />Global Presence</button>
+              </a>
+              <div className='sm:hidden mt-2 sm:mt-0 flex justify-center sm:justify-end gap-2 ml-4 mr-4'>
+                <a href="https://www.facebook.com/Rahimafrooz/" target='_blank'>
+                  <img src={Facebook} alt="fb" width={20} height={20} />
+                </a>
+                <a href="https://www.instagram.com/rahimafroozbd/" target='_blank'>
+                  <img src={Instagram} alt="fb" width={20} height={20} />
+                </a>
+                <a href="https://www.linkedin.com/company/rahimafrooz/" target='_blank'>
+                  <img src={Linkedin} alt="fb" width={20} height={20} />
+                </a>
+                <a href="https://www.youtube.com/@RahimafroozBangladesh" target='_blank'>
+                  <img src={Youtube} alt="fb" width={20} height={20} />
+                </a>
+              </div>
+            </div>
             <a className='hidden lg:block' href="https://estore.rahimafrooz.com/" target='_blank'>
               <button className='footer-btn'>Buy Now</button>
             </a>
@@ -68,7 +81,7 @@ const scrollUp = () => {
         </nav>
         <nav className="text-right place-items-end">
           <h6 className="footer-title">Head Office</h6>
-          <p>
+          <p className='text-white'>
             Rahimafrooz Storage Power Business
             705, West Nakhalpara, Tejgaon
             Dhaka-1215, Bangladesh.
@@ -137,7 +150,7 @@ const scrollUp = () => {
             <ChevronDownIcon className='w-5 h-5 mt-1 ml-4 text-white opacity-95' />
           </h6>
           <div className="collapse-content mt-4 leading-8">
-            <p>
+            <p className='text-white'>
               Rahimafrooz Storage Power Business
               705, West Nakhalpara, Tejgaon
               Dhaka-1215, Bangladesh.
@@ -155,7 +168,7 @@ const scrollUp = () => {
           </div>
         </nav>
 
-        <div className='flex justify-end gap-2 ml-4 mr-4'>
+        <div className='hidden sm:block flex justify-end gap-2 ml-4 mr-4'>
           <a href="https://www.facebook.com/Rahimafrooz/" target='_blank'>
             <img src={Facebook} alt="fb" width={20} height={20} />
           </a>
@@ -168,7 +181,6 @@ const scrollUp = () => {
           <a href="https://www.youtube.com/@RahimafroozBangladesh" target='_blank'>
             <img src={Youtube} alt="fb" width={20} height={20} />
           </a>
-          <HomeGoogleTranslate />
         </div>
       </footer>
       <div className='max-w-screen-2xl mx-auto text-white text-xs pb-6 font-semibold'>
@@ -179,7 +191,7 @@ const scrollUp = () => {
             <p className='opacity-60 pl-4'>Copyright © 2017-2023 Rahimafrooz Batteries Ltd. All rights reserved.</p>
           </div>
           <div>
-            <HomeGoogleTranslate />
+            <button onClick={scrollUp} className='mr-4'><ArrowUpIcon className='w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-300 text-sky-700 font-bold' /></button>
           </div>
         </div>
       </div>

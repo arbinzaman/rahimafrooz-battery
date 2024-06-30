@@ -298,15 +298,7 @@ const Header = () => {
                       </ul>
                     </div>
                   </li>
-                  <li className="md:ml-4 xl:ml-8">
-                    <a
-                      href="#"
-                      className="block p-0 text-white opacity-80 rounded bg-transparent font-semibold"
-                    >
-                      Services
-                    </a>
-                  </li>
-                  <li className="md:ml-4 xl:ml-8">
+                  <li>
                     <a
                       href="/contact-us"
                       className="block p-0 text-white opacity-80 rounded bg-transparent font-semibold"
@@ -328,7 +320,7 @@ const Header = () => {
             isSideMenuOpen && "translate-x-0"
           )}
         >
-          <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 gap-8 w-96 flex">
+          <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 pr-0 gap-8 w-80 flex">
             <XMarkIcon
               onClick={() => setMenu(false)}
               className="w-8 h-8 cursor-pointer"
@@ -344,100 +336,39 @@ const Header = () => {
                   Home
                 </a>
               </li>
-              <li className="md:ml-0 xl:ml-4 pb-4">
-                <div className="dropdown dropdown-bottom">
-                  <div className="flex" tabIndex={0} role="button">
-                    <div className="btn text-sky-600 h-0 min-h-0 border-none text-base">
-                      About
-                    </div>
-                    <ChevronDownIcon
-                      style={{ marginLeft: "-10px" }}
-                      className="w-4 h-4 mt-1 text-sky-600"
-                    />
+              <div className="border opacity-25 w-4/5 ml-3 mb-4"></div>
+              <li>
+                <nav className="collapse">
+                  <input type="checkbox" className='min-h-0' />
+                  <h6 className='collapse-title pt-0 min-h-0 flex justify-between font-bold text-sky-600'>
+                    About
+                    <ChevronDownIcon className='w-5 h-5 mt-1 ml-4 ' />
+                  </h6>
+                  <div className="collapse-content pl-8 leading-8">
+                    <a href="https://www.rahimafrooz.com/" target="_blank" className="link link-hover"><span className="text-sky-600">Rahimafrooz Group</span></a> <br />
+                    <a href="/Founder-and-Board-Members" className="link link-hover"><span className="text-sky-600">Founder & Board Members</span></a> <br />
+                    <a href="/rahimafrooz-storage-power" className="link link-hover"><span className="text-sky-600">Rahimafrooz Storage Power</span></a> <br />
+                    <a href="/manufacturing" className="link link-hover"><span className="text-sky-600">Manufacturing</span></a> <br />
+                    <a href="/special-awards-achievement" className="link link-hover"><span className="text-sky-600">Special Awards & Achievement</span></a>
                   </div>
-                  <ul
-                    tabIndex={0}
-                    className=" menu p-2 shadow bg-sky-100 text-sky-600 mt-6 rounded-sm w-64"
-                  >
-                    <li>
-                      <a
-                        href="https://www.rahimafrooz.com/"
-                        target="_blank"
-                        className="nav-active-bg"
-                      >
-                        Rahimafrooz Group
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/Founder-and-Board-Members"
-                        className="nav-active-bg"
-                      >
-                        Founder & Board Members
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/rahimafrooz-storage-power"
-                        className="nav-active-bg"
-                      >
-                        Rahimafrooz Storage Power
-                      </a>
-                    </li>
-                    <li>
-                      <a className="nav-active-bg">Manufacturing</a>
-                    </li>
-                    <li>
-                      <a
-                        href="/special-awards-achievement"
-                        className="nav-active-bg"
-                      >
-                        Special Awards & Achievement
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                </nav>
               </li>
-              <li className="md:ml-0 xl:ml-4 pb-4">
-                <div className="">
-                  <div tabIndex={0} role="button" className="flex">
-                    <div className="btn text-sky-600 h-0 min-h-0 border-none text-base">
-                      Products
-                    </div>
-                    <ChevronDownIcon
-                      style={{ marginLeft: "-10px" }}
-                      className="w-4 h-4 mt-1 text-sky-600"
-                    />
+              <div className="border opacity-25 w-4/5 ml-3 mb-4"></div>
+              <li>
+                <nav className="collapse">
+                  <input type="checkbox" className='min-h-0' />
+                  <h6 className='collapse-title pt-0 min-h-0 flex justify-between font-bold text-sky-600'>
+                    Products
+                    <ChevronDownIcon className='w-5 h-5 mt-1 ml-4 ' />
+                  </h6>
+                  <div className="collapse-content pl-8 leading-8">
+                    <a href="/products-bangladesh" className="link link-hover"><span className="text-sky-600">Bangladesh</span></a> <br />
+                    <a href="/products-international" className="link link-hover"><span className="text-sky-600">International</span></a>
                   </div>
-                  <ul
-                    tabIndex={0}
-                    className="dropdown-content z-[1] menu p-2 shadow bg-sky-100 text-sky-600 mt-6 rounded-sm w-32"
-                  >
-                    <li>
-                      <a href="/products-bangladesh" className="nav-active-bg">
-                        Bangladesh
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/products-international"
-                        className="nav-active-bg"
-                      >
-                        International
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                </nav>
               </li>
-              <li className="md:ml-4 xl:ml-8">
-                <a
-                  href="#"
-                  className="block pl-4 pb-4 text-sky-600 rounded bg-transparent font-semibold"
-                >
-                  Services
-                </a>
-              </li>
-              <li className="md:ml-4 xl:ml-8">
+              <div className="border opacity-25 w-4/5 ml-3 mb-4"></div>
+              <li>
                 <a
                   href="/contact-us"
                   className="block pl-4 pb-4 text-sky-600 rounded bg-transparent font-semibold"
