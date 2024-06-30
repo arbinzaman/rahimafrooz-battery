@@ -1,0 +1,227 @@
+[
+  {
+    "id": "2",
+    "captchaCode": "B45efGh78",
+    "companyName": "Green Mart",
+    "address": {
+      "district": "Chittagong",
+      "thana": "Pahartali",
+      "zip": "4202"
+    },
+    "contactDetails": {
+      "email": "janesmith@example.com",
+      "fullName": "Jane Smith",
+      "phoneNumber": "01987654321"
+    }
+  },
+  {
+    "id": "2",
+    "captchaCode": "B45efGh78",
+    "companyName": "Green Mart",
+    "address": {
+      "district": "Chittagong",
+      "thana": "Pahartali",
+      "zip": "4202"
+    },
+    "contactDetails": {
+      "email": "janesmith@example.com",
+      "fullName": "Jane Smith",
+      "phoneNumber": "01987654321"
+    }
+  },
+  {
+    "id": "3",
+    "captchaCode": "C67ijKlm3",
+    "companyName": "Auto Hub",
+    "address": {
+      "district": "Sylhet",
+      "thana": "Bandar Bazar",
+      "zip": "3100"
+    },
+    "contactDetails": {
+      "email": "contact@autohub.com",
+      "fullName": "Akash Rahman",
+      "phoneNumber": "01700987654"
+    }
+  },
+  {
+    "id": "4",
+    "captchaCode": "D89mnOpq5",
+    "companyName": "Home Essentials",
+    "address": {
+      "district": "Khulna",
+      "thana": "Khalishpur",
+      "zip": "9100"
+    },
+    "contactDetails": {
+      "email": "support@homeessentials.com",
+      "fullName": "Sara Ali",
+      "phoneNumber": "01611223344"
+    }
+  },
+  {
+    "id": "5",
+    "captchaCode": "E90qrStU1",
+    "companyName": "Fashion Boutique",
+    "address": {
+      "district": "Rajshahi",
+      "thana": "Boalia",
+      "zip": "6000"
+    },
+    "contactDetails": {
+      "email": "info@fashionboutique.com",
+      "fullName": "Mona Rahman",
+      "phoneNumber": "01555667788"
+    }
+  },
+  {
+    "id": "6",
+    "captchaCode": "F12ghIjk3",
+    "companyName": "Electro World",
+    "address": {
+      "district": "Barisal",
+      "thana": "Kotwali",
+      "zip": "8200"
+    },
+    "contactDetails": {
+      "email": "info@electroworld.com",
+      "fullName": "Kamal Hossain",
+      "phoneNumber": "01733445566"
+    }
+  },
+  {
+    "id": "7",
+    "captchaCode": "G34lmNop5",
+    "companyName": "Office Supplies Co.",
+    "address": {
+      "district": "Gazipur",
+      "thana": "Sreepur",
+      "zip": "1740"
+    },
+    "contactDetails": {
+      "email": "contact@officesupplies.com",
+      "fullName": "Rina Akter",
+      "phoneNumber": "01677889900"
+    }
+  },
+  {
+    "id": "8",
+    "captchaCode": "H56qrStu8",
+    "companyName": "Food Mart",
+    "address": {
+      "district": "Mymensingh",
+      "thana": "Trishal",
+      "zip": "2200"
+    },
+    "contactDetails": {
+      "email": "support@foodmart.com",
+      "fullName": "Lina Sultana",
+      "phoneNumber": "01888776655"
+    }
+  },
+  {
+    "id": "9",
+    "captchaCode": "I78vwXyz2",
+    "companyName": "Health Care Ltd.",
+    "address": {
+      "district": "Comilla",
+      "thana": "Laksam",
+      "zip": "3500"
+    },
+    "contactDetails": {
+      "email": "info@healthcare.com",
+      "fullName": "Farid Ahmed",
+      "phoneNumber": "01799887766"
+    }
+  },
+  {
+    "id": "10",
+    "captchaCode": "J90abCde1",
+    "companyName": "Book Haven",
+    "address": {
+      "district": "Jessore",
+      "thana": "Bagharpara",
+      "zip": "7400"
+    },
+    "contactDetails": {
+      "email": "contact@bookhaven.com",
+      "fullName": "Meherun Nesa",
+      "phoneNumber": "01699887744"
+    }
+  },
+  {
+    "id": "11",
+    "captchaCode": "K12cdEfg4",
+    "companyName": "Gadget World",
+    "address": {
+      "district": "Bogura",
+      "thana": "Sariakandi",
+      "zip": "5800"
+    },
+    "contactDetails": {
+      "email": "support@gadgetworld.com",
+      "fullName": "Nazmul Hasan",
+      "phoneNumber": "01822334455"
+    }
+  },
+  {
+    "id": "12",
+    "captchaCode": "L34efHjk7",
+    "companyName": "Smart Electronics",
+    "address": {
+      "district": "Narayangonj",
+      "thana": "Sonargaon",
+      "zip": "1400"
+    },
+    "contactDetails": {
+      "email": "info@smartelectronics.com",
+      "fullName": "Rahim Uddin",
+      "phoneNumber": "01755667788"
+    }
+  },
+  {
+    "id": "13",
+    "captchaCode": "M56ghIjk0",
+    "companyName": "Fashion Trends",
+    "address": {
+      "district": "Rangpur",
+      "thana": "Gangachara",
+      "zip": "5400"
+    },
+    "contactDetails": {
+      "email": "contact@fashiontrends.com",
+      "fullName": "Tania Rahman",
+      "phoneNumber": "01933445566"
+    }
+  },
+  {
+    "id": "14",
+    "captchaCode": "N78ijKlmn2",
+    "companyName": "Tech Universe",
+    "address": {
+      "district": "Kushtia",
+      "thana": "Mirpur",
+      "zip": "7000"
+    },
+    "contactDetails": {
+      "email": "support@techuniverse.com",
+      "fullName": "Ashraf Ali",
+      "phoneNumber": "01855667788"
+    }
+  },
+  {
+    "id": "15",
+    "captchaCode": "O90klMno4",
+    "companyName": "Super Mart",
+    "address": {
+      "district": "Pabna",
+      "thana": "Sujanagar",
+      "zip": "6600"
+    },
+    "contactDetails": {
+      "email": "info@supermart.com",
+      "fullName": "Halim Siddique",
+      "phoneNumber": "01722334455"
+    }
+  }
+]

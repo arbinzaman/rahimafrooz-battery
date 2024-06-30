@@ -1,8 +1,9 @@
 import RelatedProducts from "../ProductSearch/RelatedProducts";
+import Brochure from "../../assets/Rahimafrooz.pdf";
 
 const SimilarProduct = () => {
   return (
-    <div className="mb-16 w-4/5 mx-auto">
+    <div className="mb-16">
       <RelatedProducts />
       <h2 className="text-medium text-primary ">
         Best Price Commercial Vehicles Battery Online at RAHIMAFROOZ
@@ -14,9 +15,9 @@ const SimilarProduct = () => {
         and grow in this hyper-competitive business environment.
       </p>
       <div className="flex justify-center">
-        <button className="rounded-md btn btn-md text-regular bg-primary text-white mt-5  ">
+        <a href={Brochure} download="document.pdf" className="rounded-md btn btn-md text-regular bg-primary text-white mt-5">
           Download E-brochure
-        </button>
+        </a>
       </div>
       <div>
         <ul className="list-disc text-regular text-primary text-justify mt-5">

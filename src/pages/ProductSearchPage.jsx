@@ -2,6 +2,7 @@ import BangladeshPageBanner from "../assets/images/ProductPageImages/Bangladesh-
 import ProductSearchField from "../components/ProductSearch/ProductSearchField";
 import RelatedProducts from "../components/ProductSearch/RelatedProducts";
 import Table from "../components/ProductSearch/Table";
+import { allDeviceMaxWidth } from "../styles/maxWidth";
 
 const ProductSearchPage = () => {
   return (
@@ -15,12 +16,12 @@ const ProductSearchPage = () => {
             alt="A banner showing Rahimafrooz's Globat Ace in a scenario"
           />
         </div>
-        <div className="my-10 max-w-screen-2xl mx-10 lg:mx-auto">
+        <div className={allDeviceMaxWidth+" my-10"}>
           <ProductSearchField />
         </div>
       </div>
       {/* Product Section */}
-      <div className="my-10 max-w-screen-2xl mx-10 lg:mx-auto">
+      <div className={allDeviceMaxWidth+" my-10"}>
         <Table />
         <RelatedProducts />
       </div>

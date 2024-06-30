@@ -1,0 +1,46 @@
+[
+    {
+      "name": "AFRICA",
+      "countries": [
+        ["Algeria", "Senegal", "Nigeria", "Gabon", "Botswana"],
+        ["Mozambique", "Congo", "Uganda", "South Sudan", "Ethiopia"],
+        ["Liberia", "Ivory Coast", "Cameroon", "Angola", "South Africa"],
+        ["Malawi", "Tanzania", "Kenya", "Sudan"]
+      ]
+    },
+    {
+      "name": "ASIA",
+      "countries": [
+        ["Bangladesh", "India", "China", "Japan", "South Korea"],
+        ["Thailand", "Vietnam", "Malaysia", "Singapore", "Indonesia"],
+        ["Philippines", "Sri Lanka", "Nepal", "Bhutan", "Maldives"],
+        ["Pakistan", "Afghanistan", "Iran", "Iraq"]
+      ]
+    },
+    {
+      "name": "EUROPE",
+      "countries": [
+        ["France", "Germany", "Italy", "Spain", "Portugal"],
+        ["Netherlands", "Belgium", "Switzerland", "Austria", "Sweden"],
+        ["Norway", "Denmark", "Finland", "Iceland", "Ireland"],
+        ["UK", "Poland", "Czech Republic", "Hungary"]
+      ]
+    },
+    {
+      "name": "USA",
+      "countries": [
+        ["California", "Texas", "Florida", "New York", "Illinois"],
+        ["Pennsylvania", "Ohio", "Georgia", "North Carolina", "Michigan"],
+        ["New Jersey", "Virginia", "Washington", "Arizona", "Massachusetts"],
+        ["Tennessee", "Indiana", "Missouri", "Maryland"]
+      ]
+    },
+    {
+      "name": "AUSTRALIA",
+      "countries": [
+        ["New South Wales", "Victoria", "Queensland", "Western Australia", "South Australia"],
+        ["Tasmania", "Northern Territory", "Australian Capital Territory"]
+      ]
+    }
+  ]
+  

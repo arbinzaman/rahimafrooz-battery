@@ -1,13 +1,18 @@
+import { LuDot } from "react-icons/lu";
+import { allDeviceMaxWidth } from "../styles/maxWidth";
+
 const PrivacyPolicy = () => {
   return (
-    <section className="mt-20 w-9/12 mx-auto mb-32">
-      <div className="">
+    <section className={`mt-10`}>
+      <div className={`${allDeviceMaxWidth}`}>
         {/* hero section of privacy policy start */}
-        <div>
-          <h1 className="text-5xl font-bold text-primary ">
+        <div className="mx-3">
+          <h1 className="text-semi_large lg:text-large font-bold text-primary ">
             PRIVACY & COOKIES POLICY
           </h1>
-          <h3 className="text-black   text-2xl font-bold mt-10">WHAT ARE COOKIES</h3>
+          <h3 className="text-black   text-2xl font-bold mt-10">
+            WHAT ARE COOKIES
+          </h3>
           <p className="text-justify text-black text-xl mt-10 font-medium">
             Cookies are pieces of information that are placed on your device
             when you visit a website. This data/information is given back to the
@@ -20,7 +25,9 @@ const PrivacyPolicy = () => {
             disable browser cookies.
           </p>
 
-          <h3 className="text-black   text-2xl font-bold mt-10">HOW WE USE COOKIES</h3>
+          <h3 className="text-black text-2xl font-bold mt-10">
+            HOW WE USE COOKIES
+          </h3>
 
           <p className="text-justify text-black text-xl mt-10 font-medium">
             The information gathered through the cookies we use on our website
@@ -40,8 +47,10 @@ const PrivacyPolicy = () => {
         </div>
         {/* hero section of privacy policy start */}
         {/* Cookies section of privacy policy start */}
-        <div>
-          <h3 className="text-black   text-2xl font-bold mt-10">COOKIES WE USE</h3>
+        <div className="mx-3">
+          <h3 className="text-black   text-2xl font-bold mt-10">
+            COOKIES WE USE
+          </h3>
           <div className="overflow-x-auto">
             <table className="table border-background border-separate border-8 rounded-none text-justify text-lg mt-5  text-white">
               <tbody>
@@ -73,8 +82,10 @@ const PrivacyPolicy = () => {
         {/* Cookies section of privacy policy End */}
         {/* Managing Cookie section of privacy policy Start */}
 
-        <div>
-          <h3 className="text-black   text-2xl font-bold mt-10">MANAGING COOKIES</h3>
+        <div className="mx-3">
+          <h3 className="text-black   text-2xl font-bold mt-10">
+            MANAGING COOKIES
+          </h3>
           <p className="text-justify text-black text-xl mt-10 font-medium">
             You may set your browser to reject browser cookies. However, if you
             set your browser options to disallow cookies, you will limit the
@@ -89,23 +100,34 @@ const PrivacyPolicy = () => {
       </div>
 
       {/*List section of privacy policy Start */}
-      <div className="bg-cookieList text-xl text-black font-medium absolute left-0 right-0">
-        <ul className="list-inside list-disc text-justify ml-52 p-10 ">
-          <li>
-            Total warranty includes pro-rata warranty. Please refer to the
-            warranty card for terms and conditions.
-          </li>
-          <li>
-            Battery image shown is only for reference. Actual image may vary.
-          </li>
-          <li>
-            Updation of Application chart is a continuous process in Amara Raja.
-            As a result battery recommendation may subject to change without
-            prior notice.
-          </li>
-        </ul>
-      </div>
-
+      <section className="bg-background2 py-1 mt-5">
+        <div className={`${allDeviceMaxWidth}`}>
+          <ul className="mx-3 text-justify">
+            <li className="my-2 flex items-center gap-1">
+              <LuDot />
+              <p>
+                Total warranty includes pro-rata warranty. Please refer to the
+                warranty card for terms and conditions.
+              </p>
+            </li>
+            <li className="my-2 flex items-center gap-1">
+              <LuDot />
+              <p>
+                Battery image shown is only for reference. Actual image may
+                vary.
+              </p>
+            </li>
+            <li className="my-2 flex items-center gap-1">
+              <LuDot />
+              <p>
+                Updation of Application chart is a continuous process in Amara
+                Raja. As a result battery recommendation may subject to change
+                without prior notice.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
       {/*List section of privacy policy End */}
     </section>
   );

@@ -16,6 +16,12 @@ import TermsAndCondition from "../pages/TermsAndCondition";
 import SpecialAwards from "../pages/About/SpecialAwards";
 import FindDealer from "../pages/FindDealer";
 import Manufacturing from "../pages/About/Manufacturing";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Login from "../pages/Dashboard/Login";
+import DealerApplicationList from "../pages/Dashboard/DealerApplicationList";
+import CustomersQueries from "../pages/Dashboard/CustomersQueries";
+import AllBatteryDetails from "../pages/Dashboard/AllBatteryDetails";
+import CategoryWiseBatteries from "../pages/Products/CategoryWiseBatteries";
 
 const routes = createBrowserRouter([
   {
@@ -51,7 +57,7 @@ const routes = createBrowserRouter([
         element: <ManageMyBattery />,
       },
       {
-        path: "/product-final-page",
+        path: `/product-final-page/:shortCode`,
         element: <ProductFinalPage />,
       },
       {
@@ -74,17 +80,59 @@ const routes = createBrowserRouter([
         path: "/terms-and-conditions",
         element: <TermsAndCondition />,
       },
-        {
+      {
         path: "/special-awards-achievement",
         element: <SpecialAwards />,
       },
       {
         path: "/find-dealer",
-        element: <FindDealer />
+        element: <FindDealer />,
       },
       {
         path: "/manufacturing",
-        element: <Manufacturing/>
+        element: <Manufacturing />,
+      },
+      {
+        path: "/categories/:category_name",
+        element: <CategoryWiseBatteries />,
+      },
+    ],
+  },
+  {
+    path: "/admin-login",
+    element: <Login />,
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      // {
+      //   path: "/dashboard/passenger-car-batteries",
+      //   element: <PassengerCarBatteries />,
+      // },
+      // {
+      //   path: "/dashboard/commercial-car-batteries",
+      //   element: <CommercialVehicleBatteries />,
+      // },
+      // {
+      //   path: "/dashboard/two-wheeler-batteries",
+      //   element: <TwoWheelerBatteries />,
+      // },
+      {
+        path: "/dashboard",
+        element: <AllBatteryDetails />,
+      },
+      {
+        path: "/dashboard/dealers-application-list",
+        element: <DealerApplicationList />,
+      },
+      {
+        path: "/dashboard/all-battery-details-list",
+        element: <AllBatteryDetails />,
+      },
+      {
+        path: "/dashboard/customers-queries",
+        element: <CustomersQueries />,
       },
     ],
   },
