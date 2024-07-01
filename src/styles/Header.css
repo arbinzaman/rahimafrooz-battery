@@ -22,6 +22,8 @@
 
 .header-btn-mobile {
     display: flex;
+    border: 4px double;
+    border-radius: 10px;
     padding: 0 8px 2px;
     background-color: #95E7F4;
     color: #005cab;
@@ -53,9 +55,6 @@
     padding: 4px;
     margin-top: 3px;
 }
-.nav-active-bg:active{
-    background-color: #ddebf6 !important;
-}
 
 .goog-te-gadget-simple {
     border: 4px double;
@@ -82,11 +81,11 @@
         background-image: -webkit-linear-gradient(130deg, #005cab 53%, #ddebf6 53.2%);
     }
     .nav-logo{
-        width: 160px;
+        width: 142px;
     }
     .header-btn-mobile{
         font-size: 12px;
-        margin-top: 10px;
+        margin-top: 6px;
     }
     .header-btn-mobile svg{
         margin-top: 0;

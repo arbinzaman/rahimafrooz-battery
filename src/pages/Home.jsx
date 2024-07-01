@@ -102,16 +102,6 @@ const Home = () => {
       case 2:
         return (
           <>
-            {" "}
-            {isLoading && <Loader />}
-            <InstagramEmbed
-              url="https://www.instagram.com/rahimafroozbd/"
-              width={560}
-              height={280}
-              onLoad={handleLoadEnd}
-              // eslint-disable-next-line react/no-unknown-property
-              onLoadStart={handleLoadStart}
-            />
             <iframe
               src="https://widgets.sociablekit.com/linkedin-page-posts/iframe/25420059"
               // eslint-disable-next-line react/no-unknown-property
