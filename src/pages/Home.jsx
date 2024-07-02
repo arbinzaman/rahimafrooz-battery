@@ -31,6 +31,7 @@ import { InstagramEmbed } from "react-social-media-embed";
 import Loader from "../components/shared/Loaders/Loader";
 import { useLoading } from "../contexts/LoadingContext";
 import ProductSearchField from "../components/ProductSearch/ProductSearchField";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { isLoading, setIsLoading } = useLoading();
@@ -201,51 +202,51 @@ const Home = () => {
               Find The Right Battery
             </h1>
             <div className="grid grid-cols-6 gap-4 text-center">
-              <div>
+              <Link to={`/categories/Passenger Car`}>
                 <img className="w-32 mx-auto" src={Car} alt="car" />
                 <h1 className="text-sky-100 text-xl">Passenger Car</h1>
-              </div>
-              <div>
+              </Link>
+              <Link to={`/categories/Commercial Vehicle`}>
                 <img
                   className="w-28 mx-auto pt-1 pb-2"
                   src={CommercialVehicle}
                   alt="car"
                 />
                 <h1 className="text-sky-100 text-xl">Commercial Vehicle</h1>
-              </div>
-              <div>
+              </Link>
+              <Link to={`/categories/Three Wheeler`}>
                 <img
                   className="w-24 mx-auto pt-2 pb-4"
                   src={ThreeWheeler}
                   alt="car"
                 />
                 <h1 className="text-sky-100 text-xl">Three Wheeler</h1>
-              </div>
-              <div>
+              </Link>
+              <Link to={`/categories/Motorcycle`}>
                 <img
                   className="w-24 mx-auto pt-2 pb-4"
                   src={Motorcycle}
                   alt="car"
                 />
                 <h1 className="text-sky-100 text-xl">Motorcycle</h1>
-              </div>
-              <div>
+              </Link>
+              <Link to={`/categories/Generator`}>
                 <img className="w-32 mx-auto" src={Generator} alt="car" />
                 <h1 className="text-sky-100 text-xl">Generator</h1>
-              </div>
-              <div>
+              </Link>
+              <Link to={`/categories/Special Purpose`}>
                 <img
                   className="w-28 mx-auto pt-1 pb-2"
                   src={SpecialPurpose}
                   alt="car"
                 />
                 <h1 className="text-sky-100 text-xl">Special Purpose</h1>
-              </div>
+              </Link>
               <div>
                 <img className="w-32 mx-auto" src={IPS} alt="car" />
                 <h1 className="text-sky-100 text-xl">IPS</h1>
               </div>
-              <div>
+              <Link to={`/categories/Solar`}>
                 <img className="w-36 mx-auto" src={Solar} alt="car" />
                 <h1
                   style={{ marginTop: "-12px", marginLeft: "-10px" }}
@@ -253,35 +254,35 @@ const Home = () => {
                 >
                   Solar
                 </h1>
-              </div>
-              <div>
+              </Link>
+              <Link to={`/categories/Tractor`}>
                 <img
                   className="w-28 mx-auto pt-1 pb-2"
                   src={Tractor}
                   alt="car"
                 />
                 <h1 className="text-sky-100 text-xl">Tractor</h1>
-              </div>
-              <div>
+              </Link>
+              <Link to={`/categories/Golf Cart`}>
                 <img
                   className="w-28 mx-auto pt-1 pb-2"
                   src={GolfCart}
                   alt="car"
                 />
                 <h1 className="text-sky-100 text-xl">Golf Cart</h1>
-              </div>
-              <div>
+              </Link>
+              <Link to={`/categories/Forklift`}>
                 <img className="w-32 mx-auto" src={Forklift} alt="car" />
                 <h1 className="text-sky-100 text-xl">Forklift</h1>
-              </div>
-              <div>
+              </Link>
+              <Link to={`/categories/Electric Vehicle`}>
                 <img
                   className="w-28 mx-auto pt-1 pb-2"
                   src={ElectricVehicle}
                   alt="car"
                 />
                 <h1 className="text-sky-100 text-xl">Electric Vehicle</h1>
-              </div>
+              </Link>
             </div>
             <ProductSearchField />
           </div>
@@ -292,46 +293,46 @@ const Home = () => {
             <Slider {...settingsForIconSmallScreen}>
               <div>
                 <div className="grid grid-cols-3 gap-2 text-center">
-                  <div>
+                  <Link to={`/categories/Passenger Car`}>
                     <img className="w-24 mx-auto" src={Car} alt="car" />
                     <h1 className="text-sky-100 text-sm">Passenger Car</h1>
-                  </div>
-                  <div>
+                  </Link>
+                  <Link to={`/categories/Commercial Vehicle`}>
                     <img
                       className="w-20 mx-auto pt-1 pb-2"
                       src={CommercialVehicle}
                       alt="car"
                     />
                     <h1 className="text-sky-100 text-sm">Commercial Vehicle</h1>
-                  </div>
-                  <div>
+                  </Link>
+                  <Link to={`/categories/Three Wheeler`}>
                     <img
                       className="w-16 mx-auto pt-2 pb-4"
                       src={ThreeWheeler}
                       alt="car"
                     />
                     <h1 className="text-sky-100 text-sm">Three Wheeler</h1>
-                  </div>
-                  <div>
+                  </Link>
+                  <Link to={`/categories/Motorcycle`}>
                     <img
                       className="w-16 mx-auto pt-2 pb-4"
                       src={Motorcycle}
                       alt="car"
                     />
                     <h1 className="text-sky-100 text-sm">Motorcycle</h1>
-                  </div>
-                  <div>
+                  </Link>
+                  <Link to={`/categories/Generator`}>
                     <img className="w-24 mx-auto" src={Generator} alt="car" />
                     <h1 className="text-sky-100 text-sm">Generator</h1>
-                  </div>
-                  <div>
+                  </Link>
+                  <Link to={`/categories/Special Purpose`}>
                     <img
                       className="w-20 mx-auto pt-1 pb-2"
                       src={SpecialPurpose}
                       alt="car"
                     />
                     <h1 className="text-sky-100 text-sm">Special Purpose</h1>
-                  </div>
+                  </Link>
                 </div>
               </div>
               <div>
@@ -340,7 +341,7 @@ const Home = () => {
                     <img className="w-24 mx-auto" src={IPS} alt="car" />
                     <h1 className="text-sky-100 text-sm">IPS</h1>
                   </div>
-                  <div>
+                  <Link to={`/categories/Solar`}>
                     <img className="w-36 mx-auto" src={Solar} alt="car" />
                     <h1
                       style={{ marginLeft: "-10px" }}
@@ -348,35 +349,35 @@ const Home = () => {
                     >
                       Solar
                     </h1>
-                  </div>
-                  <div>
+                  </Link>
+                  <Link to={`/categories/Tractor`}>
                     <img
                       className="w-20 mx-auto pt-2 pb-2"
                       src={Tractor}
                       alt="car"
                     />
                     <h1 className="text-sky-100 text-sm">Tractor</h1>
-                  </div>
-                  <div>
+                  </Link>
+                  <Link to={`/categories/Golf Cart`}>
                     <img
                       className="w-20 mx-auto pt-1 pb-2"
                       src={GolfCart}
                       alt="car"
                     />
                     <h1 className="text-sky-100 text-sm">Golf Cart</h1>
-                  </div>
-                  <div>
+                  </Link>
+                  <Link to={`/categories/Forklift`}>
                     <img className="w-28 mx-auto" src={Forklift} alt="car" />
                     <h1 className="text-sky-100 text-sm">Forklift</h1>
-                  </div>
-                  <div>
+                  </Link>
+                  <Link to={`/categories/Electric Vehicle`}>
                     <img
                       className="w-20 mx-auto pt-1 pb-2"
                       src={ElectricVehicle}
                       alt="car"
                     />
                     <h1 className="text-sky-100 text-sm">Electric Vehicle</h1>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </Slider>
