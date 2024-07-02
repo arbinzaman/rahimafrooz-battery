@@ -23,31 +23,30 @@ const CategoryWiseBatteries = () => {
     fetchBatteries();
   }, [category_name]);
 
-  const getBangladeshiBatteriesByBrand = (batteries, brandCode) => {
-    const brandedBatteries = batteries.filter((battery) => battery?.brand_code === brandCode);
-    return brandedBatteries.filter(battery => battery?.country_of_origin === 'Bangladesh');
+  const getProductsByBrand = (batteries, brandCode) => {
+    return batteries.filter((battery) => battery?.brand_code === brandCode);
   };
 
   const brandAndProducts = [
     {
       id: 1,
       brandName: "LUCAS",
-      products: getBangladeshiBatteriesByBrand(batteries, "LUCAS"),
+      products: getProductsByBrand(batteries, "LUCAS"),
     },
     {
       id: 2,
       brandName: "GLOBATT",
-      products: getBangladeshiBatteriesByBrand(batteries, "GLOBATT"),
+      products: getProductsByBrand(batteries, "GLOBATT"),
     },
     {
       id: 3,
       brandName: "DELTA",
-      products: getBangladeshiBatteriesByBrand(batteries, "DELTA"),
+      products: getProductsByBrand(batteries, "DELTA"),
     },
     {
       id: 4,
       brandName: "SPARK",
-      products: getBangladeshiBatteriesByBrand(batteries, "SPARK"),
+      products: getProductsByBrand(batteries, "SPARK"),
     },
   ];
 
@@ -58,7 +57,7 @@ const CategoryWiseBatteries = () => {
     <section>
       <div className="relative">
         <p className="absolute bg-primary top-6 left-12 md:top-12 md:left-20 lg:top-20 lg:left-32 text-regular md:text-large lg:text-xlarge text-base px-3 md:px-6 md:py-3 lg:px-10 lg:py-6">
-          LOCAL PRODUCTS
+          {category_name} Batteries
         </p>
         <img
           src={BangladeshPageBanner}
@@ -87,7 +86,7 @@ const CategoryWiseBatteries = () => {
                 <p className="text-semi_large text-primary font-bold mb-2">
                   {brand.brandName}
                 </p>
-                <div className="flex flex-wrap">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
                   {brand.products.map((product) => (
                     <Product key={product.id} productInfo={product} />
                   ))}
