@@ -116,7 +116,7 @@ const ProductSearchField = () => {
     } else {
       navigate(`/categories/${categoryName}`);
     }
-    // window.location.reload();
+    window.location.reload();
   };
   return (
     <div className="bg-[#005bab] p-1 lg:p-6 rounded-xl border border-background my-10 max-w-screen-2xl lg:mx-auto ">
