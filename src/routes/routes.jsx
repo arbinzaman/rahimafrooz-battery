@@ -22,6 +22,7 @@ import DealerApplicationList from "../pages/Dashboard/DealerApplicationList";
 import CustomersQueries from "../pages/Dashboard/CustomersQueries";
 import AllBatteryDetails from "../pages/Dashboard/AllBatteryDetails";
 import CategoryWiseBatteries from "../pages/Products/CategoryWiseBatteries";
+import ErrorPage from "../pages/ErrorPage";
 
 const routes = createBrowserRouter([
   {
@@ -135,6 +136,10 @@ const routes = createBrowserRouter([
         element: <CustomersQueries />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 
