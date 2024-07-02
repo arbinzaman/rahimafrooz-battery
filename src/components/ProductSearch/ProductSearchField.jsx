@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { IoSearchSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 const ProductSearchField = () => {
+  const [categoryName, setCategoryName] = useState("");
   const [category, setCategory] = useState("");
 
   const [technologies, setTechnologies] = useState([]);
@@ -40,8 +42,9 @@ const ProductSearchField = () => {
   });
 
   // Fetching Technologies
-  const fetchTechnologies = async (category_id) => {
+  const fetchTechnologies = async (category_id, category_name) => {
     setCategory(category_id);
+    setCategoryName(category_name);
     const TECHNOLOGIES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category_id}`;
     const res = await axios.get(TECHNOLOGIES_API_URL);
     setTechnologies(res.data);
@@ -96,15 +99,24 @@ const ProductSearchField = () => {
       "query_datas",
       JSON.stringify(queryDatas || "")
     );
+
+    if(!categoryName){
+      toast.error('Please select a category!');
+      return;
+    }
+
     if (
-      category &&
+      (categoryName === "Passenger Car" ||
+        categoryName === "Commercial Vehicle" ||
+        categoryName === "IPS") &&
       (window.location.href === "http://localhost:5173/" ||
         window.location.href === "https://rahimafrooz-battery.vercel.app/")
     ) {
       navigate("/product-search");
-      return;
+    } else {
+      navigate(`/categories/${categoryName}`);
     }
-    window.location.reload();
+    // window.location.reload();
   };
   return (
     <div className="bg-[#005bab] p-1 lg:p-6 rounded-xl border border-background my-10 max-w-screen-2xl lg:mx-auto ">
@@ -119,11 +131,14 @@ const ProductSearchField = () => {
                 className="select select-bordered bg-secondary text-white font-semibold px-3 py-2 rounded-md w-full"
                 defaultValue={"Hybrid"}
                 onChange={(e) => {
-                  fetchTechnologies(e.target.value);
+                  fetchTechnologies(
+                    e.target.value,
+                    e.target.options[e.target.selectedIndex].text
+                  );
                 }}
               >
                 <option>Select Category</option>
-                {categories.length > 0 ? (
+                {categories?.length > 0 ? (
                   categories?.map((category) => (
                     <option
                       key={category?.category_id}
@@ -154,12 +169,16 @@ const ProductSearchField = () => {
                 defaultValue={"Hybrid"}
               >
                 <option>Hybrid/Non-Hybrid</option>
-                {(technologies.length !== 0 || technologies !== undefined) &&
+                {technologies?.length > 0 ? (
+                  (technologies.length !== 0 || technologies !== undefined) &&
                   technologies?.map((tech, i) => (
                     <option value={tech.technology} key={i}>
                       {tech.technology}
                     </option>
-                  ))}
+                  ))
+                ) : (
+                  <option>Please Wait</option>
+                )}
               </select>
               <small className="text-gray-600">e.g: Non-Hybrid</small>
             </div>
@@ -178,12 +197,16 @@ const ProductSearchField = () => {
                 disabled={category == 1 || category == 2 ? false : true}
               >
                 <option>Select Brand</option>
-                {(vehicleMakes.length !== 0 || vehicleMakes !== undefined) &&
+                {vehicleMakes?.length > 0 ? (
+                  (vehicleMakes.length !== 0 || vehicleMakes !== undefined) &&
                   vehicleMakes?.map((make, i) => (
                     <option key={i} value={make.supported_vehicle_make}>
                       {make.supported_vehicle_make}
                     </option>
-                  ))}
+                  ))
+                ) : (
+                  <option>Please Wait</option>
+                )}
               </select>
               <small className="text-gray-600">e.g: Honda</small>
             </div>
@@ -202,12 +225,16 @@ const ProductSearchField = () => {
                 disabled={category == 1 || category == 2 ? false : true}
               >
                 <option>Select Model</option>
-                {(vehicleModels.length !== 0 || vehicleModels !== undefined) &&
+                {vehicleMakes?.length > 0 ? (
+                  (vehicleModels.length !== 0 || vehicleModels !== undefined) &&
                   vehicleModels?.map((model, i) => (
                     <option key={i} value={model.model}>
                       {model.model}
                     </option>
-                  ))}
+                  ))
+                ) : (
+                  <option>Please Wait</option>
+                )}
               </select>
               <small className="text-gray-600">e.g: Civic</small>
             </div>
@@ -226,12 +253,16 @@ const ProductSearchField = () => {
                 disabled={category == 1 || category == 2 ? false : true}
               >
                 <option>Select Year</option>
-                {(makeYears.length !== 0 || makeYears !== undefined) &&
+                {makeYears?.length > 0 ? (
+                  (makeYears.length !== 0 || makeYears !== undefined) &&
                   makeYears.map((year, i) => (
                     <option key={i} value={year.year}>
                       {year.year}
                     </option>
-                  ))}
+                  ))
+                ) : (
+                  <option>Please Wait</option>
+                )}
               </select>
               <small className="text-gray-600">e.g:2015</small>
             </div>
@@ -247,7 +278,6 @@ const ProductSearchField = () => {
           </div>
         </form>
       </div>
-      {!category && <p className="text-center text-sm text-white">Please select a category to find battery</p>}
     </div>
   );
 };
