@@ -301,7 +301,7 @@ const Header = () => {
                   <li>
                     <a
                       href="/contact-us"
-                      className="block p-0 text-white opacity-80 rounded bg-transparent font-semibold"
+                      className="block p-0 text-white opacity-80 rounded bg-transparent font-semibold  ml-4"
                     >
                       Contact Us
                     </a>
