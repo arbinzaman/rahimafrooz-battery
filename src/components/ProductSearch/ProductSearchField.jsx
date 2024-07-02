@@ -97,8 +97,9 @@ const ProductSearchField = () => {
       JSON.stringify(queryDatas || "")
     );
     if (
-      window.location.href === "http://localhost:5173/" ||
-      window.location.href === "https://rahimafrooz-battery.vercel.app/"
+      category &&
+      (window.location.href === "http://localhost:5173/" ||
+        window.location.href === "https://rahimafrooz-battery.vercel.app/")
     ) {
       navigate("/product-search");
       return;
@@ -246,6 +247,7 @@ const ProductSearchField = () => {
           </div>
         </form>
       </div>
+      {!category && <p className="text-center text-sm text-white">Please select a category to find battery</p>}
     </div>
   );
 };
