@@ -23,8 +23,10 @@ const CategoryWiseBatteries = () => {
     fetchBatteries();
   }, [category_name]);
 
+  console.log(batteries)
+
   const getProductsByBrand = (batteries, brandCode) => {
-    return batteries.filter((battery) => battery?.brand_code === brandCode);
+    return batteries?.filter((battery) => battery?.brand_code === brandCode);
   };
 
   const brandAndProducts = [
