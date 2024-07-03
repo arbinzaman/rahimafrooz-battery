@@ -21,8 +21,8 @@ const Bangladesh = () => {
   }, []);
 
   const getBangladeshiBatteriesByBrand = (batteries, brandCode) => {
-    const brandedBatteries =  batteries.filter((battery) => battery?.brand_code === brandCode);
-    return brandedBatteries.filter(battery=> battery?.country_of_origin === 'Bangladesh');
+    const brandedBatteries =  batteries?.filter((battery) => battery?.brand_code === brandCode);
+    return brandedBatteries?.filter(battery=> battery?.country_of_origin === 'Bangladesh');
   };
 
   const brandAndProducts = [
