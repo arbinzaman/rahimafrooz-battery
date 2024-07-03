@@ -31,7 +31,7 @@ const ProductSearchField = () => {
   const navigate = useNavigate();
 
   // Fetching Categories
-  const CATEGORIES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/categories`;
+  const CATEGORIES_API_URL = `${import.meta.env.VITE_BASE_URL}/categories`;
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
@@ -45,7 +45,7 @@ const ProductSearchField = () => {
   const fetchTechnologies = async (category_id, category_name) => {
     setCategory(category_id);
     setCategoryName(category_name);
-    const TECHNOLOGIES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category_id}`;
+    const TECHNOLOGIES_API_URL = `${import.meta.env.VITE_BASE_URL}/filtered-vehicle-batteries/${category_id}`;
     const res = await axios.get(TECHNOLOGIES_API_URL);
     setTechnologies(res.data);
   };
@@ -53,7 +53,7 @@ const ProductSearchField = () => {
   // Fetching Brands
   const fetchBrands = async (technology) => {
     setTechnology(technology);
-    const VEHICLE_MAKES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}`;
+    const VEHICLE_MAKES_API_URL = `${import.meta.env.VITE_BASE_URL}/filtered-vehicle-batteries/${category}/${technology}`;
     const res = await axios.get(VEHICLE_MAKES_API_URL);
     setVehicleMakes(res.data);
   };
@@ -61,7 +61,7 @@ const ProductSearchField = () => {
   // Fetching Models according to brands
   const fetchModels = async (brand) => {
     setBrand(brand);
-    const MODELS_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}`;
+    const MODELS_API_URL = `${import.meta.env.VITE_BASE_URL}/filtered-vehicle-batteries/${category}/${technology}/${brand}`;
     const res = await axios.get(MODELS_API_URL);
     setVehicleModels(res.data);
   };
@@ -69,14 +69,14 @@ const ProductSearchField = () => {
   // Fetching Make Years
   const fetchMakeYears = async (model) => {
     setModel(model);
-    const MAKE_YEARS_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}/${model}`;
+    const MAKE_YEARS_API_URL = `${import.meta.env.VITE_BASE_URL}/filtered-vehicle-batteries/${category}/${technology}/${brand}/${model}`;
     const res = await axios.get(MAKE_YEARS_API_URL);
     setMakeYears(res.data);
   };
 
   // Fetching Batteries
   const fetchBatteries = async (makeYear) => {
-    const BATTERY_SHORT_CODES_API_URL = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries/${category}/${technology}/${brand}/${model}/${makeYear}`;
+    const BATTERY_SHORT_CODES_API_URL = `${import.meta.env.VITE_BASE_URL}/filtered-vehicle-batteries/${category}/${technology}/${brand}/${model}/${makeYear}`;
     const res = await axios.get(BATTERY_SHORT_CODES_API_URL);
     setShortCodes(res.data);
   };
@@ -100,20 +100,18 @@ const ProductSearchField = () => {
       JSON.stringify(queryDatas || "")
     );
 
-    if(!categoryName){
-      toast.error('Please select a category!');
+    if (!categoryName) {
+      toast.error("Please select a category!");
       return;
     }
 
     if (
       (categoryName === "Passenger Car" ||
         categoryName === "Commercial Vehicle" ||
-        categoryName === "IPS") &&
-      (window.location.href === "http://localhost:5173/" ||
-        window.location.href === "https://rahimafrooz-battery.vercel.app/")
+        categoryName === "IPS")
     ) {
       navigate("/product-search");
-    } else {
+    } else{
       navigate(`/categories/${categoryName}`);
     }
     window.location.reload();
