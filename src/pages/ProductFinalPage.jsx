@@ -14,7 +14,7 @@ const ProductFinalPage = () => {
     queryFn: async () => {
       // console.log("Fetching data...");
       const res = await fetch(
-        `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries/${shortCode}`
+        `${import.meta.env.VITE_BASE_URL}/batteries/${shortCode}`
       );
       const data = await res.json();
       // console.log("Data fetched:", data);

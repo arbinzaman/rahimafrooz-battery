@@ -8,7 +8,7 @@ import { LuRefreshCcw } from "react-icons/lu";
 
 const AllBatteryDetails = () => {
   const [selectedIds, setSelectedIds] = useState([]);
-  const url = `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries`;
+  const url = `${import.meta.env.VITE_BASE_URL}/batteries`;
 
   const {
     data: allBatteryDetails = [],

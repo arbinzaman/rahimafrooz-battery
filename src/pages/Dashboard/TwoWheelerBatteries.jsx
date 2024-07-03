@@ -10,7 +10,7 @@ const TwoWheelerBatteries = () => {
   const [filteredBatteries, setFilteredBatteries] = useState([]);
   //   const [lastFetched, setLastFetched] = useState(null);
 
-  const url = `https://rahimafrooz-battery-backend.vercel.app/api/v1/filtered-vehicle-batteries`;
+  const url = `${import.meta.env.VITE_BASE_URL}/filtered-vehicle-batteries`;
 
   const {
     data: twoWheelerBatteries = [],
