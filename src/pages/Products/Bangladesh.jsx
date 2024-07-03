@@ -48,6 +48,7 @@ const Bangladesh = () => {
     },
   ];
 
+  console.log(brandAndProducts)
   return (
     <section>
       <div className="relative">
