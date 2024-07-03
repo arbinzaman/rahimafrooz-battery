@@ -100,7 +100,6 @@ const HomeGoogleMap = () => {
       ))}
       <section>
         <div className="relative">
-
           <div className="mx-auto hidden xl:block" style={{ maxWidth: "780px" }}>
             <div className="max-w-7xl bg-sky-700 p-3 pl-6 pr-6 rounded-xl mt-56">
               <div className="bg-sky-100 rounded-3xl p-8">

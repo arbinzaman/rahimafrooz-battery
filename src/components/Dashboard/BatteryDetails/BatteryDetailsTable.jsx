@@ -24,7 +24,7 @@ const BatteryDetailsTable = ({ prompts }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries/${short_code}`
+        `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch battery details");

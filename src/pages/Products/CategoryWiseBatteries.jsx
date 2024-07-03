@@ -15,7 +15,7 @@ const CategoryWiseBatteries = () => {
     const fetchBatteries = async () => {
       setIsLoading(true);
       const response = await axios.get(
-        `https://rahimafrooz-battery-backend.vercel.app/api/v1/categories/${category_name}`
+        `${import.meta.env.VITE_BASE_URL}/categories/${category_name}`
       );
       setBatteries(response.data);
       setIsLoading(false);

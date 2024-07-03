@@ -12,7 +12,7 @@ const Bangladesh = () => {
     const fetchBatteries = async () => {
       setIsLoading(true);
       const batteries = await axios.get(
-        `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries`
+        `${import.meta.env.VITE_BASE_URL}/batteries`
       );
       setBatteries(batteries.data);
       setIsLoading(false);

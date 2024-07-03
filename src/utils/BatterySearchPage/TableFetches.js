@@ -3,10 +3,13 @@ import axios from "axios";
 // Fetching batteries using short codes.
 export const fetchBatteries = async (shortCodes) => {
   try {
+    
     const response = await axios.post(
-      "https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries/for-display",
+      `${import.meta.env.VITE_BASE_URL}/batteries/for-display`,
+      // `http://localhost:8000/api/v1/batteries/for-display`,
       shortCodes.map(codeObj => codeObj.short_code)
     );
+    
     return response.data;
   } catch (error) {
     console.error("Error fetching batteries:", error);
