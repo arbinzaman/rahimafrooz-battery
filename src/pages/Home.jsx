@@ -32,6 +32,7 @@ import Loader from "../components/shared/Loaders/Loader";
 import { useLoading } from "../contexts/LoadingContext";
 import ProductSearchField from "../components/ProductSearch/ProductSearchField";
 import { Link } from "react-router-dom";
+import { allDeviceMaxWidth } from "../styles/maxWidth";
 
 const Home = () => {
   const { isLoading, setIsLoading } = useLoading();
@@ -145,8 +146,9 @@ const Home = () => {
 
   const settingsForProducts = {
     dots: false,
+    arrows:false, 
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
     speed: 1000,
@@ -157,8 +159,9 @@ const Home = () => {
 
   const settingsForCertificatesLarge = {
     dots: false,
+    arrows: false,
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     speed: 1000,
@@ -169,8 +172,9 @@ const Home = () => {
 
   const settingsForCertificatesSmall = {
     dots: false,
+    arrows: false,
     infinite: true,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     speed: 1000,
@@ -463,15 +467,15 @@ const Home = () => {
               onEnter={() => setCounterOn(true)}
               onExit={() => setCounterOn(false)}
             >
-              <div className="grid grid-cols-4 gap-4 text-center text-white pt-20">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 text-center text-white py-10">
                 <div>
                   <img
                     src={EstablishedIcon}
                     alt="icon"
                     className="w-12 h-12 mt-1 mx-auto"
                   />
-                  <p className="lg:text-xl text-xs pt-5 pb-5">ESTABLISHED IN</p>
-                  <h1 className="text-xl lg:text-5xl font-bold">1954</h1>
+                  <p className="text-xl pt-5 pb-5">ESTABLISHED IN</p>
+                  <h1 className="text-3xl lg:text-5xl font-bold">1954</h1>
                 </div>
                 <div>
                   <img
@@ -485,10 +489,10 @@ const Home = () => {
                   <span className="text-xs hidden lg:block">
                     NATIONAL & INTERNATIONAL
                   </span>
-                  <p className="uppercase text-xs pt-5 lg:hidden">
-                    presence in countries
+                  <p className="uppercase text-xl pt-5 lg:hidden">
+                    Presence in Countries
                   </p>
-                  <h1 className="text-xl lg:text-5xl font-bold pt-5">
+                  <h1 className="text-3xl lg:text-5xl font-bold pt-5">
                     {counterOn && (
                       <CountUp start={0} end={75} duration={2} delay={0} />
                     )}
@@ -500,8 +504,8 @@ const Home = () => {
                     alt="icon"
                     className="w-16 h-16 mx-auto"
                   />
-                  <p className="lg:text-xl text-xs pt-3 pb-5">DEALERS</p>
-                  <h1 className="text-xl lg:text-5xl font-bold">
+                  <p className="text-xl pt-3 pb-5">DEALERS</p>
+                  <h1 className="text-3xl lg:text-5xl font-bold">
                     {counterOn && (
                       <CountUp start={0} end={1000} duration={2} delay={0} />
                     )}
@@ -513,8 +517,8 @@ const Home = () => {
                     alt="icon"
                     className="w-12 h-12 mt-1 mx-auto"
                   />
-                  <p className="lg:text-xl text-xs pt-5 pb-5">PRODUCT IN-USE</p>
-                  <h1 className="text-xl lg:text-5xl font-bold">
+                  <p className="text-xl pt-5 pb-5">PRODUCT IN-USE</p>
+                  <h1 className="text-3xl lg:text-5xl font-bold">
                     {counterOn && (
                       <CountUp start={0} end={1000} duration={2} delay={0} />
                     )}
@@ -527,7 +531,7 @@ const Home = () => {
       </section>
       <section>
         <div className="max-w-screen-xl mx-auto">
-          <div className="grid grid-cols-3 gap-4 mr-4 ml-4 lg:gap-16 text-center text-white pt-8 pb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mr-4 ml-4 lg:gap-16 text-center text-white pt-8 pb-8">
             <div className="shadow-2xl">
               <img src={whyChoose} alt="RAHIMAFROOZ" />
             </div>
@@ -575,7 +579,7 @@ const Home = () => {
         </div>
       </section>
       {/* For Large Devices */}
-      <section className="hidden lg:block">
+      <section className={allDeviceMaxWidth + "hidden lg:block"}>
         <div className="text-center mb-16">
           <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 pt-8 pb-8">
             CERTIFICATIONS
@@ -599,7 +603,7 @@ const Home = () => {
         </div>
       </section>
       {/* For Small Devices */}
-      <section className="lg:hidden">
+      <section className={allDeviceMaxWidth + "lg:hidden"}>
         <div className="text-center mb-16">
           <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 pt-16 pb-16">
             CERTIFICATIONS
@@ -609,7 +613,7 @@ const Home = () => {
               {homeCertificates?.map((certificate) => (
                 <div key={certificate?.id}>
                   <img
-                    className="max-w-60 max-h-20 mx-auto"
+                    className="max-w-60 max-h-60 mx-auto"
                     src={certificate?.certificateImage}
                     alt={certificate?.certificateAlt}
                   />

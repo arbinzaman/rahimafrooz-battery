@@ -1,6 +1,5 @@
 .icon-BG{
     width: 100%;
-    height: 680px;
     background-image: url('../assets/images/HomePage/Icon-Bg.png'), url('../assets/images/HomePage/Icon-Bg-texture.png');
     background-blend-mode: darken;
     background-repeat: round;
@@ -8,6 +7,7 @@
     top: -32px;
     z-index: 10;
     position: relative;
+    padding-bottom: 20px;
 }
 .icon-BG .slick-prev{
     left: -26px;
@@ -42,9 +42,8 @@
 
 .home-counter{
     width: 100%;
-    height: 360px;
     background-color: #005cab;
-    background-image: url('../assets/images/HomePage/Counter-Bg-texture.png');
+    background-image: url('../assets/images/HomePage/Icon-Bg-texture.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: inherit;

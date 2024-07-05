@@ -85,7 +85,7 @@ const Manufacturing = () => {
             <p className="border border-b-primary"></p>
           </div>
           {/* Img 8 */}
-          <div className="grid mt-20 lg:mt-32 lg:mb-44">
+          <div className="grid mt-20 lg:mt-32 lg:mb-">
             <div>
               <img src={Image8} alt="" width={"100%"} />
             </div>
@@ -99,7 +99,7 @@ const Manufacturing = () => {
               for storage, sorting, loading and unloading of ﬁnished goods and
               raw materials for a complete packaging solution.
             </p>
-            <p className="border border-b-primary"></p>
+            <p className="border border-b-primary lg:hidden"></p>
           </div>
         </section>
         {/* Right Side */}
@@ -160,7 +160,7 @@ const Manufacturing = () => {
             <p className="border border-b-primary"></p>
           </div>
           {/* Img 7 */}
-          <div className="grid my-20 lg:my-32 lg:mb-44">
+          <div className="grid my-20 lg:my-32 mb-0 lg:mb-44">
             <div>
               <img src={Image7} alt="" width={"100%"} />
             </div>
@@ -175,7 +175,7 @@ const Manufacturing = () => {
               battery formation for each battery. The conversion of lead dioxide
               after charging is over 95%.
             </p>
-            <p className="border border-b-primary"></p>
+            <p className="hidden lg:block border border-b-primary"></p>
           </div>
         </section>
       </section>
