@@ -68,15 +68,15 @@ const StoragePower = () => {
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
             <div>
               <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
-                <p className="font-semibold">Rahimafrooz Batteries Ltd.</p>
-                <p className="">
+                <p className="text-medium font-semibold">Rahimafrooz Batteries Ltd.</p>
+                <p className="py-2">
                   RBL’s modern manufacturing plant is also equipped with
                   lead-recycling management system. The plant has the capacity
                   to manufacture over a 2.5 million battery units per annum for
                   automotive and other applications.
                 </p>
               </div>
-              <p className="text-right text-xxsmall text-primary m-2">
+              <p className="text-right text-small text-primary m-2">
                 Rahimafrooz Batteries Factory
               </p>
             </div>
@@ -91,8 +91,8 @@ const StoragePower = () => {
             </div>
             <div>
               <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
-                <p className="font-semibold">Rahimafrooz Globatt Ltd.</p>
-                <p className="">
+                <p className="text-medium font-semibold">Rahimafrooz Globatt Ltd.</p>
+                <p className="py-2">
                   The RGL factory is equipped with modern SLI battery manu-
                   facturing facilities for which raw materials are sourced from
                   Korea, Singapore, Australia and Europe. With a produc- tion
@@ -100,7 +100,7 @@ const StoragePower = () => {
                   largest battery export plant in South Asia.
                 </p>
               </div>
-              <p className="text-right lg:text-left text-xxsmall text-primary m-2">
+              <p className="text-right lg:text-left text-small text-primary m-2">
                 Rahimafrooz Globatt Factory
               </p>
             </div>
@@ -109,15 +109,15 @@ const StoragePower = () => {
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
             <div>
               <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
-                <p className="font-semibold">Rahimafrooz Accumulators Ltd.</p>
-                <p className="">
+                <p className="text-medium font-semibold">Rahimafrooz Accumulators Ltd.</p>
+                <p className="py-2">
                   RAL is equipped to manufacture 330 million Amp. Hour of
                   tubular industrial batteries using low maintenance and VRLA
                   technologies in 2V, 6V and 12V units, catering to motive,
                   traction, stationary and other backup applications.
                 </p>
               </div>
-              <p className="text-right text-xxsmall text-primary m-2">
+              <p className="text-right text-small text-primary m-2">
                 Rahimafrooz Accumulators Factory.
               </p>
             </div>

@@ -6,7 +6,7 @@ const Product = ({ productInfo }) => {
   return (
     <section className="w-auto flex flex-col justify-center items-center mr-5 py-2">
       <div className="border border-border_primary">
-        <img src={imgurls} alt="" className="h-60" />
+        <img src={imgurls} alt="" className="w-80 h-60" />
       </div>
       <div className="flex flex-col justify-center items-center">
         <p className="text-small text-black my-1">{brand}</p>
