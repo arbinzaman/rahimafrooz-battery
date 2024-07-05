@@ -6,8 +6,8 @@ import { FaLinkedin } from "react-icons/fa6";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import { sample } from "../../utils/Products/sample";
 const FounderAndBoardMembers = () => {
-  console.log(sample)
-  
+  console.log(sample);
+
   return (
     <section className="">
       <div>
@@ -15,13 +15,14 @@ const FounderAndBoardMembers = () => {
       </div>
 
       <div className={`${allDeviceMaxWidth} text-justify`}>
-        <div className="mx-3">
-          <div className="grid grid-cols-1 lg:grid-cols-[300px_minmax(30%,70%)] gap-5 justify-items-center mt-20">
+        <p className="text-2xl lg:text-4xl font-bold text-primary my-4">Board Members & Management</p>
+        <div className="bg-[#e6f2ff] p-5 my-5 shadow-sm">
+          <div className="none lg:flex gap-10">
             <div className="flex justify-center">
-              <img src={img2} className="w-3/4 md:w-full" />
+              <img src={img2} className="h-3/4" />
             </div>
             <div className="w-full">
-              <h1 className="text-semi_large font-bold text-blue-900">
+              <h1 className="text-semi_large font-bold text-primary">
                 A.C. ABDUR RAHIM
               </h1>
               <div className="flex flex-col justify-center">
@@ -57,15 +58,6 @@ const FounderAndBoardMembers = () => {
               </div>
             </div>
           </div>
-
-          <p className="text-regular text-black font-medium my-10">
-            Today’s Rahimafrooz is a dream that Mr. A C Abdur Rahim turned into
-            reality. The business growth, the social commitment, and the great
-            diversity in today’s Rahimafrooz are the outcome of one lifetime of
-            hard work and compassion from Mr. Rahim. He breathed his last on
-            March 14, 1982 in London. But his work and his virtue have kept him
-            alive forever. May Allah grant him with eternal peace.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">

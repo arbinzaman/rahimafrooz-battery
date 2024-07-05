@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Product from '../../components/Products/Product';
-import { Hourglass } from 'react-loader-spinner';
-import axios from 'axios';
-import BangladeshPageBanner from '../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg';
-import { allDeviceMaxWidth } from '../../styles/maxWidth';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Product from "../../components/Products/Product";
+import { Hourglass } from "react-loader-spinner";
+import axios from "axios";
+import BangladeshPageBanner from "../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
+import { allDeviceMaxWidth } from "../../styles/maxWidth";
 
 const CategoryWiseBatteries = () => {
   const { category_name } = useParams();
@@ -23,7 +23,7 @@ const CategoryWiseBatteries = () => {
     fetchBatteries();
   }, [category_name]);
 
-  console.log(`All batteries of ${category_name} : `,batteries);
+  console.log(`All batteries of ${category_name} : `, batteries);
 
   const getProductsByBrand = (batteries, brandCode) => {
     return batteries?.filter((battery) => battery?.brand_code === brandCode);
@@ -52,9 +52,11 @@ const CategoryWiseBatteries = () => {
     },
   ];
 
-  console.log(brandAndProducts)
+  console.log(brandAndProducts);
   // Filter out brands with no products
-  const filteredBrandAndProducts = brandAndProducts.filter(brand => brand.products.length > 0);
+  const filteredBrandAndProducts = brandAndProducts.filter(
+    (brand) => brand.products.length > 0
+  );
 
   return (
     <section>
@@ -86,9 +88,12 @@ const CategoryWiseBatteries = () => {
           <>
             {filteredBrandAndProducts.map((brand) => (
               <div className="my-10" key={brand.id}>
-                <p className="text-semi_large text-primary font-bold mb-2">
-                  {brand.brandName}
-                </p>
+                <div>
+                  <p className="text-semi_large text-primary font-bold mb-2">
+                    {brand?.brandName}
+                  </p>
+                  <p className="border border-primary mb-4"></p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
                   {brand.products.map((product) => (
                     <Product key={product.id} productInfo={product} />

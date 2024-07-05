@@ -21,8 +21,12 @@ const Bangladesh = () => {
   }, []);
 
   const getBangladeshiBatteriesByBrand = (batteries, brandCode) => {
-    const brandedBatteries =  batteries?.filter((battery) => battery?.brand_code === brandCode);
-    return brandedBatteries?.filter(battery=> battery?.country_of_origin === 'Bangladesh');
+    const brandedBatteries = batteries?.filter(
+      (battery) => battery?.brand_code === brandCode
+    );
+    return brandedBatteries?.filter(
+      (battery) => battery?.country_of_origin === "Bangladesh"
+    );
   };
 
   const brandAndProducts = [
@@ -48,7 +52,7 @@ const Bangladesh = () => {
     },
   ];
 
-  console.log(brandAndProducts)
+  console.log(brandAndProducts);
   return (
     <section>
       <div className="relative">
@@ -79,9 +83,12 @@ const Bangladesh = () => {
           <>
             {brandAndProducts?.map((brand) => (
               <div className="my-10" key={brand?.id}>
-                <p className="text-semi_large text-primary font-bold mb-2">
-                  {brand?.brandName}
-                </p>
+                <div>
+                  <p className="text-semi_large text-primary font-bold mb-2">
+                    {brand?.brandName}
+                  </p>
+                  <p className="border border-primary mb-4"></p>
+                </div>
                 <ProductsCarousel products={brand?.products} />
               </div>
             ))}

@@ -6,8 +6,9 @@ import Achievement4 from "../../assets/images/AboutPage/Achievement-Image-04.png
 import AwardSlider from "../../components/AboutPage/AwardSlider";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 const SpecialAwards = () => {
+  
   return (
-    <section className="">
+    <section className="bg-cross-pattern">
       <div>
         <img src={SpecialAwardBanner} alt="" />
       </div>
@@ -15,7 +16,7 @@ const SpecialAwards = () => {
         className={`${allDeviceMaxWidth} grid grid-cols-1 lg:grid-cols-2 gap-20 items-start my-5 text-justify`}
       >
         {/* Left Side */}
-        <section>
+        <section className="text-black">
           <div className=" bg-primary text-left p-10 lg:p-20 leading-relaxed">
             <p className="flex flex-col text-semi_large lg:text-large text-base font-bold">
               <span className="mb-5">Special Awards &</span>{" "}
@@ -48,7 +49,7 @@ const SpecialAwards = () => {
           </div>
         </section>
         {/* Right Side */}
-        <section>
+        <section className="text-black">
           {/* Achievement 1 */}
           <div className="lg:mb-16">
             <div>
@@ -62,7 +63,7 @@ const SpecialAwards = () => {
             <p className="border border-b-primary"></p>
           </div>
           {/* Achievement 3 */}
-          <div className="grid my-20 lg:my-32">
+          <div className="grid mt-20 mb-10 lg:my-32">
             <div>
               <img src={Achievement3} alt="" width={"100%"} />
             </div>
@@ -76,7 +77,7 @@ const SpecialAwards = () => {
             <p className="border border-b-primary"></p>
           </div>
         </section>
-      </section>
+      </section>  
       <section className={allDeviceMaxWidth}>
         <AwardSlider />
       </section>

@@ -3,6 +3,7 @@ import FindDealerGoogleMap from '../components/FindDealer/FindDealerGoogle.Map'
 
 import DealerOne from "../assets/images/FindDealer/Image-01.png"
 import DealerTwo from "../assets/images/FindDealer/Image-02.png"
+import { allDeviceMaxWidth } from '../styles/maxWidth'
 
 const FindDealer = () => {
     return (
@@ -10,12 +11,12 @@ const FindDealer = () => {
             <section>
                 <FindDealerGoogleMap />
             </section>
-            <section>
-                <div className='max-w-7xl mx-auto'>
+            <section className={allDeviceMaxWidth}>
+                <div className='max-w-7xl mx-auto my-10'>
                     <h1 className='text-sky-700 font-normal text-3xl'>Search Results</h1>
                     <p className='text-sky-700 font-light text-lg'>02 Dealers founded</p>
-                    <div className='divider text-sky-700 divider-primary'></div>
-                    <div className='grid lg:grid-cols-2 grid-cols-1 gap-4 pt-4 pb-8'>
+                    <p className='border border-primary mt-8'></p>
+                    <div className='grid lg:grid-cols-2 grid-cols-1 pt-4 gap-4 pb-8'>
                         <div className='mt-14 border-2 border-sky-700 p-8'>
                             <h1 className='text-sky-700 font-bold text-lg'>Dealer Name: New Saika Motors</h1>
                             <h2 className='text-sky-700 font-normal text-lg'>Address : Hazi Kalu Miah Market, C & B Road, Narsingdi.</h2>

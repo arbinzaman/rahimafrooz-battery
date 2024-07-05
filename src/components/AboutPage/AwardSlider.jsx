@@ -9,13 +9,13 @@ import Standard_Charterd_Financial_Express_CSR_Award from "../../assets/images/A
 import Superbrands_Bangladesh_Choice_2020_21 from "../../assets/images/AboutPage/Awards/Superbrands_Bangladesh_Choice_2020_21.png";
 const AwardSlider = () => {
   var settings = {
-    dots: false,
+    dots: true,
+    arrows:false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
-    arrows: true,
     autoplay: true,
     autoplaySpeed: 3000,
     cssEase: "linear",
@@ -26,7 +26,7 @@ const AwardSlider = () => {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
-          dots: false,
+          dots: true,
           autoplay: true,
           autoplaySpeed: 3000,
           cssEase: "linear",
@@ -76,7 +76,7 @@ const AwardSlider = () => {
             >
               <img
                 src={award.imgSrc}
-                className="h-40 md:h-52 lg:h-72 border-8 border-primary"
+                className="h-60 md:h-68 lg:h-72 "
                 alt="Product Image"
               />
               <p className="text-center font-semibold text-small w-3/4 py-2">{award.title}</p>
