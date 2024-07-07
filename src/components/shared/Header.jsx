@@ -179,7 +179,7 @@ const Header = () => {
                   <input
                     type="text"
                     id="search-navbar"
-                    className="search block w-full pl-10 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                    className="search block w-full pl-10 text-sm border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Search"
                   />
                 </div>
@@ -316,7 +316,7 @@ const Header = () => {
         {/* sidebar mobile menu */}
         <div
           className={clsx(
-            "absolute z-50 h-full w-screen lg:hidden bg-black/50  backdrop-blur-sm top-0 right-0  -translate-x-full  transition-all ",
+            "fixed z-50 h-full w-screen lg:hidden bg-black/50  backdrop-blur-sm top-0 right-0  -translate-x-full  transition-all ",
             isSideMenuOpen && "translate-x-0"
           )}
         >
