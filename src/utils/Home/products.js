@@ -8,7 +8,7 @@ import POWERX_N50_GREEN from "../../assets/images/HomePage/Brands/POWERX_N50_GRE
 import DELTA_N50_BLACK from "../../assets/images/HomePage/Brands/DELTA_N50_BLACK.png";
 import OPTUS_N50_BLACK from "../../assets/images/HomePage/Brands/OPTUS_N50_BLACK.png";
 
-export const homeProducts = [
+export const brandProducts = [
     {
         id: 1,
         productImage: GLOBATT_ACE_N50_GREEN,
