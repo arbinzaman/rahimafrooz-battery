@@ -131,7 +131,7 @@ const HomeGoogleMap = () => {
           </div>
 
           <div className="slider-container w-10/12 mx-auto xl:hidden max-w-sm">
-            <div className="bg-sky-100 p-6 rounded-lg mx-auto mt-32" style={{ maxWidth: "21.5rem" }}>
+            <div className="bg-sky-100 p-6 rounded-lg mx-auto mt-56" style={{ maxWidth: "21.5rem" }}>
               <div className="grid grid-cols-2 gap-2">
                 <select className="select select-bordered uppercase bg-primary text-sky-100 mr-6 w-36 text-xs">
                   <option disabled selected>DIVISION</option>
