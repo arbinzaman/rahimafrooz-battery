@@ -31,7 +31,7 @@ export default {
         'roboto': ['Roboto', 'sans-serif'],
       },
       backgroundImage: {
-        'cross-pattern': "url('src/assets/images/Texture_more_visible.png')",
+        'cross-pattern': "url('src/assets/images/Texture2.png')",
         'circuit-texture': "url('src/assets/images/Circuit-texture.png')",
       }
     },
