@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from "react-slick";
-import Car from "../../assets/images/HomePage/Icons/CAR.png";
+import Car from "../../assets/images/HomePage/Icons/Passenger-Car.png";
 import CommercialVehicle from "../../assets/images/HomePage/Icons/Commercial-Vehicle.png";
 import ThreeWheeler from "../../assets/images/HomePage/Icons/Three-Wheeler.png";
 import Motorcycle from "../../assets/images/HomePage/Icons/Motorcycle.png";
@@ -40,7 +40,7 @@ const HomeFindBattery = () => {
                         </Link>
                         <Link to={`/categories/Commercial Vehicle`}>
                             <img
-                                className="w-28 mx-auto pt-1 pb-2"
+                                className="w-32 mx-auto"
                                 src={CommercialVehicle}
                                 alt="car"
                             />
@@ -48,7 +48,7 @@ const HomeFindBattery = () => {
                         </Link>
                         <Link to={`/categories/Three Wheeler`}>
                             <img
-                                className="w-24 mx-auto pt-2 pb-4"
+                                className="w-32 mx-auto"
                                 src={ThreeWheeler}
                                 alt="car"
                             />
@@ -56,7 +56,7 @@ const HomeFindBattery = () => {
                         </Link>
                         <Link to={`/categories/Motorcycle`}>
                             <img
-                                className="w-24 mx-auto pt-2 pb-4"
+                                className="w-32 mx-auto"
                                 src={Motorcycle}
                                 alt="car"
                             />
@@ -68,7 +68,7 @@ const HomeFindBattery = () => {
                         </Link>
                         <Link to={`/categories/Special Purpose`}>
                             <img
-                                className="w-28 mx-auto pt-1 pb-2"
+                                className="w-32 mx-auto"
                                 src={SpecialPurpose}
                                 alt="car"
                             />
@@ -79,17 +79,12 @@ const HomeFindBattery = () => {
                             <h1 className="text-sky-100 text-xl">IPS</h1>
                         </div>
                         <Link to={`/categories/Solar`}>
-                            <img className="w-36 mx-auto" src={Solar} alt="car" />
-                            <h1
-                                style={{ marginTop: "-12px", marginLeft: "-10px" }}
-                                className="text-sky-100 text-xl"
-                            >
-                                Solar
-                            </h1>
+                            <img className="w-32 mx-auto" src={Solar} alt="car" />
+                            <h1 className="text-sky-100 text-xl">Solar</h1>
                         </Link>
                         <Link to={`/categories/Tractor`}>
                             <img
-                                className="w-28 mx-auto pt-1 pb-2"
+                                className="w-32 mx-auto"
                                 src={Tractor}
                                 alt="car"
                             />
@@ -97,7 +92,7 @@ const HomeFindBattery = () => {
                         </Link>
                         <Link to={`/categories/Golf Cart`}>
                             <img
-                                className="w-28 mx-auto pt-1 pb-2"
+                                className="w-32 mx-auto"
                                 src={GolfCart}
                                 alt="car"
                             />
@@ -109,7 +104,7 @@ const HomeFindBattery = () => {
                         </Link>
                         <Link to={`/categories/Electric Vehicle`}>
                             <img
-                                className="w-28 mx-auto pt-1 pb-2"
+                                className="w-32 mx-auto"
                                 src={ElectricVehicle}
                                 alt="car"
                             />
@@ -120,7 +115,7 @@ const HomeFindBattery = () => {
                 </div>
                 {/* Mobile screen */}
                 <div className="slider-container w-10/12 mx-auto xl:hidden max-w-sm">
-                    <h1 className="uppercase text-center text-lg text-sky-100 font-semibold pt-8 pb-8">
+                    <h1 className="uppercase text-center text-lg text-sky-100 font-semibold pt-8 pb-2">
                         Find The Right Battery
                     </h1>
                     <Slider {...settingsForIconSmallScreen}>
@@ -132,7 +127,7 @@ const HomeFindBattery = () => {
                                 </Link>
                                 <Link to={`/categories/Commercial Vehicle`}>
                                     <img
-                                        className="w-20 mx-auto pt-1 pb-2"
+                                        className="w-24 mx-auto"
                                         src={CommercialVehicle}
                                         alt="car"
                                     />
@@ -140,7 +135,7 @@ const HomeFindBattery = () => {
                                 </Link>
                                 <Link to={`/categories/Three Wheeler`}>
                                     <img
-                                        className="w-16 mx-auto pt-2 pb-4"
+                                        className="w-24 mx-auto"
                                         src={ThreeWheeler}
                                         alt="car"
                                     />
@@ -148,7 +143,7 @@ const HomeFindBattery = () => {
                                 </Link>
                                 <Link to={`/categories/Motorcycle`}>
                                     <img
-                                        className="w-16 mx-auto pt-2 pb-4"
+                                        className="w-24 mx-auto"
                                         src={Motorcycle}
                                         alt="car"
                                     />
@@ -160,7 +155,7 @@ const HomeFindBattery = () => {
                                 </Link>
                                 <Link to={`/categories/Special Purpose`}>
                                     <img
-                                        className="w-20 mx-auto pt-1 pb-2"
+                                        className="w-24 mx-auto"
                                         src={SpecialPurpose}
                                         alt="car"
                                     />
@@ -175,17 +170,12 @@ const HomeFindBattery = () => {
                                     <h1 className="text-sky-100 text-sm">IPS</h1>
                                 </div>
                                 <Link to={`/categories/Solar`}>
-                                    <img className="w-36 mx-auto" src={Solar} alt="car" />
-                                    <h1
-                                        style={{ marginLeft: "-10px" }}
-                                        className="text-sky-100 text-sm"
-                                    >
-                                        Solar
-                                    </h1>
+                                    <img className="w-24 mx-auto" src={Solar} alt="car" />
+                                    <h1 className="text-sky-100 text-sm">Solar</h1>
                                 </Link>
                                 <Link to={`/categories/Tractor`}>
                                     <img
-                                        className="w-20 mx-auto pt-2 pb-2"
+                                        className="w-24 mx-auto"
                                         src={Tractor}
                                         alt="car"
                                     />
@@ -193,19 +183,19 @@ const HomeFindBattery = () => {
                                 </Link>
                                 <Link to={`/categories/Golf Cart`}>
                                     <img
-                                        className="w-20 mx-auto pt-1 pb-2"
+                                        className="w-24 mx-auto"
                                         src={GolfCart}
                                         alt="car"
                                     />
                                     <h1 className="text-sky-100 text-sm">Golf Cart</h1>
                                 </Link>
                                 <Link to={`/categories/Forklift`}>
-                                    <img className="w-28 mx-auto" src={Forklift} alt="car" />
+                                    <img className="w-24 mx-auto" src={Forklift} alt="car" />
                                     <h1 className="text-sky-100 text-sm">Forklift</h1>
                                 </Link>
                                 <Link to={`/categories/Electric Vehicle`}>
                                     <img
-                                        className="w-20 mx-auto pt-1 pb-2"
+                                        className="w-24 mx-auto"
                                         src={ElectricVehicle}
                                         alt="car"
                                     />
@@ -214,7 +204,9 @@ const HomeFindBattery = () => {
                             </div>
                         </div>
                     </Slider>
-                    <ProductSearchField />
+                    <div className='pt-8'>
+                        <ProductSearchField />
+                    </div>
                 </div>
             </div>
         </section>

@@ -1,5 +1,6 @@
 import React from 'react'
 import homeMotionGif from "../../assets/images/HomePage/rahimafrooz-motion-Gif.gif";
+import motionMobileGif from "../../assets/images/HomePage/motion-mobile-Gif.gif";
 import "../../styles/Home.css"
 
 const HomeMotionGif = () => {
@@ -8,8 +9,11 @@ const HomeMotionGif = () => {
             className="pt-16 pb-16 relative"
             style={{ top: "-32px", backgroundColor: "#fbfbfb" }}
         >
-            <div className="text-center max-w-7xl mx-auto">
+            <div className="hidden lg:block text-center max-w-7xl mx-auto">
                 <img src={homeMotionGif} alt="video" />
+            </div>
+            <div className="lg:hidden text-center max-w-7xl mx-auto">
+                <img src={motionMobileGif} alt="video" />
             </div>
         </section>
     )
