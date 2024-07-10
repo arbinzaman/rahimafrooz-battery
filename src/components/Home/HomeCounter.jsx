@@ -13,7 +13,7 @@ import "../../styles/Home.css";
 const HomeCounter = () => {
     const [counterOn, setCounterOn] = useState(false);
   return (
-    <section className="relative" style={{ top: "-32px" }}>
+    <section className="relative bg-circuit-texture" style={{ top: "-32px" }}>
     <div className="home-counter">
       <div className="max-w-screen-2xl mx-auto">
         <ScrollTrigger

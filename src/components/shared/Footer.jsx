@@ -37,7 +37,7 @@ const Footer = () => {
                     Global Presence
                   </button>
                 </a>
-                <div className="sm:hidden mt-2 sm:mt-0 flex justify-center sm:justify-end gap-2 ml-4 mr-4">
+                <div className="lg:hidden mt-2 lg:mt-0 flex justify-center sm:justify-end gap-2 ml-4 mr-4">
                   <a href="https://www.facebook.com/Rahimafrooz/" target="_blank">
                     <img src={Facebook} alt="fb" width={20} height={20} />
                   </a>
@@ -179,9 +179,9 @@ const Footer = () => {
         <footer className="lg:hidden">
           <nav className="collapse pt-6">
             <input type="checkbox" className="min-h-0" />
-            <h6 className="collapse-title flex ml-4 mr-4 font-medium footer-title-mobile">
-              <p>Useful Links</p>
-              <ChevronDownIcon className="w-5 h-5 mt-1 ml-4 text-white opacity-95" />
+            <h6 className="collapse-title flex justify-between font-medium footer-title-mobile border-t">
+              <p className="pl-4 pb-4 pt-4">Useful Links</p>
+              <ChevronDownIcon className="w-5 h-5 mt-4 mr-8 text-white opacity-95" />
             </h6>
             <div className="collapse-content mt-4 leading-8">
               <Link
@@ -216,9 +216,9 @@ const Footer = () => {
           </nav>
           <nav className="collapse">
             <input type="checkbox" className="min-h-0" />
-            <h6 className="collapse-title flex ml-4 mr-4 font-medium footer-title-mobile">
-              <p>Policies</p>
-              <ChevronDownIcon className="w-5 h-5 mt-1 ml-4 text-white opacity-95" />
+            <h6 className="collapse-title flex justify-between font-medium footer-title-mobile border-t">
+              <p className="pl-4 pb-2">Policies</p>
+              <ChevronDownIcon className="w-5 h-5 mt-1 mr-8 text-white opacity-95" />
             </h6>
             <div className="collapse-content mt-4 leading-8">
               <Link
@@ -253,9 +253,9 @@ const Footer = () => {
           </nav>
           <nav className="collapse">
             <input type="checkbox" className="min-h-0" />
-            <h6 className="collapse-title flex ml-4 mr-4 font-medium footer-title-mobile">
-              <p>Head Office</p>
-              <ChevronDownIcon className="w-5 h-5 mt-1 ml-4 text-white opacity-95" />
+            <h6 className="collapse-title flex justify-between font-medium footer-title-mobile border-b">
+              <p className="pl-4 pb-2">Head Office</p>
+              <ChevronDownIcon className="w-5 h-5 mt-1 mr-8 text-white opacity-95" />
             </h6>
             <div className="collapse-content mt-4 leading-8">
               <p className="text-white">
@@ -276,7 +276,7 @@ const Footer = () => {
             </div>
           </nav>
 
-          <div className="hidden sm:block flex justify-end gap-2 ml-4 mr-4">
+          <div className="hidden lg:block flex justify-end gap-2 ml-4 mr-4">
             <a href="https://www.facebook.com/Rahimafrooz/" target="_blank">
               <img src={Facebook} alt="fb" width={20} height={20} />
             </a>
@@ -298,12 +298,11 @@ const Footer = () => {
           </div>
         </footer>
         <div className="max-w-screen-2xl mx-auto text-white text-xs pb-6 font-semibold">
-          <div className="border border-u-base mb-3"></div>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-center items-center">
             <div className="flex flex-col lg:flex-row items-center pl-4 pr-4">
               <img src={FooterLogo} alt="yt" width={120} height={120} />
-              <p className="opacity-60 pl-4 flex flex-col lg:flex-row justify-center items-center">
-                <span>Copyright © 2017-2023 Rahimafrooz Batteries Ltd.</span>{" "}
+              <p className="text-center opacity-80 pl-4 pt-2 lg:pt-0 flex flex-col lg:flex-row justify-center items-center">
+                <span>Copyright © 2017-2023 <br className="sm:hidden" /> Rahimafrooz Batteries Ltd.</span>{" "}
                 <span> All rights reserved.</span>
               </p>
             </div>

@@ -4,7 +4,7 @@
     background-blend-mode: darken;
     background-repeat: round;
     background-size: cover;
-    top: -32px;
+    top: -34px;
     z-index: 10;
     position: relative;
     padding-bottom: 66px;
@@ -89,6 +89,9 @@
 }
 
 @media screen and (max-width: 767px) {
+    .icon-BG{
+        top: -40px;
+    }
     .HomeSocial iframe{
         width: 380px;
         height: 220px;
