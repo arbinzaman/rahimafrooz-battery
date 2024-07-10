@@ -15,14 +15,16 @@ const FounderAndBoardMembers = () => {
       </div>
 
       <div className={`${allDeviceMaxWidth} text-justify`}>
-        <p className="text-2xl lg:text-4xl font-bold text-primary my-4">Board Members & Management</p>
+        <p className="text-2xl text-center lg:text-4xl font-semibold lg:font-bold text-primary my-10 uppercase">
+          Board Members & Management
+        </p>
         <div className="bg-[#e6f2ff] p-5 my-5 shadow-sm">
-          <div className="none lg:flex gap-10">
+          <div className="none lg:flex lg:items-center gap-10">
             <div className="flex justify-center">
               <img src={img2} className="h-3/4" />
             </div>
             <div className="w-full">
-              <h1 className="text-semi_large font-bold text-primary">
+              <h1 className="text-center lg:text-left text-medium lg:text-semi_large font-bold text-primary">
                 A.C. ABDUR RAHIM
               </h1>
               <div className="flex flex-col justify-center">
@@ -61,22 +63,27 @@ const FounderAndBoardMembers = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          <div className="grid grid-cols-1 justify-items-center mb-10">
-            <div>
-              <img src={img2} alt="" className="h-3/4" />
+          <div className="flex flex-col justify-items-center mb-10 bg-[#e6f2ff] shadow-sm">
+            <div className="flex flex-col justify-center items-center">
+              <img
+                src={img2}
+                alt=""
+                style={{ height: "250px" }}
+                className="mt-10 mb-3"
+              />
               <div className="flex flex-col text-black items-center my-2">
-                <p>A.C. Abdur Rahim</p>
-                <p>Designation</p>
-                <div className="flex gap-3">
+                <p className="font-semibold">A.C. Abdur Rahim</p>
+                <p className="font-medium">Designation</p>
+                <div className="flex gap-3 my-3">
                   <ImFacebook2 className="text-primary" />
                   <FaInstagramSquare className="text-red-500" />
                   <FaLinkedin className="text-primary" />
                 </div>
               </div>
             </div>
-            <div className="shadow-xl text-regular p-5 text-black text-justify mb-10 mx-3">
+            <div className="text-regular p-5 text-black text-justify mx-3">
               {" "}
-              <p className="">
+              <p className="text-justify">
                 A man of strict religious values, yet a believer in progressive
                 dynamism, and a dreamer who thought nothing is impossible – Late
                 A C Abdur Rahim overcame numerous challenges and obstacles to
@@ -88,7 +95,7 @@ const FounderAndBoardMembers = () => {
                 and humane compassion.
               </p>
               <br />
-              <p>
+              <p className="text-justify">
                 By the early 1940s, Mr. Rahim started small scale commer- cial
                 trading on his own. He moved to Chittagong in 1947 and stared
                 afresh with very little capital in hand, but with a whole world
@@ -101,22 +108,27 @@ const FounderAndBoardMembers = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 justify-items-center mb-10">
-            <div className="">
-              <img src={img2} alt="" className="h-3/4" />
+          <div className="flex flex-col justify-items-center mb-10 bg-[#e6f2ff] shadow-sm">
+            <div className="flex flex-col justify-center items-center">
+              <img
+                src={img2}
+                alt=""
+                style={{ height: "250px" }}
+                className="mt-10 mb-3"
+              />
               <div className="flex flex-col text-black items-center my-2">
-                <p>A.C. Abdur Rahim</p>
-                <p>Designation</p>
-                <div className="flex gap-3">
+                <p className="font-semibold">A.C. Abdur Rahim</p>
+                <p className="font-medium">Designation</p>
+                <div className="flex gap-3 my-3">
                   <ImFacebook2 className="text-primary" />
                   <FaInstagramSquare className="text-red-500" />
                   <FaLinkedin className="text-primary" />
                 </div>
               </div>
             </div>
-            <div className="shadow-xl text-regular p-5 text-black text-justify mb-10 mx-3">
+            <div className="text-regular p-5 text-black text-justify mx-3">
               {" "}
-              <p className="">
+              <p className="text-justify">
                 A man of strict religious values, yet a believer in progressive
                 dynamism, and a dreamer who thought nothing is impossible – Late
                 A C Abdur Rahim overcame numerous challenges and obstacles to
@@ -128,7 +140,7 @@ const FounderAndBoardMembers = () => {
                 and humane compassion.
               </p>
               <br />
-              <p>
+              <p className="text-justify">
                 By the early 1940s, Mr. Rahim started small scale commer- cial
                 trading on his own. He moved to Chittagong in 1947 and stared
                 afresh with very little capital in hand, but with a whole world
