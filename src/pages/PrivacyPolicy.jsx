@@ -10,10 +10,10 @@ const PrivacyPolicy = () => {
           <h1 className="text-semi_large lg:text-large font-bold text-primary ">
             PRIVACY & COOKIES POLICY
           </h1>
-          <h3 className="text-black   text-2xl font-bold mt-10">
+          <h3 className="text-black text-regular lg:text-2xl font-bold mt-10">
             WHAT ARE COOKIES
           </h3>
-          <p className="text-justify text-black text-xl mt-10 font-medium">
+          <p className="text-justify text-black text-regular lg:text-xl mt-10 ">
             Cookies are pieces of information that are placed on your device
             when you visit a website. This data/information is given back to the
             server by your browser when you return to a site you have visited
@@ -25,11 +25,11 @@ const PrivacyPolicy = () => {
             disable browser cookies.
           </p>
 
-          <h3 className="text-black text-2xl font-bold mt-10">
+          <h3 className="text-black text-regular lg:text-2xl font-bold mt-10">
             HOW WE USE COOKIES
           </h3>
 
-          <p className="text-justify text-black text-xl mt-10 font-medium">
+          <p className="text-justify text-black text-regular lg:text-xl mt-10 ">
             The information gathered through the cookies we use on our website
             makes your experience more personalized based on the interactions
             you have with us. Although certain cookies collect information sent
@@ -37,7 +37,7 @@ const PrivacyPolicy = () => {
             information.
           </p>
 
-          <p className="text-justify text-black text-xl mt-5 font-medium">
+          <p className="text-justify text-black text-regular lg:text-xl mt-5 ">
             We utilize both first-party and third-party cookies. The first-party
             cookies are used to identify general language and location
             preferences and are issued by amararaja.com domain. While the
@@ -86,12 +86,12 @@ const PrivacyPolicy = () => {
           <h3 className="text-black   text-2xl font-bold mt-10">
             MANAGING COOKIES
           </h3>
-          <p className="text-justify text-black text-xl mt-10 font-medium">
+          <p className="text-justify text-black text-xl mt-10 ">
             You may set your browser to reject browser cookies. However, if you
             set your browser options to disallow cookies, you will limit the
             functionality we can provide when you visit our website.
           </p>
-          <p className="text-justify text-black text-xl mt-10 font-medium">
+          <p className="text-justify text-black text-xl mt-10 ">
             By using our website, you accept the use of cookies.
           </p>
         </div>
@@ -100,9 +100,9 @@ const PrivacyPolicy = () => {
       </div>
 
       {/*List section of privacy policy Start */}
-      <section className="bg-background2 py-1 mt-5">
-        <div className={`${allDeviceMaxWidth}`}>
-          <ul className="mx-3 text-justify">
+      <section className="bg-background2 py-1 text-black">
+        <div className={allDeviceMaxWidth + "my-5 lg:my-16"}>
+          <ul>
             <li className="my-2 flex items-center gap-1">
               <LuDot />
               <p>
