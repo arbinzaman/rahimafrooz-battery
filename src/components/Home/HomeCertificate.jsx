@@ -7,7 +7,7 @@ import "../../styles/Home.css";
 const HomeCertificate = () => {
 
     const settingsForCertificatesLarge = {
-        dots: false,
+        dots: true,
         arrows: false,
         infinite: true,
         slidesToShow: 3,
@@ -20,7 +20,7 @@ const HomeCertificate = () => {
     };
 
     const settingsForCertificatesSmall = {
-        dots: false,
+        dots: true,
         arrows: false,
         infinite: true,
         slidesToShow: 1,
@@ -60,7 +60,7 @@ const HomeCertificate = () => {
             {/* For Small Devices */}
             <section className={allDeviceMaxWidth + "lg:hidden"}>
                 <div className="text-center mb-16">
-                    <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 pt-16 pb-16">
+                    <h1 className="text-xl font-semibold text-cyan-700 opacity-95 pt-8 pb-8">
                         CERTIFICATIONS
                     </h1>
                     <div className="slider-container max-w-7xl mx-auto">

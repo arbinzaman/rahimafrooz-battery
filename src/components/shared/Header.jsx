@@ -6,6 +6,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Logo from "../../assets/Rahimafrooz_Logo_Color.png";
+import MobileLogo from "../../assets/Rahimafrooz_Logo_White.svg";
 import Facebook from "../../assets/icons/facebook-icon.svg";
 import Instagram from "../../assets/icons/instagram-icon.svg";
 import Linkedin from "../../assets/icons/linkedin-icon.svg";
@@ -22,12 +23,13 @@ const Header = () => {
   return (
     <div>
       <nav>
-        <div className="p-6 text-white diagonal-background">
-          <div className="max-w-screen-2xl mx-auto">
+        <div className="p-6 pt-4 pb-4 text-white diagonal-background">
+          <div className="max-w-screen-xl mx-auto">
             <div className="flex justify-between items-center">
               <div className="flex items-center">
                 <a href="/">
-                  <img className="nav-logo" src={Logo} alt="logo" />
+                  <img className="nav-logo hidden lg:block" src={Logo} alt="logo" />
+                  <img className="nav-logo lg:hidden" src={MobileLogo} alt="logo" />
                 </a>
               </div>
               <div className="hidden lg:block">
@@ -82,7 +84,7 @@ const Header = () => {
                     </a>
                   </div>
                 </div>
-                <div className="mt-2 flex gap-2">
+                <div className="mt-2 flex justify-end gap-2">
                   <a href="https://estore.rahimafrooz.com/" target="_blank">
                     <button className="header-btn">
                       <img
@@ -103,11 +105,11 @@ const Header = () => {
                       Warranty & Services
                     </button>
                   </a>
-                  <select className="header-btn">
+                  {/* <select className="header-btn">
                     <option selected>English</option>
                     <option>বাংলা</option>
                     <option>Arabic</option>
-                  </select>
+                  </select> */}
                 </div>
               </div>
               {/* Mobile Nav */}
@@ -117,7 +119,7 @@ const Header = () => {
                     <button className="header-btn-mobile">
                       {" "}
                       <GlobeAltIcon className="w-4 h-4 mt-1 mr-1" />
-                      Global Presence
+                      <p>Global Presence</p>
                     </button>
                   </a>
                   <Bars3Icon
@@ -127,18 +129,44 @@ const Header = () => {
                 </div>
               </div>
             </div>
+            <div className="relative lg:hidden mt-2">
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
+                </svg>
+                <span className="sr-only">Search icon</span>
+              </div>
+              <input
+                type="text"
+                id="search-navbar"
+                className="search block w-full p-2 pl-3 text-black text-sm border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Search for products, vehicle, battery…"
+              />
+            </div>
           </div>
         </div>
         <div>
           <div className="main-nav hidden lg:block">
-            <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto pt-4 pb-4">
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto pt-4 pb-4">
               <div className="flex md:order-2 gap-2">
                 <button
                   type="button"
                   data-collapse-toggle="navbar-search"
                   aria-controls="navbar-search"
                   aria-expanded="false"
-                  className="md:hidden  hover:bg-gray-100  focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 mr-1"
+                  className="md:hidden hover:bg-gray-100  focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 mr-1"
                 >
                   <svg
                     className="w-5 h-5"
@@ -320,7 +348,7 @@ const Header = () => {
             isSideMenuOpen && "translate-x-0"
           )}
         >
-          <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 pr-0 gap-8 w-80 flex">
+          <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 pr-0 gap-8 w-4/5 flex">
             <XMarkIcon
               onClick={() => setMenu(false)}
               className="w-8 h-8 cursor-pointer"

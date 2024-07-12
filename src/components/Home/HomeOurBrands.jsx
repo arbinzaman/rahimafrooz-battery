@@ -5,12 +5,12 @@ import { brandProducts } from "../../utils/Home/products";
 import "../../styles/Home.css"
 
 const settingsForProductsDesktopScreen = {
-    dots: false,
-    arrows: true,
+    dots: true,
+    arrows: false,
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 1000,
     autoplaySpeed: 4000,
     pauseOnHover: true,
@@ -18,12 +18,12 @@ const settingsForProductsDesktopScreen = {
 };
 
 const settingsForProductsMobileScreen = {
-    dots: false,
+    dots: true,
     arrows: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     speed: 1000,
     autoplaySpeed: 4000,
     pauseOnHover: true,
@@ -55,16 +55,16 @@ const HomeOurBrands = () => {
 
             {/* Mobile screen */}
 
-            <section className="relative lg:hidden" style={{ top: "-32px" }}>
+            <section className="lg:hidden">
                 <div className="our-brands text-center">
-                    <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 pt-16">
+                    <h1 className="text-xl font-semibold text-cyan-700 opacity-95 pt-1 pb-8">
                         OUR BRANDS
                     </h1>
                     <div className="slider-container w-10/12 mx-auto">
                         <Slider {...settingsForProductsMobileScreen}>
                             {brandProducts?.map((product) => (
                                 <img
-                                    className="max-w-80 max-h-80"
+                                    className="max-w-80 max-h-80 border border-black rounded-2xl mb-8"
                                     key={product?.id}
                                     src={product?.productImage}
                                     alt={product?.productAlt}

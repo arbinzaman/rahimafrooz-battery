@@ -3,7 +3,6 @@ import {
   ArrowUpIcon,
   GlobeAltIcon,
 } from "@heroicons/react/24/outline";
-import HomeGoogleTranslate from "../Home/HomeGoogleTranslate";
 
 import Logo from "../../assets/70-Years-Logo.png";
 import Facebook from "../../assets/icons/facebook-icon.svg";
@@ -26,7 +25,7 @@ const Footer = () => {
   return (
     <>
       <div className="bg-primary">
-        <div className="max-w-screen-2xl mx-auto pt-12 pl-4 pr-4">
+        <div className="max-w-screen-xl mx-auto pt-12 pl-4 pr-4">
           <div className="flex justify-between">
             <img src={Logo} alt="logo" width={135} height={135} />
             <div className="flex pt-6">
@@ -71,7 +70,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <footer className="footer hidden lg:grid text-white grid-cols-5 gap-6 pb-10 max-w-screen-2xl mx-auto pl-4 pr-4">
+        <footer className="footer hidden lg:grid text-white grid-cols-5 gap-6 pb-10 max-w-screen-xl mx-auto pl-4 pr-4">
           <nav className="col-span-2 max-w-sm">
             <p className="text-justify pt-10">
               Rahimafrooz was founded in 1954 as a pioneer in the Bangladeshi
@@ -179,11 +178,11 @@ const Footer = () => {
         <footer className="lg:hidden">
           <nav className="collapse pt-6">
             <input type="checkbox" className="min-h-0" />
-            <h6 className="collapse-title flex justify-between font-medium footer-title-mobile border-t">
+            <h6 className="collapse-title flex justify-between font-medium footer-title-mobile border-t border-sky-600">
               <p className="pl-4 pb-4 pt-4">Useful Links</p>
               <ChevronDownIcon className="w-5 h-5 mt-4 mr-8 text-white opacity-95" />
             </h6>
-            <div className="collapse-content mt-4 leading-8">
+            <div className="collapse-content bg-sky-600 leading-8">
               <Link
                 to={"/become-a-dealer"}
                 className="link link-hover opacity-80"
@@ -216,11 +215,11 @@ const Footer = () => {
           </nav>
           <nav className="collapse">
             <input type="checkbox" className="min-h-0" />
-            <h6 className="collapse-title flex justify-between font-medium footer-title-mobile border-t">
-              <p className="pl-4 pb-2">Policies</p>
-              <ChevronDownIcon className="w-5 h-5 mt-1 mr-8 text-white opacity-95" />
+            <h6 className="collapse-title flex justify-between font-medium footer-title-mobile border-t border-sky-600">
+              <p className="pl-4 pb-4 pt-4">Policies</p>
+              <ChevronDownIcon className="w-5 h-5 mt-4 mr-8 text-white opacity-95" />
             </h6>
-            <div className="collapse-content mt-4 leading-8">
+            <div className="collapse-content bg-sky-600 leading-8">
               <Link
                 to={"/terms-and-conditions"}
                 className="link link-hover opacity-80"
@@ -253,11 +252,11 @@ const Footer = () => {
           </nav>
           <nav className="collapse">
             <input type="checkbox" className="min-h-0" />
-            <h6 className="collapse-title flex justify-between font-medium footer-title-mobile border-b">
-              <p className="pl-4 pb-2">Head Office</p>
-              <ChevronDownIcon className="w-5 h-5 mt-1 mr-8 text-white opacity-95" />
+            <h6 className="collapse-title flex justify-between font-medium footer-title-mobile border-b border-t border-sky-600">
+              <p className="pl-4 pb-4 pt-4">Head Office</p>
+              <ChevronDownIcon className="w-5 h-5 mt-4 mr-8 text-white opacity-95" />
             </h6>
-            <div className="collapse-content mt-4 leading-8">
+            <div className="collapse-content bg-sky-600 leading-8">
               <p className="text-white">
                 Rahimafrooz Storage Power Business 705, West Nakhalpara, Tejgaon
                 Dhaka-1215, Bangladesh.
@@ -297,10 +296,10 @@ const Footer = () => {
             </a>
           </div>
         </footer>
-        <div className="max-w-screen-2xl mx-auto text-white text-xs pb-6 font-semibold">
-          <div className="flex justify-center items-center">
-            <div className="flex flex-col lg:flex-row items-center pl-4 pr-4">
-              <img src={FooterLogo} alt="yt" width={120} height={120} />
+        <div className="max-w-screen-xl mx-auto text-white text-xs pt-6 pb-6 font-semibold">
+          <div className="flex justify-center lg:justify-between items-center">
+            <div className="flex flex-col lg:flex-row items-center pl-12 lg:pl-3 pr-4">
+              <img className="ml-5 lg:ml-0" src={FooterLogo} alt="yt" width={120} height={120} />
               <p className="text-center opacity-80 pl-4 pt-2 lg:pt-0 flex flex-col lg:flex-row justify-center items-center">
                 <span>Copyright © 2017-2023 <br className="sm:hidden" /> Rahimafrooz Batteries Ltd.</span>{" "}
                 <span> All rights reserved.</span>
@@ -315,7 +314,7 @@ const Footer = () => {
         </div>
       </div>
       <div style={{backgroundColor: '#0059a3'}}>
-        <div className="max-w-screen-2xl mx-auto">
+        <div className="max-w-screen-xl mx-auto">
           <div className="text-small text-white px-2 py-4 flex flex-col items-center lg:flex-row lg:justify-between">
             <p>A Subsidiary of Rahimafrooz</p>
             <p>Powered by Prionty Digital</p>

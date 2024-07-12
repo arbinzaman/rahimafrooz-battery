@@ -1,3 +1,8 @@
+.Home-Slider{
+    position: relative;
+    z-index: 1;
+}
+
 .icon-BG{
     width: 100%;
     background-image: url('../assets/images/HomePage/Icon-Bg.png'), url('../assets/images/HomePage/Icon-Bg-texture.png');
@@ -49,6 +54,10 @@
     background-blend-mode: inherit;
 }
 
+.slick-dots li {
+    width: 4px;
+    height: 4px;
+}
 .slick-prev{
     left: -40px;
 }
@@ -90,7 +99,13 @@
 
 @media screen and (max-width: 767px) {
     .icon-BG{
-        top: -40px;
+        top: -46px;
+        z-index: 0;
+        padding-bottom: 46px;
+    }
+    .our-brands{
+        background-image: none;
+        height: 512px;
     }
     .HomeSocial iframe{
         width: 380px;
