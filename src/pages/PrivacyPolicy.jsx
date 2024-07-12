@@ -7,13 +7,13 @@ const PrivacyPolicy = () => {
       <div className={`${allDeviceMaxWidth}`}>
         {/* hero section of privacy policy start */}
         <div className="mx-3">
-          <h1 className="text-semi_large lg:text-large font-bold text-primary ">
+          <h1 className="text-regular md:text-medium lg:text-xlarge font-bold text-primary ">
             PRIVACY & COOKIES POLICY
           </h1>
           <h3 className="text-black text-regular lg:text-2xl font-bold mt-10">
             WHAT ARE COOKIES
           </h3>
-          <p className="text-justify text-black text-regular lg:text-xl mt-10 ">
+          <p className="text-justify text-black  mt-10 ">
             Cookies are pieces of information that are placed on your device
             when you visit a website. This data/information is given back to the
             server by your browser when you return to a site you have visited
@@ -29,7 +29,7 @@ const PrivacyPolicy = () => {
             HOW WE USE COOKIES
           </h3>
 
-          <p className="text-justify text-black text-regular lg:text-xl mt-10 ">
+          <p className="text-justify text-black  mt-10 ">
             The information gathered through the cookies we use on our website
             makes your experience more personalized based on the interactions
             you have with us. Although certain cookies collect information sent
@@ -37,7 +37,7 @@ const PrivacyPolicy = () => {
             information.
           </p>
 
-          <p className="text-justify text-black text-regular lg:text-xl mt-5 ">
+          <p className="text-justify text-black  mt-5 ">
             We utilize both first-party and third-party cookies. The first-party
             cookies are used to identify general language and location
             preferences and are issued by amararaja.com domain. While the
@@ -52,7 +52,7 @@ const PrivacyPolicy = () => {
             COOKIES WE USE
           </h3>
           <div className="overflow-x-auto">
-            <table className="table border-background border-separate border-8 rounded-none text-justify text-lg mt-5  text-white">
+            <table className="table border-background border-separate border-8 rounded-none text-justify  mt-5  text-white">
               <tbody>
                 {/* row 1 */}
                 <tr className="bg-tableBackground1 ">
@@ -86,12 +86,12 @@ const PrivacyPolicy = () => {
           <h3 className="text-black   text-2xl font-bold mt-10">
             MANAGING COOKIES
           </h3>
-          <p className="text-justify text-black text-xl mt-10 ">
+          <p className="text-justify text-black  mt-10 ">
             You may set your browser to reject browser cookies. However, if you
             set your browser options to disallow cookies, you will limit the
             functionality we can provide when you visit our website.
           </p>
-          <p className="text-justify text-black text-xl mt-10 ">
+          <p className="text-justify text-black  mt-10 ">
             By using our website, you accept the use of cookies.
           </p>
         </div>
