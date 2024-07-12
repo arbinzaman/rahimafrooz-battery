@@ -8,7 +8,7 @@ import { allDeviceMaxWidth } from "../../styles/maxWidth";
 const SpecialAwards = () => {
   
   return (
-    <section className="bg-cross-pattern">
+    <section>
       <div>
         <img src={SpecialAwardBanner} alt="" />
       </div>

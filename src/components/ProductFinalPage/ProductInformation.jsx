@@ -37,7 +37,7 @@ const ProductInformation = ({battery}) => {
               {tab === "DetailsTab" ? (
                 <div>
                   <h2 className="mb-4 text-medium lg:text-semi_large text-black font-bold leadi text-left">
-                    {battery.brand}
+                    {battery.battery_name}
                   </h2>
                   <ProductDetailsSection battery={battery}/> 
                 </div>
