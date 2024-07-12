@@ -18,7 +18,8 @@ import { Link } from "react-router-dom";
 import "../../styles/Home.css"
 
 const settingsForIconSmallScreen = {
-    dots: false,
+    dots: true,
+    arrows: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -29,7 +30,7 @@ const HomeFindBattery = () => {
     return (
         <section>
             <div className="icon-BG">
-                <div className="max-w-screen-2xl mx-auto hidden xl:block">
+                <div className="max-w-screen-xl mx-auto hidden xl:block">
                     <h1 className="uppercase text-center text-3xl text-sky-100 font-semibold pt-16 pb-16">
                         Find The Right Battery
                     </h1>
@@ -115,7 +116,7 @@ const HomeFindBattery = () => {
                 </div>
                 {/* Mobile screen */}
                 <div className="slider-container w-10/12 mx-auto xl:hidden max-w-sm">
-                    <h1 className="uppercase text-center text-lg text-sky-100 font-semibold pt-8 pb-2">
+                    <h1 className="uppercase text-center text-lg text-sky-100 font-semibold pt-20 pb-2">
                         Find The Right Battery
                     </h1>
                     <Slider {...settingsForIconSmallScreen}>

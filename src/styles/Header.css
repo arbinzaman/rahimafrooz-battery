@@ -28,7 +28,7 @@
     background-color: #95E7F4;
     color: #005cab;
     font-weight: 600;
-    margin-top: 11px;
+    margin-top: 8px;
     margin-right: 12px;
 }
 
@@ -76,9 +76,6 @@
 }
 
 @media screen and (max-width: 767px)  {
-    .diagonal-background{
-        background-image: -webkit-linear-gradient(130deg, #005cab 53%, #ddebf6 53.2%);
-    }
     .nav-logo{
         width: 142px;
     }
@@ -87,11 +84,17 @@
         margin-top: 6px;
     }
     .header-btn-mobile svg{
-        margin-top: 0;
+        margin-top: 2px;
+    }
+    .header-btn-mobile p{
+        padding-top: 1px;
     }
 }
 
 @media screen and (max-width: 1023px) {
+    .diagonal-background{
+        background-image: -webkit-linear-gradient(130deg, #005cab 100%, #ddebf6 0%);
+    }
     .dropdown-content {
         position: relative !important;
     }
