@@ -6,7 +6,7 @@ import GlobalLoader from "./components/shared/Loaders/GlobalLoader";
 
 function App() {
   return (
-    <section className="">
+    <section className="bg-cross-pattern">
       <RouterProvider router={routes} />
       <GlobalLoader />
       <Toaster />

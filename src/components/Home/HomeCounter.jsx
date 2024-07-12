@@ -21,16 +21,16 @@ const HomeCounter = () => {
           onExit={() => setCounterOn(false)}
         >
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 text-center text-white py-10">
-            <div>
+            <div className='mb-6'>
               <img
                 src={EstablishedIcon}
                 alt="icon"
                 className="w-12 h-12 mt-1 mx-auto"
               />
-              <p className="text-xl pt-5 pb-5">ESTABLISHED IN</p>
-              <h1 className="text-3xl lg:text-5xl font-bold">1954</h1>
+              <p className="text-md lg:text-xl pt-2 pb-2 lg:pt-5 lg:pb-5">ESTABLISHED IN</p>
+              <h1 className=" text-2xl lg:text-5xl font-bold">1954</h1>
             </div>
-            <div>
+            <div className='mb-6'>
               <img
                 src={WorldIcon}
                 alt="icon"
@@ -42,36 +42,36 @@ const HomeCounter = () => {
               <span className="text-xs hidden lg:block">
                 NATIONAL & INTERNATIONAL
               </span>
-              <p className="uppercase text-xl pt-5 lg:hidden">
+              <p className="uppercase text-md pt-2 lg:hidden">
                 Presence in Countries
               </p>
-              <h1 className="text-3xl lg:text-5xl font-bold pt-5">
+              <h1 className="text-2xl lg:text-5xl font-bold pt-2 lg:pt-5">
                 {counterOn && (
                   <CountUp start={0} end={75} duration={2} delay={0} />
                 )}
               </h1>
             </div>
-            <div>
+            <div className='mb-6'>
               <img
                 src={HandShake}
                 alt="icon"
                 className="w-16 h-16 mx-auto"
               />
-              <p className="text-xl pt-3 pb-5">DEALERS</p>
-              <h1 className="text-3xl lg:text-5xl font-bold">
+              <p className="text-md lg:text-xl lg:pt-3 pb-2 lg:pb-5">DEALERS</p>
+              <h1 className="text-2xl lg:text-5xl font-bold">
                 {counterOn && (
                   <CountUp start={0} end={1000} duration={2} delay={0} />
                 )}
               </h1>
             </div>
-            <div>
+            <div className='mb-6'>
               <img
                 src={CarBattery}
                 alt="icon"
                 className="w-12 h-12 mt-1 mx-auto"
               />
-              <p className="text-xl pt-5 pb-5">PRODUCT IN-USE</p>
-              <h1 className="text-3xl lg:text-5xl font-bold">
+              <p className="text-md lg:text-xl pt-2 pb-1 lg:pt-5 lg:pb-5">PRODUCT IN-USE</p>
+              <h1 className="text-2xl lg:text-5xl font-bold">
                 {counterOn && (
                   <CountUp start={0} end={1000} duration={2} delay={0} />
                 )}
