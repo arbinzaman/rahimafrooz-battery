@@ -1,8 +1,9 @@
 import { LuDot } from "react-icons/lu";
+import { allDeviceMaxWidth } from "../styles/maxWidth";
 const TermsAndCondition = () => {
   return (
-    <section className="text-justify text-small md:text-regular">
-      <section className="mx-5 my-5 lg:my-16 md:mx-16 lg:mx-28">
+    <section className= "text-justify text-small md:text-regular text-black">
+      <section className={allDeviceMaxWidth + "my-5 lg:my-16"}>
         <p className="mb-4 md:mb-10 text-left">
           <span className="text-regular md:text-medium lg:text-xlarge text-primary font-bold">
             TERMS AND CONDITIONS{" "}
@@ -163,7 +164,7 @@ const TermsAndCondition = () => {
         </div>
       </section>
       <section className="bg-background2 py-1">
-        <div className="mx-5 my-5 lg:my-16 md:mx-16 lg:mx-28">
+        <div className={allDeviceMaxWidth+ "my-5 lg:my-16"}>
           <ul>
             <li className="my-2 flex items-center gap-1">
               <LuDot />
