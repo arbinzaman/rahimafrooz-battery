@@ -73,7 +73,7 @@ const BatteryDetailsTable = ({ prompts }) => {
               />
             </th>
             <th>Serial</th>
-            <th>Brand</th>
+            <th>Battery Name</th>
             <th>Series</th>
             <th>Item Code</th>
             <th>Model</th>
@@ -95,7 +95,7 @@ const BatteryDetailsTable = ({ prompts }) => {
                 />
               </td>
               <th>{i + 1}</th>
-              <td>{battery.brand}</td>
+              <td>{battery.battery_name}</td>
               <td>{battery.series}</td>
               <td>{battery.item_code}</td>
               <td>{battery.model}</td>
