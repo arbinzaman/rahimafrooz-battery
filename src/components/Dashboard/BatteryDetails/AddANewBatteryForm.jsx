@@ -1,4 +1,5 @@
 import Select from "react-select";
+import { GrFormUpload } from "react-icons/gr";
 
 const AddANewBatteryForm = ({ prompts }) => {
   const {
@@ -13,7 +14,7 @@ const AddANewBatteryForm = ({ prompts }) => {
     handleFileChange,
     handleCategoryChange,
   } = prompts;
-  
+
   return (
     <div>
       <form
@@ -205,7 +206,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               type="file"
               multiple
               onChange={handleFileChange}
-              className="input input-bordered w-full bg-gray-200 text-black"
+              className="input input-bordered w-full bg-gray-200 text-black"    
             />
           </div>
           <div className="mb-4">
@@ -274,7 +275,7 @@ const AddANewBatteryForm = ({ prompts }) => {
           )}
         </div>
         <div className="flex justify-center mt-6">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary bg-tableBackground2 text-white">
             Submit
           </button>
         </div>
