@@ -1,5 +1,4 @@
 import Select from "react-select";
-import { GrFormUpload } from "react-icons/gr";
 
 const AddANewBatteryForm = ({ prompts }) => {
   const {
