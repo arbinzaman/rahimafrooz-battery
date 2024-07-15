@@ -1,3 +1,10 @@
+.Home-BG{
+    background-image: url('../assets/images/Texture2.png');
+}
+.Home-bg{
+    background-image: url('../assets/images/Texture.png');
+}
+
 .Home-Slider{
     position: relative;
     z-index: 1;

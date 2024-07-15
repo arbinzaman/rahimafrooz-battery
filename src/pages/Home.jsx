@@ -10,10 +10,12 @@ import HomeReviewNews from "../components/Home/HomeReviewNews";
 import HomeSocialEmbed from "../components/Home/HomeSocialEmbed";
 import HomeCertificate from "../components/Home/HomeCertificate";
 
+import '../styles/Home.css';
+
 const Home = () => {
 
   return (
-    <div>
+    <div className='Home-BG'>
       <HomeSlider />
       <HomeFindBattery />
       <div className="border-y-2 relative" style={{ top: "-32px" }}>
