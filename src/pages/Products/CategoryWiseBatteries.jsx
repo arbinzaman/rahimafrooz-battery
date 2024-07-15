@@ -52,7 +52,6 @@ const CategoryWiseBatteries = () => {
     },
   ];
 
-  console.log(brandAndProducts);
   // Filter out brands with no products
   const filteredBrandAndProducts = brandAndProducts.filter(
     (brand) => brand.products.length > 0

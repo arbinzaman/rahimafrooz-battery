@@ -6,7 +6,7 @@ const HomeAboutUs = () => {
     return (
         <>
             <section
-                className="pt-8 pb-8 hidden lg:block relative"
+                className="pt-8 pb-8 hidden lg:block relative Home-bg"
                 style={{ top: "-32px", backgroundColor: "#fbfbfb" }}
             >
                 <div className="text-center max-w-screen-xl mx-auto">

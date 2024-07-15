@@ -52,7 +52,10 @@ const Bangladesh = () => {
     },
   ];
 
-  console.log(brandAndProducts);
+  // Filter out brands with no products
+  const filteredBrandAndProducts = brandAndProducts.filter(
+    (brand) => brand.products.length > 0
+  );
   return (
     <section>
       <div className="relative">
@@ -81,7 +84,7 @@ const Bangladesh = () => {
           </div>
         ) : (
           <>
-            {brandAndProducts?.map((brand) => (
+            {filteredBrandAndProducts?.map((brand) => (
               <div className="my-10" key={brand?.id}>
                 <div>
                   <p className="text-semi_large text-primary font-bold mb-2">

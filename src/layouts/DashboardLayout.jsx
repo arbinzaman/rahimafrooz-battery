@@ -37,6 +37,11 @@ const DashboardLayout = () => {
                   All Battery Details
                 </Link>
               </li>
+              <li>
+                <Link to="/dashboard/add-new-battery">
+                  Add A New Battery
+                </Link>
+              </li>
             <li>
               <Link to="/dashboard/dealers-application-list">
                 Dealers Application List
