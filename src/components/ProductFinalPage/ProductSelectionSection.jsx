@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaAngleRight } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const ProductSelectionSection = ({ battery }) => {
   const {
     battery_name,
@@ -9,8 +9,9 @@ const ProductSelectionSection = ({ battery }) => {
     ref_amperehour_ah,
     voltage,
     price,
+    e_store_link
   } = battery;
-  console.log(imgurls)
+  
   const navigate = useNavigate();
   const [img, setImg] = useState(imgurls[0]);
 
@@ -65,11 +66,11 @@ const ProductSelectionSection = ({ battery }) => {
           </p>
 
           <div className="mt-10 lg:mt-28 flex flex-col gap-5 items-center justify-center lg:flex-row lg:justify-start">
-            <button
+            <Link to={e_store_link}
               className="btn btn-ghost text-white bg-primary px-10 text-regular"
             >
               Buy Now
-            </button>
+            </Link>
             <button
               onClick={() => navigate("/find-dealer")}
               className="btn btn-ghost text-white bg-primary px-10 text-regular"

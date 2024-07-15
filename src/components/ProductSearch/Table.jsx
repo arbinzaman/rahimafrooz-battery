@@ -2,11 +2,12 @@ import { useNavigate } from "react-router-dom";
 import Product2 from "../../assets/images/BatteryFinalPage/Product-02.png";
 import { fetchBatteries } from "../../utils/BatterySearchPage/TableFetches";
 import { useEffect, useState } from "react";
-import { Hourglass } from "react-loader-spinner";
+import { RotatingSquare } from "react-loader-spinner";
 
 const Table = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [batteries, setBatteries] = useState([]);
+  const [batteries, setBatteries] = useState(null);
+  
   const batteryShortCodes = window.localStorage.getItem("short_codes")
     ? JSON.parse(window.localStorage.getItem("short_codes"))
     : [];
@@ -22,7 +23,10 @@ const Table = () => {
         setBatteries(newBatteries);
         setIsLoading(false);
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => {
+        setIsLoading(false);
+        console.error("Error:", error);
+      });
   }, []);
 
   const navigate = useNavigate();
@@ -30,17 +34,17 @@ const Table = () => {
     <section className="bg-[#e6f2ff] p-3 md:p-10 lg:p-14">
       {isLoading ? (
         <div className="flex justify-center my-20">
-          <Hourglass
+          <RotatingSquare
             visible={true}
-            height="80"
-            width="80"
-            ariaLabel="hourglass-loading"
+            height="100"
+            width="100"
+            color="#0d72b9"
+            ariaLabel="rotating-square-loading"
             wrapperStyle={{}}
             wrapperClass=""
-            colors={["#306cce", "#72a1ed"]}
           />
         </div>
-      ) : (
+      ) : batteries ? (
         <div className="overflow-x-auto">
           <h1 className="text-primary text-sm md:text-semi_large font-semibold md:font-bold py-3">
             Suitable Battery for {carInfo.brand} {carInfo.model} {carInfo.year}{" "}
@@ -58,7 +62,7 @@ const Table = () => {
                     <div className="grid justify-items-center gap-3 my-6">
                       <img
                         src={battery?.imgurls[0] || Product2}
-                        alt="Lucas Ultima SMF battery"
+                        alt={battery?.battery_name}
                         className="h-24 md:h-48 lg:h-52"
                       />
                       <p className="text-black text-sm md:text-regular">
@@ -268,6 +272,10 @@ const Table = () => {
             </tbody>
           </table>
         </div>
+      ) : (
+        <h1 className="text-primary text-center text-sm md:text-semi_large font-semibold md:font-bold py-3">
+          Something inconvenient occurred! Please Try Again.
+        </h1>
       )}
     </section>
   );
