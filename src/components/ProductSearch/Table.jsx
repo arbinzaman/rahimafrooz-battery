@@ -27,7 +27,7 @@ const Table = () => {
 
   const navigate = useNavigate();
   return (
-    <section>
+    <section className="bg-[#e6f2ff] p-3 md:p-10 lg:p-14">
       {isLoading ? (
         <div className="flex justify-center my-20">
           <Hourglass
@@ -42,28 +42,27 @@ const Table = () => {
         </div>
       ) : (
         <div className="overflow-x-auto">
+          <h1 className="text-primary text-sm md:text-semi_large font-semibold md:font-bold py-3">
+            Suitable Battery for {carInfo.brand} {carInfo.model} {carInfo.year}{" "}
+            ({carInfo.technology})
+          </h1>
+
           <table className="table">
             {/* head */}
             <thead>
               <tr className="text-primary">
-                <th className="text-sm md:text-regular lg:text-semi_large text-wrap grid gap-5">
-                  <p>Suitable Batteries For </p>
-                  <p>
-                    {carInfo.brand || "ABC"} {carInfo.model || "XT"} -{" "}
-                    {carInfo.year || "2020"} ({carInfo.technology || "HB"})
-                  </p>
-                </th>
+                <th className="text-sm md:text-regular lg:text-semi_large text-wrap grid gap-5"></th>
 
                 {batteries?.map((battery) => (
                   <th key={battery.id} className="">
-                    <div className="grid justify-items-center gap-3">
+                    <div className="grid justify-items-center gap-3 my-6">
                       <img
-                        src={battery?.imgurls || Product2}
+                        src={battery?.imgurls[0] || Product2}
                         alt="Lucas Ultima SMF battery"
                         className="h-24 md:h-48 lg:h-52"
                       />
-                      <p className="text-black text-sm md:text-regular lg:text-medium">
-                        {battery?.brand}
+                      <p className="text-black text-sm md:text-regular">
+                        {battery?.battery_name}
                       </p>
                       <button
                         onClick={() =>
@@ -78,18 +77,18 @@ const Table = () => {
                 ))}
               </tr>
             </thead>
-            <tbody className="text-xs md:sm lg:medium">
-              {/* Brand Name */}
+            <tbody className="text-xs ">
+              {/* Battery Name */}
               <tr>
                 <td className="bg-primary text-base border border-primary border-b-base">
-                  Brand
+                  Battery Name
                 </td>
                 {batteries?.map((battery) => (
                   <td
                     key={battery.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.brand}
+                    {battery.battery_name}
                   </td>
                 ))}
               </tr>

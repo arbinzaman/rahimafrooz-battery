@@ -10,7 +10,7 @@ const BatteryDetailsModal = ({ prompts }) => {
     supported_vehicle_models,
     make_years,
     applicable_categories,
-    brand,
+    battery_name,
     series,
     itemcode,
     model,
@@ -42,7 +42,7 @@ const BatteryDetailsModal = ({ prompts }) => {
           </p>
 
           <p>
-            <strong>Brand:</strong> {brand}
+            <strong>Battery Name:</strong> {battery_name}
           </p>
           <p>
             <strong>Series:</strong> {series}

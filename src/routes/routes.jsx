@@ -23,6 +23,7 @@ import CustomersQueries from "../pages/Dashboard/CustomersQueries";
 import AllBatteryDetails from "../pages/Dashboard/AllBatteryDetails";
 import CategoryWiseBatteries from "../pages/Products/CategoryWiseBatteries";
 import ErrorPage from "../pages/ErrorPage";
+import AddANewBattery from "../pages/Dashboard/AddANewBattery";
 
 const routes = createBrowserRouter([
   {
@@ -130,6 +131,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/all-battery-details-list",
         element: <AllBatteryDetails />,
+      },
+      {
+        path: "/dashboard/add-new-battery",
+        element: <AddANewBattery />,
       },
       {
         path: "/dashboard/customers-queries",

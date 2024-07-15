@@ -7,7 +7,7 @@ import { allDeviceMaxWidth } from "../styles/maxWidth";
 import HomeDeliverySection from "../components/ManageMyBattery/HomeDeliverySection";
 const ManageMyBattery = () => {
   return (
-    <section className="bg-cross-pattern">
+    <section>
       <div>
         <img
           src={ManageMyBatteryBanner}
