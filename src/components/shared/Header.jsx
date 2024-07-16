@@ -28,8 +28,16 @@ const Header = () => {
             <div className="flex justify-between items-center">
               <div className="flex items-center">
                 <a href="/">
-                  <img className="nav-logo hidden lg:block" src={Logo} alt="logo" />
-                  <img className="nav-logo lg:hidden" src={MobileLogo} alt="logo" />
+                  <img
+                    className="nav-logo hidden lg:block"
+                    src={Logo}
+                    alt="logo"
+                  />
+                  <img
+                    className="nav-logo lg:hidden"
+                    src={MobileLogo}
+                    alt="logo"
+                  />
                 </a>
               </div>
               <div className="hidden lg:block">
@@ -367,31 +375,72 @@ const Header = () => {
               <div className="border opacity-25 w-4/5 ml-3 mb-4"></div>
               <li>
                 <nav className="collapse">
-                  <input type="checkbox" className='min-h-0' />
-                  <h6 className='collapse-title pt-0 min-h-0 flex justify-between font-bold text-sky-600'>
+                  <input type="checkbox" className="min-h-0" />
+                  <h6 className="collapse-title pt-0 min-h-0 flex justify-between font-bold text-sky-600">
                     About
-                    <ChevronDownIcon className='w-5 h-5 mt-1 ml-4 ' />
+                    <ChevronDownIcon className="w-5 h-5 mt-1 ml-4 " />
                   </h6>
                   <div className="collapse-content pl-8 leading-8">
-                    <a href="https://www.rahimafrooz.com/" target="_blank" className="link link-hover"><span className="text-sky-600">Rahimafrooz Group</span></a> <br />
-                    <a href="/Founder-and-Board-Members" className="link link-hover"><span className="text-sky-600">Founder & Board Members</span></a> <br />
-                    <a href="/rahimafrooz-storage-power" className="link link-hover"><span className="text-sky-600">Rahimafrooz Storage Power</span></a> <br />
-                    <a href="/manufacturing" className="link link-hover"><span className="text-sky-600">Manufacturing</span></a> <br />
-                    <a href="/special-awards-achievement" className="link link-hover"><span className="text-sky-600">Special Awards & Achievement</span></a>
+                    <a
+                      href="https://www.rahimafrooz.com/"
+                      target="_blank"
+                      className="link link-hover"
+                    >
+                      <span className="text-sky-600">Rahimafrooz Group</span>
+                    </a>{" "}
+                    <br />
+                    <a
+                      href="/Founder-and-Board-Members"
+                      className="link link-hover"
+                    >
+                      <span className="text-sky-600">
+                        Founder & Board Members
+                      </span>
+                    </a>{" "}
+                    <br />
+                    <a
+                      href="/rahimafrooz-storage-power"
+                      className="link link-hover"
+                    >
+                      <span className="text-sky-600">
+                        Rahimafrooz Storage Power
+                      </span>
+                    </a>{" "}
+                    <br />
+                    <a href="/manufacturing" className="link link-hover">
+                      <span className="text-sky-600">Manufacturing</span>
+                    </a>{" "}
+                    <br />
+                    <a
+                      href="/special-awards-achievement"
+                      className="link link-hover"
+                    >
+                      <span className="text-sky-600">
+                        Special Awards & Achievement
+                      </span>
+                    </a>
                   </div>
                 </nav>
               </li>
               <div className="border opacity-25 w-4/5 ml-3 mb-4"></div>
               <li>
                 <nav className="collapse">
-                  <input type="checkbox" className='min-h-0' />
-                  <h6 className='collapse-title pt-0 min-h-0 flex justify-between font-bold text-sky-600'>
+                  <input type="checkbox" className="min-h-0" />
+                  <h6 className="collapse-title pt-0 min-h-0 flex justify-between font-bold text-sky-600">
                     Products
-                    <ChevronDownIcon className='w-5 h-5 mt-1 ml-4 ' />
+                    <ChevronDownIcon className="w-5 h-5 mt-1 ml-4 " />
                   </h6>
                   <div className="collapse-content pl-8 leading-8">
-                    <a href="/products-bangladesh" className="link link-hover"><span className="text-sky-600">Bangladesh</span></a> <br />
-                    <a href="/products-international" className="link link-hover"><span className="text-sky-600">International</span></a>
+                    <a href="/products-bangladesh" className="link link-hover">
+                      <span className="text-sky-600">Bangladesh</span>
+                    </a>{" "}
+                    <br />
+                    <a
+                      href="/products-international"
+                      className="link link-hover"
+                    >
+                      <span className="text-sky-600">International</span>
+                    </a>
                   </div>
                 </nav>
               </li>
