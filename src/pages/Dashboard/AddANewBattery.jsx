@@ -1,5 +1,17 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import AddANewBatteryForm from "../../components/Dashboard/BatteryDetails/AddANewBatteryForm";
+import Loader from "../../components/shared/Loaders/Loader";
+
+const fetchCategories = async () => {
+  const response = await fetch(
+    "https://rahimafrooz-battery-backend.vercel.app/api/v1/categories/"
+  );
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+};
 
 const AddANewBattery = () => {
   const [formData, setFormData] = useState({
@@ -28,20 +40,18 @@ const AddANewBattery = () => {
     make_years_models: {},
   });
 
-  const categories = [
-    { value: "Passenger Car", label: "Passenger Car" },
-    { value: "Commercial Vehicle", label: "Commercial Vehicle" },
-    { value: "Three Wheeler", label: "Three Wheeler" },
-    { value: "Motorcycle", label: "Motorcycle" },
-    { value: "Generator", label: "Generator" },
-    { value: "Special Purpose", label: "Special Purpose" },
-    { value: "IPS", label: "IPS" },
-    { value: "Solar", label: "Solar" },
-    { value: "Tractor", label: "Tractor" },
-    { value: "Golf Cart", label: "Golf Cart" },
-    { value: "Forklift", label: "Forklift" },
-    { value: "Electric Vehicle", label: "Electric Vehicle" },
-  ];
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
+
+  if (isLoading) return <Loader />;
+  if (error) return <div>Error: {error.message}</div>;
+
+  const categories = data.map((category) => ({
+    value: category.category_name,
+    label: category.category_name,
+  }));
 
   const technologyOptions = [
     { value: "Non-Hybrid", label: "Non-Hybrid" },
@@ -75,7 +85,9 @@ const AddANewBattery = () => {
   };
 
   const handleCategoryChange = (selectedOptions) => {
-    const categories = selectedOptions ? selectedOptions.map((option) => option.value) : [];
+    const categories = selectedOptions
+      ? selectedOptions.map((option) => option.value)
+      : [];
     setFormData({
       ...formData,
       applicable_categories: categories,
@@ -122,7 +134,9 @@ const AddANewBattery = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const supportedVehicleModels = Object.keys(formData.supported_vehicle_models).map((make) => ({
+    const supportedVehicleModels = Object.keys(
+      formData.supported_vehicle_models
+    ).map((make) => ({
       make,
       models: formData.supported_vehicle_models[make],
     }));
@@ -148,7 +162,8 @@ const AddANewBattery = () => {
       ref_amperehour_ah: formData.ref_amperehour_ah,
       cold_cranking_ability_cca: formData.cold_cranking_ability_cca,
       product_dimensions_lxbxh_mm: formData.product_dimensions_lxbxh_mm,
-      exchangeable_format_compatible_with: formData.exchangeable_format_compatible_with,
+      exchangeable_format_compatible_with:
+        formData.exchangeable_format_compatible_with,
       price: formData.price,
       imgurls: formData.imgurls,
       applicable_categories: formData.applicable_categories,
@@ -162,7 +177,9 @@ const AddANewBattery = () => {
     // Add your form submission logic here
   };
 
-  const showVehicleFields = formData.applicable_categories.includes("Passenger Car") || formData.applicable_categories.includes("Commercial Vehicle");
+  const showVehicleFields =
+    formData.applicable_categories.includes("Passenger Car") ||
+    formData.applicable_categories.includes("Commercial Vehicle");
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
