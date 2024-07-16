@@ -135,8 +135,10 @@ const AddANewBattery = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
+<<<<<<< HEAD
     const supportedVehicleModels = Object.keys(
       formData.supported_vehicle_models
     ).map((make) => ({
@@ -178,6 +180,55 @@ const AddANewBattery = () => {
 
     console.log(formattedData);
     // Add your form submission logic here
+=======
+      // Parse and merge make_years
+      const makeYearsArray = formData.make_years
+        ? formData.make_years.split(", " || "," || " ,").map((item) => {
+            const [model, years] = item.split(":");
+            return { model, years: years ? [years] : [] };
+          })
+        : [];
+
+      // Parse and merge supported_vehicle_models
+      const vehicleModelsArray = formData.supported_vehicle_models
+        ? formData.supported_vehicle_models
+            .split(", " || "," || " ,")
+            .reduce((acc, item) => {
+              const [make, models] = item.split(":");
+              
+              const modelArray = models
+                ? models.split(", " || "," || " ,")
+                : [];
+              if (acc[make]) {
+                acc[make] = [...new Set([...acc[make], ...modelArray])];
+              } else {
+                acc[make] = modelArray;
+              }
+             
+              return acc;
+            }, {})
+        : {};
+
+      const processedData = {
+        ...formData,
+        make_years: makeYearsArray,
+        supported_vehicle_makes: formData.supported_vehicle_makes
+          ? formData.supported_vehicle_makes.split(", " || "," || " ,")
+          : [],
+        supported_vehicle_models: Object.keys(vehicleModelsArray).map(
+          (make) => ({
+            make,
+            models: vehicleModelsArray[make],
+          })
+        ),
+      };
+
+      console.log(processedData);
+      // Add your form submission logic here
+    } catch (error) {
+      console.log(error.message);
+    }
+>>>>>>> 3dedb7fedf2a404bedefa870727928f52580da2d
   };
 
   const showVehicleFields =
@@ -198,9 +249,12 @@ const AddANewBattery = () => {
           handleFileChange,
           handleChange,
           formData,
+<<<<<<< HEAD
           handleVehicleModelsChange,
           handleMakeYearsChange,
           handleSupportedVehicleMakesChange,
+=======
+>>>>>>> 3dedb7fedf2a404bedefa870727928f52580da2d
         }}
       />
     </div>

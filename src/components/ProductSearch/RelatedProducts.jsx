@@ -2,11 +2,13 @@ import React from "react";
 import Slider from "react-slick";
 import Product1 from "../../assets/images/BatteryFinalPage/Product-01.png";
 import Product2 from "../../assets/images/BatteryFinalPage/Product-02.png";
+import { useQuery } from "@tanstack/react-query";
 
 const RelatedProducts = () => {
   const slider = React.useRef(null);
   var settings = {
-    dots: false,
+    dots: true,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -52,6 +54,34 @@ const RelatedProducts = () => {
     ],
   };
 
+  const queryDatas = JSON.parse(window.localStorage.getItem("query_datas")|| {});
+  const categoryId = queryDatas.category;
+  console.log(categoryId);
+
+  const CATEGORIES_API_URL = `${import.meta.env.VITE_BASE_URL}/categories`;
+  const { data: categories = [] } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const res = await fetch(CATEGORIES_API_URL);
+      const data = await res.json();
+      return data;
+    },
+  });
+  console.log(categories);
+  const category = categories?.find((category) => category.category_id == categoryId);
+  console.log(category)
+
+  const CATEGORY_WISE_PRODUCT_API_URL = `${import.meta.env.VITE_BASE_URL}/categories/${category?.category_name}`;
+  const { data: categoryWiseBatteries = [] } = useQuery({
+    queryKey: ["categoryWiseBatteries"],
+    queryFn: async () => {
+      const res = await fetch(CATEGORY_WISE_PRODUCT_API_URL);
+      const data = await res.json();
+      return data;
+    },
+  });
+  console.log(categoryWiseBatteries)
+  
   const products = [
     { id: 1, imgSrc: Product2, name: "Lucas Ultima Battery", navigateTo: "" },
     { id: 2, imgSrc: Product1, name: "Globatt Ace", navigateTo: "" },

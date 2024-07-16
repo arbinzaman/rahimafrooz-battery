@@ -26,6 +26,7 @@ const ProductSearchField = () => {
     brand: "",
     model: "",
     year: "",
+    category: ""
   });
 
   const navigate = useNavigate();
@@ -142,6 +143,7 @@ const ProductSearchField = () => {
                   e.target.value,
                   e.target.options[e.target.selectedIndex].text
                 );
+                handleChange(e);
               }}
             >
               <option>Select Category</option>
