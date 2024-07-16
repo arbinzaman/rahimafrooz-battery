@@ -32,25 +32,22 @@ const DashboardLayout = () => {
                 Two Wheeler Batteries
               </Link>
             </li> */}
-              <li>
-                <Link to="/dashboard/all-battery-details-list">
-                  All Battery Details
-                </Link>
-              </li>
-              <li>
-                <Link to="/dashboard/add-new-battery">
-                  Add A New Battery
-                </Link>
-              </li>
+
+            <li>
+              <Link to="/dashboard/all-battery-details-list">
+                All Battery Details
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/add-new-battery">Add A New Battery</Link>
+            </li>
             <li>
               <Link to="/dashboard/dealers-application-list">
                 Dealers Application List
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/customers-queries">
-                Customers Queries
-              </Link>
+              <Link to="/dashboard/customers-queries">Customers Queries</Link>
             </li>
           </ul>
         </div>

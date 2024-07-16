@@ -12,7 +12,7 @@ const AddANewBattery = () => {
     voltage: "",
     free_warranty: "",
     total_warranty: "",
-    terminal_layout: [],
+    terminal_layout: "",
     country_of_origin: "",
     pro_rata_warranty: "",
     ref_amperehour_ah: "",
@@ -23,9 +23,9 @@ const AddANewBattery = () => {
     imgurls: [],
     applicable_categories: [],
     technology: "",
-    make_years: "",
-    supported_vehicle_makes: "",
-    supported_vehicle_models: "",
+    supported_vehicle_makes: [],
+    supported_vehicle_models: {},
+    make_years_models: {},
   });
 
   const categories = [
@@ -56,6 +56,15 @@ const AddANewBattery = () => {
     });
   };
 
+  // const handleFileChange = (e) => {
+  //   const files = Array.from(e.target.files);
+  //   const fileUrls = files.map((file) => URL.createObjectURL(file));
+  //   setFormData({
+  //     ...formData,
+  //     imgurls: fileUrls,
+  //   });
+  // };
+
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
     console.log(files);
@@ -65,6 +74,15 @@ const AddANewBattery = () => {
     setFormData({
       ...formData,
       imgurls: fileUrls,
+    });
+  };
+
+  const handleTerminalLayoutChange = (e) => {
+    const files = Array.from(e.target.files);
+    const fileUrls = files.map((file) => URL.createObjectURL(file));
+    setFormData({
+      ...formData,
+      terminal_layout: fileUrls[0],
     });
   };
 
@@ -85,19 +103,84 @@ const AddANewBattery = () => {
     });
   };
 
-  const handleTerminalLayoutChange = (e) => {
-    const files = Array.from(e.target.files);
-    const fileUrls = files.map((file) => URL.createObjectURL(file));
+  const handleSupportedVehicleMakesChange = (e) => {
+    const makes = e.target.value.split(",").map((make) => make.trim());
     setFormData({
       ...formData,
-      terminal_layout: fileUrls,
+      supported_vehicle_makes: makes,
+      supported_vehicle_models: {},
+      make_years_models: {},
     });
+  };
+  
+
+  const handleVehicleModelsChange = (make, models) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      supported_vehicle_models: {
+        ...prevState.supported_vehicle_models,
+        [make]: models,
+      },
+    }));
+  };
+
+  const handleMakeYearsChange = (model, years) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      make_years_models: {
+        ...prevState.make_years_models,
+        [model]: years,
+      },
+    }));
   };
 
   const handleSubmit = (e) => {
     try {
       e.preventDefault();
 
+<<<<<<< HEAD
+    const supportedVehicleModels = Object.keys(
+      formData.supported_vehicle_models
+    ).map((make) => ({
+      make,
+      models: formData.supported_vehicle_models[make],
+    }));
+
+    const makeYears = Object.keys(formData.make_years_models).map((model) => ({
+      model,
+      years: formData.make_years_models[model],
+    }));
+
+    const formattedData = {
+      battery_name: formData.battery_name,
+      short_code: formData.short_code,
+      brand_code: formData.brand_code,
+      item_code: formData.item_code,
+      model: formData.model,
+      series: formData.series,
+      voltage: formData.voltage,
+      free_warranty: formData.free_warranty,
+      total_warranty: formData.total_warranty,
+      terminal_layout: formData.terminal_layout,
+      country_of_origin: formData.country_of_origin,
+      pro_rata_warranty: formData.pro_rata_warranty,
+      ref_amperehour_ah: formData.ref_amperehour_ah,
+      cold_cranking_ability_cca: formData.cold_cranking_ability_cca,
+      product_dimensions_lxbxh_mm: formData.product_dimensions_lxbxh_mm,
+      exchangeable_format_compatible_with:
+        formData.exchangeable_format_compatible_with,
+      price: formData.price,
+      imgurls: formData.imgurls,
+      applicable_categories: formData.applicable_categories,
+      technology: formData.technology,
+      make_years: makeYears,
+      supported_vehicle_makes: formData.supported_vehicle_makes,
+      supported_vehicle_models: supportedVehicleModels,
+    };
+
+    console.log(formattedData);
+    // Add your form submission logic here
+=======
       // Parse and merge make_years
       const makeYearsArray = formData.make_years
         ? formData.make_years.split(", " || "," || " ,").map((item) => {
@@ -145,6 +228,7 @@ const AddANewBattery = () => {
     } catch (error) {
       console.log(error.message);
     }
+>>>>>>> 3dedb7fedf2a404bedefa870727928f52580da2d
   };
 
   const showVehicleFields =
@@ -165,6 +249,12 @@ const AddANewBattery = () => {
           handleFileChange,
           handleChange,
           formData,
+<<<<<<< HEAD
+          handleVehicleModelsChange,
+          handleMakeYearsChange,
+          handleSupportedVehicleMakesChange,
+=======
+>>>>>>> 3dedb7fedf2a404bedefa870727928f52580da2d
         }}
       />
     </div>

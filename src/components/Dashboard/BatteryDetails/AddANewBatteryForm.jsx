@@ -6,12 +6,15 @@ const AddANewBatteryForm = ({ prompts }) => {
     categories,
     handleSubmit,
     handleTerminalLayoutChange,
-    technologyOptions,
-    handleTechnologyChange,
+    handleVehicleModelsChange,
+    handleMakeYearsChange,
+    handleSupportedVehicleMakesChange,
     formData,
     handleChange,
     handleFileChange,
     handleCategoryChange,
+    technologyOptions,
+    handleTechnologyChange,
   } = prompts;
 
   return (
@@ -118,9 +121,9 @@ const AddANewBatteryForm = ({ prompts }) => {
             <label className="block text-gray-700">Terminal Layout:</label>
             <input
               type="file"
-              multiple
+              name="terminal_layout"
               onChange={handleTerminalLayoutChange}
-              className="input input-bordered w-full bg-gray-200 text-black"
+              className="file-input w-full max-w-xs bg-gray-200 text-black"
             />
           </div>
           <div className="mb-4">
@@ -144,7 +147,7 @@ const AddANewBatteryForm = ({ prompts }) => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Ref Amperehour (Ah):</label>
+            <label className="block text-gray-700">Ref Amperehour (AH):</label>
             <input
               type="number"
               name="ref_amperehour_ah"
@@ -167,7 +170,7 @@ const AddANewBatteryForm = ({ prompts }) => {
           </div>
           <div className="mb-4">
             <label className="block text-gray-700">
-              Product Dimensions (LxBxH mm):
+              Product Dimensions (L x B x H) mm:
             </label>
             <input
               type="text"
@@ -200,84 +203,115 @@ const AddANewBatteryForm = ({ prompts }) => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Picture URLs:</label>
+            <label className="block text-gray-700">Upload Image:</label>
             <input
               type="file"
+              name="imgurls"
               multiple
               onChange={handleFileChange}
-              className="input input-bordered w-full bg-gray-200 text-black"    
+              className="file-input w-full max-w-xs bg-gray-200 text-black"
             />
           </div>
           <div className="mb-4">
             <label className="block text-gray-700">
-              Applicable Categories (comma separated):
+              Applicable Categories:
             </label>
             <Select
               isMulti
               name="applicable_categories"
               options={categories}
-              className="basic-multi-select"
-              classNamePrefix="select"
+              value={categories.filter((option) =>
+                formData.applicable_categories.includes(option.value)
+              )}
               onChange={handleCategoryChange}
+              className="basic-multi-select bg-gray-200"
+              classNamePrefix="select"
             />
           </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Technology:</label>
+            <Select
+              name="technology"
+              options={technologyOptions}
+              value={technologyOptions.find(
+                (option) => option.value === formData.technology
+              )}
+              onChange={handleTechnologyChange}
+              className="basic-select bg-gray-200"
+              classNamePrefix="select"
+            />
+          </div>
+
           {showVehicleFields && (
             <>
               <div className="mb-4">
-                <label className="block text-gray-700">Technology:</label>
-                <Select
-                  name="technology"
-                  options={technologyOptions}
-                  className="basic-single"
-                  classNamePrefix="select"
-                  onChange={handleTechnologyChange}
-                />
-              </div>
-              <div className="mb-4">
                 <label className="block text-gray-700">
-                  Make Years (comma separated, format model:years):
-                </label>
-                <input
-                  type="text"
-                  name="make_years"
-                  value={formData.make_years}
-                  onChange={handleChange}
-                  className="input input-bordered w-full bg-gray-200 text-black"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">
-                  Supported Vehicle Brands (comma separated):
+                  Supported Vehicle Makes:
                 </label>
                 <input
                   type="text"
                   name="supported_vehicle_makes"
-                  value={formData.supported_vehicle_makes}
-                  onChange={handleChange}
+                  placeholder="e.g. Toyota, Honda, (Comma Separated)"
+                  value={formData.supported_vehicle_makes.join(", ")}
+                  onChange={handleSupportedVehicleMakesChange}
                   className="input input-bordered w-full bg-gray-200 text-black"
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">
-                  Supported Vehicle Models (format make:models, models comma
-                  separated):
-                </label>
-                <input
-                  type="text"
-                  name="supported_vehicle_models"
-                  value={formData.supported_vehicle_models}
-                  onChange={handleChange}
-                  className="input input-bordered w-full bg-gray-200 text-black"
-                />
-              </div>
+              {formData.supported_vehicle_makes.map((make, index) => (
+                <div className="mb-4" key={index}>
+                  <label className="block text-gray-700">
+                    Vehicle Models for {make}:
+                  </label>
+                  <input
+                    type="text"
+                    name={`vehicle_models_${make}`}
+                    placeholder="e.g. Celio, (Comma Separated)"
+                    value={
+                      formData.supported_vehicle_models[make]?.join(", ") || ""
+                    }
+                    onChange={(e) =>
+                      handleVehicleModelsChange(
+                        make,
+                        e.target.value.split(",").map((model) => model.trim())
+                      )
+                    }
+                    className="input input-bordered w-full bg-gray-200 text-black"
+                  />
+                </div>
+              ))}
+              {Object.keys(formData.supported_vehicle_models).map(
+                (model, index) => (
+                  <div className="mb-4" key={index}>
+                    <label className="block text-gray-700">
+                      Make Years for {model} :
+                    </label>
+                    <input
+                      type="text"
+                      name={`make_years_${model}`}
+                      placeholder="e.g. 1986-2008, (Comma Separated)"
+                      value={
+                        formData.make_years_models[model]?.join(", ") || ""
+                      }
+                      onChange={(e) =>
+                        handleMakeYearsChange(
+                          model,
+                          e.target.value.split(",").map((year) => year.trim())
+                        )
+                      }
+                      className="input input-bordered w-full bg-gray-200 text-black"
+                    />
+                  </div>
+                )
+              )}
             </>
           )}
         </div>
-        <div className="flex justify-center mt-6">
-          <button type="submit" className="btn btn-primary bg-tableBackground2 text-white">
-            Submit
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="btn bg-tableBackground2 border-0 text-white w-full"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
