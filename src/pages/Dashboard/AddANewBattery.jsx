@@ -56,21 +56,9 @@ const AddANewBattery = () => {
     });
   };
 
-  // const handleFileChange = (e) => {
-  //   const files = Array.from(e.target.files);
-  //   const fileUrls = files.map((file) => URL.createObjectURL(file));
-  //   setFormData({
-  //     ...formData,
-  //     imgurls: fileUrls,
-  //   });
-  // };
-
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
-    console.log(files);
-    const fromData = new FormData();
-    const fileUrls = files.map((img, i) => fromData.append(`img-${i}`, img));
-    console.log(fileUrls);
+    const fileUrls = files.map((file) => URL.createObjectURL(file));
     setFormData({
       ...formData,
       imgurls: fileUrls,
@@ -87,9 +75,7 @@ const AddANewBattery = () => {
   };
 
   const handleCategoryChange = (selectedOptions) => {
-    const categories = selectedOptions
-      ? selectedOptions.map((option) => option.value)
-      : [];
+    const categories = selectedOptions ? selectedOptions.map((option) => option.value) : [];
     setFormData({
       ...formData,
       applicable_categories: categories,
@@ -112,7 +98,6 @@ const AddANewBattery = () => {
       make_years_models: {},
     });
   };
-  
 
   const handleVehicleModelsChange = (make, models) => {
     setFormData((prevState) => ({
@@ -135,13 +120,9 @@ const AddANewBattery = () => {
   };
 
   const handleSubmit = (e) => {
-    try {
-      e.preventDefault();
+    e.preventDefault();
 
-<<<<<<< HEAD
-    const supportedVehicleModels = Object.keys(
-      formData.supported_vehicle_models
-    ).map((make) => ({
+    const supportedVehicleModels = Object.keys(formData.supported_vehicle_models).map((make) => ({
       make,
       models: formData.supported_vehicle_models[make],
     }));
@@ -167,8 +148,7 @@ const AddANewBattery = () => {
       ref_amperehour_ah: formData.ref_amperehour_ah,
       cold_cranking_ability_cca: formData.cold_cranking_ability_cca,
       product_dimensions_lxbxh_mm: formData.product_dimensions_lxbxh_mm,
-      exchangeable_format_compatible_with:
-        formData.exchangeable_format_compatible_with,
+      exchangeable_format_compatible_with: formData.exchangeable_format_compatible_with,
       price: formData.price,
       imgurls: formData.imgurls,
       applicable_categories: formData.applicable_categories,
@@ -180,63 +160,13 @@ const AddANewBattery = () => {
 
     console.log(formattedData);
     // Add your form submission logic here
-=======
-      // Parse and merge make_years
-      const makeYearsArray = formData.make_years
-        ? formData.make_years.split(", " || "," || " ,").map((item) => {
-            const [model, years] = item.split(":");
-            return { model, years: years ? [years] : [] };
-          })
-        : [];
-
-      // Parse and merge supported_vehicle_models
-      const vehicleModelsArray = formData.supported_vehicle_models
-        ? formData.supported_vehicle_models
-            .split(", " || "," || " ,")
-            .reduce((acc, item) => {
-              const [make, models] = item.split(":");
-              
-              const modelArray = models
-                ? models.split(", " || "," || " ,")
-                : [];
-              if (acc[make]) {
-                acc[make] = [...new Set([...acc[make], ...modelArray])];
-              } else {
-                acc[make] = modelArray;
-              }
-             
-              return acc;
-            }, {})
-        : {};
-
-      const processedData = {
-        ...formData,
-        make_years: makeYearsArray,
-        supported_vehicle_makes: formData.supported_vehicle_makes
-          ? formData.supported_vehicle_makes.split(", " || "," || " ,")
-          : [],
-        supported_vehicle_models: Object.keys(vehicleModelsArray).map(
-          (make) => ({
-            make,
-            models: vehicleModelsArray[make],
-          })
-        ),
-      };
-
-      console.log(processedData);
-      // Add your form submission logic here
-    } catch (error) {
-      console.log(error.message);
-    }
->>>>>>> 3dedb7fedf2a404bedefa870727928f52580da2d
   };
 
-  const showVehicleFields =
-    formData.applicable_categories.includes("Passenger Car") ||
-    formData.applicable_categories.includes("Commercial Vehicle");
+  const showVehicleFields = formData.applicable_categories.includes("Passenger Car") || formData.applicable_categories.includes("Commercial Vehicle");
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex flex-col justify-center items-center min-h-screen">
+      <h1 className="text-primary text-center text-medium lg:text-large font-bold uppercase mb-2">Add Battery Form</h1>
       <AddANewBatteryForm
         prompts={{
           showVehicleFields,
@@ -249,12 +179,9 @@ const AddANewBattery = () => {
           handleFileChange,
           handleChange,
           formData,
-<<<<<<< HEAD
           handleVehicleModelsChange,
           handleMakeYearsChange,
           handleSupportedVehicleMakesChange,
-=======
->>>>>>> 3dedb7fedf2a404bedefa870727928f52580da2d
         }}
       />
     </div>
