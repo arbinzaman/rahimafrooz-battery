@@ -23,7 +23,7 @@ export default {
         semi_large:"30px",
         medium:"20px",
         regular:"17px",
-        small:"13px",
+        small:"14px",
         xsmall:"12px",
         xxsmall:"10px",
       },
