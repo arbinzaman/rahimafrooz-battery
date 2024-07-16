@@ -23,9 +23,6 @@ const AddANewBatteryForm = ({ prompts }) => {
         onSubmit={handleSubmit}
         className="p-6 bg-white rounded shadow-md w-full max-w-5xl "
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-primary">
-          Battery Form
-        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
@@ -168,7 +165,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               type="file"
               name="terminal_layout"
               onChange={handleTerminalLayoutChange}
-              className="file-input w-full max-w-xs input-sm rounded-sm bg-white text-black max-h-10 "
+              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black"
             />
           </div>
           <div className="mb-4">
@@ -233,6 +230,17 @@ const AddANewBatteryForm = ({ prompts }) => {
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
+              Terminal Layout:
+            </label>
+            <input
+              type="file"
+              name="terminal_layout"
+              onChange={handleTerminalLayoutChange}
+              className="file-input file-input-sm rounded-sm w-full max-w-sm bg-gray-200 text-black"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
               Upload Image:
             </label>
             <input
@@ -277,8 +285,10 @@ const AddANewBatteryForm = ({ prompts }) => {
 
           {showVehicleFields && (
             <>
-              <div>
-                <label className="text-black">Supported Vehicle Makes</label>
+              <div className="mb-4">
+                <label className="block text-small text-gray-800 pb-1">
+                  Supported Vehicle Makes:
+                </label>
                 <input
                   type="text"
                   name="supported_vehicle_makes"
@@ -288,12 +298,33 @@ const AddANewBatteryForm = ({ prompts }) => {
                   placeholder="eg. Toyota, Comma Separated"
                 />
               </div>
-
-              {formData.supported_vehicle_makes &&
-                formData.supported_vehicle_makes.map((make) => (
-                  <div key={make}>
-                    <label className="text-black">
-                      Vehicle Models for {make}
+              {formData.supported_vehicle_makes.map((make, index) => (
+                <div className="mb-4" key={index}>
+                  <label className="block text-small text-gray-800 pb-1">
+                    Vehicle Models for {make}:
+                  </label>
+                  <input
+                    type="text"
+                    name={`vehicle_models_${make}`}
+                    placeholder="e.g. Celio, (Comma Separated)"
+                    value={
+                      formData.supported_vehicle_models[make]?.join(", ") || ""
+                    }
+                    onChange={(e) =>
+                      handleVehicleModelsChange(
+                        make,
+                        e.target.value.split(",").map((model) => model.trim())
+                      )
+                    }
+                    className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black"
+                  />
+                </div>
+              ))}
+              {Object.keys(formData.supported_vehicle_models).map(
+                (model, index) => (
+                  <div className="mb-4" key={index}>
+                    <label className="block text-small text-gray-800 pb-1">
+                      Make Years for {model} :
                     </label>
                     <input
                       type="text"
@@ -306,6 +337,7 @@ const AddANewBatteryForm = ({ prompts }) => {
                       onChange={(e) =>
                         handleVehicleModelsChange(make, e.target.value)
                       }
+                      className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black"
                     />
 
                     {formData.supported_vehicle_models[make] &&
@@ -334,7 +366,7 @@ const AddANewBatteryForm = ({ prompts }) => {
         </div>
         <button
           type="submit"
-          className="btn bg-tableBackground2 border-0 text-white w-full"
+          className="btn bg-primary rounded-sm hover:bg-secondary text-white w-full my-3 uppercase"
         >
           Submit
         </button>

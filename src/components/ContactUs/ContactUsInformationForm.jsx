@@ -1,13 +1,17 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { generateCaptcha } from "../../utils/generateCaptcha";
+import { useState } from "react";
+import { TfiReload } from "react-icons/tfi";
 
 const ContactUsInformationForm = () => {
+  const [captcha, setCaptcha] = useState(generateCaptcha());
   const { register, handleSubmit } = useForm();
 
   const handleFormSubmit = (data) => {
     console.log(data);
     try {
-      if (data) {
+      if (data.captchaCode === captcha) {
         toast.success("Thank your for getting in touch with us.");
       }
     } catch (error) {
@@ -61,10 +65,10 @@ const ContactUsInformationForm = () => {
 
         <div>
           <p className="text-primary text-sm font-medium mt-5 mb-3">
-            Please type the characters you see in the image for security
+            Please type the captcha for security
             purposes.
           </p>
-          <div className="md:flex items-center gap-7">
+          <div className="md:flex md:items-center gap-7">
             <div>
               <input
                 type="text"
@@ -73,8 +77,15 @@ const ContactUsInformationForm = () => {
                 {...register("captchaCode")}
               />
             </div>
-            <div className="bg-primary text-2xl text-white p-4 mb-5">
-              <p className="text-center font-medium">J23ndAjd4</p>
+
+            <div className="flex items-center gap-4">
+              <p className="bg-primary text-medium text-white font-bold text-center py-2 w-[150px]">
+                {captcha}
+              </p>
+              <TfiReload
+                color="#0d72b9"
+                onClick={() => setCaptcha(generateCaptcha())}
+              />
             </div>
           </div>
         </div>
