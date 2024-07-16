@@ -3,16 +3,22 @@ import toast from "react-hot-toast";
 import { generateCaptcha } from "../../utils/generateCaptcha";
 import { useState } from "react";
 import { TfiReload } from "react-icons/tfi";
+import axios from "axios";
 
 const ContactUsInformationForm = () => {
   const [captcha, setCaptcha] = useState(generateCaptcha());
   const { register, handleSubmit } = useForm();
 
-  const handleFormSubmit = (data) => {
-    console.log(data);
+  const handleFormSubmit = async (data) => {
     try {
+      const URL = `${import.meta.env.VITE_BASE_URL}/contact`;
+
       if (data.captchaCode === captcha) {
+        const res = await axios.post(URL, data);
+        console.log(res);
         toast.success("Thank your for getting in touch with us.");
+      }else{
+        toast.error("Captcha miss matched or invalid email provided! Please try again.")
       }
     } catch (error) {
       console.log(error.message);
@@ -29,9 +35,10 @@ const ContactUsInformationForm = () => {
         <div>
           <input
             type="text"
-            placeholder="Full Name*"
+            placeholder="Enter your name*"
+            required
             className="bg-base border border-border_primary rounded-md p-1 w-full"
-            {...register("fullName")}
+            {...register("customerName")}
           />
         </div>
 
@@ -39,7 +46,8 @@ const ContactUsInformationForm = () => {
           <div>
             <input
               type="text"
-              placeholder="Phone No*"
+              placeholder="Enter your phone number*"
+              required
               className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("phoneNo")}
             />
@@ -48,7 +56,8 @@ const ContactUsInformationForm = () => {
           <div>
             <input
               type="email"
-              placeholder="E-mail*"
+              placeholder="Enter your email*"
+              required
               className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("email")}
             />
@@ -57,7 +66,8 @@ const ContactUsInformationForm = () => {
 
         <div>
           <textarea
-            placeholder="Message"
+            required
+            placeholder="Enter your message or question to us."
             className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("message")}
           ></textarea>
@@ -65,8 +75,7 @@ const ContactUsInformationForm = () => {
 
         <div>
           <p className="text-primary text-sm font-medium mt-5 mb-3">
-            Please type the captcha for security
-            purposes.
+            Please type the captcha for security purposes.
           </p>
           <div className="md:flex md:items-center gap-7">
             <div>
@@ -90,7 +99,7 @@ const ContactUsInformationForm = () => {
           </div>
         </div>
 
-        <button className="bg-button px-8 py-2 text-2xl text-base font-bold rounded-md">
+        <button className="bg-button px-8 py-2 my-3 text-2xl text-base font-bold rounded-md">
           SUBMIT
         </button>
       </form>
