@@ -11,8 +11,8 @@ const ContactUs = () => {
       <div>
         <ContactUsGoogleMap />
       </div>
-      <section className={allDeviceMaxWidth+"my-10"}>
-        <p className="text-primary text-large font-bold text-center">
+      <section className={allDeviceMaxWidth + "my-10"}>
+        <p className="text-primary text-center text-medium lg:text-large font-bold uppercase">
           CONTACT US
         </p>
         <div>
