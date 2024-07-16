@@ -16,9 +16,12 @@ import Cart from "../../assets/icons/cart.png";
 import Battery from "../../assets/icons/car-battery.png";
 import "../../styles/Header.css";
 import clsx from "clsx";
+import BatterySearch from "../Header/BatterySearch/BatterySearch";
 
 const Header = () => {
   const [isSideMenuOpen, setMenu] = useState(false);
+  const [searchData, setSearchData] = useState("");
+
 
   return (
     <div>
@@ -137,6 +140,7 @@ const Header = () => {
                 </div>
               </div>
             </div>
+            {/* Mobile Search */}
             <div className="relative lg:hidden mt-2">
               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                 <svg
@@ -160,12 +164,13 @@ const Header = () => {
                 type="text"
                 id="search-navbar"
                 className="search block w-full p-2 pl-3 text-black text-sm border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Search for products, vehicle, battery…"
+                placeholder="Search"
               />
             </div>
           </div>
         </div>
         <div>
+          {/* pc search */}
           <div className="main-nav hidden lg:block">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto pt-4 pb-4">
               <div className="flex md:order-2 gap-2">
@@ -215,9 +220,11 @@ const Header = () => {
                   <input
                     type="text"
                     id="search-navbar"
-                    className="search block w-full pl-10 text-sm border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                    onChange={(e) => setSearchData(e.target.value)}
+                    className="search block w-full p-2 pl-3 text-black text-sm border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Search"
                   />
+                    <BatterySearch searchData={searchData} />
                 </div>
                 <a href="/become-a-dealer">
                   <button className="header-btn">Become A Partner</button>
