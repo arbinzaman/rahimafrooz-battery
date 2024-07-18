@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { generateCaptcha } from "../../utils/generateCaptcha";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { TfiReload } from "react-icons/tfi";
 import axios from "axios";
 
 const ContactUsInformationForm = () => {
   const [captcha, setCaptcha] = useState(generateCaptcha());
   const { register, handleSubmit } = useForm();
+  const formRef = useRef();
 
   const handleFormSubmit = async (data) => {
     try {
@@ -17,8 +18,11 @@ const ContactUsInformationForm = () => {
         const res = await axios.post(URL, data);
         console.log(res);
         toast.success("Thank your for getting in touch with us.");
-      }else{
-        toast.error("Captcha miss matched or invalid email provided! Please try again.")
+        formRef.current.reset()
+      } else {
+        toast.error(
+          "Captcha miss matched or invalid email provided! Please try again."
+        );
       }
     } catch (error) {
       console.log(error.message);
@@ -29,6 +33,7 @@ const ContactUsInformationForm = () => {
     <section className="flex justify-center">
       <form
         action=""
+        ref={formRef}
         className="my-5 max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl	2xl:max-w-screen-2xl"
         onSubmit={handleSubmit(handleFormSubmit)}
       >
