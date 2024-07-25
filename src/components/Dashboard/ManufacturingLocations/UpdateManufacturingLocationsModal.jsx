@@ -24,26 +24,26 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
     }
   };
   console.log(image);
-//   const handleUpdate = async (id) => {
-//     try {
-//       setIsLoading(true);
-//       const body = manufacturingDetails.find((details) => details.id === id);
-//       // const res = await axios.patch(
-//       //   `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
-//       //   { data: body }
-//       // );
-//       console.log(body);
-//       // if (res.status === 200) {
-//       toast.success("Record updated successfully");
-//       refetch();
-//       setIsLoading(false);
-//       // }
-//     } catch (error) {
-//       setIsLoading(false);
-//       console.log(error);
-//       toast.error("Something error occurred!");
-//     }
-//   };
+  const handleUpdate = async (id) => {
+    try {
+      setIsLoading(true);
+      const body = manufacturingDetails.find((details) => details.id === id);
+      // const res = await axios.patch(
+      //   `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
+      //   { data: body }
+      // );
+      console.log(body);
+      // if (res.status === 200) {
+      toast.success("Record updated successfully");
+      refetch();
+      setIsLoading(false);
+      // }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+      toast.error("Something error occurred!");
+    }
+  };
 
   return (
     <div>
@@ -100,7 +100,11 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
 
             <div className="my-2">
               <div className="flex justify-center">
-                <img src={image ? image: singleManufacturingDetails?.imageurl} className="w-96 my-3" alt="" />
+                <img
+                  src={image ? image : singleManufacturingDetails?.imageurl}
+                  className="w-96 my-3"
+                  alt=""
+                />
               </div>
               <input
                 type="file"
