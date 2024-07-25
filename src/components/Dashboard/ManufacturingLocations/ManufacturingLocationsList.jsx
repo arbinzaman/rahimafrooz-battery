@@ -1,18 +1,25 @@
 import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 
 const ManufacturingLocationsList = ({ manufacturingPrompts }) => {
+  const [selectedId, setSelectedId] = useState();
   const [readMore, setReadMore] = useState(false);
-  const { manufacturingDetails } = manufacturingPrompts;
-  const handleDelete = (id) => {
+  const { manufacturingDetails, refetch } = manufacturingPrompts;
+  const handleDelete = async (id) => {
     try {
       console.log(id);
       const body = manufacturingDetails.find((details) => details.id === id);
-      axios.delete(
+      const res = await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
         { data: body }
       );
+
+      if (res.status === 200) {
+        toast.error("Record deleted successfully");
+        refetch();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -39,27 +46,33 @@ const ManufacturingLocationsList = ({ manufacturingPrompts }) => {
                 <td>{details.title}</td>
                 <td>{details.location}</td>
                 <td>
-                  {readMore
+                  {selectedId === details.id && readMore
                     ? details.description
                     : details.description.slice(0, 100)}{" "}
-                  {readMore ? (
+                  {selectedId === details.id && readMore ? (
                     <span
                       className="text-blue-500 hover:cursor-pointer"
-                      onClick={() => setReadMore(false)}
+                      onClick={() => {
+                        setSelectedId(details.id);
+                        setReadMore(false);
+                      }}
                     >
                       collapse
                     </span>
                   ) : (
                     <span
                       className="text-blue-500 hover:cursor-pointer"
-                      onClick={() => setReadMore(true)}
+                      onClick={() => {
+                        setSelectedId(details.id);
+                        setReadMore(true);
+                      }}
                     >
                       read more
                     </span>
                   )}
                 </td>
                 <td>
-                  <img src={details.imageurl} alt="" className="h-1/2" />
+                  <img src={details.imageurl} alt="" className="w-96" />
                 </td>
                 <td title="Edit">
                   <svg

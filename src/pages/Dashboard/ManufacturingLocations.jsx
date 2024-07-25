@@ -30,7 +30,7 @@ const ManufacturingLocations = () => {
           >
             Add new details
           </button>
-          <AddManufacturingLocationsForm />
+          <AddManufacturingLocationsForm prompts={{refetch}}/>
         </div>
         <button
           className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white"
@@ -41,7 +41,7 @@ const ManufacturingLocations = () => {
         </button>
       </div>
       <ManufacturingLocationsList
-        manufacturingPrompts={{ manufacturingDetails }}
+        manufacturingPrompts={{ manufacturingDetails, refetch }}
       />
     </div>
   );

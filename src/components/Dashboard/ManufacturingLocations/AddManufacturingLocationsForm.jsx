@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-const AddManufacturingLocationsForm = () => {
+const AddManufacturingLocationsForm = ({ prompts }) => {
+  const { refetch } = prompts;
+  console.log(prompts)
   const { register, handleSubmit } = useForm();
   const formRef = useRef();
   const handleFormSubmit = async (data) => {
@@ -19,7 +21,6 @@ const AddManufacturingLocationsForm = () => {
         formdata
       );
 
-      console.log(res);
       if (res.status === 201) {
         formRef.current.reset();
         toast.success("New record has been added.");
@@ -49,7 +50,6 @@ const AddManufacturingLocationsForm = () => {
                 <input
                   type="text"
                   required
-                  placeholder=""
                   className="bg-base border  rounded-md p-1 w-full"
                   {...register("title")}
                 />
@@ -62,7 +62,6 @@ const AddManufacturingLocationsForm = () => {
                 <input
                   type="text"
                   required
-                  placeholder=""
                   className="bg-base border  rounded-md p-1 w-full"
                   {...register("location")}
                 />
@@ -75,7 +74,6 @@ const AddManufacturingLocationsForm = () => {
                 <textarea
                   type="text"
                   required
-                  placeholder=""
                   className="bg-base border  rounded-md p-1 w-full"
                   {...register("description")}
                 />
@@ -89,11 +87,12 @@ const AddManufacturingLocationsForm = () => {
                   {...register("image")}
                 />
               </div>
-              
+
               <div className="flex justify-end gap-3 items-center mt-3">
                 <button
-                  type="submit"
+                  type=""
                   className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
+                  onClick={refetch}
                 >
                   Add
                 </button>
