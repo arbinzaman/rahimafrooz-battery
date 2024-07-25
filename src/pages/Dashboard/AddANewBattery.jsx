@@ -187,7 +187,8 @@ const handleMakeYearsChange = (make, model, years) => {
     formData.applicable_categories.includes("Commercial Vehicle");
 
   return (
-    <div className="flex justify-center items-center min-h-screen ">
+    <div className="flex flex-col justify-center items-center min-h-screen">
+      <h1 className="text-primary text-center text-medium lg:text-large font-bold uppercase mb-2">Add Battery Form</h1>
       <AddANewBatteryForm
         prompts={{
           showVehicleFields,
