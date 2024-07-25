@@ -332,12 +332,11 @@ const AddANewBatteryForm = ({ prompts }) => {
                         formData.supported_vehicle_models[make]?.join(", ") ||
                         ""
                       }
-                      className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white mb-5"
+                      className="input input-bordered input-sm rounded-sm w-full text-black bg-white mb-5"
                       placeholder="eg. Corolla, Comma Separated"
                       onChange={(e) =>
                         handleVehicleModelsChange(make, e.target.value)
                       }
-                      className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black"
                     />
 
                     {formData.supported_vehicle_models[make] &&
