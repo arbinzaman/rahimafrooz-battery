@@ -3,13 +3,14 @@ import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-const AddManufacturingLocationsForm = ({ prompts }) => {
-  const { refetch } = prompts;
-  console.log(prompts)
+const AddManufacturingLocationsForm = ({ props }) => {
+  const { setIsLoading, refetch } = props;
   const { register, handleSubmit } = useForm();
   const formRef = useRef();
+
   const handleFormSubmit = async (data) => {
     try {
+      setIsLoading(true);
       const formdata = new FormData();
       formdata.append("title", data.title);
       formdata.append("location", data.location);
@@ -24,12 +25,16 @@ const AddManufacturingLocationsForm = ({ prompts }) => {
       if (res.status === 201) {
         formRef.current.reset();
         toast.success("New record has been added.");
+        refetch();
+        setIsLoading(false);
       }
     } catch (error) {
+      setIsLoading(false);
       console.log(error.message);
       toast.error("Something error occurred!");
     }
   };
+
   return (
     <div>
       <dialog id="my_modal_2" className="modal">
@@ -92,7 +97,6 @@ const AddManufacturingLocationsForm = ({ prompts }) => {
                 <button
                   type=""
                   className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
-                  onClick={refetch}
                 >
                   Add
                 </button>

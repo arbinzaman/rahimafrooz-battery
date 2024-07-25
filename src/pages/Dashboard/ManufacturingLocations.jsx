@@ -3,8 +3,15 @@ import ManufacturingLocationsList from "../../components/Dashboard/Manufacturing
 import { LuRefreshCcw } from "react-icons/lu";
 import AddManufacturingLocationsForm from "../../components/Dashboard/ManufacturingLocations/AddManufacturingLocationsForm";
 
+import { RotatingSquare } from "react-loader-spinner";
+import { useState } from "react";
+
 const ManufacturingLocations = () => {
-  const { data: manufacturingDetails = [], refetch } = useQuery({
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    data: manufacturingDetails = null,
+    refetch,
+  } = useQuery({
     queryKey: ["manufacturingDetails"],
     queryFn: async () => {
       // console.log("Fetching data...");
@@ -19,7 +26,7 @@ const ManufacturingLocations = () => {
   });
   return (
     <div>
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+      <h1 className="text-medium lg:text-semi_large text-center font-bold mb-10 mt-5 text-primary uppercase">
         All Manufacturing Locations
       </h1>
       <div className="flex justify-between items-center my-3">
@@ -30,7 +37,7 @@ const ManufacturingLocations = () => {
           >
             Add new details
           </button>
-          <AddManufacturingLocationsForm prompts={{refetch}}/>
+          <AddManufacturingLocationsForm props={{ setIsLoading,refetch }} />
         </div>
         <button
           className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white"
@@ -40,9 +47,23 @@ const ManufacturingLocations = () => {
           <LuRefreshCcw />
         </button>
       </div>
-      <ManufacturingLocationsList
-        manufacturingPrompts={{ manufacturingDetails, refetch }}
-      />
+      {isLoading ? (
+        <div className="flex justify-center items-center h-full">
+          <RotatingSquare
+            visible={true}
+            height="100"
+            width="100"
+            color="#0476D0"
+            ariaLabel="rotating-square-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
+      ) : (
+        <ManufacturingLocationsList
+          manufacturingProps={{ manufacturingDetails,setIsLoading, refetch }}
+        />
+      )}
     </div>
   );
 };
