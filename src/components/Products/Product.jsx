@@ -5,7 +5,7 @@ const Product = ({ productInfo }) => {
   const navigate = useNavigate();
   return (
     <section className="w-auto flex flex-col justify-center items-center mr-5 py-2">
-      <div className="border border-border_primary">
+      <div className="">
         <img src={imgurls[0]} alt="" className="w-80 h-60" />
       </div>
       <div className="flex flex-col justify-center items-center">

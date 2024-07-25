@@ -50,7 +50,7 @@ const DashboardLayout = () => {
               <Link to="/dashboard/customers-queries">Customers Queries</Link>
             </li>
             <li>
-              <Link to="/dashboard/manufacturing-locations">Manufacturing Locations</Link>
+              <Link to="/dashboard/manufacturing-locations">Manufacturing Details & Locations</Link>
             </li>
           </ul>
         </div>
