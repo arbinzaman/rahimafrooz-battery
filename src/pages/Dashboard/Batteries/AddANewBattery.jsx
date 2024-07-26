@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import AddANewBatteryForm from "../../components/Dashboard/BatteryDetails/AddANewBatteryForm";
-import Loader from "../../components/shared/Loaders/Loader";
+import AddANewBatteryForm from "../../../components/Dashboard/BatteryDetails/AddANewBatteryForm";
+import Loader from "../../../components/shared/Loaders/Loader";
 
 const fetchCategories = async () => {
   const response = await fetch(

@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { FaMapLocationDot } from "react-icons/fa6";
 
-const UpdateLocations = () => {
+const AddALocation = () => {
   const [formData, setFormData] = useState({
     location_title: "",
     location: "",
@@ -51,7 +52,7 @@ const UpdateLocations = () => {
   return (
     <div>
         <div>
-            <h1 className="text-primary text-center p-5 text-regular lg:text-large  font-bold">Update Location</h1>
+            <h1 className="text-primary text-center p-5 text-regular lg:text-large flex justify-center font-bold">Add A Location <FaMapLocationDot  className="mt-2 ml-3"/></h1>
         </div>
       <form
         onSubmit={handleSubmit}
@@ -120,4 +121,4 @@ const UpdateLocations = () => {
   );
 };
 
-export default UpdateLocations;
+export default AddALocation;

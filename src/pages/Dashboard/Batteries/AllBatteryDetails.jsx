@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../../components/shared/Loaders/Loader";
-import BatteryDetailsTable from "../../components/Dashboard/BatteryDetails/BatteryDetailsTable";
+import Loader from "../../../components/shared/Loaders/Loader";
+import BatteryDetailsTable from "../../../components/Dashboard/BatteryDetails/BatteryDetailsTable";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaCarBattery } from "react-icons/fa";
 import { useState } from "react";
 import { LuRefreshCcw } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
 const AllBatteryDetails = () => {
   const [selectedIds, setSelectedIds] = useState([]);
@@ -46,9 +47,12 @@ const AllBatteryDetails = () => {
       </h1>
       <div className="flex gap-4 justify-between">
         <div className="flex gap-5">
-          <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white">
-            Add Battery <FaCarBattery />
-          </button>
+          <Link to="/dashboard/add-new-battery">
+            {" "}
+            <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white">
+              Add Battery <FaCarBattery />
+            </button>
+          </Link>
           <button
             className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-red-500 hover:text-white"
             onClick={handleDelete}

@@ -20,11 +20,13 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/Dashboard/Login";
 import DealerApplicationList from "../pages/Dashboard/DealerApplicationList";
 import CustomersQueries from "../pages/Dashboard/CustomersQueries";
-import AllBatteryDetails from "../pages/Dashboard/AllBatteryDetails";
+import AllBatteryDetails from "../pages/Dashboard/Batteries/AllBatteryDetails";
 import CategoryWiseBatteries from "../pages/Products/CategoryWiseBatteries";
 import ErrorPage from "../pages/ErrorPage";
-import AddANewBattery from "../pages/Dashboard/AddANewBattery";
-import UpdateLocations from "../pages/Dashboard/UpdateLocations";
+import AddANewBattery from "../pages/Dashboard/Batteries/AddANewBattery";
+import UpdateLocations from "../pages/Dashboard/Locations/UpdateLocations";
+import AllLocations from "../pages/Dashboard/Locations/AllLocations";
+import AddALocation from "../pages/Dashboard/Locations/AddALocation";
 
 const routes = createBrowserRouter([
   {
@@ -148,6 +150,14 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/update-locations",
         element: <UpdateLocations />,
+      },
+      {
+        path: "/dashboard/all-locations",
+        element: <AllLocations />,
+      },
+      {
+        path: "/dashboard/add-a-location",
+        element: <AddALocation />,
       },
     ],
   },
