@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { BiDetail } from "react-icons/bi";
-import Loader from "../../components/shared/Loaders/Loader"
+import Loader from "../../components/shared/Loaders/Loader";
 import Modal from "../../components/Dashboard/CustomerQueries/Modal";
 
 const CustomersQueries = () => {
@@ -24,6 +24,9 @@ const CustomersQueries = () => {
       const data = await res.json();
       return data;
     },
+
+    refetchInterval: 60000,
+    refetchOnWindowFocus: true,
   });
 
   const handleModalOpen = (query) => {
@@ -32,7 +35,7 @@ const CustomersQueries = () => {
   };
 
   if (isLoading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   if (isError) {
