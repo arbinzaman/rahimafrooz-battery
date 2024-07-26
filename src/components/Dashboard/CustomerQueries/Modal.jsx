@@ -1,5 +1,5 @@
 const Modal = ({ customersQuery }) => {
-  const { fullName, email, phoneNo, message } = customersQuery;
+  const { fullName, email, phoneNo, message ,messaged_at} = customersQuery;
 
   return (
     <div className="modal-box shadow-none bg-background text-black">
@@ -20,6 +20,10 @@ const Modal = ({ customersQuery }) => {
         <div>
           <label className="font-bold">Message:</label>
           <p>{message}</p>
+        </div>
+        <div>
+          <label className="font-bold">Messaged at:</label>
+          <p>{messaged_at}</p>
         </div>
       </div>
       <div className="modal-action">

@@ -85,7 +85,7 @@ const BatteryDetailsTable = ({ prompts }) => {
           </tr>
         </thead>
         <tbody>
-          {allBatteryDetails.map((battery, i) => (
+          {allBatteryDetails?.map((battery, i) => (
             <tr key={battery.short_code}>
               <td>
                 <input

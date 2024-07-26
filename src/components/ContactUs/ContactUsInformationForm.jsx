@@ -9,14 +9,46 @@ const ContactUsInformationForm = () => {
   const { register, handleSubmit } = useForm();
 
   const handleFormSubmit = (data) => {
-    console.log(data);
-    try {
-      if (data.captchaCode === captcha) {
-        toast.success("Thank your for getting in touch with us.");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
+    // console.log(data);
+
+    const currentTimestamp = new Date()
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", " ");
+
+    const dataWithTimestamp = {
+      ...data,
+      messaged_at: currentTimestamp,
+    };
+    console.log(dataWithTimestamp);
+
+    const GLOBAL_LOCATION_API_URL = `${import.meta.env.VITE_BASE_URL}/contact`;
+
+    fetch(GLOBAL_LOCATION_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataWithTimestamp),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.result);
+        }
+        return res.json();
+      })
+      .then((dataWithTimestamp) => {
+        if (dataWithTimestamp.captchaCode === captcha) {
+          toast.success("Thank your for getting in touch with us.");
+        }
+      });
+    //   try {
+    //     if (data.captchaCode === captcha) {
+    //       toast.success("Thank your for getting in touch with us.");
+    //     }
+    //   } catch (error) {
+    //     console.log(error.message);
+    //   }
   };
 
   return (
@@ -65,8 +97,7 @@ const ContactUsInformationForm = () => {
 
         <div>
           <p className="text-primary text-sm font-medium mt-5 mb-3">
-            Please type the captcha for security
-            purposes.
+            Please type the captcha for security purposes.
           </p>
           <div className="md:flex md:items-center gap-7">
             <div>
@@ -74,7 +105,7 @@ const ContactUsInformationForm = () => {
                 type="text"
                 placeholder="Enter the code shown"
                 className="bg-base border border-border_primary rounded-md p-1 mb-5"
-                {...register("captchaCode")}
+                // {...register("captchaCode")}
               />
             </div>
 

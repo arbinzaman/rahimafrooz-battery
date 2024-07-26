@@ -24,6 +24,7 @@ import AllBatteryDetails from "../pages/Dashboard/AllBatteryDetails";
 import CategoryWiseBatteries from "../pages/Products/CategoryWiseBatteries";
 import ErrorPage from "../pages/ErrorPage";
 import AddANewBattery from "../pages/Dashboard/AddANewBattery";
+import UpdateLocations from "../pages/Dashboard/UpdateLocations";
 
 const routes = createBrowserRouter([
   {
@@ -143,6 +144,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/customers-queries",
         element: <CustomersQueries />,
+      },
+      {
+        path: "/dashboard/update-locations",
+        element: <UpdateLocations />,
       },
     ],
   },

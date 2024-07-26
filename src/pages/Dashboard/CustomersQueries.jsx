@@ -25,8 +25,8 @@ const CustomersQueries = () => {
       return data;
     },
 
-    refetchInterval: 60000,
-    refetchOnWindowFocus: true,
+    // refetchInterval: 60000,
+    // refetchOnWindowFocus: true,
   });
 
   const handleModalOpen = (query) => {
@@ -64,6 +64,7 @@ const CustomersQueries = () => {
               <th>Full Name</th>
               <th>Phone Number</th>
               <th>Message</th>
+              <th>Messaged at</th>
               <th>Details</th>
             </tr>
           </thead>
@@ -79,6 +80,7 @@ const CustomersQueries = () => {
                     ? customersQuery.message.slice(0, 100) + "..."
                     : customersQuery.message}
                 </td>
+                <td>{customersQuery.messaged_at}</td>
                 <td>
                   <button
                     className="btn btn-xs bg-blue-400 border-0"
