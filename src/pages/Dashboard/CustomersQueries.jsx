@@ -1,15 +1,43 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { BiDetail } from "react-icons/bi";
-import customersQueries from "../../demoData/contactUsFrom.json";
+import Loader from "../../components/shared/Loaders/Loader"
 import Modal from "../../components/Dashboard/CustomerQueries/Modal";
 
 const CustomersQueries = () => {
   const [selectedQuery, setSelectedQuery] = useState(null);
 
+  const CONTACT_API_URL = `${import.meta.env.VITE_BASE_URL}/contact`;
+
+  const {
+    data: customersQueries = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["customersQueries"],
+    queryFn: async () => {
+      const res = await fetch(CONTACT_API_URL);
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await res.json();
+      return data;
+    },
+  });
+
   const handleModalOpen = (query) => {
     setSelectedQuery(query);
     document.getElementById("customerDetails").showModal();
   };
+
+  if (isLoading) {
+    return <Loader/>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div>
@@ -41,8 +69,8 @@ const CustomersQueries = () => {
               <tr key={customersQuery.id}>
                 <th>{i + 1}</th>
                 <td>{customersQuery.email}</td>
-                <td>{customersQuery.fullName}</td>
-                <td>{customersQuery.phoneNo}</td>
+                <td>{customersQuery.customer_name}</td>
+                <td>{customersQuery.phone}</td>
                 <td>
                   {customersQuery.message.length > 100
                     ? customersQuery.message.slice(0, 100) + "..."
@@ -53,7 +81,7 @@ const CustomersQueries = () => {
                     className="btn btn-xs bg-blue-400 border-0"
                     onClick={() => handleModalOpen(customersQuery)}
                   >
-                    <BiDetail className="text-white "/>
+                    <BiDetail className="text-white" />
                   </button>
                 </td>
               </tr>

@@ -10,7 +10,7 @@ const AddANewBatteryForm = ({ prompts }) => {
     handleMakeYearsChange,
     handleSupportedVehicleMakesChange,
     formData,
-    handleChange,
+    handleChange,   
     handleFileChange,
     handleCategoryChange,
     technologyOptions,

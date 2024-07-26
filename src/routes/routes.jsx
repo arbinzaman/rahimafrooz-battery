@@ -140,6 +140,10 @@ const routes = createBrowserRouter([
         path: "/dashboard/customers-queries",
         element: <CustomersQueries />,
       },
+      {
+        path: "/dashboard/customers-queries",
+        element: <CustomersQueries />,
+      },
     ],
   },
   {
