@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { MdEditLocationAlt } from 'react-icons/md';
+import LocationUpdateModal from './LocationUpdateModal';
 
 const LocationDetailsTable = ({ prompts }) => {
   const [selectAll, setSelectAll] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
 
   const { allLocationDetails, selectedIds, setSelectedIds } = prompts;
 
@@ -19,18 +23,49 @@ const LocationDetailsTable = ({ prompts }) => {
     if (selectAll) {
       setSelectedIds([]);
     } else {
-      const allshort_ids = allLocationDetails.map((location) => location.id);
-      setSelectedIds(allshort_ids);
+      const allIds = allLocationDetails.map((location) => location.id);
+      setSelectedIds(allIds);
     }
     setSelectAll(!selectAll);
   };
 
+  const openUpdateModal = (location) => {
+    setSelectedLocation(location);
+    setShowUpdateModal(true);
+    document.getElementById('updateLocationModal').showModal();
+  };
+
+  const handleUpdate = async (updatedLocation) => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/contact/global-locations/${updatedLocation.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedLocation),
+      });
+      if (!res.ok) throw new Error('Failed to update location');
+      await res.json();
+      setShowUpdateModal(false);
+      document.getElementById('updateLocationModal').close();
+      // Optionally refetch locations here or update state
+    } catch (error) {
+      console.error('Error updating location:', error);
+    }
+  };
+
   return (
     <div className="overflow-x-auto">
-      <dialog
-        id="batteryDetails"
-        className="modal modal-bottom sm:modal-middle"
-      ></dialog>
+      {showUpdateModal && selectedLocation && (
+        <LocationUpdateModal
+          location={selectedLocation}
+          onClose={() => {
+            setShowUpdateModal(false);
+            document.getElementById('updateLocationModal').close();
+          }}
+          onUpdate={handleUpdate}
+        />
+      )}
       <table className="table w-full text-black">
         <thead>
           <tr className="text-black">
@@ -47,6 +82,7 @@ const LocationDetailsTable = ({ prompts }) => {
             <th>Location</th>
             <th>Phone Numbers</th>
             <th>Email</th>
+            <th>Update Location</th>
           </tr>
         </thead>
         <tbody>
@@ -64,6 +100,14 @@ const LocationDetailsTable = ({ prompts }) => {
               <td>{location.location}</td>
               <td>{location.phone_numbers}</td>
               <td>{location.email}</td>
+              <td>
+                <button
+                  className="btn btn-ghost btn-xs bg-white hover:bg-lime-500 hover:text-white"
+                  onClick={() => openUpdateModal(location)}
+                >
+                  <MdEditLocationAlt className="text-regular" />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

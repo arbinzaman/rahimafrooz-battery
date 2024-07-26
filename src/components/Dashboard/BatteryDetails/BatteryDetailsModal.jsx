@@ -1,4 +1,5 @@
 import Loader from "../../shared/Loaders/Loader";
+import { FaCarBattery } from "react-icons/fa";
 
 const BatteryDetailsModal = ({ prompts }) => {
   const { selectTableDetailsForModal: battery, loading } = prompts;
@@ -124,6 +125,9 @@ const BatteryDetailsModal = ({ prompts }) => {
             </>
           )}
           <div className="modal-action">
+            <button className="btn btn-xs bg-sky-400 border-0 text-black hover:bg-green-500 hover:text-white">
+              Update Battery <FaCarBattery />
+            </button>
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <button className="btn btn-xs bg-sky-400 border-0 text-black hover:bg-red-500 hover:text-white">

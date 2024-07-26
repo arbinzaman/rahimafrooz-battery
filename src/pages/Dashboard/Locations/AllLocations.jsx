@@ -7,31 +7,39 @@ import { useState } from "react";
 import { LuRefreshCcw } from "react-icons/lu";
 import { Link } from "react-router-dom";
 
-const AllBatteryDetails = () => {
+const AllLocations = () => {
   const [selectedIds, setSelectedIds] = useState([]);
   const url = `${import.meta.env.VITE_BASE_URL}/contact/global-locations`;
 
-  const {
-    data: allLocationDetails = [],
-    isLoading,
-    error,
-    refetch,
-  } = useQuery({
+  const { data: allLocationDetails = [], isLoading, error, refetch } = useQuery({
     queryKey: ["allLocationDetails"],
     queryFn: async () => {
-      // console.log("Fetching data...");
       const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
       const data = await res.json();
-      // console.log("Data fetched:", data);
       return data;
     },
-    refetchOnWindowFocus: true,
+    // refetchOnWindowFocus: true,
   });
+
   const handleDelete = async () => {
-    console.log(selectedIds);
+    try {
+      await Promise.all(selectedIds.map(id => 
+        fetch(`${url}/${id}`, { method: 'DELETE' })
+      ));
+      setSelectedIds([]); // Clear selected IDs after deletion
+      await refetch(); // Refresh the list after deletion
+    } catch (error) {
+      console.error("Error deleting locations:", error);
+    }
+  };
+
+  const handleRefresh = async () => {
     await refetch();
   };
-  refetch();
+
   if (isLoading) {
     return <Loader />;
   }
@@ -48,7 +56,6 @@ const AllBatteryDetails = () => {
       <div className="flex gap-4 justify-between">
         <div className="flex gap-5">
           <Link to="/dashboard/add-a-location">
-            {" "}
             <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white">
               Add A Location <FaLocationDot />
             </button>
@@ -64,18 +71,13 @@ const AllBatteryDetails = () => {
         <div>
           <button
             className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-teal-300 hover:text-white"
-            onClick={refetch()}
+            onClick={handleRefresh}
           >
             Refresh
             <LuRefreshCcw />
           </button>
         </div>
       </div>
-
-      {/* <div className="mb-4">
-    <p>Last fetched: {lastFetched}</p>
-  </div> */}
-
       <LocationDetailsTable
         prompts={{ allLocationDetails, selectedIds, setSelectedIds }}
       />
@@ -83,4 +85,4 @@ const AllBatteryDetails = () => {
   );
 };
 
-export default AllBatteryDetails;
+export default AllLocations;
