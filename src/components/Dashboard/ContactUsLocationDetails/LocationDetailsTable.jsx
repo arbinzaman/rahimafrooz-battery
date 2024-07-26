@@ -1,119 +1,121 @@
-import { useState } from 'react';
-import { MdEditLocationAlt } from 'react-icons/md';
-import LocationUpdateModal from './LocationUpdateModal';
+import { useState } from "react";
+import Loader from "../../../components/shared/Loaders/Loader";
 
-const LocationDetailsTable = ({ prompts }) => {
-  const [selectAll, setSelectAll] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState(null);
-  const [showUpdateModal, setShowUpdateModal] = useState(false);
+const LocationUpdateModal = ({ location, onClose, onUpdate }) => {
+  const [updatedLocation, setUpdatedLocation] = useState(location);
+  const [loading, setLoading] = useState(false);
 
-  const { allLocationDetails, selectedIds, setSelectedIds } = prompts;
-
-  const handleCheckboxChange = (id) => {
-    setSelectedIds((prevSelectedIds) => {
-      const updatedSelectedIds = prevSelectedIds.includes(id)
-        ? prevSelectedIds.filter((selectedId) => selectedId !== id)
-        : [...prevSelectedIds, id];
-      setSelectAll(updatedSelectedIds.length === allLocationDetails.length);
-      return updatedSelectedIds;
-    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedLocation((prevLocation) => ({
+      ...prevLocation,
+      [name]: value,
+    }));
   };
 
-  const handleSelectAllChange = () => {
-    if (selectAll) {
-      setSelectedIds([]);
-    } else {
-      const allIds = allLocationDetails.map((location) => location.id);
-      setSelectedIds(allIds);
-    }
-    setSelectAll(!selectAll);
-  };
-
-  const openUpdateModal = (location) => {
-    setSelectedLocation(location);
-    setShowUpdateModal(true);
-    document.getElementById('updateLocationModal').showModal();
-  };
-
-  const handleUpdate = async (updatedLocation) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/contact/global-locations/${updatedLocation.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedLocation),
-      });
-      if (!res.ok) throw new Error('Failed to update location');
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/contact/global-locations/${
+          updatedLocation.id
+        }`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedLocation),
+        }
+      );
+
+      if (!res.ok) throw new Error("Failed to update location");
+
       await res.json();
-      setShowUpdateModal(false);
-      document.getElementById('updateLocationModal').close();
-      // Optionally refetch locations here or update state
+      onUpdate(updatedLocation); // Notify parent component of the update
+      onClose(); // Close the modal on successful update
     } catch (error) {
-      console.error('Error updating location:', error);
+      console.error("Error updating location:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="overflow-x-auto">
-      {showUpdateModal && selectedLocation && (
-        <LocationUpdateModal
-          location={selectedLocation}
-          onClose={() => {
-            setShowUpdateModal(false);
-            document.getElementById('updateLocationModal').close();
-          }}
-          onUpdate={handleUpdate}
-        />
-      )}
-      <table className="table w-full text-black">
-        <thead>
-          <tr className="text-black">
-            <th>
+    <dialog
+      id="updateLocationModal"
+      className="modal modal-bottom sm:modal-middle"
+    >
+      <div className="modal-box bg-white p-4">
+        <h2 className="text-xl font-bold mb-4">Update Location</h2>
+        {loading ? (
+          <div className="flex justify-center items-center h-32">
+            <Loader />
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <label className="block">
+              <span className="text-gray-700">Location Title</span>
               <input
-                type="checkbox"
-                onChange={handleSelectAllChange}
-                checked={selectAll}
-                className="bg-white border-0"
+                type="text"
+                name="location_title"
+                value={updatedLocation.location_title || ""}
+                onChange={handleChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                required
               />
-            </th>
-            <th>Serial</th>
-            <th>Location Title</th>
-            <th>Location</th>
-            <th>Phone Numbers</th>
-            <th>Email</th>
-            <th>Update Location</th>
-          </tr>
-        </thead>
-        <tbody>
-          {allLocationDetails?.map((location, i) => (
-            <tr key={location.id}>
-              <td>
-                <input
-                  type="checkbox"
-                  onChange={() => handleCheckboxChange(location.id)}
-                  checked={selectedIds.includes(location.id)}
-                />
-              </td>
-              <th>{i + 1}</th>
-              <td>{location.location_title}</td>
-              <td>{location.location}</td>
-              <td>{location.phone_numbers}</td>
-              <td>{location.email}</td>
-              <td>
-                <button
-                  className="btn btn-ghost btn-xs bg-white hover:bg-lime-500 hover:text-white"
-                  onClick={() => openUpdateModal(location)}
-                >
-                  <MdEditLocationAlt className="text-regular" />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+            </label>
+            <label className="block">
+              <span className="text-gray-700">Location</span>
+              <input
+                type="text"
+                name="location"
+                value={updatedLocation.location || ""}
+                onChange={handleChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                required
+              />
+            </label>
+            <label className="block">
+              <span className="text-gray-700">Phone Numbers</span>
+              <input
+                type="text"
+                name="phone_numbers"
+                value={updatedLocation.phone_numbers || ""}
+                onChange={handleChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                required
+              />
+            </label>
+            <label className="block">
+              <span className="text-gray-700">Email</span>
+              <input
+                type="email"
+                name="email"
+                value={updatedLocation.email || ""}
+                onChange={handleChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                required
+              />
+            </label>
+            <div className="flex gap-4 justify-end mt-4">
+              <button
+                type="button"
+                className="btn btn-ghost bg-gray-100 hover:bg-gray-200"
+                onClick={onClose}
+              >
+                Cancel
+              </button>
+              <button type="submit" className="btn btn-primary">
+                Update
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </dialog>
   );
 };
 
-export default LocationDetailsTable;
+export default LocationUpdateModal;

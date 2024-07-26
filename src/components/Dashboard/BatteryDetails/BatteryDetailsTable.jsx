@@ -55,7 +55,7 @@ const BatteryDetailsTable = ({ prompts }) => {
     <div className="overflow-x-auto">
       <dialog
         id="batteryDetails"
-        className="modal modal-bottom sm:modal-middle"
+        className="modal modal-bottom sm:modal-middle "
       >
         {selectTableDetailsForModal && (
           <BatteryDetailsModal prompts={{selectTableDetailsForModal,loading}} />
