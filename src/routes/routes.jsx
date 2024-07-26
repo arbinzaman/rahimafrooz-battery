@@ -27,6 +27,8 @@ import AddANewBattery from "../pages/Dashboard/Batteries/AddANewBattery";
 import UpdateLocations from "../pages/Dashboard/Locations/UpdateLocations";
 import AllLocations from "../pages/Dashboard/Locations/AllLocations";
 import AddALocation from "../pages/Dashboard/Locations/AddALocation";
+import AllManufacturingData from "../pages/Dashboard/Manufacturing/AllManufacturingData";
+import AddAManufacturingData from "../pages/Dashboard/Manufacturing/AddAManufacturingData";
 
 const routes = createBrowserRouter([
   {
@@ -158,6 +160,14 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/add-a-location",
         element: <AddALocation />,
+      },
+      {
+        path: "/dashboard/all-manufacturing-data",
+        element: <AllManufacturingData />,
+      },
+      {
+        path: "/dashboard/add-a-manufacturing-data",
+        element: <AddAManufacturingData />,
       },
     ],
   },

@@ -56,6 +56,11 @@ const DashboardLayout = () => {
                 All Locations  
               </Link>
             </li>
+            <li>
+              <Link to="/dashboard/all-manufacturing-data">
+                All Manufacturing Location  
+              </Link>
+            </li>
             {/* <li>
               <Link to="/dashboard/add-a-location">
                Add A Location  

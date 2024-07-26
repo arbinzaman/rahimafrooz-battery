@@ -60,7 +60,7 @@ const LocationUpdateModal = ({ location, onClose, onUpdate }) => {
               <input
                 type="text"
                 name="location_title"
-                value={updatedLocation.location_title || ""}
+                value={updatedLocation?.location_title || ""}
                 onChange={handleChange}
                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                 required
@@ -71,7 +71,7 @@ const LocationUpdateModal = ({ location, onClose, onUpdate }) => {
               <input
                 type="text"
                 name="location"
-                value={updatedLocation.location || ""}
+                value={updatedLocation?.location || ""}
                 onChange={handleChange}
                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                 required
@@ -82,7 +82,7 @@ const LocationUpdateModal = ({ location, onClose, onUpdate }) => {
               <input
                 type="text"
                 name="phone_numbers"
-                value={updatedLocation.phone_numbers || ""}
+                value={updatedLocation?.phone_numbers || ""}
                 onChange={handleChange}
                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                 required
@@ -93,7 +93,7 @@ const LocationUpdateModal = ({ location, onClose, onUpdate }) => {
               <input
                 type="email"
                 name="email"
-                value={updatedLocation.email || ""}
+                value={updatedLocation?.email || ""}
                 onChange={handleChange}
                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                 required
