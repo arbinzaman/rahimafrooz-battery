@@ -28,7 +28,6 @@ const AddALocation = () => {
     console.log(formData);
   };
 
-
   const GLOBAL_LOCATION_API_URL = `${
     import.meta.env.VITE_BASE_URL
   }/contact/global-locations`;
@@ -39,21 +38,20 @@ const AddALocation = () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
-  })
-  
-  .then((res) => {
+  }).then((res) => {
     if (!res.ok) {
       throw new Error();
     }
     return res.json();
-  })
-
+  });
 
   return (
     <div>
-        <div>
-            <h1 className="text-primary text-center p-5 text-regular lg:text-large flex justify-center font-bold">Add A Location <FaMapLocationDot  className="mt-2 ml-3"/></h1>
-        </div>
+      <div>
+        <h1 className="text-primary text-center p-5 text-regular lg:text-large flex justify-center font-bold">
+          Add A Location <FaMapLocationDot className="mt-2 ml-3" />
+        </h1>
+      </div>
       <form
         onSubmit={handleSubmit}
         className="p-6 mx-auto my-auto bg-white rounded shadow-md w-full max-w-5xl "
@@ -72,9 +70,7 @@ const AddALocation = () => {
           />
         </div>
         <div>
-          <label className="block text-sm mt-2 text-black">
-            Location
-          </label>
+          <label className="block text-sm mt-2 text-black">Location</label>
           <input
             type="text"
             name="location"
@@ -85,9 +81,7 @@ const AddALocation = () => {
           />
         </div>
         <div>
-          <label className="block text-sm mt-2 text-black">
-            Phone Numbers
-          </label>
+          <label className="block text-sm mt-2 text-black">Phone Numbers</label>
           <input
             type="text"
             name="phone_numbers"
@@ -98,9 +92,7 @@ const AddALocation = () => {
           />
         </div>
         <div>
-          <label className="block text-sm mt-2 text-black">
-            Email
-          </label>
+          <label className="block text-sm mt-2 text-black">Email</label>
           <input
             type="email"
             name="email"

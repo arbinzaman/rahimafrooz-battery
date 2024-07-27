@@ -6,11 +6,12 @@ import { FaEdit } from "react-icons/fa";
 import { LuRefreshCcw } from "react-icons/lu";
 import UpdateManufacturingDataModal from "./UpdateManufacturingDataModal";
 import { Link } from "react-router-dom";
-import { FaCarBattery } from "react-icons/fa6";
+import { MdPrecisionManufacturing } from "react-icons/md";
 
 const AllManufacturingData = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [updatedData, setUpdatedData] = useState({});
 
   const url = `${import.meta.env.VITE_BASE_URL}/manufacturing-locations`;
 
@@ -78,11 +79,11 @@ const AllManufacturingData = () => {
         Manufacturing Data Table
       </h1>
       <div className="flex gap-4 justify-between mb-4">
-        <div className="flex gap-5">\
-        <Link to="/dashboard/add-a-manufacturing-data">
+        <div className="flex gap-5">
+          <Link to="/dashboard/add-a-manufacturing-data">
             {" "}
             <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white">
-              Add Manufacturing Location Data <FaCarBattery />
+              Add Manufacturing Location Data <MdPrecisionManufacturing />
             </button>
           </Link>
           <button
@@ -116,20 +117,22 @@ const AllManufacturingData = () => {
           </tr>
         </thead>
         <tbody>
-          {allManufacturingData.map((data, i) => (
-            <tr key={data.id}>
+          {allManufacturingData.map((manufacturingData, i) => (
+
+            <tr key={manufacturingData.id}>
               <td>{i + 1}</td>
-              <td>{data.title}</td>
-              <td>{data.location}</td>
-              <td>{data.description}</td>
+              <td>{manufacturingData.title}</td>
+              <td>{manufacturingData.location}</td>
+              <td>{manufacturingData.description}</td>
               <td>
-                <img src={data.imageurl} alt={data.title} width="100" />
+                <img src={manufacturingData.imageurl} alt={manufacturingData.title} width="100" />
               </td>
               <td>
                 <button
                   className="btn btn-ghost btn-xs bg-white hover:bg-lime-500 hover:text-white"
                   onClick={() => {
-                    setSelectedId(data.id);
+                    setSelectedId(manufacturingData.id);
+                    setUpdatedData(manufacturingData);
                     setModalOpen(true);
                   }}
                 >
@@ -143,6 +146,7 @@ const AllManufacturingData = () => {
 
       {modalOpen && (
         <UpdateManufacturingDataModal
+        updatedData={updatedData}
           dataId={selectedId}
           onClose={() => setModalOpen(false)}
           onUpdate={(updatedData) => {
