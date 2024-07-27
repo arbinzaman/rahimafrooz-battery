@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MdPrecisionManufacturing } from "react-icons/md";
 
 const AddAManufacturingData = () => {
   const [formData, setFormData] = useState({
@@ -111,12 +112,19 @@ const AddAManufacturingData = () => {
             className="file-input w-full max-w-xs input-sm rounded-sm bg-white text-black max-h-10 "
           />
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-between">
+          <button
+            type="button"
+            className="btn btn-xs bg-teal-500 text-white border-none hover:bg-teal-700 "
+            onClick={() => navigate("/dashboard/all-manufacturing-data")}
+          >
+            Back to All Manufacturing Data <MdPrecisionManufacturing />
+          </button>
           <button
             type="submit"
             className={`btn ${
               isLoading ? "bg-gray-400" : "bg-green-500"
-            } text-white border-none text-xs hover:bg-emerald-300 btn-xs`}
+            } text-white border-none text-xs hover:bg-emerald-300 btn-xs `}
             disabled={isLoading}
           >
             {isLoading ? "Submitting..." : "Submit"}

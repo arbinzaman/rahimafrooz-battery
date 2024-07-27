@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { FaMapLocationDot } from "react-icons/fa6";
+import { FaLocationDot, FaMapLocationDot } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const AddALocation = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     location_title: "",
     location: "",
@@ -102,12 +104,16 @@ const AddALocation = () => {
             required
           />
         </div>
-        <button
-          type="submit"
-          className="inline-flex  px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-blue-700 "
-        >
-          Submit
-        </button>
+        <div className="flex justify-between">
+          <button className="btn btn-xs bg-teal-500 text-white border-none hover:bg-teal-700 "
+            onClick={() =>navigate("/dashboard/all-locations")}>Back to Locations <FaLocationDot /></button>
+          <button
+            type="submit"
+            className=" btn-xs px-4  border border-transparent  font-medium rounded-md shadow-sm text-white bg-primary hover:bg-blue-700 "
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

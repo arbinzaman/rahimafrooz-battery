@@ -100,7 +100,7 @@ const UpdateManufacturingDataModal = ({
               <input
                 type="file"
                 name="imageurl"
-                value={updatedAllManufacturingData.imageurl || ""}
+                // value={updatedAllManufacturingData.imageurl || ""}
                 onChange={handleImgUrl}
                 className="file-input w-full max-w-xs input-sm rounded-sm bg-white text-black max-h-10 "
               />

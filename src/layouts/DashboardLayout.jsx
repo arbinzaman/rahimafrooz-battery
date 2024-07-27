@@ -1,5 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
 import DashboardHeader from "../components/shared/DashboardHeader";
+import { FaCarBattery, FaLocationDot, FaUserTie } from "react-icons/fa6";
+import { MdPrecisionManufacturing } from "react-icons/md";
+import { HiOutlineUserGroup } from "react-icons/hi";
 
 const DashboardLayout = () => {
   return (
@@ -35,39 +38,39 @@ const DashboardLayout = () => {
 
             <li>
               <Link to="/dashboard/all-battery-details-list">
-                All Battery Details
+                Batteries <FaCarBattery />
               </Link>
             </li>
             {/* <li>
               <Link to="/dashboard/add-new-battery">Add A New Battery</Link>
             </li> */}
-            <li>
-              <Link to="/dashboard/dealers-application-list">
-                Dealers Application List
-              </Link>
-            </li>
             {/* <li>
               <Link to="/dashboard/update-locations">
-                Update Locations  
+              Update Locations  
               </Link>
-            </li> */}
+              </li> */}
             <li>
               <Link to="/dashboard/all-locations">
-                All Locations  
+                Contact Locations<FaLocationDot />
               </Link>
             </li>
             <li>
               <Link to="/dashboard/all-manufacturing-data">
-                All Manufacturing Location  
+                Manufacturing Locations  <MdPrecisionManufacturing />
               </Link>
             </li>
+              <li>
+                <Link to="/dashboard/dealers-application-list">
+                  Dealers Application List<FaUserTie />
+                </Link>
+              </li>
             {/* <li>
               <Link to="/dashboard/add-a-location">
                Add A Location  
               </Link>
             </li> */}
             <li>
-              <Link to="/dashboard/customers-queries">Customers Queries</Link>
+              <Link to="/dashboard/customers-queries">Customers Queries <HiOutlineUserGroup /></Link>
             </li>
           </ul>
         </div>
