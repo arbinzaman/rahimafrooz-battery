@@ -29,6 +29,8 @@ import AllLocations from "../pages/Dashboard/Locations/AllLocations";
 import AddALocation from "../pages/Dashboard/Locations/AddALocation";
 import AllManufacturingData from "../pages/Dashboard/Manufacturing/AllManufacturingData";
 import AddAManufacturingData from "../pages/Dashboard/Manufacturing/AddAManufacturingData";
+import AllCerificates from "../pages/Dashboard/Certificates/AllCerificates";
+import AddACertificateData from "../pages/Dashboard/Certificates/AddACertificateData";
 
 const routes = createBrowserRouter([
   {
@@ -168,6 +170,14 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/add-a-manufacturing-data",
         element: <AddAManufacturingData />,
+      },
+      {
+        path: "/dashboard/all-certificates",
+        element: <AllCerificates />,
+      },
+      {
+        path: "/dashboard/add-a-certificate",
+        element: <AddACertificateData />,
       },
     ],
   },

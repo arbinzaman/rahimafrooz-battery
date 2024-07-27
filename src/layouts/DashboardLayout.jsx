@@ -3,6 +3,8 @@ import DashboardHeader from "../components/shared/DashboardHeader";
 import { FaCarBattery, FaLocationDot, FaUserTie } from "react-icons/fa6";
 import { MdPrecisionManufacturing } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
+import { PiCertificateFill } from "react-icons/pi";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const DashboardLayout = () => {
   return (
@@ -38,7 +40,7 @@ const DashboardLayout = () => {
 
             <li>
               <Link to="/dashboard/all-battery-details-list">
-                Batteries <FaCarBattery />
+              <FaCarBattery /> Batteries 
               </Link>
             </li>
             {/* <li>
@@ -51,17 +53,17 @@ const DashboardLayout = () => {
               </li> */}
             <li>
               <Link to="/dashboard/all-locations">
-                Contact Locations<FaLocationDot />
+              <FaLocationDot /> Contact Locations
               </Link>
             </li>
             <li>
               <Link to="/dashboard/all-manufacturing-data">
-                Manufacturing Locations  <MdPrecisionManufacturing />
+              <MdPrecisionManufacturing /> Manufacturing Locations  
               </Link>
             </li>
               <li>
                 <Link to="/dashboard/dealers-application-list">
-                  Dealers Application List<FaUserTie />
+                <FaUserTie />Dealers Application List
                 </Link>
               </li>
             {/* <li>
@@ -70,7 +72,13 @@ const DashboardLayout = () => {
               </Link>
             </li> */}
             <li>
-              <Link to="/dashboard/customers-queries">Customers Queries <HiOutlineUserGroup /></Link>
+              <Link to="/dashboard/customers-queries"> <HiOutlineUserGroup />Customers Queries </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/all-certificates"> <PiCertificateFill />Certificates </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/all-certificates"> <FaQuoteLeft />Faqs </Link>
             </li>
           </ul>
         </div>
