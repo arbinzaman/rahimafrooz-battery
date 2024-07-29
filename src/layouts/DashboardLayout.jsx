@@ -6,6 +6,7 @@ import { HiOutlineUserGroup } from "react-icons/hi";
 import { PiCertificateFill } from "react-icons/pi";
 import { FaQuoteLeft } from "react-icons/fa";
 import { RiImageEditFill } from "react-icons/ri";
+import { FaUserLock } from "react-icons/fa";
 
 const DashboardLayout = () => {
   return (
@@ -79,10 +80,13 @@ const DashboardLayout = () => {
               <Link to="/dashboard/all-certificates"> <PiCertificateFill />Certificates </Link>
             </li>
             <li>
+              <Link to="/dashboard/all-certificates"> <RiImageEditFill />Brands image </Link>
+            </li>
+            <li>
               <Link to="/dashboard/all-faqs"> <FaQuoteLeft />Faqs </Link>
             </li>
             <li>
-              <Link to="/dashboard/all-certificates"> <RiImageEditFill />Brands image </Link>
+              <Link to="/dashboard/all-users"> <FaUserLock />Users </Link>
             </li>
           </ul>
         </div>

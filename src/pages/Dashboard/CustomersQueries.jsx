@@ -7,6 +7,7 @@ import Modal from "../../components/Dashboard/CustomerQueries/Modal";
 const CustomersQueries = () => {
   const [selectedQuery, setSelectedQuery] = useState(null);
   const [selectedIds, setSelectedIds] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const queryClient = useQueryClient();
   
