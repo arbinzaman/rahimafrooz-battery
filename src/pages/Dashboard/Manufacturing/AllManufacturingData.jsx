@@ -7,9 +7,11 @@ import { LuRefreshCcw } from "react-icons/lu";
 import UpdateManufacturingDataModal from "./UpdateManufacturingDataModal";
 import { Link } from "react-router-dom";
 import { MdPrecisionManufacturing } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const AllManufacturingData = () => {
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [updatedData, setUpdatedData] = useState({});
 
@@ -33,17 +35,43 @@ const AllManufacturingData = () => {
     // refetchOnWindowFocus: true,
   });
 
-  const handleDelete = async (id) => {
+  const handleCheckboxChange = (id) => {
+    setSelectedIds((prevSelectedIds) => {
+      const updatedSelectedIds = prevSelectedIds.includes(id)
+        ? prevSelectedIds.filter((selectedId) => selectedId !== id)
+        : [...prevSelectedIds, id];
+      setSelectAll(updatedSelectedIds.length === allManufacturingData.length);
+      return updatedSelectedIds;
+    });
+  };
+
+  const handleSelectAllChange = () => {
+    if (selectAll) {
+      setSelectedIds([]);
+    } else {
+      const allIds = allManufacturingData.map((data) => data.id);
+      setSelectedIds(allIds);
+    }
+    setSelectAll(!selectAll);
+  };
+
+  const handleDelete = async () => {
+    if (selectedIds.length === 0) {
+      toast.error("No items selected for deletion.");
+      return;
+    }
     try {
-      const res = await fetch(`${url}/${id}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
-      }
+      const requests = selectedIds.map(id =>
+        fetch(`${url}/${id}`, { method: "DELETE" })
+      );
+      await Promise.all(requests);
       refetch(); // Refresh data after deletion
+      toast.success("Selected items deleted successfully.");
+      setSelectedIds([]);
+      setSelectAll(false);
     } catch (error) {
       console.error("Error deleting data:", error);
+      toast.error("Error deleting selected items.");
     }
   };
 
@@ -60,8 +88,10 @@ const AllManufacturingData = () => {
         throw new Error("Network response was not ok");
       }
       refetch(); // Refresh data after update
+      toast.success("Data updated successfully.");
     } catch (error) {
       console.error("Error updating data:", error);
+      toast.error("Error updating data.");
     }
   };
 
@@ -81,14 +111,13 @@ const AllManufacturingData = () => {
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
           <Link to="/dashboard/add-a-manufacturing-data">
-            {" "}
             <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white">
               Add Manufacturing Location Data <MdPrecisionManufacturing />
             </button>
           </Link>
           <button
             className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-red-500 hover:text-white"
-            onClick={() => handleDelete(selectedId)}
+            onClick={handleDelete}
           >
             Delete
             <MdDeleteOutline />
@@ -108,6 +137,14 @@ const AllManufacturingData = () => {
       <table className="table w-full text-black">
         <thead>
           <tr className="text-black">
+            <th>
+              <input
+                type="checkbox"
+                onChange={handleSelectAllChange}
+                checked={selectAll}
+                className="bg-white border-0"
+              />
+            </th>
             <th>Serial</th>
             <th>Title</th>
             <th>Location</th>
@@ -118,8 +155,14 @@ const AllManufacturingData = () => {
         </thead>
         <tbody>
           {allManufacturingData.map((manufacturingData, i) => (
-
             <tr key={manufacturingData.id}>
+              <td>
+                <input
+                  type="checkbox"
+                  onChange={() => handleCheckboxChange(manufacturingData.id)}
+                  checked={selectedIds.includes(manufacturingData.id)}
+                />
+              </td>
               <td>{i + 1}</td>
               <td>{manufacturingData.title}</td>
               <td>{manufacturingData.location}</td>
@@ -131,7 +174,7 @@ const AllManufacturingData = () => {
                 <button
                   className="btn btn-ghost btn-xs bg-white hover:bg-lime-500 hover:text-white"
                   onClick={() => {
-                    setSelectedId(manufacturingData.id);
+                    setSelectedIds(manufacturingData.id);
                     setUpdatedData(manufacturingData);
                     setModalOpen(true);
                   }}
@@ -146,11 +189,11 @@ const AllManufacturingData = () => {
 
       {modalOpen && (
         <UpdateManufacturingDataModal
-        updatedData={updatedData}
-          dataId={selectedId}
+          updatedData={updatedData}
+          dataId={selectedIds}
           onClose={() => setModalOpen(false)}
           onUpdate={(updatedData) => {
-            handleUpdate(selectedId, updatedData);
+            handleUpdate(selectedIds, updatedData);
             setModalOpen(false);
           }}
         />
