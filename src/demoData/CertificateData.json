@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "title": "Certificate of Excellence",
+        "img_url": "https://example.com/images/certificate_excellence.png",
+        "created_at": "2024-07-28T12:00:00Z"
+    },
+    {
+        "id": 2,
+        "title": "Certificate of Achievement",
+        "img_url": "https://example.com/images/certificate_achievement.png",
+        "created_at": "2024-07-29T15:30:00Z"
+    },
+    {
+        "id": 3,
+        "title": "Certificate of Participation",
+        "img_url": "https://example.com/images/certificate_participation.png",
+        "created_at": "2024-07-30T08:45:00Z"
+    },
+    {
+        "id": 4,
+        "title": "Certificate of Merit",
+        "img_url": "https://example.com/images/certificate_merit.png",
+        "created_at": "2024-07-31T09:00:00Z"
+    },
+    {
+        "id": 5,
+        "title": "Certificate of Distinction",
+        "img_url": "https://example.com/images/certificate_distinction.png",
+        "created_at": "2024-08-01T10:15:00Z"
+    },
+    {
+        "id": 6,
+        "title": "Certificate of Participation - Advanced",
+        "img_url": "https://example.com/images/certificate_participation_advanced.png",
+        "created_at": "2024-08-02T11:30:00Z"
+    },
+    {
+        "id": 7,
+        "title": "Certificate of Achievement - Gold",
+        "img_url": "https://example.com/images/certificate_achievement_gold.png",
+        "created_at": "2024-08-03T14:00:00Z"
+    },
+    {
+        "id": 8,
+        "title": "Certificate of Excellence - Platinum",
+        "img_url": "https://example.com/images/certificate_excellence_platinum.png",
+        "created_at": "2024-08-04T16:45:00Z"
+    }
+]
