@@ -1,20 +1,49 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import { generateCaptcha } from "../../utils/generateCaptcha"; // Adjust the path as necessary
+import { TfiReload } from "react-icons/tfi";
 
 const DealerApplicationForm = () => {
   const { register, handleSubmit } = useForm();
+  const [captcha, setCaptcha] = useState(generateCaptcha());
+  const [captchaInput, setCaptchaInput] = useState('');
+  const url = `${import.meta.env.VITE_BASE_URL}/dealer-applications`;
 
-  const handleFormSubmit = (data) => {
-
+  const handleFormSubmit = async (data) => {
     try {
-      console.log(data);
-      if(data?.email!=""){
-        toast.success('Your record has been saved.')
-      }else{
-        toast.error("Please enter your proper details.")
+      // Check if CAPTCHA is correct
+      if (captchaInput !== captcha) {
+        toast.error("CAPTCHA code is incorrect.");
+        return;
       }
+
+      // Check if required fields are filled
+      if (data?.email === "") {
+        toast.error("Please enter your proper details.");
+        return;
+      }
+
+      // Send POST request
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      toast.success("Your record has been saved.");
+      // Reset CAPTCHA after successful submission
+      setCaptcha(generateCaptcha());
+      setCaptchaInput('');
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
+      toast.error("An error occurred while submitting the form.");
     }
   };
 
@@ -101,12 +130,17 @@ const DealerApplicationForm = () => {
                 type="text"
                 placeholder="Enter the code shown"
                 className="bg-base border border-border_primary rounded-md p-1 mb-5"
-                {...register("captchaCode")}
+                value={captchaInput}
+                onChange={(e) => setCaptchaInput(e.target.value)}
               />
             </div>
             <div className="bg-primary text-2xl text-white p-4 mb-5">
-              <p className="text-center font-medium">J23ndAjd4</p>
+              <p className="text-center font-medium">{captcha}</p>
             </div>
+            <TfiReload
+                color="#0d72b9"
+                onClick={() => setCaptcha(generateCaptcha())}
+              />
           </div>
         </div>
 
