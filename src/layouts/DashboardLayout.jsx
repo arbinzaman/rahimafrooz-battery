@@ -5,6 +5,7 @@ import { MdPrecisionManufacturing } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { PiCertificateFill } from "react-icons/pi";
 import { FaQuoteLeft } from "react-icons/fa";
+import { RiImageEditFill } from "react-icons/ri";
 
 const DashboardLayout = () => {
   return (
@@ -79,6 +80,9 @@ const DashboardLayout = () => {
             </li>
             <li>
               <Link to="/dashboard/all-certificates"> <FaQuoteLeft />Faqs </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/all-certificates"> <RiImageEditFill />Brands image </Link>
             </li>
           </ul>
         </div>

@@ -43,11 +43,10 @@ const dataWithTimestamp = {
   };
   console.log(updateCertificateData);
   const handleSubmit = async (e) => {
-    dataWithTimestamp
     e.preventDefault();
     // setLoading(true);
     try {
-      await onUpdate(updateCertificateData);
+      await onUpdate(dataWithTimestamp);
       onClose(); // Close the modal on successful update
     } catch (error) {
       console.error("Error updating location:", error);
