@@ -79,7 +79,7 @@ const DashboardLayout = () => {
               <Link to="/dashboard/all-certificates"> <PiCertificateFill />Certificates </Link>
             </li>
             <li>
-              <Link to="/dashboard/all-certificates"> <FaQuoteLeft />Faqs </Link>
+              <Link to="/dashboard/all-faqs"> <FaQuoteLeft />Faqs </Link>
             </li>
             <li>
               <Link to="/dashboard/all-certificates"> <RiImageEditFill />Brands image </Link>

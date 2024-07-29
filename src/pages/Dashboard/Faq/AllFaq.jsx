@@ -1,0 +1,178 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { MdDeleteOutline } from "react-icons/md";
+import { LuRefreshCcw } from "react-icons/lu";
+import { FaQuestionCircle } from "react-icons/fa";
+import FaqUpdateModal from "./FaqUpdateModal";
+import batetryFaqData from "../../../demoData/BatteryFaqData.json";
+import { toast } from "react-hot-toast";
+
+const AllFaqs = () => {
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [updatedData, setUpdatedData] = useState({});
+//   const [loading, setLoading] = useState(false);
+
+  const allFaqs = batetryFaqData;
+
+  const handleCheckboxChange = (id) => {
+    setSelectedIds((prevSelectedIds) => {
+      const isSelected = prevSelectedIds.includes(id);
+      const updatedSelectedIds = isSelected
+        ? prevSelectedIds.filter((selectedId) => selectedId !== id)
+        : [...prevSelectedIds, id];
+      
+      setSelectAll(updatedSelectedIds.length === allFaqs.length);
+      return updatedSelectedIds;
+    });
+  };
+
+  const handleSelectAllChange = () => {
+    const allIds = allFaqs.map((faq) => faq.id);
+
+    if (selectAll) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(allIds);
+    }
+
+    setSelectAll(!selectAll);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await Promise.all(
+        selectedIds.map(id =>
+          fetch(`${import.meta.env.VITE_BASE_URL}/faqs/${id}`, {
+            method: "DELETE",
+          }).then(res => {
+            if (!res.ok) {
+              throw new Error("Failed to delete");
+            }
+          })
+        )
+      );
+      setSelectedIds([]);
+      setSelectAll(false);
+      toast.success("Selected FAQs deleted successfully!");
+    } catch (error) {
+      toast.error("Error deleting selected FAQs.");
+    }
+  };
+
+  const handleUpdate = async (id, updatedData) => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/faqs/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      });
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      toast.success("FAQ updated successfully!");
+    } catch (error) {
+      toast.error("Error updating FAQ.");
+    }
+  };
+//   console.log("Selected IDs:", selectedIds);
+// console.log("Select All:", selectAll);
+
+
+  return (
+    <div>
+      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary flex justify-center">
+        Frequently Asked Questions <FaQuestionCircle className="text-semi_large mt-3 ml-2" />
+      </h1>
+
+      <div className="flex gap-4 justify-between mb-4">
+        <div className="flex gap-5">
+          <Link to="/dashboard/add-a-faq">
+            <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white">
+              Add FAQ <FaQuestionCircle />
+            </button>
+          </Link>
+          <button
+            className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-red-500 hover:text-white"
+            onClick={handleDelete}
+          >
+            Delete
+            <MdDeleteOutline />
+          </button>
+        </div>
+        <div>
+          <button
+            className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-teal-300 hover:text-white"
+            // Implement refresh logic if needed
+          >
+            Refresh
+            <LuRefreshCcw />
+          </button>
+        </div>
+      </div>
+
+      <table className="table w-full text-black">
+        <thead>
+          <tr className="text-black">
+            <th>
+              <input
+                type="checkbox"
+                onChange={handleSelectAllChange}
+                checked={selectAll}
+                className="bg-white border-0"
+              />
+            </th>
+            <th>Serial</th>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allFaqs.map((faq, i) => (
+            <tr key={faq.id}>
+              <td>
+                <input
+                  type="checkbox"
+                  onChange={() => handleCheckboxChange(faq.id)}
+                  checked={selectedIds.includes(faq.id)}
+                />
+              </td>
+              <td>{i + 1}</td>
+              <td>{faq.question}</td>
+              <td>{faq.answer}</td>
+              <td>
+                <button
+                  className="btn btn-ghost btn-xs bg-white hover:bg-lime-500 hover:text-white"
+                  onClick={() => {
+                    setUpdatedData(faq);
+                    setModalOpen(true);
+                  }}
+                >
+                  <FaQuestionCircle className="text-regular" />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {modalOpen && (
+        <FaqUpdateModal
+          updatedData={updatedData}
+          dataId={updatedData.id}
+          onClose={() => setModalOpen(false)}
+          onUpdate={(updatedData) => {
+            handleUpdate(updatedData.id, updatedData);
+            setModalOpen(false);
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
+export default AllFaqs;

@@ -31,6 +31,7 @@ import AllManufacturingData from "../pages/Dashboard/Manufacturing/AllManufactur
 import AddAManufacturingData from "../pages/Dashboard/Manufacturing/AddAManufacturingData";
 import AllCerificates from "../pages/Dashboard/Certificates/AllCerificates";
 import AddACertificateData from "../pages/Dashboard/Certificates/AddACertificateData";
+import AllFaqs from "../pages/Dashboard/Faq/AllFaq";
 
 const routes = createBrowserRouter([
   {
@@ -178,6 +179,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/add-a-certificate",
         element: <AddACertificateData />,
+      },
+      {
+        path: "/dashboard/all-faqs",
+        element: <AllFaqs />,
       },
     ],
   },
