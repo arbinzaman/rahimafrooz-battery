@@ -98,10 +98,10 @@ const AllUsers = () => {
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
           <Link to="/dashboard/add-a-user">
-            <button className="btn btn-ghost btn-xs hover:bg-teal-700 text-white bg-teal-400"> Add User <TiUserAdd /></button>
+            <button className="btn btn-ghost btn-xs hover:bg-sky-700 text-white bg-sky-400"> Add User <TiUserAdd /></button>
           </Link>
           <button
-            className="btn btn-ghost btn-xs hover:bg-red-700 text-white bg-red-400"
+            className="btn btn-ghost btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
             onClick={handleDelete}
             // disabled={selectedIds.length === 0}
           >

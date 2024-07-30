@@ -111,12 +111,12 @@ const AllManufacturingData = () => {
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
           <Link to="/dashboard/add-a-manufacturing-data">
-            <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white">
+            <button className="flex gap-2 btn btn-xs  border-0  hover:bg-sky-700 text-white bg-sky-400">
               Add Manufacturing Location Data <MdPrecisionManufacturing />
             </button>
           </Link>
           <button
-            className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-red-500 hover:text-white"
+            className="flex gap-2 btn btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
             onClick={handleDelete}
           >
             Delete
@@ -125,7 +125,7 @@ const AllManufacturingData = () => {
         </div>
         <div>
           <button
-            className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-teal-300 hover:text-white"
+            className="flex gap-2 btn btn-xs border-0 text-white bg-teal-400 hover:bg-teal-700 hover:text-white"
             onClick={refetch}
           >
             Refresh

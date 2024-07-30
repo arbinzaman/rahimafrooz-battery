@@ -1,6 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
 import DashboardHeader from "../components/shared/DashboardHeader";
-import { FaCarBattery, FaLocationDot, FaQuestion, FaUserTie } from "react-icons/fa6";
+import {
+  FaCarBattery,
+  FaLocationDot,
+  FaQuestion,
+  FaUserTie,
+} from "react-icons/fa6";
 import { MdPrecisionManufacturing } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { PiCertificateFill } from "react-icons/pi";
@@ -23,69 +28,62 @@ const DashboardLayout = () => {
             className="drawer-overlay lg:hidden"
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-white text-black mt-20 lg:mt-0 lg:fixed  ">
-            {/* <li>
-              <Link to="/dashboard/passenger-car-batteries">
-                Passenger Car Batteries
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/commercial-car-batteries">
-                Commercial Car Batteries
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/two-wheeler-batteries">
-                Two Wheeler Batteries
-              </Link>
-            </li> */}
-
             <li>
               <Link to="/dashboard/all-battery-details-list">
-              <FaCarBattery /> Batteries 
+                <FaCarBattery /> Batteries
               </Link>
             </li>
-            {/* <li>
-              <Link to="/dashboard/add-new-battery">Add A New Battery</Link>
-            </li> */}
-            {/* <li>
-              <Link to="/dashboard/update-locations">
-              Update Locations  
-              </Link>
-              </li> */}
+
             <li>
               <Link to="/dashboard/all-locations">
-              <FaLocationDot /> Contact Locations
+                <FaLocationDot /> Contact Locations
               </Link>
             </li>
             <li>
               <Link to="/dashboard/all-manufacturing-data">
-              <MdPrecisionManufacturing /> Manufacturing Locations  
+                <MdPrecisionManufacturing /> Manufacturing Locations
               </Link>
             </li>
-              <li>
-                <Link to="/dashboard/dealers-application-list">
-                <FaUserTie />Dealers Application List
-                </Link>
-              </li>
-            {/* <li>
-              <Link to="/dashboard/add-a-location">
-               Add A Location  
+            <li>
+              <Link to="/dashboard/dealers-application-list">
+                <FaUserTie />
+                Dealers Applications
               </Link>
-            </li> */}
-            <li>
-              <Link to="/dashboard/customers-queries"> <HiOutlineUserGroup />Customers Queries </Link>
             </li>
             <li>
-              <Link to="/dashboard/all-certificates"> <PiCertificateFill />Certificates </Link>
+              <Link to="/dashboard/customers-queries">
+                {" "}
+                <HiOutlineUserGroup />
+                Customers Queries{" "}
+              </Link>
             </li>
             <li>
-              <Link to="/dashboard/all-certificates"> <RiImageEditFill />Brands image </Link>
+              <Link to="/dashboard/all-certificates">
+                {" "}
+                <PiCertificateFill />
+                Certificates{" "}
+              </Link>
             </li>
             <li>
-              <Link to="/dashboard/all-faqs"> <FaQuestion  />Faqs </Link>
+              <Link to="/dashboard/all-certificates">
+                {" "}
+                <RiImageEditFill />
+                Brands image{" "}
+              </Link>
             </li>
             <li>
-              <Link to="/dashboard/all-users"> <FaUserLock />Users </Link>
+              <Link to="/dashboard/all-faqs">
+                {" "}
+                <FaQuestion />
+                Faqs{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/all-users">
+                {" "}
+                <FaUserLock />
+                Users{" "}
+              </Link>
             </li>
           </ul>
         </div>

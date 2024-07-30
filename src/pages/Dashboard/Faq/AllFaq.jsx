@@ -92,7 +92,7 @@ const AllFaqs = () => {
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
           <Link to="/dashboard/add-a-faq">
-            <button className="flex gap-2 btn btn-xs  border-0 text-white bg-green-400 hover:bg-green-700 hover:text-white">
+            <button className="flex gap-2 btn btn-xs  border-0 text-white bg-sky-400 hover:bg-sky-700 hover:text-white">
               Add FAQ <FaQuestion />
             </button>
           </Link>
