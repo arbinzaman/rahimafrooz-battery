@@ -35,6 +35,7 @@ import AllFaqs from "../pages/Dashboard/Faq/AllFaq";
 import AllUsers from "../pages/Dashboard/Users/AllUsers";
 import AddAUser from "../pages/Dashboard/Users/AddAUser";
 import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
+import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
 
 const routes = createBrowserRouter([
   {
@@ -119,21 +120,13 @@ const routes = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [
-      // {
-      //   path: "/dashboard/passenger-car-batteries",
-      //   element: <PassengerCarBatteries />,
-      // },
-      // {
-      //   path: "/dashboard/commercial-car-batteries",
-      //   element: <CommercialVehicleBatteries />,
-      // },
-      // {
-      //   path: "/dashboard/two-wheeler-batteries",
-      //   element: <TwoWheelerBatteries />,
-      // },
       {
         path: "/dashboard",
         element: <AllBatteryDetails />,
+      },
+      {
+        path: "/dashboard/update-battery/:short_code",
+        element: <UpdateBattery />,
       },
       {
         path: "/dashboard/dealers-application-list",

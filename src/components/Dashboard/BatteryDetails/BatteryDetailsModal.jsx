@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import Loader from "../../shared/Loaders/Loader";
 import { FaCarBattery } from "react-icons/fa";
 
 const BatteryDetailsModal = ({ prompts }) => {
   const { selectTableDetailsForModal: battery, loading } = prompts;
+  const navigate = useNavigate();
+
   const {
     id,
     short_code,
@@ -26,7 +29,10 @@ const BatteryDetailsModal = ({ prompts }) => {
     exchangeable_format_compatible_with,
     country_of_origin,
   } = battery;
-  console.log(battery);
+
+  const handleUpdateClick = () => {
+    navigate(`/dashboard/update-battery/${short_code}`);
+  };
 
   return (
     <div className="modal-box bg-background text-black">
@@ -41,7 +47,6 @@ const BatteryDetailsModal = ({ prompts }) => {
           <p>
             <strong>Short Code:</strong> {short_code}
           </p>
-
           <p>
             <strong>Battery Name:</strong> {battery_name}
           </p>
@@ -88,7 +93,6 @@ const BatteryDetailsModal = ({ prompts }) => {
           <p>
             <strong>Country of Origin:</strong> {country_of_origin}
           </p>
-
           {applicable_categories?.includes(
             "Passenger Car" || "Commercial Vehicle"
           ) && (
@@ -125,12 +129,15 @@ const BatteryDetailsModal = ({ prompts }) => {
             </>
           )}
           <div className="modal-action">
-            <button className="btn btn-xs bg-sky-400 border-0 text-black hover:bg-green-500 hover:text-white">
+            <button
+              className="btn btn-xs bg-sky-400 border-0 text-white hover:bg-sky-700 hover:text-white"
+              onClick={handleUpdateClick}
+            >
               Update Battery <FaCarBattery />
             </button>
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn btn-xs bg-sky-400 border-0 text-black hover:bg-red-500 hover:text-white">
+              <button className="btn btn-xs bg-red-400 border-0 text-white hover:bg-red-700 hover:text-white">
                 Close
               </button>
             </form>
