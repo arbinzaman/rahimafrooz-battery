@@ -88,7 +88,6 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
             >
               <option value="">Select Role</option>
               <option value="Admin">Admin</option>
-              <option value="User">User</option>
               <option value="Super Admin">Super Admin</option>
             </select>
           </div>
