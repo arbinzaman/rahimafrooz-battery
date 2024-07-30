@@ -56,7 +56,7 @@ const AddALocation = () => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="p-6 mx-auto my-auto bg-white rounded shadow-md w-full max-w-5xl "
+        className="p-6 mx-auto my-auto bg-white rounded shadow-md w-2/4 max-w-5xl "
       >
         <div>
           <label className="block text-sm mt-2 text-black">

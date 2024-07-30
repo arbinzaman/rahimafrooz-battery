@@ -34,6 +34,7 @@ import AddACertificateData from "../pages/Dashboard/Certificates/AddACertificate
 import AllFaqs from "../pages/Dashboard/Faq/AllFaq";
 import AllUsers from "../pages/Dashboard/Users/AllUsers";
 import AddAUser from "../pages/Dashboard/Users/AddAUser";
+import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
 
 const routes = createBrowserRouter([
   {
@@ -185,6 +186,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/all-faqs",
         element: <AllFaqs />,
+      },
+      {
+        path: "/dashboard/add-a-faq",
+        element: <AddAFaq />,
       },
       {
         path: "/dashboard/all-users",

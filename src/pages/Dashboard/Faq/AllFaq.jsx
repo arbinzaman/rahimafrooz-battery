@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdDeleteOutline } from "react-icons/md";
 import { LuRefreshCcw } from "react-icons/lu";
-import { FaQuestionCircle } from "react-icons/fa";
 import FaqUpdateModal from "./FaqUpdateModal";
 import batetryFaqData from "../../../demoData/BatteryFaqData.json";
 import { toast } from "react-hot-toast";
+import { FaQuestion } from "react-icons/fa6";
+import { TbPencilQuestion } from "react-icons/tb";
 
 const AllFaqs = () => {
   const [selectedIds, setSelectedIds] = useState([]);
@@ -85,18 +86,18 @@ const AllFaqs = () => {
   return (
     <div>
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary flex justify-center">
-        Frequently Asked Questions <FaQuestionCircle className="text-semi_large mt-3 ml-2" />
+        Frequently Asked Questions <FaQuestion className="text-semi_large mt-3 ml-2" />
       </h1>
 
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
           <Link to="/dashboard/add-a-faq">
-            <button className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white">
-              Add FAQ <FaQuestionCircle />
+            <button className="flex gap-2 btn btn-xs  border-0 text-white bg-green-400 hover:bg-green-700 hover:text-white">
+              Add FAQ <FaQuestion />
             </button>
           </Link>
           <button
-            className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-red-500 hover:text-white"
+            className="flex gap-2 btn btn-xs bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
             onClick={handleDelete}
           >
             Delete
@@ -105,7 +106,7 @@ const AllFaqs = () => {
         </div>
         <div>
           <button
-            className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-teal-300 hover:text-white"
+            className="flex gap-2 btn btn-xs  border-0 text-white bg-teal-400 hover:bg-teal-700 hover:text-white"
             // Implement refresh logic if needed
           >
             Refresh
@@ -152,7 +153,7 @@ const AllFaqs = () => {
                     setModalOpen(true);
                   }}
                 >
-                  <FaQuestionCircle className="text-regular" />
+                  <TbPencilQuestion  className="text-regular" />
                 </button>
               </td>
             </tr>

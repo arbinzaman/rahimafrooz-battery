@@ -1,10 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
 import DashboardHeader from "../components/shared/DashboardHeader";
-import { FaCarBattery, FaLocationDot, FaUserTie } from "react-icons/fa6";
+import { FaCarBattery, FaLocationDot, FaQuestion, FaUserTie } from "react-icons/fa6";
 import { MdPrecisionManufacturing } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { PiCertificateFill } from "react-icons/pi";
-import { FaQuoteLeft } from "react-icons/fa";
 import { RiImageEditFill } from "react-icons/ri";
 import { FaUserLock } from "react-icons/fa";
 
@@ -83,7 +82,7 @@ const DashboardLayout = () => {
               <Link to="/dashboard/all-certificates"> <RiImageEditFill />Brands image </Link>
             </li>
             <li>
-              <Link to="/dashboard/all-faqs"> <FaQuoteLeft />Faqs </Link>
+              <Link to="/dashboard/all-faqs"> <FaQuestion  />Faqs </Link>
             </li>
             <li>
               <Link to="/dashboard/all-users"> <FaUserLock />Users </Link>
