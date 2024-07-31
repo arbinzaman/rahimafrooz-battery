@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import AddANewBatteryForm from "../../components/Dashboard/BatteryDetails/AddANewBatteryForm";
-import Loader from "../../components/shared/Loaders/Loader";
+import AddANewBatteryForm from "../../../components/Dashboard/BatteryDetails/AddANewBatteryForm";
+import Loader from "../../../components/shared/Loaders/Loader";
 
 const fetchCategories = async () => {
   const response = await fetch(
@@ -111,25 +111,30 @@ const AddANewBattery = () => {
     });
   };
 
-  const handleVehicleModelsChange = (make, models) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      supported_vehicle_models: {
-        ...prevState.supported_vehicle_models,
-        [make]: models,
-      },
-    }));
-  };
+ const handleVehicleModelsChange = (make, models) => {
+  setFormData((prevData) => ({
+    ...prevData,
+    supported_vehicle_models: {
+      ...prevData.supported_vehicle_models,
+      [make]: models,
+    },
+  }));
+};
 
-  const handleMakeYearsChange = (model, years) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      make_years_models: {
-        ...prevState.make_years_models,
+
+const handleMakeYearsChange = (make, model, years) => {
+  setFormData((prevData) => ({
+    ...prevData,
+    make_years_models: {
+      ...prevData.make_years_models,
+      [make]: {
+        ...prevData.make_years_models[make],
         [model]: years,
       },
-    }));
-  };
+    },
+  }));
+};
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

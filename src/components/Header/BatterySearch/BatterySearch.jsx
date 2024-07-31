@@ -45,7 +45,7 @@ const BatterySearch = ({ searchData }) => {
     <div className=''>
       {filteredBatteries.map(battery => (
         <div key={battery.id}>
-          <h2>{battery.battery_name}</h2>
+          <h2 className='hidden'>{battery.battery_name}</h2>
         </div>
       ))}
     </div>

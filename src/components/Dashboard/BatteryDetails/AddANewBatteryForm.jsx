@@ -10,7 +10,7 @@ const AddANewBatteryForm = ({ prompts }) => {
     handleMakeYearsChange,
     handleSupportedVehicleMakesChange,
     formData,
-    handleChange,
+    handleChange,   
     handleFileChange,
     handleCategoryChange,
     technologyOptions,
@@ -23,6 +23,9 @@ const AddANewBatteryForm = ({ prompts }) => {
         onSubmit={handleSubmit}
         className="p-6 bg-white rounded shadow-md w-full max-w-5xl "
       >
+        <h2 className="text-2xl font-bold mb-6 text-center text-primary">
+          Battery Form
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
@@ -33,7 +36,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="battery_name"
               value={formData.battery_name}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -45,7 +48,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="short_code"
               value={formData.short_code}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -57,7 +60,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="brand_code"
               value={formData.brand_code}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -69,7 +72,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="item_code"
               value={formData.item_code}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -81,7 +84,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="model"
               value={formData.model}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -93,7 +96,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="series"
               value={formData.series}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -105,7 +108,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="voltage"
               value={formData.voltage}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -117,7 +120,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="free_warranty"
               value={formData.free_warranty}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -129,7 +132,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="total_warranty"
               value={formData.total_warranty}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -141,7 +144,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="pro_rata_warranty"
               value={formData.pro_rata_warranty}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -153,7 +156,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="country_of_origin"
               value={formData.country_of_origin}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
 
@@ -165,7 +168,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               type="file"
               name="terminal_layout"
               onChange={handleTerminalLayoutChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black"
+              className="file-input w-full max-w-xs input-sm rounded-sm bg-white text-black max-h-10 "
             />
           </div>
           <div className="mb-4">
@@ -177,7 +180,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="ref_amperehour_ah"
               value={formData.ref_amperehour_ah}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -189,7 +192,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="cold_cranking_ability_cca"
               value={formData.cold_cranking_ability_cca}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -201,7 +204,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="product_dimensions_lxbxh_mm"
               value={formData.product_dimensions_lxbxh_mm}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -213,7 +216,7 @@ const AddANewBatteryForm = ({ prompts }) => {
               name="exchangeable_format_compatible_with"
               value={formData.exchangeable_format_compatible_with}
               onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
+              className="input input-bordered input-sm rounded-sm w-full  text-black bg-white"
             />
           </div>
           <div className="mb-4">
@@ -226,17 +229,6 @@ const AddANewBatteryForm = ({ prompts }) => {
               value={formData.price}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-small text-gray-800 pb-1">
-              Terminal Layout:
-            </label>
-            <input
-              type="file"
-              name="terminal_layout"
-              onChange={handleTerminalLayoutChange}
-              className="file-input file-input-sm rounded-sm w-full max-w-sm bg-gray-200 text-black"
             />
           </div>
           <div className="mb-4">
@@ -285,9 +277,9 @@ const AddANewBatteryForm = ({ prompts }) => {
 
           {showVehicleFields && (
             <>
-              <div className="mb-4">
+              <div>
                 <label className="block text-small text-gray-800 pb-1">
-                  Supported Vehicle Makes:
+                  Supported Vehicle Makes
                 </label>
                 <input
                   type="text"
@@ -298,63 +290,55 @@ const AddANewBatteryForm = ({ prompts }) => {
                   placeholder="eg. Toyota, Comma Separated"
                 />
               </div>
-              {formData.supported_vehicle_makes.map((make, index) => (
-                <div className="mb-4" key={index}>
-                  <label className="block text-small text-gray-800 pb-1">
-                    Vehicle Models for {make}:
-                  </label>
-                  <input
-                    type="text"
-                    name={`vehicle_models_${make}`}
-                    placeholder="e.g. Celio, (Comma Separated)"
-                    value={
-                      formData.supported_vehicle_models[make]?.join(", ") || ""
-                    }
-                    onChange={(e) =>
-                      handleVehicleModelsChange(
-                        make,
-                        e.target.value.split(",").map((model) => model.trim())
-                      )
-                    }
-                    className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black"
-                  />
-                </div>
-              ))}
-              {Object.keys(formData.supported_vehicle_models).map(
-                (model, index) => (
-                  <div className="mb-4" key={index}>
+
+              {formData.supported_vehicle_makes &&
+                formData.supported_vehicle_makes.map((make) => (
+                  <div key={make}>
                     <label className="block text-small text-gray-800 pb-1">
-                      Make Years for {model} :
+                      Vehicle Models for {make}
                     </label>
                     <input
                       type="text"
                       value={
-                        formData.supported_vehicle_models[make]?.join(", ") ||
-                        ""
+                        Array.isArray(formData.supported_vehicle_models[make])
+                          ? formData.supported_vehicle_models[make].join(", ")
+                          : ""
                       }
-                      className="input input-bordered input-sm rounded-sm w-full text-black bg-white mb-5"
+                      className="input input-bordered input-sm rounded-sm w-full bg-gray-00 block text-small text-gray-800 pb-1 bg-white mb-5"
                       placeholder="eg. Corolla, Comma Separated"
-                      onChange={(e) =>
-                        handleVehicleModelsChange(make, e.target.value)
-                      }
+                      onChange={(e) => {
+                        const newModels = e.target.value
+                          .split(",")
+                          .map((model) => model.trim());
+                        handleVehicleModelsChange(make, newModels);
+                      }}
                     />
 
-                    {formData.supported_vehicle_models[make] &&
+                    {Array.isArray(formData.supported_vehicle_models[make]) &&
                       formData.supported_vehicle_models[make].map((model) => (
                         <div key={model}>
-                          <label className="text-black">
+                          <label className="block text-small text-gray-800 pb-1">
                             Years for {model}
                           </label>
                           <input
                             type="text"
                             value={
-                              formData.make_years_models[make]?.[model] || ""
+                              Array.isArray(
+                                formData.make_years_models[make]?.[model]
+                              )
+                                ? formData.make_years_models[make][model].join(
+                                    ", "
+                                  )
+                                : ""
                             }
-                            className="input input-bordered input-sm rounded-sm w-full bg-gray-00 text-black bg-white mb-5"
+                            className="input input-bordered input-sm rounded-sm w-full bg-gray-00 block text-small text-gray-800 pb-1 bg-white mb-5"
                             placeholder="eg. 2010-2015, Comma Separated"
-                            onChange={(e) =>
-                              handleMakeYearsChange(make, model, e.target.value)
-                            }
+                            onChange={(e) => {
+                              const newYears = e.target.value
+                                .split(",")
+                                .map((year) => year.trim());
+                              handleMakeYearsChange(make, model, newYears);
+                            }}
                           />
                         </div>
                       ))}
@@ -365,7 +349,7 @@ const AddANewBatteryForm = ({ prompts }) => {
         </div>
         <button
           type="submit"
-          className="btn bg-primary rounded-sm hover:bg-secondary text-white w-full my-3 uppercase"
+          className="btn bg-tableBackground2 border-0 text-white w-full"
         >
           Submit
         </button>

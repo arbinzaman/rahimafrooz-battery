@@ -20,11 +20,23 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/Dashboard/Login";
 import DealerApplicationList from "../pages/Dashboard/DealerApplicationList";
 import CustomersQueries from "../pages/Dashboard/CustomersQueries";
-import AllBatteryDetails from "../pages/Dashboard/AllBatteryDetails";
+import AllBatteryDetails from "../pages/Dashboard/Batteries/AllBatteryDetails";
 import CategoryWiseBatteries from "../pages/Products/CategoryWiseBatteries";
 import ErrorPage from "../pages/ErrorPage";
-import AddANewBattery from "../pages/Dashboard/AddANewBattery";
-import ManufacturingLocations from "../pages/Dashboard/ManufacturingLocations";
+import AddANewBattery from "../pages/Dashboard/Batteries/AddANewBattery";
+import UpdateLocations from "../pages/Dashboard/Locations/UpdateLocations";
+import AllLocations from "../pages/Dashboard/Locations/AllLocations";
+import AddALocation from "../pages/Dashboard/Locations/AddALocation";
+import AllManufacturingData from "../pages/Dashboard/ManufacturingLocations";
+import AddAManufacturingData from "../components/Dashboard/ManufacturingLocations/AddManufacturingLocationsForm";
+import AllCerificates from "../pages/Dashboard/Certificates/AllCerificates";
+import AddACertificateData from "../pages/Dashboard/Certificates/AddACertificateData";
+import AllFaqs from "../pages/Dashboard/Faq/AllFaq";
+import AllUsers from "../pages/Dashboard/Users/AllUsers";
+import AddAUser from "../pages/Dashboard/Users/AddAUser";
+import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
+import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
+import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMultiSelect";
 
 const routes = createBrowserRouter([
   {
@@ -109,21 +121,13 @@ const routes = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [
-      // {
-      //   path: "/dashboard/passenger-car-batteries",
-      //   element: <PassengerCarBatteries />,
-      // },
-      // {
-      //   path: "/dashboard/commercial-car-batteries",
-      //   element: <CommercialVehicleBatteries />,
-      // },
-      // {
-      //   path: "/dashboard/two-wheeler-batteries",
-      //   element: <TwoWheelerBatteries />,
-      // },
       {
         path: "/dashboard",
         element: <AllBatteryDetails />,
+      },
+      {
+        path: "/dashboard/update-battery/:short_code",
+        element: <UpdateBattery />,
       },
       {
         path: "/dashboard/dealers-application-list",
@@ -142,8 +146,56 @@ const routes = createBrowserRouter([
         element: <CustomersQueries />,
       },
       {
+        path: "/dashboard/customers-queries",
+        element: <CustomersQueries />,
+      },
+      {
+        path: "/dashboard/update-locations",
+        element: <UpdateLocations />,
+      },
+      {
+        path: "/dashboard/all-locations",
+        element: <AllLocations />,
+      },
+      {
+        path: "/dashboard/add-a-location",
+        element: <AddALocation />,
+      },
+      {
         path: "/dashboard/manufacturing-locations",
-        element: <ManufacturingLocations />,
+        element: <AllManufacturingData />,
+      },
+      {
+        path: "/dashboard/add-a-manufacturing-data",
+        element: <AddAManufacturingData />,
+      },
+      {
+        path: "/dashboard/all-certificates",
+        element: <AllCerificates />,
+      },
+      {
+        path: "/dashboard/add-a-certificate",
+        element: <AddACertificateData />,
+      },
+      {
+        path: "/dashboard/all-faqs",
+        element: <AllFaqs />,
+      },
+      {
+        path: "/dashboard/add-a-faq",
+        element: <AddAFaq />,
+      },
+      {
+        path: "/dashboard/all-users",
+        element: <AllUsers />,
+      },
+      {
+        path: "/dashboard/add-a-user",
+        element: <AddAUser />,
+      },
+      {
+        path: "/dashboard/custom-multi-select",
+        element: <CustomMultiSelect />,
       },
     ],
   },
