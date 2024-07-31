@@ -67,7 +67,7 @@ const DashboardLayout = () => {
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/all-certificates">
+              <Link to="/dashboard/brand-image">
                 {" "}
                 <RiImageEditFill />
                 Brands image{" "}

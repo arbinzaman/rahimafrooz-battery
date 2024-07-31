@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "brand_code": "GLOBAT",
+        "imageurl": "https://example.com/images/globat.png"
+    },
+    {
+        "id": 2,
+        "brand_code": "ENERGEX",
+        "imageurl": "https://example.com/images/energex.png"
+    },
+    {
+        "id": 3,
+        "brand_code": "POWERLITE",
+        "imageurl": "https://example.com/images/powerlite.png"
+    },
+    {
+        "id": 4,
+        "brand_code": "BATTERYPLUS",
+        "imageurl": "https://example.com/images/batteryplus.png"
+    },
+    {
+        "id": 5,
+        "brand_code": "SUPERCHARGE",
+        "imageurl": "https://example.com/images/supercharge.png"
+    },
+    {
+        "id": 6,
+        "brand_code": "ULTRABATT",
+        "imageurl": "https://example.com/images/ultrabatt.png"
+    },
+    {
+        "id": 7,
+        "brand_code": "MEGAVOLT",
+        "imageurl": "https://example.com/images/megavolt.png"
+    },
+    {
+        "id": 8,
+        "brand_code": "MAXPOWER",
+        "imageurl": "https://example.com/images/maxpower.png"
+    }
+]
