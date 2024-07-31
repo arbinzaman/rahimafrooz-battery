@@ -59,7 +59,7 @@ const ContactUs = () => {
                 addressDetails={{
                   imgLink: LocationPinIcon,
                   itemName: location.location_title,
-                  itemHeading: "",
+                  itemHeading: location.location_name,
                   itemText: location.location,
                 }}
               />

@@ -9,7 +9,7 @@ const GlobalAddressItems = ({ addressDetails }) => {
         </div>
         <div className="text-small">
           <p>
-            <span className="font-medium">{itemHeading}</span> {itemText}
+            <span className="font-medium">{itemHeading}{itemHeading !=="" && <span>:</span>}</span> {itemText}
           </p>
         </div>
       </div>
