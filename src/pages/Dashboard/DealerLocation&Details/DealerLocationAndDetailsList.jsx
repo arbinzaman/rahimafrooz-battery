@@ -1,4 +1,4 @@
-import { useState } from "react";
+import  { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdDeleteOutline } from "react-icons/md";
 import { LuRefreshCcw } from "react-icons/lu";
@@ -12,8 +12,7 @@ const DealerLocationAndDetailsList = () => {
   const [selectedIds, setSelectedIds] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [updatedData, setUpdatedData] = useState({});
-//   const [loading, setLoading] = useState(false);
+  const [updatedData, setUpdatedData] = useState(null); // Ensure this is null initially
 
   const DealerLocationAndDetailsList = DealerLocationAndDetaills;
 
@@ -23,7 +22,7 @@ const DealerLocationAndDetailsList = () => {
       const updatedSelectedIds = isSelected
         ? prevSelectedIds.filter((selectedId) => selectedId !== id)
         : [...prevSelectedIds, id];
-      
+
       setSelectAll(updatedSelectedIds.length === DealerLocationAndDetailsList.length);
       return updatedSelectedIds;
     });
@@ -79,9 +78,6 @@ const DealerLocationAndDetailsList = () => {
       toast.error("Error updating FAQ.");
     }
   };
-//   console.log("Selected IDs:", selectedIds);
-// console.log("Select All:", selectAll);
-
 
   return (
     <div>
@@ -92,8 +88,8 @@ const DealerLocationAndDetailsList = () => {
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
           <Link to="/dashboard/add-a-dealer-location-and-details">
-            <button className="flex gap-2 btn btn-xs  border-0 text-white bg-sky-400 hover:bg-sky-700 hover:text-white">
-              Add Dealer Details and Location <RiUserLocationFill  />
+            <button className="flex gap-2 btn btn-xs border-0 text-white bg-sky-400 hover:bg-sky-700 hover:text-white">
+              Add Dealer Details and Location <RiUserLocationFill />
             </button>
           </Link>
           <button
@@ -106,7 +102,7 @@ const DealerLocationAndDetailsList = () => {
         </div>
         <div>
           <button
-            className="flex gap-2 btn btn-xs  border-0 text-white bg-teal-400 hover:bg-teal-700 hover:text-white"
+            className="flex gap-2 btn btn-xs border-0 text-white bg-teal-400 hover:bg-teal-700 hover:text-white"
             // Implement refresh logic if needed
           >
             Refresh
@@ -167,7 +163,7 @@ const DealerLocationAndDetailsList = () => {
                     setModalOpen(true);
                   }}
                 >
-                  <TbPencilQuestion  className="text-regular" />
+                  <TbPencilQuestion className="text-regular" />
                 </button>
               </td>
             </tr>
@@ -175,10 +171,9 @@ const DealerLocationAndDetailsList = () => {
         </tbody>
       </table>
 
-      {modalOpen && (
+      {modalOpen  && (
         <UpdateDealerLocationAndDetails
-          updatedData={updatedData}
-          dataId={updatedData.id}
+          initialData={updatedData}
           onClose={() => setModalOpen(false)}
           onUpdate={(updatedData) => {
             handleUpdate(updatedData.id, updatedData);
