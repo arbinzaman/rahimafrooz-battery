@@ -8,10 +8,7 @@ import { useState } from "react";
 
 const ManufacturingLocations = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const {
-    data: manufacturingDetails = null,
-    refetch,
-  } = useQuery({
+  const { data: manufacturingDetails = null, refetch } = useQuery({
     queryKey: ["manufacturingDetails"],
     queryFn: async () => {
       // console.log("Fetching data...");
@@ -37,7 +34,7 @@ const ManufacturingLocations = () => {
           >
             Add new details
           </button>
-          <AddManufacturingLocationsForm props={{ setIsLoading,refetch }} />
+          <AddManufacturingLocationsForm props={{ setIsLoading, refetch }} />
         </div>
         <button
           className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white"
@@ -47,23 +44,10 @@ const ManufacturingLocations = () => {
           <LuRefreshCcw />
         </button>
       </div>
-      {isLoading ? (
-        <div className="flex justify-center items-center h-full">
-          <RotatingSquare
-            visible={true}
-            height="100"
-            width="100"
-            color="#0476D0"
-            ariaLabel="rotating-square-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-          />
-        </div>
-      ) : (
-        <ManufacturingLocationsList
-          manufacturingProps={{ manufacturingDetails,setIsLoading, refetch }}
-        />
-      )}
+
+      <ManufacturingLocationsList
+        manufacturingProps={{ manufacturingDetails, setIsLoading, refetch }}
+      />
     </div>
   );
 };
