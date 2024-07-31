@@ -11,6 +11,7 @@ import { HiOutlineUserGroup } from "react-icons/hi";
 import { PiCertificateFill } from "react-icons/pi";
 import { RiImageEditFill } from "react-icons/ri";
 import { FaUserLock } from "react-icons/fa";
+import { RiUserLocationFill } from "react-icons/ri";
 
 const DashboardLayout = () => {
   return (
@@ -44,6 +45,9 @@ const DashboardLayout = () => {
                 <FaUserTie />
                 Dealers Applications
               </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/dealers-location-and-details"> <RiUserLocationFill />Dealer Locations & Details</Link>
             </li>
             <li>
               <Link to="/dashboard/manufacturing-locations"> <MdPrecisionManufacturing />Manufacturing Details & Locations</Link>

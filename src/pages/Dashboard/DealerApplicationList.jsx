@@ -1,4 +1,4 @@
-import { SiTicktick } from "react-icons/si";
+
 import { MdDeleteForever } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../components/shared/Loaders/Loader";
@@ -48,7 +48,6 @@ const DealerApplicationList = () => {
               <th>Thana</th>
               <th>Zip</th>
               <th>Applied at</th>
-              <th>Approve</th>
               <th>Reject</th>
             </tr>
           </thead>
@@ -64,11 +63,7 @@ const DealerApplicationList = () => {
                 <td>{becomeADealer.thana}</td>
                 <td>{becomeADealer.zip}</td>
                 <td>{becomeADealer.applied_at}</td>
-                <td>
-                  <button className="btn btn-xs border-0 bg-green-500">
-                    <SiTicktick className="text-white"/>
-                  </button>
-                </td>
+               
                 <td>
                   <button className="btn btn-xs border-0 bg-red-400">
                   <MdDeleteForever className="text-white" />

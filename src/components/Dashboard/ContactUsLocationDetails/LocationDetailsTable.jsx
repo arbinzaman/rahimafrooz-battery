@@ -32,7 +32,7 @@ const LocationDetailsTable = ({ prompts }) => {
   const openUpdateModal = (location) => {
     setSelectedLocation(location);
     setShowUpdateModal(true);
-    document.getElementById('updateLocationModal').showModal();
+    document.getElementById('updateLocationModal')?.showModal();
   };
 
   const handleUpdate = async (updatedLocation) => {

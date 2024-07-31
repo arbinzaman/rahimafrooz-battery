@@ -37,6 +37,8 @@ import AddAUser from "../pages/Dashboard/Users/AddAUser";
 import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
 import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
 import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMultiSelect";
+import DealerLocationAndDetailsList from "../pages/Dashboard/DealerLocation&Details/DealerLocationAndDetailsList";
+import AddADealerLocationAndDetails from "../pages/Dashboard/DealerLocation&Details/AddADealerLocationAndDetails";
 
 const routes = createBrowserRouter([
   {
@@ -134,6 +136,10 @@ const routes = createBrowserRouter([
         element: <DealerApplicationList />,
       },
       {
+        path: "/dashboard/dealers-location-and-details",
+        element: <DealerLocationAndDetailsList />,
+      },
+      {
         path: "/dashboard/all-battery-details-list",
         element: <AllBatteryDetails />,
       },
@@ -192,6 +198,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/add-a-user",
         element: <AddAUser />,
+      },
+      {
+        path: "/dashboard/add-a-dealer-location-and-details",
+        element: <AddADealerLocationAndDetails />,
       },
       {
         path: "/dashboard/custom-multi-select",
