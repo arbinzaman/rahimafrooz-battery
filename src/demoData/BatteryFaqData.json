@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "question": "What types of batteries do you offer?",
+    "answer": "We offer a wide range of batteries including AA, AAA, 9V, C, D, and specialty batteries for various devices such as car batteries, rechargeable batteries, and more."
+  },
+  {
+    "id": "2",
+    "question": "How do I know which battery to choose?",
+    "answer": "You can check your device's manual or the existing battery for specifications. If you’re unsure, our customer service team can assist you in selecting the right battery for your needs."
+  },
+  {
+    "id": "3",
+    "question": "Are your batteries rechargeable?",
+    "answer": "Yes, we offer both rechargeable and non-rechargeable batteries. Rechargeable batteries are indicated as such in their product descriptions."
+  },
+  {
+    "id": "4",
+    "question": "How long does it take to deliver the batteries?",
+    "answer": "Our standard delivery time is 3-5 business days. Expedited shipping options are also available at checkout for faster delivery."
+  },
+  {
+    "id": "5",
+    "question": "What is your return policy?",
+    "answer": "We offer a 30-day return policy on all batteries. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange."
+  },
+  {
+    "id": "6",
+    "question": "Do you offer warranties on your batteries?",
+    "answer": "Yes, most of our batteries come with a warranty that ranges from 6 months to 2 years, depending on the type of battery. Specific warranty information is provided on the product page."
+  },
+  {
+    "id": "7",
+    "question": "Can I recycle my old batteries with you?",
+    "answer": "Yes, we offer a battery recycling program. You can bring your old batteries to our store locations for proper recycling."
+  },
+  {
+    "id": "8",
+    "question": "Do you provide bulk purchasing options?",
+    "answer": "Yes, we offer bulk purchasing options for businesses and organizations. Please contact our sales team for more information on bulk pricing and availability."
+  }
+]

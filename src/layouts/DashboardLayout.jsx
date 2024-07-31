@@ -1,5 +1,16 @@
 import { Link, Outlet } from "react-router-dom";
+import { MdPrecisionManufacturing } from "react-icons/md";
 import DashboardHeader from "../components/shared/DashboardHeader";
+import {
+  FaCarBattery,
+  FaLocationDot,
+  FaQuestion,
+  FaUserTie,
+} from "react-icons/fa6";
+import { HiOutlineUserGroup } from "react-icons/hi";
+import { PiCertificateFill } from "react-icons/pi";
+import { RiImageEditFill } from "react-icons/ri";
+import { FaUserLock } from "react-icons/fa";
 
 const DashboardLayout = () => {
   return (
@@ -17,39 +28,59 @@ const DashboardLayout = () => {
             className="drawer-overlay lg:hidden"
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-white text-black mt-20 lg:mt-0 lg:fixed  ">
-            {/* <li>
-              <Link to="/dashboard/passenger-car-batteries">
-                Passenger Car Batteries
+            <li>
+              <Link to="/dashboard/all-battery-details-list">
+                <FaCarBattery /> Batteries
               </Link>
             </li>
+
             <li>
-              <Link to="/dashboard/commercial-car-batteries">
-                Commercial Car Batteries
+              <Link to="/dashboard/all-locations">
+                <FaLocationDot /> Contact Locations
               </Link>
             </li>
-            <li>
-              <Link to="/dashboard/two-wheeler-batteries">
-                Two Wheeler Batteries
-              </Link>
-            </li> */}
-              <li>
-                <Link to="/dashboard/all-battery-details-list">
-                  All Battery Details
-                </Link>
-              </li>
-              <li>
-                <Link to="/dashboard/add-new-battery">
-                  Add A New Battery
-                </Link>
-              </li>
             <li>
               <Link to="/dashboard/dealers-application-list">
-                Dealers Application List
+                <FaUserTie />
+                Dealers Applications
               </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/manufacturing-locations"> <MdPrecisionManufacturing />Manufacturing Details & Locations</Link>
             </li>
             <li>
               <Link to="/dashboard/customers-queries">
-                Customers Queries
+                {" "}
+                <HiOutlineUserGroup />
+                Customers Queries{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/all-certificates">
+                {" "}
+                <PiCertificateFill />
+                Certificates{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/all-certificates">
+                {" "}
+                <RiImageEditFill />
+                Brands image{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/all-faqs">
+                {" "}
+                <FaQuestion />
+                Faqs{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/all-users">
+                {" "}
+                <FaUserLock />
+                Users{" "}
               </Link>
             </li>
           </ul>

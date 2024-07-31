@@ -1,17 +1,21 @@
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { generateCaptcha } from "../../utils/generateCaptcha";
+import { TfiReload } from "react-icons/tfi";
 
 const DealerApplicationForm = () => {
+  const [captcha, setCaptcha] = useState(generateCaptcha());
   const { register, handleSubmit } = useForm();
+  const formRef = useRef();
 
   const handleFormSubmit = (data) => {
-
     try {
       console.log(data);
-      if(data?.email!=""){
-        toast.success('Your record has been saved.')
-      }else{
-        toast.error("Please enter your proper details.")
+      if (data?.email != "" && captcha === data.captchaCode) {
+        toast.success("Your record has been saved.");
+      } else {
+        toast.error("Please enter your details and captcha properly.");
       }
     } catch (error) {
       console.log(error.message);
@@ -22,6 +26,7 @@ const DealerApplicationForm = () => {
     <section>
       <form
         action=""
+        ref={formRef}
         className="my-10 max-w-screen-2xl mx-10 lg:mx-auto"
         onSubmit={handleSubmit(handleFormSubmit)}
       >
@@ -82,7 +87,7 @@ const DealerApplicationForm = () => {
 
           <div>
             <input
-              type="text"
+              type="number"
               placeholder="ZIP Code"
               className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("zip")}
@@ -92,10 +97,9 @@ const DealerApplicationForm = () => {
 
         <div>
           <p className="text-primary text-sm font-medium mt-5 mb-3">
-            Please type the characters you see in the image for security
-            purposes.
+            Please type the captcha for security purposes.
           </p>
-          <div className="md:flex items-center gap-7">
+          <div className="md:flex md:items-center gap-7">
             <div>
               <input
                 type="text"
@@ -104,8 +108,15 @@ const DealerApplicationForm = () => {
                 {...register("captchaCode")}
               />
             </div>
-            <div className="bg-primary text-2xl text-white p-4 mb-5">
-              <p className="text-center font-medium">J23ndAjd4</p>
+
+            <div className="flex items-center gap-4">
+              <p className="bg-primary text-medium text-white font-bold text-center py-2 w-[150px]">
+                {captcha}
+              </p>
+              <TfiReload
+                color="#0d72b9"
+                onClick={() => setCaptcha(generateCaptcha())}
+              />
             </div>
           </div>
         </div>

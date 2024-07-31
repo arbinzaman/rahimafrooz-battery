@@ -4,7 +4,7 @@ import { RiMenuUnfold4Line } from "react-icons/ri";
 import { RiMenuUnfold3Line2 } from "react-icons/ri";
 import "../../styles/Header.css";
 import { Link } from "react-router-dom";
-
+import { FaHome } from "react-icons/fa";
 const DashboardHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -21,9 +21,9 @@ const DashboardHeader = () => {
               <Link to="/dashboard">
                 <div className="flex items-center">
                   <a href="/dashboard">
-                    <img className="w-5 lg:w-8" src={Logo} alt="logo" />
+                    <img className="w-5 lg:w-8 " src={Logo} alt="logo" />
                   </a>
-                  <p className="text-primary ml-3 text-medium lg:text-semi_large font-bold">
+                  <p className="text-white lg:text-primary ml-3 text-medium lg:text-semi_large font-bold">
                     Dashboard
                   </p>
                 </div>
@@ -39,6 +39,10 @@ const DashboardHeader = () => {
                   <RiMenuUnfold4Line className="ml-48 text-medium text-background" />
                 )}
               </label>
+              <Link to="/" className="flex gap-3 ">
+                <FaHome className="text-medium lg:text-large lg:mb-2 hidden lg:block" />{" "}
+                <span className="my-auto hidden lg:block">Back to Home</span>
+              </Link>
             </div>
           </div>
         </div>

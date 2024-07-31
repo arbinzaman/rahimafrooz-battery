@@ -31,6 +31,7 @@ const AllBatteryDetails = () => {
     await refetch();
   };
   refetch();
+
   if (isLoading) {
     return <Loader />;
   }

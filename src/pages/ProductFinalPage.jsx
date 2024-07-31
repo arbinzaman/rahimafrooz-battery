@@ -22,6 +22,7 @@ const ProductFinalPage = () => {
     },
     refetchOnWindowFocus: true,
   });
+  
   return (
     <section className={`${allDeviceMaxWidth} bg-background `}>
       {isLoading ? (
