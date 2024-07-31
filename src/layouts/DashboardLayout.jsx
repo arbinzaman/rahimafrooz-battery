@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import { MdPrecisionManufacturing } from "react-icons/md";
 import DashboardHeader from "../components/shared/DashboardHeader";
 import {
   FaCarBattery,
@@ -43,6 +44,9 @@ const DashboardLayout = () => {
                 <FaUserTie />
                 Dealers Applications
               </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/manufacturing-locations"> <MdPrecisionManufacturing />Manufacturing Details & Locations</Link>
             </li>
             <li>
               <Link to="/dashboard/customers-queries">

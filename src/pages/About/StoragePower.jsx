@@ -127,7 +127,7 @@ const StoragePower = () => {
           </div>
         </div>
         {/* Milestones */}
-        <div className="my-10">
+        <div className="my-10 lg:my-20">
           <p className="text-center text-large text-primary font-semibold">
             RSPB MILESTONES
           </p>
@@ -146,7 +146,7 @@ const StoragePower = () => {
           </p>
         </div>
         {/* Values */}
-        <div className="my-10">
+        <div className="my-10 lg:my-20">
           <p className="text-center text-large text-primary font-semibold">
             OUR VALUES
           </p>

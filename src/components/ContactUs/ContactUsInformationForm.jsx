@@ -1,69 +1,49 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { generateCaptcha } from "../../utils/generateCaptcha";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { TfiReload } from "react-icons/tfi";
+import axios from "axios";
 
 const ContactUsInformationForm = () => {
   const [captcha, setCaptcha] = useState(generateCaptcha());
   const { register, handleSubmit } = useForm();
+  const formRef = useRef();
 
-  const handleFormSubmit = (data) => {
-    // console.log(data);
+  const handleFormSubmit = async (data) => {
+    try {
+      const URL = `${import.meta.env.VITE_BASE_URL}/contact`;
 
-    const currentTimestamp = new Date()
-      .toISOString()
-      .slice(0, 19)
-      .replace("T", " ");
-
-    const dataWithTimestamp = {
-      ...data,
-      messaged_at: currentTimestamp,
-    };
-    console.log(dataWithTimestamp);
-
-    const GLOBAL_LOCATION_API_URL = `${import.meta.env.VITE_BASE_URL}/contact`;
-
-    fetch(GLOBAL_LOCATION_API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dataWithTimestamp),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(res.result);
-        }
-        return res.json();
-      })
-      .then((dataWithTimestamp) => {
-        if (dataWithTimestamp.captchaCode === captcha) {
-          toast.success("Thank your for getting in touch with us.");
-        }
-      });
-    //   try {
-    //     if (data.captchaCode === captcha) {
-    //       toast.success("Thank your for getting in touch with us.");
-    //     }
-    //   } catch (error) {
-    //     console.log(error.message);
-    //   }
+      if (data.captchaCode === captcha) {
+        const res = await axios.post(URL, data);
+        console.log(res);
+        toast.success("Thank your for getting in touch with us.");
+        formRef.current.reset()
+      } else {
+        toast.error(
+          "Captcha miss matched or invalid email provided! Please try again."
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
     <section className="flex justify-center">
       <form
         action=""
+        ref={formRef}
         className="my-5 max-w-screen-sm md:max-w-screen-md lg:w-full xl:max-w-screen-xl	2xl:max-w-screen-2xl"
         onSubmit={handleSubmit(handleFormSubmit)}
       >
         <div>
           <input
             type="text"
-            placeholder="Full Name*"
+            placeholder="Enter your name*"
+            required
             className="bg-base border border-border_primary rounded-md p-1 w-full"
-            {...register("fullName")}
+            {...register("customerName")}
           />
         </div>
 
@@ -71,7 +51,8 @@ const ContactUsInformationForm = () => {
           <div>
             <input
               type="text"
-              placeholder="Phone No*"
+              placeholder="Enter your phone number*"
+              required
               className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("phoneNo")}
             />
@@ -80,7 +61,8 @@ const ContactUsInformationForm = () => {
           <div>
             <input
               type="email"
-              placeholder="E-mail*"
+              placeholder="Enter your email*"
+              required
               className="bg-base border border-border_primary rounded-md p-1 w-full"
               {...register("email")}
             />
@@ -89,7 +71,8 @@ const ContactUsInformationForm = () => {
 
         <div>
           <textarea
-            placeholder="Message"
+            required
+            placeholder="Enter your message or question to us."
             className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("message")}
           ></textarea>
@@ -105,7 +88,7 @@ const ContactUsInformationForm = () => {
                 type="text"
                 placeholder="Enter the code shown"
                 className="bg-base border border-border_primary rounded-md p-1 mb-5"
-                // {...register("captchaCode")}
+                {...register("captchaCode")}
               />
             </div>
 
@@ -121,7 +104,7 @@ const ContactUsInformationForm = () => {
           </div>
         </div>
 
-        <button className="bg-button px-8 py-2 text-2xl text-base font-bold rounded-md">
+        <button className="bg-button px-8 py-2 my-3 text-2xl text-base font-bold rounded-md">
           SUBMIT
         </button>
       </form>

@@ -27,6 +27,8 @@ import AddANewBattery from "../pages/Dashboard/Batteries/AddANewBattery";
 import UpdateLocations from "../pages/Dashboard/Locations/UpdateLocations";
 import AllLocations from "../pages/Dashboard/Locations/AllLocations";
 import AddALocation from "../pages/Dashboard/Locations/AddALocation";
+import AllManufacturingData from "../pages/Dashboard/ManufacturingLocations";
+import AddAManufacturingData from "../components/Dashboard/ManufacturingLocations/AddManufacturingLocationsForm";
 import AllCerificates from "../pages/Dashboard/Certificates/AllCerificates";
 import AddACertificateData from "../pages/Dashboard/Certificates/AddACertificateData";
 import AllFaqs from "../pages/Dashboard/Faq/AllFaq";
@@ -159,7 +161,14 @@ const routes = createBrowserRouter([
         path: "/dashboard/add-a-location",
         element: <AddALocation />,
       },
-    
+      {
+        path: "/dashboard/manufacturing-locations",
+        element: <AllManufacturingData />,
+      },
+      {
+        path: "/dashboard/add-a-manufacturing-data",
+        element: <AddAManufacturingData />,
+      },
       {
         path: "/dashboard/all-certificates",
         element: <AllCerificates />,
