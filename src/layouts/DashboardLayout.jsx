@@ -6,7 +6,6 @@ import {
   FaQuestion,
   FaUserTie,
 } from "react-icons/fa6";
-import { MdPrecisionManufacturing } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { PiCertificateFill } from "react-icons/pi";
 import { RiImageEditFill } from "react-icons/ri";
@@ -37,11 +36,6 @@ const DashboardLayout = () => {
             <li>
               <Link to="/dashboard/all-locations">
                 <FaLocationDot /> Contact Locations
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/all-manufacturing-data">
-                <MdPrecisionManufacturing /> Manufacturing Locations
               </Link>
             </li>
             <li>

@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-vars */
+import React from "react";
 import Select from "react-select";
 import { FaCarBattery } from "react-icons/fa";
+import CustomMultiSelect from "./CustomMultiSelect";
 
 const UpdateBatteryForm = ({
   showVehicleFields,
@@ -16,7 +19,6 @@ const UpdateBatteryForm = ({
   handleVehicleModelsChange,
   handleMakeYearsChange,
 }) => {
-  // Ensure formData fields are defined
   const {
     battery_name = "",
     short_code = "",
@@ -31,6 +33,15 @@ const UpdateBatteryForm = ({
     supported_vehicle_models = {},
     make_years_models = {},
   } = formData;
+
+  // Utility functions to safely access arrays
+  const getModels = (make) => Array.isArray(supported_vehicle_models[make])
+    ? supported_vehicle_models[make]
+    : [];
+
+  const getYears = (make, model) => Array.isArray(make_years_models[make]?.[model])
+    ? make_years_models[make][model]
+    : [];
 
   return (
     <div>
@@ -169,13 +180,10 @@ const UpdateBatteryForm = ({
                 <label className="block text-small text-gray-800 pb-1">
                   Supported Vehicle Makes:
                 </label>
-                <input
-                  type="text"
-                  name="supported_vehicle_makes"
-                  value={supported_vehicle_makes.join(", ")}
-                  onChange={handleSupportedVehicleMakesChange}
-                  className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
-                  placeholder="Comma-separated makes"
+                <CustomMultiSelect
+                  options={supported_vehicle_makes}
+                  setOptions={(newMakes) => handleSupportedVehicleMakesChange(newMakes)}
+                  placeholder="Type and press space to add"
                 />
               </div>
               {supported_vehicle_makes.map((make, index) => (
@@ -183,46 +191,23 @@ const UpdateBatteryForm = ({
                   <label className="block text-small text-gray-800 pb-1">
                     {make} Models:
                   </label>
-                  <input
-                    type="text"
-                    value={
-                      supported_vehicle_models[make]?.join(", ") || ""
-                    }
-                    onChange={(e) =>
-                      handleVehicleModelsChange(
-                        make,
-                        e.target.value.split(",").map((model) => model.trim())
-                      )
-                    }
-                    className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
-                    placeholder="Comma-separated models"
+                  <CustomMultiSelect
+                    options={getModels(make)}
+                    setOptions={(newModels) => handleVehicleModelsChange(make, newModels)}
+                    placeholder="Type and press space to add"
                   />
-                  {supported_vehicle_models[make]?.map(
-                    (model, modelIndex) => (
-                      <div key={modelIndex} className="mt-2 ml-4">
-                        <label className="block text-small text-gray-800 pb-1">
-                          {model} Years:
-                        </label>
-                        <input
-                          type="text"
-                          value={
-                            make_years_models[make]?.[model]?.join(", ") || ""
-                          }
-                          onChange={(e) =>
-                            handleMakeYearsChange(
-                              make,
-                              model,
-                              e.target.value
-                                .split(",")
-                                .map((year) => year.trim())
-                            )
-                          }
-                          className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
-                          placeholder="Comma-separated years"
-                        />
-                      </div>
-                    )
-                  )}
+                  {getModels(make).map((model, modelIndex) => (
+                    <div key={modelIndex} className="mt-2 ml-4">
+                      <label className="block text-small text-gray-800 pb-1">
+                        {model} Years:
+                      </label>
+                      <CustomMultiSelect
+                        options={getYears(make, model)}
+                        setOptions={(newYears) => handleMakeYearsChange(make, model, newYears)}
+                        placeholder="Type and press space to add"
+                      />
+                    </div>
+                  ))}
                 </div>
               ))}
             </>
@@ -230,7 +215,10 @@ const UpdateBatteryForm = ({
         </div>
 
         <div className="text-center">
-          <button type="submit" className="btn btn-sm btn-ghost bg-primary text-white hover:bg-blue-800">
+          <button
+            type="submit"
+            className="btn btn-sm btn-ghost bg-primary text-white hover:bg-blue-800"
+          >
             Update Battery <FaCarBattery />
           </button>
         </div>

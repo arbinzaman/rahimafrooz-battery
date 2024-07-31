@@ -27,8 +27,6 @@ import AddANewBattery from "../pages/Dashboard/Batteries/AddANewBattery";
 import UpdateLocations from "../pages/Dashboard/Locations/UpdateLocations";
 import AllLocations from "../pages/Dashboard/Locations/AllLocations";
 import AddALocation from "../pages/Dashboard/Locations/AddALocation";
-import AllManufacturingData from "../pages/Dashboard/Manufacturing/AllManufacturingData";
-import AddAManufacturingData from "../pages/Dashboard/Manufacturing/AddAManufacturingData";
 import AllCerificates from "../pages/Dashboard/Certificates/AllCerificates";
 import AddACertificateData from "../pages/Dashboard/Certificates/AddACertificateData";
 import AllFaqs from "../pages/Dashboard/Faq/AllFaq";
@@ -36,6 +34,7 @@ import AllUsers from "../pages/Dashboard/Users/AllUsers";
 import AddAUser from "../pages/Dashboard/Users/AddAUser";
 import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
 import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
+import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMultiSelect";
 
 const routes = createBrowserRouter([
   {
@@ -160,14 +159,7 @@ const routes = createBrowserRouter([
         path: "/dashboard/add-a-location",
         element: <AddALocation />,
       },
-      {
-        path: "/dashboard/all-manufacturing-data",
-        element: <AllManufacturingData />,
-      },
-      {
-        path: "/dashboard/add-a-manufacturing-data",
-        element: <AddAManufacturingData />,
-      },
+    
       {
         path: "/dashboard/all-certificates",
         element: <AllCerificates />,
@@ -191,6 +183,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/add-a-user",
         element: <AddAUser />,
+      },
+      {
+        path: "/dashboard/custom-multi-select",
+        element: <CustomMultiSelect />,
       },
     ],
   },
