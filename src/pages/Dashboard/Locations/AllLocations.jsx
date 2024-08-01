@@ -24,7 +24,7 @@ const AllLocations = () => {
       const data = await res.json();
       return data;
     },
-    // refetchOnWindowFocus: true,
+    refetchOnWindowFocus: true,
   });
 
   const handleRefresh = async () => {
