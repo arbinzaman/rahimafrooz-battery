@@ -1,4 +1,4 @@
-import { useState } from "react";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -6,38 +6,32 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
   const { selectedId, manufacturingDetails, setIsLoading, refetch } =
     updateModalProps;
   const { register, handleSubmit } = useForm();
-  const [image, setImage] = useState(null);
 
   const singleManufacturingDetails = manufacturingDetails.find(
     (details) => details.id === selectedId
   );
-  console.log(selectedId, singleManufacturingDetails);
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-  console.log(image);
-  const handleUpdate = async (id) => {
+  const handleUpdate = async (data) => {
     try {
       setIsLoading(true);
-      const body = manufacturingDetails.find((details) => details.id === id);
-      // const res = await axios.patch(
-      //   `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
-      //   { data: body }
-      // );
-      console.log(body);
-      // if (res.status === 200) {
-      toast.success("Record updated successfully");
-      refetch();
-      setIsLoading(false);
-      // }
+
+      const formdata = new FormData();
+      formdata.append("title", data.title);
+      formdata.append("location", data.location);
+      formdata.append("description", data.description);
+      formdata.append("image", data.image[0]);
+
+      const res = await axios.put(
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/manufacturing-locations/${selectedId}`,
+        formdata
+      );
+      if (res.status === 200) {
+        toast.success("Record updated successfully");
+        refetch();
+        setIsLoading(false);
+      }
     } catch (error) {
       setIsLoading(false);
       console.log(error);
@@ -49,7 +43,7 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
     <div>
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box">
-          <form method="dialog">
+          <form method="dialog" onSubmit={handleSubmit(handleUpdate)}>
             <div className="my-2">
               <label>
                 Enter title <span className="text-red-600">*</span>
@@ -57,9 +51,9 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
               <input
                 type="text"
                 defaultValue={
-                  singleManufacturingDetails === null
-                    ? ""
-                    : singleManufacturingDetails?.title
+                  singleManufacturingDetails !== null
+                    ? singleManufacturingDetails?.title
+                    : ""
                 }
                 className="bg-base border  rounded-md p-1 w-full"
                 {...register("title")}
@@ -73,9 +67,9 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
               <input
                 type="text"
                 defaultValue={
-                  singleManufacturingDetails === null
-                    ? ""
-                    : singleManufacturingDetails?.location
+                  singleManufacturingDetails !== null
+                    ? singleManufacturingDetails?.location
+                    : ""
                 }
                 className="bg-base border  rounded-md p-1 w-full"
                 {...register("location")}
@@ -89,9 +83,9 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
               <textarea
                 type="text"
                 defaultValue={
-                  singleManufacturingDetails === null
-                    ? ""
-                    : singleManufacturingDetails?.description
+                  singleManufacturingDetails !== null
+                    ? singleManufacturingDetails?.description
+                    : ""
                 }
                 className="bg-base border  rounded-md p-1 w-full"
                 {...register("description")}
@@ -99,17 +93,19 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
             </div>
 
             <div className="my-2">
-              <div className="flex justify-center">
-                <img
-                  src={image ? image : singleManufacturingDetails?.imageurl}
-                  className="w-96 my-3"
-                  alt=""
-                />
-              </div>
+              {singleManufacturingDetails?.imageurl && (
+                <div className="flex justify-center">
+                  <img
+                    src={singleManufacturingDetails?.imageurl}
+                    className="w-96 my-3"
+                    alt=""
+                  />
+                </div>
+              )}
               <input
                 type="file"
+                defaultValue={singleManufacturingDetails?.imageurl}
                 className="file-input file-input-bordered file-input-sm w-full"
-                onChange={handleImageChange}
                 {...register("image")}
               />
             </div>
@@ -124,6 +120,9 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
             </div>
           </form>
         </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
       </dialog>
     </div>
   );
