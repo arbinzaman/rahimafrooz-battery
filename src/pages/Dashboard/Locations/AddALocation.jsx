@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaLocationDot, FaMapLocationDot } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +8,7 @@ const AddALocation = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     location_title: "",
+    location_name:"",
     location: "",
     phone_numbers: "",
     email: "",
@@ -19,33 +22,30 @@ const AddALocation = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormData({
-      location_title: "",
-      location: "",
-      phone_numbers: "",
-      email: "",
-    });
-    console.log(formData);
-  };
+  const handleSubmit = async (e) => {
+    const GLOBAL_LOCATION_API_URL = `${
+      import.meta.env.VITE_BASE_URL
+    }/contact/global-locations`;
 
-  const GLOBAL_LOCATION_API_URL = `${
-    import.meta.env.VITE_BASE_URL
-  }/contact/global-locations`;
+    try {
+      e.preventDefault();
+      const res = await axios.post(GLOBAL_LOCATION_API_URL, formData);
 
-  fetch(GLOBAL_LOCATION_API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  }).then((res) => {
-    if (!res.ok) {
-      throw new Error();
+      if(res.status===201){
+        toast.success("A new location has been added.")
+        setFormData({
+          location_title: "",
+          location: "",
+          location_name:"",
+          phone_numbers: "",
+          email: "",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occured! Please try again filling all the fields")
     }
-    return res.json();
-  });
+  };
 
   return (
     <div>
@@ -66,6 +66,19 @@ const AddALocation = () => {
             type="text"
             name="location_title"
             value={formData.location_title}
+            onChange={handleChange}
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm mb-2 bg-white text-black "
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm mt-2 text-black">
+            Location Name
+          </label>
+          <input
+            type="text"
+            name="location_name"
+            value={formData.location_name}
             onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm mb-2 bg-white text-black "
             required
@@ -105,8 +118,12 @@ const AddALocation = () => {
           />
         </div>
         <div className="flex justify-between">
-          <button className="btn btn-xs bg-teal-500 text-white border-none hover:bg-teal-700 "
-            onClick={() =>navigate("/dashboard/all-locations")}>Back to Locations <FaLocationDot /></button>
+          <button
+            className="btn btn-xs bg-teal-500 text-white border-none hover:bg-teal-700 "
+            onClick={() => navigate("/dashboard/all-locations")}
+          >
+            Back to Locations <FaLocationDot />
+          </button>
           <button
             type="submit"
             className=" btn-xs px-4  border border-transparent  font-medium rounded-md shadow-sm text-white bg-primary hover:bg-blue-700 "

@@ -39,7 +39,7 @@ import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
 import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMultiSelect";
 import DealerLocationAndDetailsList from "../pages/Dashboard/DealerLocation&Details/DealerLocationAndDetailsList";
 import AddADealerLocationAndDetails from "../pages/Dashboard/DealerLocation&Details/AddADealerLocationAndDetails";
-import BrandsImageList from "../pages/Dashboard/BrandsImage/BrandImageList";
+import AllBrandImg from "../pages/Dashboard/BrandsImage/AllBrandImg";
 
 const routes = createBrowserRouter([
   {
@@ -206,7 +206,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/brand-image",
-        element: <BrandsImageList />,
+        element: <AllBrandImg />,
       },
       {
         path: "/dashboard/custom-multi-select",

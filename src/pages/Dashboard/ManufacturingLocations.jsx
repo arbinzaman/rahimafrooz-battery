@@ -1,9 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import ManufacturingLocationsList from "../../components/Dashboard/ManufacturingLocations/ManufacturingLocationsList";
 import { LuRefreshCcw } from "react-icons/lu";
-import AddManufacturingLocationsForm from "../../components/Dashboard/ManufacturingLocations/AddManufacturingLocationsForm";
-
-import { RotatingSquare } from "react-loader-spinner";
+import AddManufacturingLocationsForm from "../../components/Dashboard/ManufacturingLocations/AddManufacturingLocationsForm"
 import { useState } from "react";
 
 const ManufacturingLocations = () => {
