@@ -36,7 +36,7 @@ const AllBrandImg = () => {
       <div className="flex justify-between items-center my-3">
         <div>
           <button
-            className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white"
+            className="flex gap-2 btn btn-xs  border-0 text-white bg-sky-400 hover:bg-sky-700"
             onClick={() => document.getElementById("my_modal_2").showModal()}
           >
             Add new details <BiSolidImageAdd />
@@ -50,7 +50,7 @@ const AllBrandImg = () => {
           />
         </div>
         <button
-          className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white"
+          className="flex gap-2 btn btn-xs  border-0 text-white bg-teal-400 hover:bg-teal-700"
           //   onClick={refetch}
         >
           Refresh

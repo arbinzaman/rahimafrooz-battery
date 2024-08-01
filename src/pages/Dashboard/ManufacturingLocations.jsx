@@ -3,6 +3,7 @@ import ManufacturingLocationsList from "../../components/Dashboard/Manufacturing
 import { LuRefreshCcw } from "react-icons/lu";
 import AddManufacturingLocationsForm from "../../components/Dashboard/ManufacturingLocations/AddManufacturingLocationsForm"
 import { useState } from "react";
+import { MdPrecisionManufacturing } from "react-icons/md";
 
 const ManufacturingLocations = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,21 +22,21 @@ const ManufacturingLocations = () => {
   });
   return (
     <div>
-      <h1 className="text-medium lg:text-semi_large text-center font-bold mb-10 mt-5 text-primary uppercase">
-        All Manufacturing Locations
+      <h1 className="text-medium lg:text-semi_large text-center font-bold mb-10 mt-5 text-primary uppercase flex justify-center ">
+       Manufacturing Locations <MdPrecisionManufacturing className=" ml-2 mt-2 text-large" />
       </h1>
       <div className="flex justify-between items-center my-3">
         <div>
           <button
-            className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white"
+            className="flex gap-2 btn btn-xs  border-0  bg-sky-500 hover:bg-sky-700 text-white"
             onClick={() => document.getElementById("my_modal_2").showModal()}
           >
-            Add new details
+            Add new details <MdPrecisionManufacturing/>
           </button>
           <AddManufacturingLocationsForm props={{ setIsLoading, refetch }} />
         </div>
         <button
-          className="flex gap-2 btn btn-xs bg-white border-0 text-black hover:bg-sky-500 hover:text-white"
+          className="flex gap-2 btn btn-xs  border-0  bg-teal-400 hover:bg-teal-600 text-white"
           onClick={refetch}
         >
           Refresh
