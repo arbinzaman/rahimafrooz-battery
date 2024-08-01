@@ -2,9 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../components/shared/Loaders/Loader";
 import LocationDetailsTable from "../../../components/Dashboard/ContactUsLocationDetails/LocationDetailsTable";
 import { FaLocationDot } from "react-icons/fa6";
-import { useState } from "react";
 import { LuRefreshCcw } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import AddALocation from "./AddALocation";
 
 const AllLocations = () => {
   const url = `${import.meta.env.VITE_BASE_URL}/contact/global-locations`;
@@ -31,6 +30,10 @@ const AllLocations = () => {
     await refetch();
   };
 
+  const openModal = () => {
+    document.getElementById("my_modal_69").showModal();
+  };
+
   if (isLoading) {
     return <Loader />;
   }
@@ -46,11 +49,12 @@ const AllLocations = () => {
       </h1>
       <div className="flex gap-4 justify-between">
         <div className="flex gap-5">
-          <Link to="/dashboard/add-a-location">
-            <button className="flex gap-2 btn btn-xs  border-0  hover:bg-sky-700 text-white bg-sky-400">
-              Add A Location <FaLocationDot />
-            </button>
-          </Link>
+          <button
+            className="flex gap-2 btn btn-xs  border-0  hover:bg-sky-700 text-white bg-sky-400"
+            onClick={openModal}
+          >
+            Add A Location <FaLocationDot />
+          </button>
         </div>
         <div>
           <button
@@ -63,6 +67,7 @@ const AllLocations = () => {
         </div>
       </div>
       <LocationDetailsTable prompts={{ allLocationDetails, refetch }} />
+      <AddALocation />
     </div>
   );
 };

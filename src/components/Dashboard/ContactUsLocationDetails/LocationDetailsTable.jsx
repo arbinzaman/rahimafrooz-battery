@@ -2,8 +2,10 @@ import { MdDeleteOutline, MdEditLocationAlt } from "react-icons/md";
 import LocationUpdateModal from "./LocationUpdateModal";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const LocationDetailsTable = ({ prompts }) => {
+  const [selectedId, setSelectedId] = useState();
   const { allLocationDetails, refetch } = prompts;
 
   const handleDelete = async (id) => {
@@ -45,20 +47,23 @@ const LocationDetailsTable = ({ prompts }) => {
               <td>{location.phone_numbers}</td>
               <td>{location.email}</td>
               <td>
-                <LocationUpdateModal updateModalProps={{ location, refetch }} />
                 <button
                   title="Update Global Location"
-                  className="btn btn-xs bg-white hover:bg-lime-500 hover:text-white"
+                  className="btn btn-xs bg-white hover:bg-lime-500 hover:text-white border-none text-lime-500"
                   onClick={() => {
                     document.getElementById("my_modal_2").showModal();
+                    setSelectedId(location.id);
                   }}
                 >
-                  <MdEditLocationAlt className="text-regular" />
+                  <MdEditLocationAlt className="text-regular  border-none" />
                 </button>
+                  <LocationUpdateModal
+                    updateModalProps={{ allLocationDetails, selectedId, refetch }}
+                  />
               </td>
               <td>
                 <button
-                  className="btn btn-xs bg-red-500 text-white hover:bg-red-700 hover:text-white"
+                  className="btn btn-xs bg-red-500  border-none text-white hover:bg-red-700 hover:text-white"
                   onClick={() => handleDelete(location.id)}
                 >
                   <MdDeleteOutline />
