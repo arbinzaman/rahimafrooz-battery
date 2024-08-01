@@ -12,6 +12,7 @@ import { PiCertificateFill } from "react-icons/pi";
 import { RiImageEditFill } from "react-icons/ri";
 import { FaUserLock } from "react-icons/fa";
 import { RiUserLocationFill } from "react-icons/ri";
+import { BsBuildingsFill } from "react-icons/bs";
 
 const DashboardLayout = () => {
   return (
@@ -47,16 +48,31 @@ const DashboardLayout = () => {
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/dealers-location-and-details"> <RiUserLocationFill />Dealer Locations & Details</Link>
+              <Link to="/dashboard/dealers-location-and-details">
+                {" "}
+                <RiUserLocationFill />
+                Dealer Locations & Details
+              </Link>
             </li>
             <li>
-              <Link to="/dashboard/manufacturing-locations"> <MdPrecisionManufacturing />Manufacturing Details & Locations</Link>
+              <Link to="/dashboard/manufacturing-locations">
+                {" "}
+                <MdPrecisionManufacturing />
+                Manufacturing Details & Locations
+              </Link>
             </li>
             <li>
               <Link to="/dashboard/customers-queries">
                 {" "}
                 <HiOutlineUserGroup />
                 Customers Queries{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/storage-power">
+                {" "}
+                <BsBuildingsFill />
+                Storage Power{" "}
               </Link>
             </li>
             <li>

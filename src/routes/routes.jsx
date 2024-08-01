@@ -40,6 +40,8 @@ import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMult
 import DealerLocationAndDetailsList from "../pages/Dashboard/DealerLocation&Details/DealerLocationAndDetailsList";
 import AddADealerLocationAndDetails from "../pages/Dashboard/DealerLocation&Details/AddADealerLocationAndDetails";
 import AllBrandImg from "../pages/Dashboard/BrandsImage/AllBrandImg";
+import StoragePowerSection from "../pages/Dashboard/StoragePower/StoragePowerSection";
+import MultoSelect from "../components/Dashboard/MultiSelect";
 
 const routes = createBrowserRouter([
   {
@@ -210,7 +212,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/custom-multi-select",
-        element: <CustomMultiSelect />,
+        element: <MultoSelect />,
+      },
+      {
+        path: "/dashboard/storage-power",
+        element: <StoragePowerSection />,
       },
     ],
   },

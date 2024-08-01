@@ -22,7 +22,7 @@ const AddALocation = () => {
       formdata.append("phone_numbers", data.phone_numbers);
       formdata.append("email", data.email);
       console.log(data);
-      const res = await axios.put(
+      const res = await axios.postd(
         `${import.meta.env.VITE_BASE_URL}/contact/global-locations`,
         formdata
       );

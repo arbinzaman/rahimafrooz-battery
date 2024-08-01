@@ -88,7 +88,7 @@ const UpdateBattery = () => {
     return <div>Error: {categoriesError.message}</div>;
   }
 
-  const categories = categoriesData.map((category) => ({
+  const categories = categoriesData?.map((category) => ({
     value: category.category_name,
     label: category.category_name,
   }));
@@ -117,7 +117,7 @@ const UpdateBattery = () => {
 
   const handleTerminalLayoutChange = (e) => {
     const files = Array.from(e.target.files);
-    const fileUrls = files.map((file) => URL.createObjectURL(file));
+    const fileUrls = files?.map((file) => URL.createObjectURL(file));
     setFormData((prev) => ({
       ...prev,
       terminal_layout: fileUrls[0],
@@ -126,7 +126,7 @@ const UpdateBattery = () => {
 
   const handleCategoryChange = (selectedOptions) => {
     const selectedCategories = selectedOptions
-      ? selectedOptions.map((option) => option.value)
+      ? selectedOptions?.map((option) => option.value)
       : [];
     setFormData((prev) => ({
       ...prev,
@@ -142,7 +142,7 @@ const UpdateBattery = () => {
   };
 
   const handleSupportedVehicleMakesChange = (e) => {
-    const makes = e.target.value.split(",").map((make) => make.trim());
+    const makes = e.target.value.split(",")?.map((make) => make.trim());
     setFormData((prev) => ({
       ...prev,
       supported_vehicle_makes: makes,
@@ -213,12 +213,12 @@ const handleMakeYearsChange = (make, model, years) => {
 
     const supportedVehicleModels = Object.keys(
       formData.supported_vehicle_models
-    ).map((make) => ({
+    )?.map((make) => ({
       make,
       models: formData.supported_vehicle_models[make],
     }));
 
-    const makeYears = Object.keys(formData.make_years_models).map((model) => ({
+    const makeYears = Object.keys(formData.make_years_models)?.map((model) => ({
       model,
       years: formData.make_years_models[model],
     }));
