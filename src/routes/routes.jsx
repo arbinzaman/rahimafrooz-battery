@@ -37,6 +37,7 @@ import AddAUser from "../pages/Dashboard/Users/AddAUser";
 import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
 import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
 import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMultiSelect";
+import PrivateRoute from "./PrivateRoutes/PrivateRoute";
 
 const routes = createBrowserRouter([
   {
@@ -119,7 +120,11 @@ const routes = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard",
