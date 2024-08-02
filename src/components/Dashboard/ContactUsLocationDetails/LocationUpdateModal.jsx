@@ -1,22 +1,29 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const LocationUpdateModal = ({ updateModalProps }) => {
   const { selectedId, allLocationDetails, refetch } = updateModalProps;
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit } = useForm();
 
   const singleLocationDetails = allLocationDetails?.find(
     (details) => details.id === selectedId
   );
-  // console.log(singleLocationDetails);
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: singleLocationDetails,
+  });
+
+  useEffect(() => {
+    if (singleLocationDetails) {
+      reset(singleLocationDetails);
+    }
+  }, [singleLocationDetails, reset]);
 
   const handleUpdate = async (data) => {
     try {
       setIsLoading(true);
-
+      console.log(data);
       const res = await axios.patch(
         `${
           import.meta.env.VITE_BASE_URL
@@ -55,11 +62,11 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               </label>
               <input
                 type="text"
-                defaultValue={
-                  singleLocationDetails !== null
-                    ? singleLocationDetails?.location_title
-                    : ""
-                }
+                // defaultValue={
+                //   singleLocationDetails !== null
+                //     ? singleLocationDetails?.location_title
+                //     : ""
+                // }
                 className="bg-white border  rounded-md px-2 py-1 w-full"
                 {...register("location_title")}
               />
@@ -71,11 +78,11 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               </label>
               <input
                 type="text"
-                defaultValue={
-                  singleLocationDetails !== null
-                    ? singleLocationDetails?.location_name
-                    : ""
-                }
+                // defaultValue={
+                //   singleLocationDetails !== null
+                //     ? singleLocationDetails?.location_name
+                //     : ""
+                // }
                 className="bg-white border  rounded-md px-2 py-1 w-full"
                 {...register("location_name")}
               />
@@ -87,11 +94,11 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               </label>
               <textarea
                 type="text"
-                defaultValue={
-                  singleLocationDetails !== null
-                    ? singleLocationDetails?.location
-                    : ""
-                }
+                // defaultValue={
+                //   singleLocationDetails !== null
+                //     ? singleLocationDetails?.location
+                //     : ""
+                // }
                 className="bg-white border  rounded-md px-2 py-1 w-full"
                 {...register("location")}
               />
@@ -102,11 +109,11 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               </label>
               <input
                 type="text"
-                defaultValue={
-                  singleLocationDetails !== null
-                    ? singleLocationDetails?.phone_numbers
-                    : ""
-                }
+                // defaultValue={
+                //   singleLocationDetails !== null
+                //     ? singleLocationDetails?.phone_numbers
+                //     : ""
+                // }
                 className="bg-white border  rounded-md px-2 py-1 w-full"
                 {...register("phone_numbers")}
               />
@@ -117,11 +124,11 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               </label>
               <input
                 type="text"
-                defaultValue={
-                  singleLocationDetails !== null
-                    ? singleLocationDetails?.email
-                    : ""
-                }
+                // defaultValue={
+                //   singleLocationDetails !== null
+                //     ? singleLocationDetails?.email
+                //     : ""
+                // }
                 className="bg-white border  rounded-md px-2 py-1 w-full"
                 {...register("email")}
               />
