@@ -82,14 +82,14 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
                     )}
                   </td>
                   <td>
-                    <img src={details.imageurl} alt="" className="w-96" />
+                    <img src={details.imageurl} alt="" className="w-[384px]" />
                   </td>
                   <td title="Edit">
                     <button
                       className=""
                       onClick={() => {
                         {
-                          document.getElementById("my_modal_3").showModal();
+                          document.getElementById("my_modal_3").open = true;
                           setSelectedId(details.id);
                         }
                       }}

@@ -1,20 +1,27 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
-  const { selectedId, manufacturingDetails, setIsLoading, refetch } =
-    updateModalProps;
-  const { register, handleSubmit } = useForm();
-
+  const { selectedId, manufacturingDetails, refetch } = updateModalProps;
+  const [isLoading, setIsLoading] = useState(false);
   const singleManufacturingDetails = manufacturingDetails.find(
     (details) => details.id === selectedId
   );
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: singleManufacturingDetails,
+  });
+
+  useEffect(() => {
+    if (singleManufacturingDetails) {
+      reset(singleManufacturingDetails);
+    }
+  }, [singleManufacturingDetails, reset]);
 
   const handleUpdate = async (data) => {
     try {
       setIsLoading(true);
-
       const formdata = new FormData();
       formdata.append("title", data.title);
       formdata.append("location", data.location);
@@ -27,11 +34,13 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
         }/manufacturing-locations/${selectedId}`,
         formdata
       );
+
       if (res.status === 200) {
-        toast.success("Record updated successfully");
         refetch();
-        setIsLoading(false);
+        document.getElementById("my_modal_3").open = false;
+        toast.success("Record updated successfully");
       }
+      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       console.log(error);
@@ -42,7 +51,13 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
   return (
     <div>
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box">
+        <div className="modal-box  bg-white">
+          <form method="dialog" className="flex justify-between items-center">
+            <p className="text-primary text-medium font-bold flex gap-2 my-2">
+              Update Manufacturing Locations
+            </p>
+            <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+          </form>
           <form method="dialog" onSubmit={handleSubmit(handleUpdate)}>
             <div className="my-2">
               <label>
@@ -55,7 +70,7 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
                     ? singleManufacturingDetails?.title
                     : ""
                 }
-                className="bg-base border  rounded-md p-1 w-full"
+                className="bg-base border rounded-md px-2 py-1 w-full"
                 {...register("title")}
               />
             </div>
@@ -71,7 +86,7 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
                     ? singleManufacturingDetails?.location
                     : ""
                 }
-                className="bg-base border  rounded-md p-1 w-full"
+                className="bg-base border rounded-md px-2 py-1 w-full"
                 {...register("location")}
               />
             </div>
@@ -87,7 +102,7 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
                     ? singleManufacturingDetails?.description
                     : ""
                 }
-                className="bg-base border  rounded-md p-1 w-full"
+                className="bg-base border rounded-md h-36 px-2 py-1 w-full"
                 {...register("description")}
               />
             </div>
@@ -113,9 +128,9 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
             <div className="flex justify-end gap-3 items-center mt-3">
               <button
                 type=""
-                className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
+                className="flex gap-2 btn btn-sm bg-secondary text-white hover:bg-primary hover:text-white"
               >
-                Add
+                Update
               </button>
             </div>
           </form>
