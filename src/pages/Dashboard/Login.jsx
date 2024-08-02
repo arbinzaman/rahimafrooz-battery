@@ -1,18 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../contexts/AuthContext";
+import { useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useUser();
 
   const handleLogin = async (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    const res = await login(email, password);
-    if (res === 200) {
-      navigate("/dashboard");
+    try {
+      setIsLoading(true);
+      event.preventDefault();
+      const form = event.target;
+      const email = form.email.value;
+      const password = form.password.value;
+      const res = await login(email, password);
+      
+      if (res === 200) {
+        navigate("/dashboard");
+      }
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      toast.error("Please enter valid email or password!");
     }
   };
 
@@ -52,12 +64,30 @@ const Login = () => {
               </a>
             </div>
           </div>
-          <button
-            type="submit"
-            className="block w-full p-3 text-center rounded-sm text-white bg-primary hover:bg-primary-dark"
-          >
-            Sign in
-          </button>
+          {!isLoading ? (
+            <button
+              type="submit"
+              disabled={isLoading ? true : false}
+              className={
+                "block w-full p-3 text-center rounded-sm text-white bg-primary hover:bg-secondary"
+              }
+            >
+              Sign in
+            </button>
+          ) : (
+            <button className="flex justify-center items-center w-full p-3 text-center rounded-sm text-white bg-background">
+              <ThreeDots
+                visible={true}
+                height="30"
+                width="30"
+                color="#0d72b9"
+                radius="9"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+            </button>
+          )}
         </form>
       </div>
     </div>

@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 const RestricIfLoggedInRoute = ({ children }) => {
   const { user, loading } = useUser();
-  const token = Cookies.get("token");
+  const token = Cookies.get("XTOKEN");
   
   const location = useLocation();
 
