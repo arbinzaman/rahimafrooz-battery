@@ -38,6 +38,7 @@ import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
 import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
 import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMultiSelect";
 import PrivateRoute from "./PrivateRoutes/PrivateRoute";
+import RestricIfLoggedInRoute from "./RestricIfLoggedInRoute/RestricIfLoggedInRoute";
 
 const routes = createBrowserRouter([
   {
@@ -116,7 +117,11 @@ const routes = createBrowserRouter([
   },
   {
     path: "/admin-login",
-    element: <Login />,
+    element: (
+      <RestricIfLoggedInRoute>
+        <Login />
+      </RestricIfLoggedInRoute>
+    ),
   },
   {
     path: "/dashboard",

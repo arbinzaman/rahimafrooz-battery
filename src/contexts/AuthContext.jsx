@@ -1,5 +1,4 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import axiosInstance from "../utils/Base Url/axiosInstance";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -26,7 +25,7 @@ export const AuthProvider = ({ children }) => {
             role: response?.data?.role,
           })
         );
-        Cookies.set("token", response.data.token);
+        Cookies.set("token", response.data.token, { expires: 1 });
         setUser(JSON.parse(localStorage.getItem("user")));
         return 200;
       }
@@ -44,17 +43,16 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     try {
-  //       const response = await axiosInstance.get("/auth/user");
-  //       setUser(response.data);
-  //     } catch (error) {
-  //       console.error("Failed to fetch user:", error.message);
-  //     }
-  //   };
-  //   fetchUser();
-  // }, []);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        setUser(JSON.parse(localStorage.getItem("user")));
+      } catch (error) {
+        console.error("Failed to fetch user:", error.message);
+      }
+    };
+    fetchUser();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

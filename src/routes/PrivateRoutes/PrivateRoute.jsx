@@ -4,17 +4,20 @@ import Cookies from "js-cookie";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useUser();
-  const token = Cookies.get('token');
+  const token = Cookies.get("token");
   // console.log(token)
   const location = useLocation();
 
   if (loading) {
     return;
   }
-  if (!user || !token) {
-    return <Navigate to="/admin-login" state={{ from: location }} replace></Navigate>;
+  if (user || token) {
+    return children;
   }
-  return children;
+  
+  return (
+    <Navigate to="/admin-login" state={{ from: location }} replace></Navigate>
+  );
 };
 
 export default PrivateRoute;
