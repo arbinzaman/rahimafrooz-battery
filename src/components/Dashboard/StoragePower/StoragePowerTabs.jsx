@@ -1,0 +1,89 @@
+import { useState } from "react";
+import YouTubeLink from "./YouTubeLink/YouTubeLink";
+import Milestone from "./Milestone/Milestone";
+import OurValues from "./OurValues/OurValues";
+import AllImageText from "./ImageText/AllImageText";
+
+const StoragePowerTabs = () => {
+  const [tab, setTab] = useState("ytLink");
+  return (
+    <div>
+      <div
+        role="tablist"
+        className="tabs tabs-boxed bg-white tab text-black w-full justify-around"
+      >
+        <a
+          role="tab"
+          onClick={() => setTab("ytLink")}
+          className={tab === "ytLink" ? "bg-primary  text-white tab " : ""}
+        >
+          YouTube Link
+        </a>
+        <a
+          role="tab"
+          onClick={() => setTab("imgText")}
+          className={tab === "imgText" ? "bg-primary  text-white tab" : ""}
+        >
+          Image & Text
+        </a>
+        <a
+          role="tab"
+          onClick={() => setTab("milestone")}
+          className={tab === "milestone" ? "bg-primary  text-white tab" : ""}
+        >
+          Milestone
+        </a>
+        <a
+          role="tab"
+          onClick={() => setTab("ourValues")}
+          className={tab === "ourValues" ? "bg-primary  text-white tab" : ""}
+        >
+          Our Values
+        </a>
+      </div>
+
+      <div>
+        {tab === "ytLink" ? (
+          <div>
+
+            <YouTubeLink />
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+      <div>
+        {tab === "imgText" ? (
+          <div>
+    
+            <AllImageText />
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+      <div>
+        {tab === "milestone" ? (
+          <div>
+    
+            <Milestone />
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+      <div>
+        {tab === "ourValues" ? (
+          <div>
+    
+            <OurValues />
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default StoragePowerTabs;

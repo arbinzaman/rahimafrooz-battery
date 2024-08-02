@@ -1,50 +1,37 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useLoading } from "../../../contexts/LoadingContext";
-import Loader from "../../../components/shared/Loaders/Loader";
 import { MdLocationOn } from "react-icons/md";
 
 const AddALocation = () => {
-  const { isLoading, setIsLoading } = useLoading();
   const { register, handleSubmit } = useForm();
 
   // console.log(singleLocationDetails);
 
   const handleAddData = async (data) => {
     try {
-      setIsLoading(true);
-
-      const formdata = new FormData();
-      formdata.append("location_title", data.location_title);
-      formdata.append("location_name", data.location_name);
-      formdata.append("location", data.location);
-      formdata.append("phone_numbers", data.phone_numbers);
-      formdata.append("email", data.email);
       console.log(data);
-      const res = await axios.postd(
+      const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/contact/global-locations`,
-        formdata
+        data
       );
       if (res.status === 200) {
-        toast.success("Record updated successfully");
-
-        setIsLoading(false);
+        toast.success("Record added successfully");
       }
     } catch (error) {
-      setIsLoading(false);
       console.log(error);
       toast.error("Something error occurred!");
     }
   };
-  if (isLoading) return <Loader />;
 
   return (
     <div>
       <dialog id="my_modal_69" className="modal">
         <div className="modal-box bg-white text-black ">
           <form method="dialog" onSubmit={handleSubmit(handleAddData)}>
-            <label className="text-primary text-medium font-bold flex">Add A Location <MdLocationOn className="mt-1.5"/></label>
+            <label className="text-primary text-medium font-bold flex">
+              Add A Location <MdLocationOn className="mt-1.5" />
+            </label>
             <div className="my-2">
               <label>
                 Enter title <span className="text-red-600">*</span>

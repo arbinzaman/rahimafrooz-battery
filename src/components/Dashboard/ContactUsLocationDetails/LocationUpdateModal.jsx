@@ -17,18 +17,18 @@ const LocationUpdateModal = ({ updateModalProps }) => {
     try {
       setIsLoading(true);
 
-      const formdata = new FormData();
-      formdata.append("location_title", data.location_title);
-      formdata.append("location_name", data.location_name);
-      formdata.append("location", data.location);
-      formdata.append("phone_numbers", data.phone_numbers);
-      formdata.append("email", data.email);
+      // const formdata = new FormData();
+      // formdata.append("location_title", data.location_title);
+      // formdata.append("location_name", data.location_name);
+      // formdata.append("location", data.location);
+      // formdata.append("phone_numbers", data.phone_numbers);
+      // formdata.append("email", data.email);
       console.log(data);
       const res = await axios.put(
         `${
           import.meta.env.VITE_BASE_URL
         }/manufacturing-locations/${selectedId}`,
-        formdata
+        data
       );
       if (res.status === 200) {
         toast.success("Record updated successfully");
@@ -36,8 +36,6 @@ const LocationUpdateModal = ({ updateModalProps }) => {
         setIsLoading(false);
       }
     } catch (error) {
-      setIsLoading(false);
-      console.log(error);
       toast.error("Something error occurred!");
     }
   };
