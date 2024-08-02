@@ -37,6 +37,8 @@ import AddAUser from "../pages/Dashboard/Users/AddAUser";
 import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
 import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
 import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMultiSelect";
+import PrivateRoute from "./PrivateRoutes/PrivateRoute";
+import RestricIfLoggedInRoute from "./RestricIfLoggedInRoute/RestricIfLoggedInRoute";
 import DealerLocationAndDetailsList from "../pages/Dashboard/DealerLocation&Details/DealerLocationAndDetailsList";
 import AddADealerLocationAndDetails from "../pages/Dashboard/DealerLocation&Details/AddADealerLocationAndDetails";
 import AllBrandImg from "../pages/Dashboard/BrandsImage/AllBrandImg";
@@ -120,11 +122,19 @@ const routes = createBrowserRouter([
   },
   {
     path: "/admin-login",
-    element: <Login />,
+    element: (
+      <RestricIfLoggedInRoute>
+        <Login />
+      </RestricIfLoggedInRoute>
+    ),
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard",
