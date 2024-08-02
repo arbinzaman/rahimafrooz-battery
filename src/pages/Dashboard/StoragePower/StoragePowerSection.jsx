@@ -1,15 +1,18 @@
 const StoragePowerSection = () => {
   return (
     <div>
-      <div role="tablist" className="tabs tabs-boxed">
+      <div role="tablist" className="tabs tabs-boxed bg-white text-black">
         <a role="tab" className="tab">
-          Tab 1
+          YouTube Link
         </a>
         <a role="tab" className="tab tab-active">
-          Tab 2
+         Image & Text
         </a>
         <a role="tab" className="tab">
-          Tab 3
+          Milestone
+        </a>
+        <a role="tab" className="tab">
+          Our Values
         </a>
       </div>
     </div>
