@@ -26,7 +26,7 @@ const YouTubeList = ({ prompts }) => {
       toast.error("Something error occurred!");
     }
   };
-  // console.log(allYoutubeLinks);
+  
   return (
     <div>
       <div className="overflow-x-auto">
@@ -37,7 +37,7 @@ const YouTubeList = ({ prompts }) => {
             <thead>
               <tr className="text-black">
                 <th>Serial</th>
-                <th>YouTube Link</th>
+                <th className="text-center">Video & URL</th>
               </tr>
             </thead>
             <tbody>
@@ -45,9 +45,9 @@ const YouTubeList = ({ prompts }) => {
                 <tr key={details.id}>
                   <th>{i + 1}</th>
 
-                  <td>{details.yt_link}</td>
-                  <td>
-                  <iframe width="" height="" src={details.yt_link}></iframe>
+                  <td className="flex flex-col items-center">
+                    <iframe width="" height="" src={details.video_url}></iframe>
+                    <p className="my-2">{details.video_url}</p>
                   </td>
 
                   <td>
@@ -55,9 +55,6 @@ const YouTubeList = ({ prompts }) => {
                       className="btn btn-xs border-0 bg-red-400"
                       onClick={() => handleDelete(details.id)}
                     >
-
-
-
                       <MdDeleteForever className="text-white" />
                     </button>
                   </td>

@@ -10,12 +10,12 @@ const StoragePowerTabs = () => {
     <div>
       <div
         role="tablist"
-        className="tabs tabs-boxed bg-white tab text-black w-full justify-around"
+        className="tabs rounder-md bg-white tab text-black w-full justify-around"
       >
         <a
           role="tab"
           onClick={() => setTab("ytLink")}
-          className={tab === "ytLink" ? "bg-primary  text-white tab " : ""}
+          className={tab === "ytLink" ? "bg-primary  text-white tab" : ""}
         >
           YouTube Link
         </a>
@@ -45,7 +45,6 @@ const StoragePowerTabs = () => {
       <div>
         {tab === "ytLink" ? (
           <div>
-
             <AllYouTubeLinks />
           </div>
         ) : (
@@ -55,7 +54,6 @@ const StoragePowerTabs = () => {
       <div>
         {tab === "imgText" ? (
           <div>
-    
             <AllImageText />
           </div>
         ) : (
@@ -65,7 +63,6 @@ const StoragePowerTabs = () => {
       <div>
         {tab === "milestone" ? (
           <div>
-    
             <AllMilestone />
           </div>
         ) : (
@@ -75,7 +72,6 @@ const StoragePowerTabs = () => {
       <div>
         {tab === "ourValues" ? (
           <div>
-    
             <AllValues />
           </div>
         ) : (
