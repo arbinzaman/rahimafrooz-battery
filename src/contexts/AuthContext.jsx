@@ -1,29 +1,63 @@
-import  { createContext, useState, useEffect } from 'react';
-import axiosInstance from '../utils/Base Url/axiosInstance';
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useState, useContext, useEffect } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
+export const useUser = () => useContext(AuthContext);
+
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await axiosInstance.get('/auth/user');
-                setUser(response.data);
-            } catch (error) {
-                console.error('Failed to fetch user:', error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchUser();
-    }, []);
+  const login = async (email, password) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/auth/login`,
+        { email, password }
+      );
+      console.log(response.data);
+      if (response.status === 200) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            username: response?.data?.username,
+            email: response?.data?.email,
+            role: response?.data?.role,
+          })
+        );
+        Cookies.set("token", response.data.token, { expires: 1 });
+        setUser(JSON.parse(localStorage.getItem("user")));
+        return 200;
+      }
+    } catch (error) {
+      console.error("Login failed:", error.message);
+    }
+  };
 
-    return (
-        <AuthContext.Provider value={{ user, loading }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  const logout = async () => {
+    try {
+      localStorage.removeItem("user");
+      setUser(null);
+    } catch (error) {
+      console.error("Logout failed:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        setUser(JSON.parse(localStorage.getItem("user")));
+      } catch (error) {
+        console.error("Failed to fetch user:", error.message);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

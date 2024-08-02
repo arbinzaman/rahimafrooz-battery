@@ -47,10 +47,10 @@ const AllLocations = () => {
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
         Locations Table
       </h1>
-      <div className="flex gap-4 justify-between">
+      <div className="flex gap-4 justify-between mb-3">
         <div className="flex gap-5">
           <button
-            className="flex gap-2 btn btn-xs  border-0  hover:bg-sky-700 text-white bg-sky-400"
+            className="flex gap-2 btn btn-xs bg-primary hover:bg-secondary text-white"
             onClick={openModal}
           >
             Add A Location <FaLocationDot />
@@ -67,7 +67,7 @@ const AllLocations = () => {
         </div>
       </div>
       <LocationDetailsTable prompts={{ allLocationDetails, refetch }} />
-      <AddALocation />
+      <AddALocation addLocationModalProps = {{refetch}}/>
     </div>
   );
 };
