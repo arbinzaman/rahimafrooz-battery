@@ -9,12 +9,15 @@ import {
 } from "react-icons/fa6";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { PiCertificateFill } from "react-icons/pi";
-import { RiImageEditFill } from "react-icons/ri";
+import { RiImageEditFill, RiLogoutBoxLine } from "react-icons/ri";
 import { FaUserLock } from "react-icons/fa";
 import { RiUserLocationFill } from "react-icons/ri";
 import { BsBuildingsFill } from "react-icons/bs";
+import { LuUserCircle2 } from "react-icons/lu";
+import { useUser } from "../contexts/AuthContext";
 
 const DashboardLayout = () => {
+  const {logout} = useUser()
   return (
     <div>
       <DashboardHeader />
@@ -30,6 +33,11 @@ const DashboardLayout = () => {
             className="drawer-overlay lg:hidden"
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-white text-black mt-20 lg:mt-0 lg:fixed  ">
+            <li>
+              <Link>
+                <LuUserCircle2 color="" /> Admin Profile
+              </Link>
+            </li>
             <li>
               <Link to="/dashboard/all-battery-details-list">
                 <FaCarBattery /> Batteries
@@ -102,6 +110,9 @@ const DashboardLayout = () => {
                 <FaUserLock />
                 Users{" "}
               </Link>
+            </li>
+            <li>
+              <button onClick={()=>logout()}><RiLogoutBoxLine />Logout</button>
             </li>
           </ul>
         </div>

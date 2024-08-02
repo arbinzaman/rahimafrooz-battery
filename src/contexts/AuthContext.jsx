@@ -2,6 +2,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext();
 
@@ -12,32 +13,37 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/auth/login`,
         { email, password }
       );
-      console.log(response.data);
-      if (response.status === 200) {
+
+      // console.log(res)
+
+      if (res.status === 200) {
         localStorage.setItem(
           "user",
           JSON.stringify({
-            username: response?.data?.username,
-            email: response?.data?.email,
-            role: response?.data?.role,
+            username: res?.data?.username,
+            email: res?.data?.email,
+            role: res?.data?.role,
           })
         );
-        Cookies.set("token", response.data.token, { expires: 1 });
+        Cookies.set("XTOKEN", res.data.token, { expires: 1 });
         setUser(JSON.parse(localStorage.getItem("user")));
         return 200;
       }
     } catch (error) {
-      console.error("Login failed:", error.message);
+      // console.log(error)
+      // console.error("Login failed:", error.message);
+      toast.error(`${error.response.data.message}`)
     }
   };
 
   const logout = async () => {
     try {
       localStorage.removeItem("user");
+      Cookies.remove("XTOKEN");
       setUser(null);
     } catch (error) {
       console.error("Logout failed:", error.message);
