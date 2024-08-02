@@ -39,8 +39,8 @@ const AddBrandImg = ({ props }) => {
     <div>
       <dialog id="my_modal_2" className="modal">
         <div className="modal-box bg-white text-black">
-          <p className="font-semibold font-primary uppercase">
-            Add New Details
+          <p className="font-semibold font-primary uppercase text-primary">
+            Add New Brand Image
           </p>
           <div className="">
             <form

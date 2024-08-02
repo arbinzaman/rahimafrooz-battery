@@ -25,7 +25,6 @@ const AddALocation = ({ addLocationModalProps }) => {
         refetch();
       }
     } catch (error) {
-      setIsLoading(false);
       console.log(error);
       toast.error("Something error occurred!");
     }
