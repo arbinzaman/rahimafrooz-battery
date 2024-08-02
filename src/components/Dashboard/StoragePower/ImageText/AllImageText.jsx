@@ -4,6 +4,7 @@ import { useState } from "react";
 import ImageTextList from "./ImageTextList";
 import { GrDocumentImage } from "react-icons/gr";
 import imageTextData from "../../../../demoData/ImageText.json";
+import AddAImgTextModal from "./AddAImgTextModal";
 const AllImageText = () => {
   const [
     ,
@@ -26,27 +27,31 @@ const AllImageText = () => {
   //     },
   //     refetchOnWindowFocus: true,
   //   });
+
+  // const openModal = () => {
+    
+  // };
+
   return (
     <div>
       <h1 className="text-medium lg:text-semi_large text-center font-bold mb-10 mt-5 text-primary uppercase flex justify-center ">
-        Image & Text {" "}
-        <GrDocumentImage  className=" ml-2 mt-2 text-large" />
+        Image & Text <GrDocumentImage className=" ml-2 mt-2 text-large" />
       </h1>
       <div className="flex justify-between items-center my-3">
         <div>
           <button
             className="flex gap-2 btn btn-xs  border-0  bg-sky-500 hover:bg-sky-700 text-white"
-            onClick={() => document.getElementById("my_modal_2").showModal()}
+            onClick={()=>{document.getElementById("img_text").showModal()}}
           >
-            Add new details <GrDocumentImage  />
+            Add new details <GrDocumentImage />
           </button>
-          {/* <ImageText props={{ setIsLoading,
+          <AddAImgTextModal props={{ setIsLoading,
             //  refetch 
-             }} /> */}
+             }} />
         </div>
         <button
           className="flex gap-2 btn btn-xs  border-0  bg-teal-400 hover:bg-teal-600 text-white"
-        //   onClick={refetch}
+          //   onClick={refetch}
         >
           Refresh
           <LuRefreshCcw />
@@ -54,9 +59,11 @@ const AllImageText = () => {
       </div>
 
       <ImageTextList
-        prompts={{ AllImageText, setIsLoading, 
-            // refetch
-         }}
+        prompts={{
+          AllImageText,
+          setIsLoading,
+          // refetch
+        }}
       />
     </div>
   );

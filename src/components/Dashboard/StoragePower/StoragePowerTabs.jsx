@@ -1,8 +1,8 @@
 import { useState } from "react";
 import YouTubeLink from "./YouTubeLink/YouTubeLink";
-import Milestone from "./Milestone/Milestone";
-import OurValues from "./OurValues/OurValues";
 import AllImageText from "./ImageText/AllImageText";
+import AllMilestone from "./Milestone/AllMilestone";
+import AllValues from "./OurValues/AllValues";
 
 const StoragePowerTabs = () => {
   const [tab, setTab] = useState("ytLink");
@@ -66,7 +66,7 @@ const StoragePowerTabs = () => {
         {tab === "milestone" ? (
           <div>
     
-            <Milestone />
+            <AllMilestone />
           </div>
         ) : (
           <></>
@@ -76,7 +76,7 @@ const StoragePowerTabs = () => {
         {tab === "ourValues" ? (
           <div>
     
-            <OurValues />
+            <AllValues />
           </div>
         ) : (
           <></>
