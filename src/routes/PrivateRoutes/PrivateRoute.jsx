@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useUser();
-  const token = Cookies.get("token");
+  const token = Cookies.get("XTOKEN");
   // console.log(token)
   const location = useLocation();
 
@@ -14,7 +14,7 @@ const PrivateRoute = ({ children }) => {
   if (user || token) {
     return children;
   }
-  
+
   return (
     <Navigate to="/admin-login" state={{ from: location }} replace></Navigate>
   );
