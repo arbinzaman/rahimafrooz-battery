@@ -1,10 +1,7 @@
-import { useState } from 'react';
 
-const CustomMultiSelect = () => {
-  const [options, setOptions] = useState([]);
-  console.log(options);
-  const [inputValue, setInputValue] = useState('');
-  console.log(inputValue);
+const CustomMultiSelect = ({prompts}) => {
+  const { setOptions, setInputValue, inputValue, options } = prompts;
+
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);

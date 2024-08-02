@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useState } from "react";
 import { InstagramEmbed } from "react-social-media-embed";
 import Loader from "../../components/shared/Loaders/Loader";

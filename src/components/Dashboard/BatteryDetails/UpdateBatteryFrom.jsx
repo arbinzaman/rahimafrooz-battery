@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 import { FaCarBattery } from "react-icons/fa";
 import CustomMultiSelect from "./CustomMultiSelect";
@@ -34,14 +34,21 @@ const UpdateBatteryForm = ({
     make_years_models = {},
   } = formData;
 
-  // Utility functions to safely access arrays
-  const getModels = (make) => Array.isArray(supported_vehicle_models[make])
-    ? supported_vehicle_models[make]
-    : [];
 
-  const getYears = (make, model) => Array.isArray(make_years_models[make]?.[model])
-    ? make_years_models[make][model]
-    : [];
+  const [options, setOptions] = useState([]);
+  console.log(options);
+  const [inputValue, setInputValue] = useState('');
+  console.log(inputValue);
+  // Utility functions to safely access arrays
+  const getModels = (make) =>
+    Array.isArray(supported_vehicle_models[make])
+      ? supported_vehicle_models[make]
+      : [];
+
+  const getYears = (make, model) =>
+    Array.isArray(make_years_models[make]?.[model])
+      ? make_years_models[make][model]
+      : [];
 
   return (
     <div>
@@ -181,8 +188,10 @@ const UpdateBatteryForm = ({
                   Supported Vehicle Makes:
                 </label>
                 <CustomMultiSelect
-                  options={supported_vehicle_makes}
-                  setOptions={(newMakes) => handleSupportedVehicleMakesChange(newMakes)}
+                  prompts={{supported_vehicle_makes,setOptions,setInputValue,options,inputValue}}
+                  setOptions={(newMakes) =>
+                    handleSupportedVehicleMakesChange(newMakes)
+                  }
                   placeholder="Type and press space to add"
                 />
               </div>
@@ -192,8 +201,11 @@ const UpdateBatteryForm = ({
                     {make} Models:
                   </label>
                   <CustomMultiSelect
-                    options={getModels(make)}
-                    setOptions={(newModels) => handleVehicleModelsChange(make, newModels)}
+                  
+                  prompts={getModels(make)}
+                    setOptions={(newModels) =>
+                      handleVehicleModelsChange(make, newModels)
+                    }
                     placeholder="Type and press space to add"
                   />
                   {getModels(make).map((model, modelIndex) => (
@@ -202,8 +214,10 @@ const UpdateBatteryForm = ({
                         {model} Years:
                       </label>
                       <CustomMultiSelect
-                        options={getYears(make, model)}
-                        setOptions={(newYears) => handleMakeYearsChange(make, model, newYears)}
+                        prompts={getYears(make, model)}
+                        setOptions={(newYears) =>
+                          handleMakeYearsChange(make, model, newYears)
+                        }
                         placeholder="Type and press space to add"
                       />
                     </div>
