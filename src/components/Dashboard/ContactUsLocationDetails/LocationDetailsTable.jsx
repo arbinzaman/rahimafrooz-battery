@@ -49,17 +49,17 @@ const LocationDetailsTable = ({ prompts }) => {
               <td>
                 <button
                   title="Update Global Location"
-                  className="btn btn-xs bg-white hover:bg-lime-500 hover:text-white border-none text-lime-500"
+                  className="btn btn-xs bg-white hover:text-white border-none"
                   onClick={() => {
-                    document.getElementById("my_modal_2").showModal();
+                    document.getElementById("my_modal_2").open = true;
                     setSelectedId(location.id);
                   }}
                 >
-                  <MdEditLocationAlt className="text-regular  border-none" />
+                  <MdEditLocationAlt className="text-regular text-primary" />
                 </button>
-                  <LocationUpdateModal
-                    updateModalProps={{ allLocationDetails, selectedId, refetch }}
-                  />
+                <LocationUpdateModal
+                  updateModalProps={{ allLocationDetails, selectedId, refetch }}
+                />
               </td>
               <td>
                 <button
