@@ -37,6 +37,11 @@ import AddAUser from "../pages/Dashboard/Users/AddAUser";
 import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
 import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
 import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMultiSelect";
+import DealerLocationAndDetailsList from "../pages/Dashboard/DealerLocation&Details/DealerLocationAndDetailsList";
+import AddADealerLocationAndDetails from "../pages/Dashboard/DealerLocation&Details/AddADealerLocationAndDetails";
+import AllBrandImg from "../pages/Dashboard/BrandsImage/AllBrandImg";
+import StoragePowerSection from "../pages/Dashboard/StoragePower/StoragePowerSection";
+import MultoSelect from "../components/Dashboard/MultiSelect";
 
 const routes = createBrowserRouter([
   {
@@ -134,6 +139,10 @@ const routes = createBrowserRouter([
         element: <DealerApplicationList />,
       },
       {
+        path: "/dashboard/dealers-location-and-details",
+        element: <DealerLocationAndDetailsList />,
+      },
+      {
         path: "/dashboard/all-battery-details-list",
         element: <AllBatteryDetails />,
       },
@@ -194,8 +203,20 @@ const routes = createBrowserRouter([
         element: <AddAUser />,
       },
       {
+        path: "/dashboard/add-a-dealer-location-and-details",
+        element: <AddADealerLocationAndDetails />,
+      },
+      {
+        path: "/dashboard/brand-image",
+        element: <AllBrandImg />,
+      },
+      {
         path: "/dashboard/custom-multi-select",
-        element: <CustomMultiSelect />,
+        element: <MultoSelect />,
+      },
+      {
+        path: "/dashboard/storage-power",
+        element: <StoragePowerSection />,
       },
     ],
   },
