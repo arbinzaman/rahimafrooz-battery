@@ -1,10 +1,9 @@
-// import { useQuery } from "@tanstack/react-query";
 import { LuRefreshCcw } from "react-icons/lu";
 import { useState } from "react";
 import { GrDocumentImage } from "react-icons/gr";
-import imageTextData from "../../../../demoData/ImageText.json";
 import AddFactoryInformationModal from "./AddFactoryInformationModal";
 import FactoryInformationList from "./FactoryInformationList";
+import { useQuery } from "@tanstack/react-query";
 const AllImageText = () => {
   const [
     ,
@@ -12,25 +11,17 @@ const AllImageText = () => {
     setIsLoading,
   ] = useState(false);
 
-  const AllImageText = imageTextData;
-  //   const { data: AllImageText = null, refetch } = useQuery({
-
-  //     queryKey: ["AllImageText"],
-  //     queryFn: async () => {
-  //       // console.log("Fetching data...");
-  //       const res = await fetch(
-  //         `${import.meta.env.VITE_BASE_URL}/manufacturing-locations`
-  //       );
-  //       const data = await res.json();
-  //       // console.log("Data fetched:", data);
-  //       return data;
-  //     },
-  //     refetchOnWindowFocus: true,
-  //   });
-
-  // const openModal = () => {
-    
-  // };
+  const { data: allFactoryInformations = null, refetch } = useQuery({
+    queryKey: ["allFactoryInformations"],
+    queryFn: async () => {
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/storage-power/factory-informations/`
+      );
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
   return (
     <div>
@@ -41,13 +32,13 @@ const AllImageText = () => {
         <div>
           <button
             className="flex gap-2 btn btn-xs  border-0  bg-sky-500 hover:bg-sky-700 text-white"
-            onClick={()=>{document.getElementById("img_text").showModal()}}
+            onClick={() => {
+              document.getElementById("img_text").open = true;
+            }}
           >
             Add new details <GrDocumentImage />
           </button>
-          <AddFactoryInformationModal props={{ setIsLoading,
-            //  refetch 
-             }} />
+          <AddFactoryInformationModal props={{ setIsLoading, refetch }} />
         </div>
         <button
           className="flex gap-2 btn btn-xs  border-0  bg-teal-400 hover:bg-teal-600 text-white"
@@ -60,9 +51,9 @@ const AllImageText = () => {
 
       <FactoryInformationList
         prompts={{
-          AllImageText,
+          allFactoryInformations,
           setIsLoading,
-          // refetch
+          refetch
         }}
       />
     </div>

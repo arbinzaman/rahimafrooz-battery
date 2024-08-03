@@ -1,11 +1,12 @@
-import { useRef, useState } from "react";
+import axios from "axios";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { GrDocumentImage } from "react-icons/gr";
 
-const AddFactoryInformationModal = () => {
-  const { register, handleSubmit } = useForm();
-  const formRef = useRef();
+const AddFactoryInformationModal = ({ props }) => {
+  const { refetch } = props;
+  const { register, handleSubmit, reset } = useForm();
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data) => {
@@ -15,18 +16,18 @@ const AddFactoryInformationModal = () => {
       formdata.append("description", data.description);
       formdata.append("corner_text", data.corner_text);
       formdata.append("image_url", data.image_url[0]);
-      console.log(formdata);
-      console.log(data);
+      
       setIsLoading(true);
-
-      //   const res = await axios.post(
-      //     `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/`,
-      //     formdata
-      //   );
-      //   if (res.status === 201) {
-      //     formRef.current.reset();
-      //     toast.success("New record has been added.");
-      //   }
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/storage-power/factory-informations/`,
+        formdata
+      );
+      if (res.status === 201) {
+        reset();
+        document.getElementById("img_text").open = false;
+        refetch();
+        toast.success("New record has been added.");
+      }
     } catch (error) {
       console.log(error.message);
       toast.error("Something error occurred!");
