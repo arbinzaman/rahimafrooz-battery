@@ -222,7 +222,8 @@ const Header = () => {
                     type="text"
                     id="search-navbar"
                     onChange={(e) => setSearchData(e.target.value)}
-                    className="search block max-w-[1000px] p-2 pl-3 text-black text-sm border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 relative"
+                    // className="search block  p-2 pl-3 text-black text-sm border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 relative"
+                    className="input input-bordered input-info w-full h-auto py-1 max-w-xs rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Search"
                   />
                   <div className="relative">
