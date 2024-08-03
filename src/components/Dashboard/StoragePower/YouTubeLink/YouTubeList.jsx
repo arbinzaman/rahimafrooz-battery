@@ -11,7 +11,7 @@ const YouTubeList = ({ prompts }) => {
       setIsLoading(true);
       const body = allYoutubeLinks.find((details) => details.id === id);
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/youtube-video/${id}`,
         { data: body }
       );
 
