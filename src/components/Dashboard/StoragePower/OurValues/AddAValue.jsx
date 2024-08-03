@@ -71,7 +71,7 @@ const AddAValue = ({ props }) => {
 
               <div className="flex justify-end gap-3 items-center mt-3">
                 <button
-                  type=""
+                  type="submit"
                   className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
                 >
                   Add

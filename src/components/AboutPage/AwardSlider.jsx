@@ -57,14 +57,14 @@ const AwardSlider = () => {
   };
 
   const awards = [
-    { id: 1, imgSrc: Asia_Brand_Award,title:"Asia Brand Award" },
-    { id: 2, imgSrc: CentenaryAward_2014,title: "Centenary Award 2014" },
-    { id: 3, imgSrc: CMO_Asia_Award,title: "CMO Asia's Best  Award"},
-    { id: 4, imgSrc: International_Green_Oscar_Award_2000,title: "International Green Oscar Award 2000" },
-    { id: 5, imgSrc: National_Export_Trophy_Gold_2010_11,title:"National Export Trophy Gold 2010-11" },
-    { id: 6, imgSrc: National_Export_Trophy_Silver_2001_02,title: "National Export Trophy Silver 2001-02"},
-    { id: 7, imgSrc: Standard_Charterd_Financial_Express_CSR_Award,title: "Standard Charterd Financial Express CSR Award"},
-    { id: 8, imgSrc: Superbrands_Bangladesh_Choice_2020_21,title: "Superbrands Bangladesh Choice Award 2020-21"},
+    { id: 1, imgSrc: Asia_Brand_Award,caption:"Asia Brand Award" },
+    { id: 2, imgSrc: CentenaryAward_2014,caption: "Centenary Award 2014" },
+    { id: 3, imgSrc: CMO_Asia_Award,caption: "CMO Asia's Best  Award"},
+    { id: 4, imgSrc: International_Green_Oscar_Award_2000,caption: "International Green Oscar Award 2000" },
+    { id: 5, imgSrc: National_Export_Trophy_Gold_2010_11,caption:"National Export Trophy Gold 2010-11" },
+    { id: 6, imgSrc: National_Export_Trophy_Silver_2001_02,caption: "National Export Trophy Silver 2001-02"},
+    { id: 7, imgSrc: Standard_Charterd_Financial_Express_CSR_Award,caption: "Standard Charterd Financial Express CSR Award"},
+    { id: 8, imgSrc: Superbrands_Bangladesh_Choice_2020_21,caption: "Superbrands Bangladesh Choice Award 2020-21"},
   ];
   return (
     <section>
@@ -79,7 +79,7 @@ const AwardSlider = () => {
                 className="h-60 md:h-68 lg:h-72 "
                 alt="Product Image"
               />
-              <p className="text-center font-semibold text-small w-3/4 py-2">{award.title}</p>
+              <p className="text-center font-semibold text-small w-3/4 py-2">{award.caption}</p>
             </div>
           </div>
         ))}

@@ -35,7 +35,7 @@ const AllImageText = () => {
   return (
     <div>
       <h1 className="text-medium lg:text-semi_large text-center font-bold mb-10 mt-5 text-primary uppercase flex justify-center ">
-        Factory Informations <GrDocumentImage className=" ml-2 mt-2 text-large" />
+        Factory Information <GrDocumentImage className=" ml-2 mt-2 text-large" />
       </h1>
       <div className="flex justify-between items-center my-3">
         <div>
