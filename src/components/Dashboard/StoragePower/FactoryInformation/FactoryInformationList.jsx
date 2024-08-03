@@ -4,18 +4,19 @@ import toast from "react-hot-toast";
 import { MdDeleteForever, MdEditLocationAlt } from "react-icons/md";
 import FetchErrorMessage from "../../../shared/Error/FetchErrorMessage";
 import { FaEdit } from "react-icons/fa";
+import UpdateFactoryInformationModal from "./UpdateFactoryInformationModal";
 
 const FactoryInformationList = ({ prompts }) => {
   const [selectedId, setSelectedId] = useState();
   const [readMore, setReadMore] = useState(false);
-  const { AllImageText, setIsLoading, refetch } = prompts;
+  const { allFactoryInformations, setIsLoading, refetch } = prompts;
 
   const handleDelete = async (id) => {
     try {
       setIsLoading(true);
-      const body = AllImageText.find((details) => details.id === id);
+      const body = allFactoryInformations.find((details) => details.id === id);
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/storage-power/factory-informations/${id}`,
         { data: body }
       );
 
@@ -30,11 +31,11 @@ const FactoryInformationList = ({ prompts }) => {
       toast.error("Something error occurred!");
     }
   };
-  // console.log(AllImageText);
+
   return (
     <div>
       <div className="overflow-x-auto">
-        {AllImageText === null ? (
+        {allFactoryInformations === null ? (
           <FetchErrorMessage />
         ) : (
           <table className="table w-full text-black">
@@ -48,7 +49,7 @@ const FactoryInformationList = ({ prompts }) => {
               </tr>
             </thead>
             <tbody>
-              {AllImageText.map((details, i) => (
+              {allFactoryInformations.map((details, i) => (
                 <tr key={details.id}>
                   <th>{i + 1}</th>
                   <td>{details.factory_title}</td>
@@ -84,9 +85,24 @@ const FactoryInformationList = ({ prompts }) => {
                   </td>
 
                   <td>
-                    <button className="text-xl">
+                    <button
+                      className="text-xl"
+                      onClick={() => {
+                        setSelectedId(details.id);
+                        document.getElementById(
+                          "update_factory_info_modal"
+                        ).open = true;
+                      }}
+                    >
                       <FaEdit />
                     </button>
+                    <UpdateFactoryInformationModal
+                      updateModalProps={{
+                        selectedId,
+                        allFactoryInformations,
+                        refetch,
+                      }}
+                    />
                   </td>
                   <td>
                     <button
