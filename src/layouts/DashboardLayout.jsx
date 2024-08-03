@@ -2,11 +2,15 @@ import { Link, Outlet } from "react-router-dom";
 import { MdPrecisionManufacturing } from "react-icons/md";
 import DashboardHeader from "../components/shared/DashboardHeader";
 import { AiOutlineGlobal } from "react-icons/ai";
+import { ImNewspaper } from "react-icons/im";
+import { AiOutlineFileDone } from "react-icons/ai";
+
 import {
   FaCarBattery,
   FaLocationDot,
   FaQuestion,
   FaUserTie,
+  FaAward
 } from "react-icons/fa6";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { PiCertificateFill } from "react-icons/pi";
@@ -73,6 +77,13 @@ const DashboardLayout = () => {
             <li>
               <Link to="/dashboard/customers-queries">
                 {" "}
+                <AiOutlineFileDone />
+                Warranty & Service{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/customers-queries">
+                {" "}
                 <HiOutlineUserGroup />
                 Customers Queries{" "}
               </Link>
@@ -92,13 +103,6 @@ const DashboardLayout = () => {
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/all-certificates">
-                {" "}
-                <PiCertificateFill />
-                Certificates{" "}
-              </Link>
-            </li>
-            <li>
               <Link to="/dashboard/brand-image">
                 {" "}
                 <RiImageEditFill />
@@ -106,10 +110,31 @@ const DashboardLayout = () => {
               </Link>
             </li>
             <li>
+              <Link to="/dashboard/all-certificates">
+                {" "}
+                <PiCertificateFill />
+                Certificates{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/awards">
+                {" "}
+                <FaAward />
+                Awards{" "}
+              </Link>
+            </li>
+            <li>
               <Link to="/dashboard/all-faqs">
                 {" "}
                 <FaQuestion />
                 Faqs{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/awards">
+                {" "}
+                <ImNewspaper />
+                News{" "}
               </Link>
             </li>
             <li>

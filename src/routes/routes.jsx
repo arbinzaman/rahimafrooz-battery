@@ -44,6 +44,7 @@ import AllBrandImg from "../pages/Dashboard/BrandsImage/AllBrandImg";
 import StoragePowerSection from "../pages/Dashboard/StoragePower/StoragePowerSection";
 import MultoSelect from "../components/Dashboard/MultiSelect";
 import AllGlobalPresenceCountry from "../pages/Dashboard/GlobalPresence/AllGlobalPresenceCountry";
+import Awards from "../pages/Dashboard/Awards/Awards";
 
 const routes = createBrowserRouter([
   {
@@ -231,6 +232,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/global-presence-country-list",
         element: <AllGlobalPresenceCountry />,
+      },
+      {
+        path: "/dashboard/awards",
+        element: <Awards />,
       },
     ],
   },

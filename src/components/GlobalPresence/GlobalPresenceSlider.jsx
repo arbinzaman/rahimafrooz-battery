@@ -44,13 +44,13 @@ const GlobalPresenceSlider = () => {
             <h3 className="text-semi_large lg:text-xlarge mb-10 text-center mt-5">
               {region.region}
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 ">
               {region.countries.map((country, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col text-medium items-center space-y-3 mt-10"
+                  className="flex flex-col text-medium items-center space-y-3 mt-2 "
                 >
-                  <p className="text-center">
+                  <p className="text-center font-normal">
                     {country}
                   </p>
                 </div>
