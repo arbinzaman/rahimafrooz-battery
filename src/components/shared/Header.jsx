@@ -124,12 +124,11 @@ const Header = () => {
               </div>
               {/* Mobile Nav */}
               <div className="lg:hidden">
-                <div className="flex">
+                <div className="flex items-center">
                   <a href="/global-presence">
-                    <button className="header-btn-mobile">
+                    <button className="">
                       {" "}
-                      <GlobeAltIcon className="w-4 h-4 mt-1 mr-1" />
-                      <p>Global Presence</p>
+                      <GlobeAltIcon className="w-8 h-8 mt-2 mr-1" />
                     </button>
                   </a>
                   <Bars3Icon
@@ -222,8 +221,7 @@ const Header = () => {
                     type="text"
                     id="search-navbar"
                     onChange={(e) => setSearchData(e.target.value)}
-                    // className="search block  p-2 pl-3 text-black text-sm border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 relative"
-                    className="input input-bordered input-info w-full h-auto py-1 max-w-xs rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                    className="input input-bordered input-info w-full h-auto py-1 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Search"
                   />
                   <div className="relative">
@@ -234,10 +232,10 @@ const Header = () => {
                   <button className="header-btn">Become A Partner</button>
                 </a>
                 <a href="/global-presence">
-                  <button className="header-btn">
+                  <button title="Global Presence" className="header-btn">
                     {" "}
                     <GlobeAltIcon className="w-4 h-4 mt-1 mr-1" />
-                    Global Presence
+                    <span className="">Global Presence</span>
                   </button>
                 </a>
               </div>

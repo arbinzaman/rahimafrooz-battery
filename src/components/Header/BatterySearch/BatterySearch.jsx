@@ -23,7 +23,6 @@ const BatterySearch = ({ searchData }) => {
         (battery) =>
           battery.battery_name.toLowerCase() === searchData.toLowerCase()
       );
-
       if (matchedBattery) {
         navigate(`/product-final-page/${matchedBattery.short_code}`);
       }

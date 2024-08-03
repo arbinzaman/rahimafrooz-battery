@@ -23,7 +23,7 @@ const ProductSearchPage = () => {
       {/* Product Section */}
       <div className={allDeviceMaxWidth+" my-10"}>
         <Table />
-        <RelatedProducts />
+        {/* <RelatedProducts /> */}
       </div>
     </section>
   );

@@ -1,10 +1,10 @@
 // import { useQuery } from "@tanstack/react-query";
 import { LuRefreshCcw } from "react-icons/lu";
 import { useState } from "react";
-import ImageTextList from "./ImageTextList";
 import { GrDocumentImage } from "react-icons/gr";
 import imageTextData from "../../../../demoData/ImageText.json";
-import AddAImgTextModal from "./AddAImgTextModal";
+import AddFactoryInformationModal from "./AddFactoryInformationModal";
+import FactoryInformationList from "./FactoryInformationList";
 const AllImageText = () => {
   const [
     ,
@@ -35,7 +35,7 @@ const AllImageText = () => {
   return (
     <div>
       <h1 className="text-medium lg:text-semi_large text-center font-bold mb-10 mt-5 text-primary uppercase flex justify-center ">
-        Image & Text <GrDocumentImage className=" ml-2 mt-2 text-large" />
+        Factory Informations <GrDocumentImage className=" ml-2 mt-2 text-large" />
       </h1>
       <div className="flex justify-between items-center my-3">
         <div>
@@ -45,7 +45,7 @@ const AllImageText = () => {
           >
             Add new details <GrDocumentImage />
           </button>
-          <AddAImgTextModal props={{ setIsLoading,
+          <AddFactoryInformationModal props={{ setIsLoading,
             //  refetch 
              }} />
         </div>
@@ -58,7 +58,7 @@ const AllImageText = () => {
         </button>
       </div>
 
-      <ImageTextList
+      <FactoryInformationList
         prompts={{
           AllImageText,
           setIsLoading,

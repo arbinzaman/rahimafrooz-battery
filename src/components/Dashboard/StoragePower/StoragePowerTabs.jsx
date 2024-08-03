@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AllImageText from "./ImageText/AllImageText";
+import AllImageText from "./FactoryInformation/FactoryInformations";
 import AllMilestone from "./Milestone/AllMilestone";
 import AllValues from "./OurValues/AllValues";
 import AllYouTubeLinks from "./YouTubeLink/AllYouTubeLinks";
@@ -10,33 +10,33 @@ const StoragePowerTabs = () => {
     <div>
       <div
         role="tablist"
-        className="tabs rounded-md bg-white text-xs md:text-regular tab text-black w-full justify-around"
+        className="tabs text-xs md:text-regular rounded-md bg-white tab text-black w-full justify-around"
       >
         <a
           role="tab"
           onClick={() => setTab("ytLink")}
-          className={tab === "ytLink" ? "bg-primary  text-white tab" : ""}
+          className={tab === "ytLink" ? "text-xs md:text-regular bg-primary  text-white tab" : ""}
         >
-          YouTube Link
+          Video URL
         </a>
         <a
           role="tab"
           onClick={() => setTab("imgText")}
-          className={tab === "imgText" ? "bg-primary  text-white tab" : ""}
+          className={tab === "imgText" ? "text-xs md:text-regular bg-primary  text-white tab" : ""}
         >
-          Image & Text
+          Factory Information
         </a>
         <a
           role="tab"
           onClick={() => setTab("milestone")}
-          className={tab === "milestone" ? "bg-primary  text-white tab" : ""}
+          className={tab === "milestone" ? "text-xs md:text-regular bg-primary  text-white tab" : ""}
         >
           Milestone
         </a>
         <a
           role="tab"
           onClick={() => setTab("ourValues")}
-          className={tab === "ourValues" ? "bg-primary  text-white tab" : ""}
+          className={tab === "ourValues" ? "text-xs md:text-regular bg-primary  text-white tab" : ""}
         >
           Our Values
         </a>
