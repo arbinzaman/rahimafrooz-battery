@@ -4,7 +4,7 @@ import Brochure from "../../assets/Rahimafrooz.pdf";
 const SimilarProduct = () => {
   return (
     <div className="mb-16">
-      <RelatedProducts />
+      {/* <RelatedProducts /> */}
       <h2 className="text-medium text-primary ">
         Best Price Commercial Vehicles Battery Online at RAHIMAFROOZ
       </h2>
