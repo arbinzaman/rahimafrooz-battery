@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { MdDeleteForever } from "react-icons/md";
-import FetchErrorMessage from "../../../../components/shared/Error/FetchErrorMessage";
+import { MdDeleteForever, MdEditLocationAlt } from "react-icons/md";
+import FetchErrorMessage from "../../../shared/Error/FetchErrorMessage";
+import { FaEdit } from "react-icons/fa";
 
-const ImageTextList = ({ prompts }) => {
+const FactoryInformationList = ({ prompts }) => {
   const [selectedId, setSelectedId] = useState();
   const [readMore, setReadMore] = useState(false);
   const { AllImageText, setIsLoading, refetch } = prompts;
@@ -56,32 +57,37 @@ const ImageTextList = ({ prompts }) => {
                       ? details.description
                       : details.description.slice(0, 100)}{" "}
                     {selectedId === details.id && readMore ? (
-                        <span
+                      <span
                         className="text-blue-500 hover:cursor-pointer"
                         onClick={() => {
-                            setSelectedId(details.id);
-                            setReadMore(false);
+                          setSelectedId(details.id);
+                          setReadMore(false);
                         }}
                       >
                         collapse
                       </span>
                     ) : (
-                        <span
+                      <span
                         className="text-blue-500 hover:cursor-pointer"
                         onClick={() => {
-                            setSelectedId(details.id);
-                            setReadMore(true);
+                          setSelectedId(details.id);
+                          setReadMore(true);
                         }}
-                        >
+                      >
                         read more
                       </span>
                     )}
                   </td>
-                          <td>{details.corner_text}</td>
+                  <td>{details.corner_text}</td>
                   <td>
                     <img src={details.image_url} alt="" className="w-96" />
                   </td>
-                  
+
+                  <td>
+                    <button className="text-xl">
+                      <FaEdit />
+                    </button>
+                  </td>
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-400"
@@ -100,4 +106,4 @@ const ImageTextList = ({ prompts }) => {
   );
 };
 
-export default ImageTextList;
+export default FactoryInformationList;

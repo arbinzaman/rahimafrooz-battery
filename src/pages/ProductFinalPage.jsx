@@ -8,24 +8,22 @@ import { Hourglass } from "react-loader-spinner";
 
 const ProductFinalPage = () => {
   const { shortCode } = useParams();
-  
-  const { data: battery = [], isLoading } = useQuery({
+
+  const { data: battery = null, isLoading } = useQuery({
     queryKey: ["battery"],
     queryFn: async () => {
-      // console.log("Fetching data...");
       const res = await fetch(
         `${import.meta.env.VITE_BASE_URL}/batteries/${shortCode}`
       );
       const data = await res.json();
-      // console.log("Data fetched:", data);
       return data;
     },
     refetchOnWindowFocus: true,
   });
-  
+
   return (
     <section className={`${allDeviceMaxWidth} bg-background `}>
-      {isLoading ? (
+      {isLoading && battery === null ? (
         <div className="flex justify-center my-20">
           <Hourglass
             visible={true}
@@ -39,9 +37,9 @@ const ProductFinalPage = () => {
         </div>
       ) : (
         <>
-          <ProductSelectionSection battery={battery}/>
+          <ProductSelectionSection battery={battery} />
           <div className="mb-10 mx-3">
-            <ProductInformation battery={battery}/>
+            <ProductInformation battery={battery} />
           </div>
           <div className="mx-3">
             <SimilarProduct />

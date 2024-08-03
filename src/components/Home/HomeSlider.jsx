@@ -23,7 +23,7 @@ const HomeSlider = () => {
         <Slider {...settingsForHeroSlide}>
           {homeSlider?.map((slide) => (
             <img
-              className="w-full"
+              className="w-full z-10 md:"
               key={slide?.id}
               src={slide?.sliderImage}
               alt={slide?.sliderAlt}
