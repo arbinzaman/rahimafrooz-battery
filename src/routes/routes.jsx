@@ -36,7 +36,6 @@ import AllUsers from "../pages/Dashboard/Users/AllUsers";
 import AddAUser from "../pages/Dashboard/Users/AddAUser";
 import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
 import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
-import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMultiSelect";
 import PrivateRoute from "./PrivateRoutes/PrivateRoute";
 import RestricIfLoggedInRoute from "./RestricIfLoggedInRoute/RestricIfLoggedInRoute";
 import DealerLocationAndDetailsList from "../pages/Dashboard/DealerLocation&Details/DealerLocationAndDetailsList";
@@ -44,6 +43,7 @@ import AddADealerLocationAndDetails from "../pages/Dashboard/DealerLocation&Deta
 import AllBrandImg from "../pages/Dashboard/BrandsImage/AllBrandImg";
 import StoragePowerSection from "../pages/Dashboard/StoragePower/StoragePowerSection";
 import MultoSelect from "../components/Dashboard/MultiSelect";
+import AllGlobalPresenceCountry from "../pages/Dashboard/GlobalPresence/AllGlobalPresenceCountry";
 
 const routes = createBrowserRouter([
   {
@@ -227,6 +227,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/storage-power",
         element: <StoragePowerSection />,
+      },
+      {
+        path: "/dashboard/global-presence-country-list",
+        element: <AllGlobalPresenceCountry />,
       },
     ],
   },

@@ -1,6 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { MdPrecisionManufacturing } from "react-icons/md";
 import DashboardHeader from "../components/shared/DashboardHeader";
+import { AiOutlineGlobal } from "react-icons/ai";
 import {
   FaCarBattery,
   FaLocationDot,
@@ -74,6 +75,13 @@ const DashboardLayout = () => {
                 {" "}
                 <HiOutlineUserGroup />
                 Customers Queries{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/global-presence-country-list">
+                {" "}
+                <AiOutlineGlobal  />
+                Global Presence{" "}
               </Link>
             </li>
             <li>

@@ -1,5 +1,5 @@
 import Slider from "react-slick";
-import regions from "./Data/regions.json";
+import regions from "../../demoData/regions.json";
 
 const GlobalPresenceSlider = () => {
   
@@ -42,19 +42,17 @@ const GlobalPresenceSlider = () => {
         {regions.map((region, index) => (
           <div key={index} className="text-base p-16">
             <h3 className="text-semi_large lg:text-xlarge mb-10 text-center mt-5">
-              {region.name}
+              {region.region}
             </h3>
-            <div className="grid grid-cols-2">
-              {region.countries.map((countryList, idx) => (
+            <div className="grid grid-cols-2 gap-4">
+              {region.countries.map((country, idx) => (
                 <div
                   key={idx}
                   className="flex flex-col text-medium items-center space-y-3 mt-10"
                 >
-                  {countryList.map((country, countryIdx) => (
-                    <p key={countryIdx} className="text-center">
-                      {country}
-                    </p>
-                  ))}
+                  <p className="text-center">
+                    {country}
+                  </p>
                 </div>
               ))}
             </div>
