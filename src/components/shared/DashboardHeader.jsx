@@ -5,7 +5,6 @@ import { RiMenuUnfold3Line2 } from "react-icons/ri";
 import "../../styles/Header.css";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
-import { LuUserCircle2 } from "react-icons/lu";
 const DashboardHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

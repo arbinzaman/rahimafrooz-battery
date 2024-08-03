@@ -10,7 +10,7 @@ const StoragePowerTabs = () => {
     <div>
       <div
         role="tablist"
-        className="tabs rounder-md bg-white tab text-black w-full justify-around"
+        className="tabs rounded-md bg-white text-xs md:text-regular tab text-black w-full justify-around"
       >
         <a
           role="tab"

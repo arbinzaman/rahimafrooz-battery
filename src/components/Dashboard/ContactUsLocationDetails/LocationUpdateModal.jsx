@@ -62,11 +62,6 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               </label>
               <input
                 type="text"
-                // defaultValue={
-                //   singleLocationDetails !== null
-                //     ? singleLocationDetails?.location_title
-                //     : ""
-                // }
                 className="bg-white border  rounded-md px-2 py-1 w-full"
                 {...register("location_title")}
               />
@@ -78,11 +73,6 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               </label>
               <input
                 type="text"
-                // defaultValue={
-                //   singleLocationDetails !== null
-                //     ? singleLocationDetails?.location_name
-                //     : ""
-                // }
                 className="bg-white border  rounded-md px-2 py-1 w-full"
                 {...register("location_name")}
               />
@@ -94,11 +84,6 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               </label>
               <textarea
                 type="text"
-                // defaultValue={
-                //   singleLocationDetails !== null
-                //     ? singleLocationDetails?.location
-                //     : ""
-                // }
                 className="bg-white border  rounded-md px-2 py-1 w-full"
                 {...register("location")}
               />
@@ -109,11 +94,6 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               </label>
               <input
                 type="text"
-                // defaultValue={
-                //   singleLocationDetails !== null
-                //     ? singleLocationDetails?.phone_numbers
-                //     : ""
-                // }
                 className="bg-white border  rounded-md px-2 py-1 w-full"
                 {...register("phone_numbers")}
               />
@@ -124,11 +104,6 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               </label>
               <input
                 type="text"
-                // defaultValue={
-                //   singleLocationDetails !== null
-                //     ? singleLocationDetails?.email
-                //     : ""
-                // }
                 className="bg-white border  rounded-md px-2 py-1 w-full"
                 {...register("email")}
               />
