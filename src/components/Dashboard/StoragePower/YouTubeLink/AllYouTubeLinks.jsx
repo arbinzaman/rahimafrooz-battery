@@ -5,29 +5,22 @@ import YouTubeList from "./YouTubeList";
 import AddAYouTubeLink from "./AddAYouTubeLink";
 import { useQuery } from "@tanstack/react-query";
 const AllYouTubeLinks = () => {
-  const [
-    ,
-    // isLoading
-    setIsLoading,
-  ] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // const allYoutubeLinks = YouTubeLinks;
   const { data: allYoutubeLinks = null, refetch } = useQuery({
     queryKey: ["allYoutubeLinks"],
     queryFn: async () => {
-      // console.log("Fetching data...");
       const res = await fetch(
         `${import.meta.env.VITE_BASE_URL}/storage-power/youtube-video`
       );
       const data = await res.json();
-      // console.log("Data fetched:", data);
       return data;
     },
     refetchOnWindowFocus: true,
   });
 
   const openModal = () => {
-    document.getElementById("youtubeLink").showModal();
+    document.getElementById("youtubeLink").open = true;
   };
 
   return (
@@ -41,19 +34,20 @@ const AllYouTubeLinks = () => {
           <button
             className="flex gap-2 btn btn-xs  border-0  bg-sky-500 hover:bg-sky-700 text-white"
             onClick={openModal}
+            disabled={allYoutubeLinks?.length > 0}
           >
             Add YouTube Link <FaYoutube />
           </button>
           <AddAYouTubeLink
             props={{
               setIsLoading,
-              //  refetch
+              refetch,
             }}
           />
         </div>
         <button
           className="flex gap-2 btn btn-xs  border-0  bg-teal-400 hover:bg-teal-600 text-white"
-          //   onClick={refetch}
+          onClick={refetch}
         >
           Refresh
           <LuRefreshCcw />
@@ -64,7 +58,7 @@ const AllYouTubeLinks = () => {
         prompts={{
           allYoutubeLinks,
           setIsLoading,
-          // refetch
+          refetch,
         }}
       />
     </div>

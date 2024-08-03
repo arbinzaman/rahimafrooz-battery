@@ -9,8 +9,21 @@ import ValueIcon3 from "../../assets/images/AboutPage/03.png";
 import ValueIcon4 from "../../assets/images/AboutPage/04.png";
 import ValueIcon5 from "../../assets/images/AboutPage/05.png";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
+import { useQuery } from "@tanstack/react-query";
 
 const StoragePower = () => {
+  const { data: allYoutubeLinks = [] } = useQuery({
+    queryKey: ["allYoutubeLinks"],
+    queryFn: async () => {
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/storage-power/youtube-video`
+      );
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
+  
   return (
     <section>
       <div>
@@ -52,23 +65,27 @@ const StoragePower = () => {
           </div>
         </div>
         {/* Video */}
-        <div className="mx-5">
-          <iframe
-            className="w-[100%] h-[250px] lg:h-[450px]"
-            src="https://www.youtube.com/embed/6GolJa3RKDQ?si=tsns12z2-x2QYTs-"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        </div>
+        {allYoutubeLinks.length > 0 && (
+          <div className="mx-5">
+            <iframe
+              className="w-[100%] h-[250px] lg:h-[450px]"
+              src={allYoutubeLinks[0]?.video_url}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
         {/* Factory Images */}
         <div className="my-10">
           {/* Factory Image 1 */}
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
             <div>
               <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
-                <p className="text-medium font-semibold">Rahimafrooz Batteries Ltd.</p>
+                <p className="text-medium font-semibold">
+                  Rahimafrooz Batteries Ltd.
+                </p>
                 <p className="py-2">
                   RBL’s modern manufacturing plant is also equipped with
                   lead-recycling management system. The plant has the capacity
@@ -87,11 +104,17 @@ const StoragePower = () => {
           {/* Factory Image 2 */}
           <div className="flex flex-col lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
             <div className="">
-              <img src={FactoryImage2} className="w-full" alt="Rahimafrooz Batteries Factory" />
+              <img
+                src={FactoryImage2}
+                className="w-full"
+                alt="Rahimafrooz Batteries Factory"
+              />
             </div>
             <div>
               <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
-                <p className="text-medium font-semibold">Rahimafrooz Globatt Ltd.</p>
+                <p className="text-medium font-semibold">
+                  Rahimafrooz Globatt Ltd.
+                </p>
                 <p className="py-2">
                   The RGL factory is equipped with modern SLI battery manu-
                   facturing facilities for which raw materials are sourced from
@@ -109,7 +132,9 @@ const StoragePower = () => {
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
             <div>
               <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
-                <p className="text-medium font-semibold">Rahimafrooz Accumulators Ltd.</p>
+                <p className="text-medium font-semibold">
+                  Rahimafrooz Accumulators Ltd.
+                </p>
                 <p className="py-2">
                   RAL is equipped to manufacture 330 million Amp. Hour of
                   tubular industrial batteries using low maintenance and VRLA

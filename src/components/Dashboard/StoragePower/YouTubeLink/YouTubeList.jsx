@@ -2,17 +2,18 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 import FetchErrorMessage from "../../../../components/shared/Error/FetchErrorMessage";
+import { FaEdit } from "react-icons/fa";
+import UpdateVideoUrlModal from "./UpdateVideoUrlModal";
+import { useState } from "react";
 
 const YouTubeList = ({ prompts }) => {
   const { allYoutubeLinks, setIsLoading, refetch } = prompts;
-
+  const [selectedId, setSelectedId] = useState();
   const handleDelete = async (id) => {
     try {
       setIsLoading(true);
-      const body = allYoutubeLinks.find((details) => details.id === id);
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
-        { data: body }
+        `${import.meta.env.VITE_BASE_URL}/storage-power/youtube-video/${id}`
       );
 
       if (res.status === 200) {
@@ -26,7 +27,12 @@ const YouTubeList = ({ prompts }) => {
       toast.error("Something error occurred!");
     }
   };
-  
+
+  const openModal = (id) => {
+    setSelectedId(id);
+    document.getElementById("update_videoURL").open = true;
+  };
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -49,10 +55,24 @@ const YouTubeList = ({ prompts }) => {
                     <iframe width="" height="" src={details.video_url}></iframe>
                     <p className="my-2">{details.video_url}</p>
                   </td>
-
                   <td>
                     <button
-                      className="btn btn-xs border-0 bg-red-400"
+                      className="text-xl"
+                      onClick={() => openModal(details.id)}
+                    >
+                      <FaEdit />
+                    </button>
+                    <UpdateVideoUrlModal
+                      props={{
+                        allYoutubeLinks,
+                        selectedId,
+                        refetch,
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-xs border-0 bg-red-600 hover:bg-red-400"
                       onClick={() => handleDelete(details.id)}
                     >
                       <MdDeleteForever className="text-white" />
