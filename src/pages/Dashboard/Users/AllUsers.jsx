@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Loader from "../../../components/shared/Loaders/Loader";
 import UserUpdateModal from "./UserUpdateModal"; // Import the Update Modal component
@@ -97,15 +96,22 @@ const AllUsers = () => {
 
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
-          <Link to="/dashboard/add-a-user">
-            <button className="btn btn-ghost btn-xs hover:bg-sky-700 text-white bg-sky-400"> Add User <TiUserAdd /></button>
-          </Link>
+          {/* <Link to="/dashboard/add-a-user"> */}
+          <button
+            className="btn btn-ghost btn-xs hover:bg-sky-700 text-white bg-sky-400"
+            onClick={() => document.getElementById("my_modal_2").showModal()}
+          >
+            {" "}
+            Add User <TiUserAdd />
+          </button>
+          {/* </Link> */}
+
           <button
             className="btn btn-ghost btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
             onClick={handleDelete}
             // disabled={selectedIds.length === 0}
           >
-            Delete  <FaTrashAlt />
+            Delete <FaTrashAlt />
           </button>
         </div>
       </div>
@@ -145,7 +151,7 @@ const AllUsers = () => {
               <td>{user.joined_at}</td>
               <td>
                 <button
-                  className="btn btn-xs btn-info"
+                  className="btn btn-xs btn-ghost bg-white text-black hover:bg-green-400 hover:text-white"
                   onClick={() => handleUpdate(user)}
                 >
                   <FaEdit />

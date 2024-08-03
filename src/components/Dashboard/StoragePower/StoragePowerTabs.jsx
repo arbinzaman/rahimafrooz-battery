@@ -24,7 +24,7 @@ const StoragePowerTabs = () => {
           onClick={() => setTab("imgText")}
           className={tab === "imgText" ? "text-xs md:text-regular bg-primary  text-white tab" : ""}
         >
-          Factory Informations
+          Factory Information
         </a>
         <a
           role="tab"
