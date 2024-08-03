@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { GrDocumentImage } from "react-icons/gr";
 
-const AddAImgTextModal = () => {
+const AddFactoryInformationModal = () => {
   const { register, handleSubmit } = useForm();
   const formRef = useRef();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data) => {
     try {
@@ -17,7 +17,7 @@ const AddAImgTextModal = () => {
       formdata.append("image_url", data.image_url[0]);
       console.log(formdata);
       console.log(data);
-      setIsSubmitting(true);
+      setIsLoading(true);
 
       //   const res = await axios.post(
       //     `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/`,
@@ -36,10 +36,14 @@ const AddAImgTextModal = () => {
   return (
     <section className="max-w-screen-md mx-auto p-4">
       <dialog id="img_text" className="modal">
-        <div className="modal-box bg-white text-black">
-        <p className="font-semibold font-primary uppercase text-primary flex">
-            Add Image and text <GrDocumentImage className=" ml-2 mt-1 " />
-          </p>
+        <div className="modal-box bg-white text-black ">
+          <form method="dialog" className="flex justify-between items-center">
+            <p className="text-primary text-medium font-bold flex gap-2 my-2">
+              Add a Factory Informations{" "}
+              <GrDocumentImage className=" ml-2 mt-1 " />
+            </p>
+            <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+          </form>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="space-y-4 text-black"
@@ -85,6 +89,7 @@ const AddAImgTextModal = () => {
               <input
                 type="file"
                 required
+                accept="image/png,  image/jpeg"
                 className="file-input file-input-bordered file-input-sm w-full bg-white"
                 {...register("image_url")}
               />
@@ -93,17 +98,19 @@ const AddAImgTextModal = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="bg-blue-500 text-white px-4  rounded-md btn-sm "
+                className="bg-secondary hove:bg-primary hover:cursor-pointer text-white px-4  rounded-md btn-sm "
               >
-                {isSubmitting ? "Submitting..." : "Add Text & Image"}
+                Add Factory Information
               </button>
             </div>
           </form>
         </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
       </dialog>
     </section>
   );
 };
 
-export default AddAImgTextModal;
+export default AddFactoryInformationModal;

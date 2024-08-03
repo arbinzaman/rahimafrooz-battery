@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AllImageText from "./ImageText/AllImageText";
+import AllImageText from "./FactoryInformation/FactoryInformations";
 import AllMilestone from "./Milestone/AllMilestone";
 import AllValues from "./OurValues/AllValues";
 import AllYouTubeLinks from "./YouTubeLink/AllYouTubeLinks";
@@ -24,7 +24,7 @@ const StoragePowerTabs = () => {
           onClick={() => setTab("imgText")}
           className={tab === "imgText" ? "text-xs md:text-regular bg-primary  text-white tab" : ""}
         >
-          Image & Text
+          Factory Informations
         </a>
         <a
           role="tab"

@@ -19,7 +19,7 @@ const ProductSearchField = () => {
   const [model, setModel] = useState("");
 
   const [makeYears, setMakeYears] = useState([]);
-  const [shortCodes, setShortCodes] = useState([]);
+  const [shortCodes, setShortCodes] = useState(null);
 
   const [queryDatas, setQueryDatas] = useState({
     technology: "",
@@ -275,6 +275,7 @@ const ProductSearchField = () => {
             <button
               className="w-full flex items-center justify-center bg-button2 text-primary font-semibold px-3 py-[10.5px] rounded-md border border-primary"
               onClick={handleFindBattery}
+              disabled={shortCodes === null ? true : false}
             >
               <p className="mx-2">Find Battery</p>
               <IoSearchSharp />
