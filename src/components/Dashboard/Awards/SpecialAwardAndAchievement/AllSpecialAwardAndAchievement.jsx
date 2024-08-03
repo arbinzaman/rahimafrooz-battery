@@ -1,7 +1,7 @@
 import { LuRefreshCcw } from "react-icons/lu";
 import { useState } from "react";
-import Loader from "../../shared/Loaders/Loader";
-import achievements from "../../../demoData/SpecialAwardAndAchivement.json";
+import Loader from "../../../shared/Loaders/Loader";
+import achievements from "../../../../demoData/SpecialAwardAndAchivement.json";
 import AddSpecialAwardAndAchievement from "./AddSpecialAwardAndAchievement";
 import { FaRegImage } from "react-icons/fa";
 import { BiSolidImageAdd } from "react-icons/bi";

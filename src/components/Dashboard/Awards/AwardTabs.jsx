@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import AllSpecialAwardAndAchievement from "./AllSpecialAwardAndAchievement";
-import AllAwardsImage from "./AllAwardsImage";
+import AllSpecialAwardAndAchievement from "./SpecialAwardAndAchievement/AllSpecialAwardAndAchievement";
+import AllAwardsImage from "./AwardImage/AllAwardsImage";
 
 const AwardTabs = () => {
   const [tab, setTab] = useState("awardReceiving");

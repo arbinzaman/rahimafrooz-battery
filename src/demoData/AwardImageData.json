@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "image_url": "https://rahimafrooz-battery.vercel.app/assets/Asia_Brand_Award-LMSU8TLI.png",
+    "caption": "Asia Brand Award"
+  },
+  {
+    "id": 2,
+    "image_url": "https://rahimafrooz-battery.vercel.app/assets/CentenaryAward_2014-CIPp8Qt8.png",
+    "caption": "Centenary Award 2014"
+  },
+  {
+    "id": 3,
+    "image_url": "https://rahimafrooz-battery.vercel.app/assets/CMO_Asia_Award-BAAhB-6_.png",
+    "caption": "CMO Asia's Best  Award"
+  },
+  {
+    "id": 4,
+    "image_url": "https://rahimafrooz-battery.vercel.app/assets/International_Green_Oscar_Award_2000-Bo9m-XhO.png",
+    "caption": "International Green Oscar Award 2000"
+  },
+  {
+    "id": 5,
+    "image_url": "https://rahimafrooz-battery.vercel.app/assets/National_Export_Trophy_Gold_2010_11-CuRFbTFU.png",
+    "caption": "National Export Trophy Gold 2010-11"
+  },
+  {
+    "id": 6,
+    "image_url": "https://rahimafrooz-battery.vercel.app/assets/National_Export_Trophy_Gold_2010_11-CuRFbTFU.png",
+    "caption": "National Export Trophy Silver 2001-02"
+  },
+  {
+    "id": 7,
+    "image_url": "https://rahimafrooz-battery.vercel.app/assets/Standard_Charterd_Financial_Express_CSR_Award-DXy_p478.png",
+    "caption": "Standard Charterd Financial Express CSR Award"
+  },
+  {
+    "id": 8,
+    "image_url": "https://rahimafrooz-battery.vercel.app/assets/Superbrands_Bangladesh_Choice_2020_21-eOvjK-Iz.png",
+    "caption": "Superbrands Bangladesh Choice Award 2020-21"
+  }
+]

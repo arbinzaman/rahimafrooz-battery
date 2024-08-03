@@ -1,7 +1,7 @@
 // import axios from "axios";
 // import toast from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
-import FetchErrorMessage from "../../shared/Error/FetchErrorMessage";
+import FetchErrorMessage from "../../../shared/Error/FetchErrorMessage";
 
 const SpecialAwardAndAchievementList = ({ prompts }) => {
   const {
