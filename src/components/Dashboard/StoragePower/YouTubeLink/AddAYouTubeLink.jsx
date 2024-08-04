@@ -1,11 +1,13 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaYoutube } from "react-icons/fa";
+import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
 
 const AddAYouTubeLink = ({ props }) => {
-  const { setIsLoading, refetch } = props;
+  const { refetch } = props;
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const formRef = useRef();
 
@@ -57,12 +59,16 @@ const AddAYouTubeLink = ({ props }) => {
               </div>
 
               <div className="flex justify-end gap-3 items-center mt-3">
-                <button
-                  type=""
-                  className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
-                >
-                  Add
-                </button>
+                {!isLoading ? (
+                  <button
+                    type=""
+                    className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
+                  >
+                    Add
+                  </button>
+                ) : (
+                  <ThreeDotLoader />
+                )}
               </div>
             </form>
           </div>

@@ -28,16 +28,16 @@ const DashboardLayout = () => {
       <DashboardHeader />
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content p-5 lg:ml-80 overflow-y-auto">
+        <div className="drawer-content p-5 overflow-y-auto">
           <Outlet />
         </div>
-        <div className="drawer-side  lg:fixed ">
+        <div className="drawer-side h-screen overflow-y-scroll">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
             className="drawer-overlay lg:hidden"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-white text-black mt-20 lg:mt-0 lg:fixed  ">
+          <ul className="menu p-4 w-80 min-h-full bg-white text-black mt-20 lg:mt-0 lg:">
             <li>
               <Link>
                 <LuUserCircle2 color="" /> Admin Profile

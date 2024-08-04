@@ -7,11 +7,10 @@ import UpdateVideoUrlModal from "./UpdateVideoUrlModal";
 import { useState } from "react";
 
 const YouTubeList = ({ prompts }) => {
-  const { allYoutubeLinks, setIsLoading, refetch } = prompts;
+  const { allYoutubeLinks, refetch } = prompts;
   const [selectedId, setSelectedId] = useState();
   const handleDelete = async (id) => {
     try {
-      setIsLoading(true);
       const res = await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/storage-power/youtube-video/${id}`
       );
@@ -19,11 +18,8 @@ const YouTubeList = ({ prompts }) => {
       if (res.status === 200) {
         toast.success("Record deleted successfully");
         refetch();
-        setIsLoading(false);
       }
     } catch (error) {
-      setIsLoading(false);
-      // console.log(error);
       toast.error("Something error occurred!");
     }
   };

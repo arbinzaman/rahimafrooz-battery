@@ -1,7 +1,6 @@
-// import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { LuRefreshCcw } from "react-icons/lu";
 import { useState } from "react";
-import Milestone from "../../../../demoData/MilestoneData.json";
 import MilestoneList from "./MilestoneList";
 import { VscMilestone } from "react-icons/vsc";
 import AddAMilestoneModal from "./AddAMilestoneModal";
@@ -12,24 +11,20 @@ const AllMilestone = () => {
     setIsLoading,
   ] = useState(false);
 
-  const allMiltestone = Milestone;
-  //   const { data: allMiltestone = null, refetch } = useQuery({
-
-  //     queryKey: ["allMiltestone"],
-  //     queryFn: async () => {
-  //       // console.log("Fetching data...");
-  //       const res = await fetch(
-  //         `${import.meta.env.VITE_BASE_URL}/manufacturing-locations`
-  //       );
-  //       const data = await res.json();
-  //       // console.log("Data fetched:", data);
-  //       return data;
-  //     },
-  //     refetchOnWindowFocus: true,
-  //   });
+  const { data: allMiltestone = null, refetch } = useQuery({
+    queryKey: ["allMiltestone"],
+    queryFn: async () => {
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/storage-power/milestone-image/`
+      );
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
   const openModal = () => {
-    document.getElementById("milestone").showModal();
+    document.getElementById("milestone").open = true;
   };
 
   return (
@@ -46,17 +41,15 @@ const AllMilestone = () => {
           >
             Add new details <VscMilestone />
           </button>
-
           <AddAMilestoneModal
             props={{
-              setIsLoading,
-              //  refetch
+              refetch,
             }}
           />
         </div>
         <button
           className="flex gap-2 btn btn-xs  border-0  bg-teal-400 hover:bg-teal-600 text-white"
-          //   onClick={refetch}
+          onClick={refetch}
         >
           Refresh
           <LuRefreshCcw />
@@ -67,7 +60,7 @@ const AllMilestone = () => {
         prompts={{
           allMiltestone,
           setIsLoading,
-          // refetch
+          refetch,
         }}
       />
     </div>

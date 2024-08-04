@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
 
 const UpdateFactoryInformationModal = ({ updateModalProps }) => {
   const { selectedId, allFactoryInformations, refetch } = updateModalProps;
@@ -111,12 +112,16 @@ const UpdateFactoryInformationModal = ({ updateModalProps }) => {
             </div>
 
             <div className="flex justify-end gap-3 items-center mt-3">
-              <button
-                type=""
-                className="flex gap-2 btn btn-sm bg-secondary text-white hover:bg-primary hover:text-white"
-              >
-                Update
-              </button>
+              {!isLoading ? (
+                <button
+                  type=""
+                  className="flex gap-2 btn btn-sm bg-secondary text-white hover:bg-primary hover:text-white"
+                >
+                  Update
+                </button>
+              ) : (
+                <ThreeDotLoader />
+              )}
             </div>
           </form>
         </div>

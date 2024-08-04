@@ -2,32 +2,30 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 import FetchErrorMessage from "../../../../components/shared/Error/FetchErrorMessage";
+import { useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import UpdateValueInfoModal from "./UpdateValueInfoModal";
 
 const ValueList = ({ prompts }) => {
-    
-  const { allValues, setIsLoading, refetch } = prompts;
-
+  const { allValues, refetch } = prompts;
+  const [selectedId, setSelectedId] = useState();
   const handleDelete = async (id) => {
     try {
-      setIsLoading(true);
       const body = allValues.find((details) => details.id === id);
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/storage-power/our-values/${id}`,
         { data: body }
       );
 
       if (res.status === 200) {
         toast.success("Record deleted successfully");
         refetch();
-        setIsLoading(false);
       }
     } catch (error) {
-      setIsLoading(false);
-      // console.log(error);
       toast.error("Something error occurred!");
     }
   };
-  // console.log(allValues);
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -49,9 +47,28 @@ const ValueList = ({ prompts }) => {
 
                   <td>{details.caption}</td>
                   <td>
-                    <img src={details.img_url} alt="" className="w-20" />
+                    <img src={details.image_url} alt="" className="w-20" />
                   </td>
-
+                  <td>
+                    <button
+                      className="text-xl"
+                      onClick={() => {
+                        setSelectedId(details.id);
+                        document.getElementById(
+                          "update_values_info_modal"
+                        ).open = true;
+                      }}
+                    >
+                      <FaEdit />
+                    </button>
+                    <UpdateValueInfoModal
+                      updateModalProps={{
+                        selectedId,
+                        allValues,
+                        refetch,
+                      }}
+                    />
+                  </td>
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-400"
