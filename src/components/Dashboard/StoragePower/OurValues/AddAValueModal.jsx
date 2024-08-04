@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { RxValueNone } from "react-icons/rx";
+import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
 
-const AddAValue = ({ props }) => {
-  const { setIsLoading, refetch } = props;
+const AddAValueModal = ({ props }) => {
+  const { refetch } = props;
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const formRef = useRef();
 
@@ -13,23 +14,24 @@ const AddAValue = ({ props }) => {
     try {
       setIsLoading(true);
       const formdata = new FormData();
-      formdata.append("caption", data.title);
-      formdata.append("img_url", data.img_url[0]);
-
+      formdata.append("caption", data.caption);
+      formdata.append("image_url", data.image_url[0]);
+      
       const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/`,
+        `${import.meta.env.VITE_BASE_URL}/storage-power/our-values/`,
         formdata
       );
 
       if (res.status === 201) {
         formRef.current.reset();
         toast.success("New record has been added.");
+        document.getElementById("values").open = false;
         refetch();
         setIsLoading(false);
       }
     } catch (error) {
       setIsLoading(false);
-      console.log(error.message);
+      console.log(error);
       toast.error("Something error occurred!");
     }
   };
@@ -38,9 +40,12 @@ const AddAValue = ({ props }) => {
     <div>
       <dialog id="values" className="modal">
         <div className="modal-box bg-white text-black">
-          <p className="font-semibold font-primary uppercase text-primary flex">
-            Add New Value Image <RxValueNone className="mt-1 ml-2" />
-          </p>
+          <form method="dialog" className="flex justify-between items-center">
+            <p className="text-primary text-medium font-bold flex gap-2 my-2">
+              Add New Value Info (Logo and Caption)
+            </p>
+            <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+          </form>
           <div className="">
             <form
               method="dialog"
@@ -50,9 +55,9 @@ const AddAValue = ({ props }) => {
             >
               <div className="my-2">
                 <label>
-               Caption <span className="text-red-600">*</span>
+                  Caption <span className="text-red-600">*</span>
                 </label>
-                <textarea
+                <input
                   type="text"
                   required
                   className="border  rounded-md p-1 w-full bg-white text-black border-black "
@@ -65,17 +70,21 @@ const AddAValue = ({ props }) => {
                   type="file"
                   required
                   className="file-input file-input-bordered file-input-sm w-full bg-white"
-                  {...register("img_url")}
+                  {...register("image_url")}
                 />
               </div>
 
               <div className="flex justify-end gap-3 items-center mt-3">
-                <button
-                  type="submit"
-                  className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
-                >
-                  Add
-                </button>
+                {!isLoading ? (
+                  <button
+                    type="submit"
+                    className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
+                  >
+                    Add
+                  </button>
+                ) : (
+                  <ThreeDotLoader />
+                )}
               </div>
             </form>
           </div>
@@ -88,4 +97,4 @@ const AddAValue = ({ props }) => {
   );
 };
 
-export default AddAValue;
+export default AddAValueModal;

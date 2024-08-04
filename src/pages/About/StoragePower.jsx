@@ -1,7 +1,4 @@
 import BannerImage from "../../assets/images/AboutPage/RahimafroozBatteriesLtd.png";
-import FactoryImage1 from "../../assets/images/AboutPage/Image-01.png";
-import FactoryImage2 from "../../assets/images/AboutPage/Image-02.png";
-import FactoryImage3 from "../../assets/images/AboutPage/Image-03.png";
 import MilestonesImage from "../../assets/images/AboutPage/RSPB-Milestones.png";
 import ValueIcon1 from "../../assets/images/AboutPage/01.png";
 import ValueIcon2 from "../../assets/images/AboutPage/02.png";
@@ -29,6 +26,30 @@ const StoragePower = () => {
     queryFn: async () => {
       const res = await fetch(
         `${import.meta.env.VITE_BASE_URL}/storage-power/factory-informations`
+      );
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
+
+  const { data: milestoneInfo = [] } = useQuery({
+    queryKey: ["milestoneInfo"],
+    queryFn: async () => {
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/storage-power/milestone-image`
+      );
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
+
+  const { data: allValues = [] } = useQuery({
+    queryKey: ["allValues"],
+    queryFn: async () => {
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/storage-power/our-values`
       );
       const data = await res.json();
       return data;
@@ -101,7 +122,9 @@ const StoragePower = () => {
                       <p className="text-medium font-semibold">
                         {information?.factory_title}
                       </p>
-                      <p className="py-2 text-regular">{information?.description}</p>
+                      <p className="py-2 text-regular">
+                        {information?.description}
+                      </p>
                     </div>
                     <p className="text-right text-small text-primary m-2">
                       {information?.corner_text}
@@ -130,7 +153,9 @@ const StoragePower = () => {
                       <p className="text-medium font-semibold">
                         {information?.factory_title}
                       </p>
-                      <p className="py-2 text-regular">{information?.description}</p>
+                      <p className="py-2 text-regular">
+                        {information?.description}
+                      </p>
                     </div>
                     <p className="text-right lg:text-left text-small text-primary m-2">
                       {information?.corner_text}
@@ -142,88 +167,41 @@ const StoragePower = () => {
           ))}
         </div>
         {/* Milestones */}
-        <div className="my-10 lg:my-20">
-          <p className="text-center text-large text-primary font-semibold">
-            RSPB MILESTONES
-          </p>
-          <div className="flex justify-center my-5 lg:my-10">
-            <img src={MilestonesImage} alt="" />
+        {milestoneInfo.length > 0 && (
+          <div className="my-10 lg:my-20">
+            <p className="text-center text-large text-primary font-semibold">
+              RSPB MILESTONES
+            </p>
+            <div className="flex justify-center my-5 lg:my-10">
+              <img src={milestoneInfo[0].image_url} alt="" />
+            </div>
+            <p className="text-justify text-black text-xsmall lg:text-regular my-5">
+              {milestoneInfo[0].description}
+            </p>
           </div>
-          <p className="text-center text-black text-xsmall lg:text-regular my-5">
-            Rahimafrooz batteries deliver an optimal combination of power and
-            durability. The high-quality performance of the batteries is
-            guaranteed by ensuring that every critical function of the batteries
-            is tested using the most advanced technology. Facilities at the
-            factories include modern production machinery and testing facilities
-            with complete air treatment systems and innovative lead recycling
-            infrastructures. Key processes are computer controlled, guaranteeing
-            accuracy and quality.
-          </p>
-        </div>
+        )}
         {/* Values */}
         <div className="my-10 lg:my-20">
           <p className="text-center text-large text-primary font-semibold">
             OUR VALUES
           </p>
-          <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-items-center content-start gap-16 text-black">
-            <div className="flex flex-col justify-center items-center">
-              <img
-                src={ValueIcon1}
-                alt="Integrity in All Our Dealings image"
-                className="h-28"
-              />
-              <p className="my-5 text-center text-small md:text-regular">
-                Integrity in All Our Dealings
-              </p>
-            </div>
-
-            <div className="flex flex-col justify-center items-center">
-              <img
-                src={ValueIcon2}
-                alt="Excellence in
-              Everything We Do image"
-                className="h-28"
-              />
-              <p className="my-5 text-center text-small md:text-regular">
-                Excellence in Everything We Do
-              </p>
-            </div>
-
-            <div className="flex flex-col justify-center items-center">
-              <img
-                src={ValueIcon3}
-                alt="Total Commitment to
-              Customer Satisfaction image"
-                className="h-28"
-              />
-              <p className="my-5 text-center text-small md:text-regular">
-                Total Commitment to Customer Satisfaction
-              </p>
-            </div>
-
-            <div className="flex flex-col justify-center items-center">
-              <img
-                src={ValueIcon4}
-                alt="Thinking Ahead and
-              Taking New Initiatives image"
-                className="h-28"
-              />
-              <p className="my-5 text-center text-small md:text-regular">
-                Thinking Ahead and Taking New Initiatives
-              </p>
-            </div>
-
-            <div className="flex flex-col justify-center items-center">
-              <img
-                src={ValueIcon5}
-                alt="Valuing and
-              Inspiring People image"
-                className="h-28"
-              />
-              <p className="my-5 text-center text-small md:text-regular">
-                Valuing and Inspiring People
-              </p>
-            </div>
+          <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-items-center items-start gap-16 text-black">
+            {allValues.length > 0 ? (
+              allValues?.map((item) => (
+                <div key={item.id} className="flex flex-col justify-center items-center">
+                  <img
+                    src={item.image_url}
+                    alt="Integrity in All Our Dealings image"
+                    className="h-28"
+                  />
+                  <p className="my-5 text-center text-small md:text-regular">
+                    {item.caption}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </section>

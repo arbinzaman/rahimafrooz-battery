@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { MdDeleteForever, MdEditLocationAlt } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
 import FetchErrorMessage from "../../../shared/Error/FetchErrorMessage";
 import { FaEdit } from "react-icons/fa";
 import UpdateFactoryInformationModal from "./UpdateFactoryInformationModal";
@@ -27,7 +27,6 @@ const FactoryInformationList = ({ prompts }) => {
       }
     } catch (error) {
       setIsLoading(false);
-      // console.log(error);
       toast.error("Something error occurred!");
     }
   };

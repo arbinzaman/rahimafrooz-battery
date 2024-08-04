@@ -2,8 +2,13 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 import FetchErrorMessage from "../../../../components/shared/Error/FetchErrorMessage";
+import { useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import UpdateMilestoneInfoModal from "./UpdateMilestoneInfoModal";
 
 const MilestoneList = ({ prompts }) => {
+  const [selectedId, setSelectedId] = useState();
+  const [readMore, setReadMore] = useState(false);
   const { allMiltestone, setIsLoading, refetch } = prompts;
 
   const handleDelete = async (id) => {
@@ -11,22 +16,21 @@ const MilestoneList = ({ prompts }) => {
       setIsLoading(true);
       const body = allMiltestone.find((details) => details.id === id);
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/storage-power/milestone-image/${id}`,
         { data: body }
       );
 
       if (res.status === 200) {
-        toast.success("Record deleted successfully");
         refetch();
+        toast.success("Record deleted successfully");
         setIsLoading(false);
       }
     } catch (error) {
       setIsLoading(false);
-      // console.log(error);
       toast.error("Something error occurred!");
     }
   };
-  // console.log(allMiltestone);
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -46,11 +50,55 @@ const MilestoneList = ({ prompts }) => {
                 <tr key={details.id}>
                   <th>{i + 1}</th>
 
-                  <td>{details.description}</td>
-                  <td>
-                    <img src={details.img_url} alt="" className="w-92" />
+                  <td className="w-96">
+                    {selectedId === details.id && readMore
+                      ? details.description
+                      : details.description.slice(0, 100)}{" "}
+                    {selectedId === details.id && readMore ? (
+                      <span
+                        className="text-blue-500 hover:cursor-pointer"
+                        onClick={() => {
+                          setSelectedId(details.id);
+                          setReadMore(false);
+                        }}
+                      >
+                        collapse
+                      </span>
+                    ) : (
+                      <span
+                        className="text-blue-500 hover:cursor-pointer"
+                        onClick={() => {
+                          setSelectedId(details.id);
+                          setReadMore(true);
+                        }}
+                      >
+                        read more
+                      </span>
+                    )}
                   </td>
-
+                  <td>
+                    <img src={details.image_url} alt="" className="w-96" />
+                  </td>
+                  <td>
+                    <button
+                      className="text-xl"
+                      onClick={() => {
+                        setSelectedId(details.id);
+                        document.getElementById(
+                          "update_milestone_info_modal"
+                        ).open = true;
+                      }}
+                    >
+                      <FaEdit />
+                    </button>
+                    <UpdateMilestoneInfoModal
+                      updateModalProps={{
+                        selectedId,
+                        allMiltestone,
+                        refetch,
+                      }}
+                    />
+                  </td>
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-400"

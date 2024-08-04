@@ -1,12 +1,9 @@
 import { LuRefreshCcw } from "react-icons/lu";
-import { useState } from "react";
 import { FaYoutube } from "react-icons/fa";
 import YouTubeList from "./YouTubeList";
 import AddAYouTubeLink from "./AddAYouTubeLink";
 import { useQuery } from "@tanstack/react-query";
 const AllYouTubeLinks = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
   const { data: allYoutubeLinks = null, refetch } = useQuery({
     queryKey: ["allYoutubeLinks"],
     queryFn: async () => {
@@ -40,7 +37,6 @@ const AllYouTubeLinks = () => {
           </button>
           <AddAYouTubeLink
             props={{
-              setIsLoading,
               refetch,
             }}
           />
@@ -57,7 +53,6 @@ const AllYouTubeLinks = () => {
       <YouTubeList
         prompts={{
           allYoutubeLinks,
-          setIsLoading,
           refetch,
         }}
       />
