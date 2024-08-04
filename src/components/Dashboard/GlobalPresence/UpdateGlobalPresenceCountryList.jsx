@@ -8,6 +8,8 @@ const UpdateGlobalPresenceCountryList = ({ updateModalProps }) => {
   const { selectedId, countryList,
     //  refetch 
     } = updateModalProps;
+    console.log(countryList);
+    console.log(selectedId);
   const [
     // isLoading,
      setIsLoading] = useState(false);
@@ -18,13 +20,14 @@ const UpdateGlobalPresenceCountryList = ({ updateModalProps }) => {
   const { register, handleSubmit, reset } = useForm({
     defaultValues: singleCountry,
   });
-
+  
   useEffect(() => {
     if (singleCountry) {
       reset(singleCountry);
     }
   }, [singleCountry, reset]);
-
+  console.log(singleCountry);
+  
   const handleUpdate = async (data) => {
     // try {
       setIsLoading(true);

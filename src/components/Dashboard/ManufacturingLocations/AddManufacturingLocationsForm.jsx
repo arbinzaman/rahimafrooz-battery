@@ -38,8 +38,8 @@ const AddManufacturingLocationsForm = ({ props }) => {
   return (
     <div>
       <dialog id="my_modal_2" className="modal">
-        <div className="modal-box">
-          <p className="font-semibold font-primary uppercase">
+        <div className="modal-box bg-white text-black">
+          <p className="font-semibold font-primary uppercase text-primary">
             Add New Details
           </p>
           <div className="">
@@ -88,7 +88,7 @@ const AddManufacturingLocationsForm = ({ props }) => {
                 <input
                   type="file"
                   required
-                  className="file-input file-input-bordered file-input-sm w-full"
+                  className="file-input file-input-bordered file-input-sm w-full bg-white text-black"
                   {...register("image")}
                 />
               </div>

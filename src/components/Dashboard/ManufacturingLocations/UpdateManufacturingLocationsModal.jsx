@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Loader from "../../shared/Loaders/Loader";
 
 const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
   const { selectedId, manufacturingDetails, refetch } = updateModalProps;
@@ -47,6 +48,7 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
       toast.error("Something error occurred!");
     }
   };
+  if (isLoading) return <Loader />;
 
   return (
     <div>
