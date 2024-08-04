@@ -1,19 +1,25 @@
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { BiDetail, BiTrash } from "react-icons/bi";
+import axios from "axios";
 import Loader from "../../components/shared/Loaders/Loader";
 import Modal from "../../components/Dashboard/CustomerQueries/Modal";
+import toast from "react-hot-toast";
 
 const CustomersQueries = () => {
   const [selectedQuery, setSelectedQuery] = useState(null);
   const [selectedIds, setSelectedIds] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const queryClient = useQueryClient();
-  
+
   const CONTACT_API_URL = `${import.meta.env.VITE_BASE_URL}/contact`;
 
-  const { data: customersQueries = [], isLoading, isError, error } = useQuery({
+  const {
+    data: customersQueries = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ["customersQueries"],
     queryFn: async () => {
       const res = await fetch(CONTACT_API_URL);
@@ -24,37 +30,33 @@ const CustomersQueries = () => {
     },
   });
 
-  const deleteMutation = useMutation({
-    mutationFn: async (ids) => {
-      const res = await fetch(`${CONTACT_API_URL}/delete`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(ids),
-      });
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(["customersQueries"]);
-      setDeleteModalOpen(false);
-      setSelectedIds([]);
-    },
-    onError: (error) => {
-      console.error("Error deleting queries:", error);
-    },
-  });
-
   const handleModalOpen = (query) => {
     setSelectedQuery(query);
     document.getElementById("customerDetails").showModal();
   };
 
-  const handleDelete = () => {
-    deleteMutation.mutate(selectedIds);
+  const handleDelete = async () => {
+    console.log(selectedIds);
+    try {
+      const res = await axios.delete(`${CONTACT_API_URL}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: selectedIds,
+      });
+
+      if (res.status === 200) {
+        console.log(res.data);
+        queryClient.invalidateQueries(["customersQueries"]);
+        toast.success("Selected queries deleted successfully.");
+        setDeleteModalOpen(false);
+        setSelectedIds([]);
+      } else {
+        throw new Error("Failed to delete the selected queries.");
+      }
+    } catch (error) {
+      console.error("Error deleting queries:", error);
+    }
   };
 
   const handleCheckboxChange = (id) => {
@@ -89,19 +91,34 @@ const CustomersQueries = () => {
         Customer Queries
       </h1>
 
-      <dialog id="customerDetails" className="modal modal-bottom sm:modal-middle">
+      <dialog
+        id="customerDetails"
+        className="modal modal-bottom sm:modal-middle"
+      >
         {selectedQuery && <Modal customersQuery={selectedQuery} />}
       </dialog>
 
-      <dialog id="deleteConfirmation" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+      {/* deleteConfirmation modal */}
+      <dialog
+        id="deleteConfirmation"
+        className={`modal modal-bottom sm:modal-middle ${
+          deleteModalOpen ? "modal-open" : ""
+        }`}
+      >
+        <div className="modal-box bg-white text-red-500">
           <h2 className="text-lg font-bold">Confirm Deletion</h2>
           <p>Are you sure you want to delete the selected queries?</p>
           <div className="modal-action">
-            <button className="btn btn-primary" onClick={handleDelete}>
+            <button
+              className="btn bg-red-500 text-white btn-ghost btn-xs hover:bg-red-700 hover:text-white"
+              onClick={handleDelete}
+            >
               Yes, Delete
             </button>
-            <button className="btn" onClick={() => setDeleteModalOpen(false)}>
+            <button
+              className="btn btn-ghost btn-xs bg-gray-200"
+              onClick={() => setDeleteModalOpen(false)}
+            >
               Cancel
             </button>
           </div>
@@ -147,6 +164,7 @@ const CustomersQueries = () => {
                 <th>{i + 1}</th>
                 <td>{customersQuery.email}</td>
                 <td>{customersQuery.customer_name}</td>
+                <td>{customersQuery.phone_number}</td>
                 <td>
                   {customersQuery.message.length > 100
                     ? customersQuery.message.slice(0, 100) + "..."
