@@ -23,7 +23,19 @@ const StoragePower = () => {
     },
     refetchOnWindowFocus: true,
   });
-  
+
+  const { data: allFactoryInformations = [] } = useQuery({
+    queryKey: ["allFactoryInformations"],
+    queryFn: async () => {
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/storage-power/factory-informations`
+      );
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
+
   return (
     <section>
       <div>
@@ -79,77 +91,55 @@ const StoragePower = () => {
         )}
         {/* Factory Images */}
         <div className="my-10">
-          {/* Factory Image 1 */}
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
-            <div>
-              <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
-                <p className="text-medium font-semibold">
-                  Rahimafrooz Batteries Ltd.
-                </p>
-                <p className="py-2">
-                  RBL’s modern manufacturing plant is also equipped with
-                  lead-recycling management system. The plant has the capacity
-                  to manufacture over a 2.5 million battery units per annum for
-                  automotive and other applications.
-                </p>
-              </div>
-              <p className="text-right text-small text-primary m-2">
-                Rahimafrooz Batteries Factory
-              </p>
+          {allFactoryInformations.map((information, i) => (
+            <div key={information.id}>
+              {/* Factory Image 1 */}
+              {i % 2 == 0 && (
+                <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
+                  <div>
+                    <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
+                      <p className="text-medium font-semibold">
+                        {information?.factory_title}
+                      </p>
+                      <p className="py-2 text-regular">{information?.description}</p>
+                    </div>
+                    <p className="text-right text-small text-primary m-2">
+                      {information?.corner_text}
+                    </p>
+                  </div>
+                  <div className="">
+                    <img
+                      src={information?.image_url}
+                      alt="Rahimafrooz Batteries Factory"
+                    />
+                  </div>
+                </div>
+              )}
+              {/* Factory Image 2 */}
+              {i % 2 != 0 && (
+                <div className="flex flex-col lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
+                  <div className="">
+                    <img
+                      src={information?.image_url}
+                      className="w-full"
+                      alt="Rahimafrooz Batteries Factory"
+                    />
+                  </div>
+                  <div>
+                    <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
+                      <p className="text-medium font-semibold">
+                        {information?.factory_title}
+                      </p>
+                      <p className="py-2 text-regular">{information?.description}</p>
+                    </div>
+                    <p className="text-right lg:text-left text-small text-primary m-2">
+                      {information?.corner_text}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
-            <div className="">
-              <img src={FactoryImage1} alt="Rahimafrooz Batteries Factory" />
-            </div>
-          </div>
-          {/* Factory Image 2 */}
-          <div className="flex flex-col lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
-            <div className="">
-              <img
-                src={FactoryImage2}
-                className="w-full"
-                alt="Rahimafrooz Batteries Factory"
-              />
-            </div>
-            <div>
-              <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
-                <p className="text-medium font-semibold">
-                  Rahimafrooz Globatt Ltd.
-                </p>
-                <p className="py-2">
-                  The RGL factory is equipped with modern SLI battery manu-
-                  facturing facilities for which raw materials are sourced from
-                  Korea, Singapore, Australia and Europe. With a produc- tion
-                  capacity of 1.5 million units per year, this plant is one the
-                  largest battery export plant in South Asia.
-                </p>
-              </div>
-              <p className="text-right lg:text-left text-small text-primary m-2">
-                Rahimafrooz Globatt Factory
-              </p>
-            </div>
-          </div>
-          {/* Factory Image 3 */}
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
-            <div>
-              <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
-                <p className="text-medium font-semibold">
-                  Rahimafrooz Accumulators Ltd.
-                </p>
-                <p className="py-2">
-                  RAL is equipped to manufacture 330 million Amp. Hour of
-                  tubular industrial batteries using low maintenance and VRLA
-                  technologies in 2V, 6V and 12V units, catering to motive,
-                  traction, stationary and other backup applications.
-                </p>
-              </div>
-              <p className="text-right text-small text-primary m-2">
-                Rahimafrooz Accumulators Factory.
-              </p>
-            </div>
-            <div className="">
-              <img src={FactoryImage3} alt="Rahimafrooz Batteries Factory" />
-            </div>
-          </div>
+          ))}
         </div>
         {/* Milestones */}
         <div className="my-10 lg:my-20">

@@ -42,9 +42,9 @@ const FactoryInformationList = ({ prompts }) => {
             <thead>
               <tr className="text-black">
                 <th>Serial</th>
-                <th>factory_title</th>
+                <th>Factory Title</th>
                 <th>Description</th>
-                <th>corner_text</th>
+                <th>Corner Text</th>
                 <th>Image</th>
               </tr>
             </thead>
