@@ -63,7 +63,7 @@ const GlobalPresenceCountryList = ({ prompts }) => {
                       className="btn btn-xs btn-ghost bg-white text-black hover:bg-green-400 hover:text-white"
                       onClick={() => {
                         document.getElementById("globalPresenceCountryList").open = true;
-                        setSelectedId(location.id);
+                        setSelectedId(region.id);
                       }}
                     >
                       <FaEdit />

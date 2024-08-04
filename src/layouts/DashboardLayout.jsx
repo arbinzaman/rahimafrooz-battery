@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { MdPrecisionManufacturing } from "react-icons/md";
+import { MdPrecisionManufacturing, MdReviews } from "react-icons/md";
 import DashboardHeader from "../components/shared/DashboardHeader";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { ImNewspaper } from "react-icons/im";
@@ -114,6 +114,13 @@ const DashboardLayout = () => {
                 {" "}
                 <PiCertificateFill />
                 Certificates{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/awards">
+                {" "}
+                <MdReviews />
+                Reviews{" "}
               </Link>
             </li>
             <li>
