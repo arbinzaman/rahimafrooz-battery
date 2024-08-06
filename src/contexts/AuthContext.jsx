@@ -10,6 +10,7 @@ export const useUser = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  console.log(user);
 
   const login = async (email, password) => {
     try {

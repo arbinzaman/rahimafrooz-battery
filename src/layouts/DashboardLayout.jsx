@@ -39,7 +39,7 @@ const DashboardLayout = () => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-white text-black mt-20 lg:mt-0 lg:">
             <li>
-              <Link>
+              <Link to="/dashboard/profile">
                 <LuUserCircle2 color="" /> Admin Profile
               </Link>
             </li>
