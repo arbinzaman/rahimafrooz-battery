@@ -46,7 +46,7 @@ import MultoSelect from "../components/Dashboard/MultiSelect";
 import AllGlobalPresenceCountry from "../pages/Dashboard/GlobalPresence/AllGlobalPresenceCountry";
 import Awards from "../pages/Dashboard/Awards/Awards";
 import AllNews from "../pages/Dashboard/News/AllNews";
-import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
+import Profile from "../pages/Dashboard/UserProfile/Profile";
 
 const routes = createBrowserRouter([
   {
@@ -245,7 +245,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/profile",
-        element: <UserProfile />,
+        element: <Profile />,
       },
     ],
   },
