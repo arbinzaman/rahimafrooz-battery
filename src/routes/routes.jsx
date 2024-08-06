@@ -45,6 +45,8 @@ import StoragePowerSection from "../pages/Dashboard/StoragePower/StoragePowerSec
 import MultoSelect from "../components/Dashboard/MultiSelect";
 import AllGlobalPresenceCountry from "../pages/Dashboard/GlobalPresence/AllGlobalPresenceCountry";
 import Awards from "../pages/Dashboard/Awards/Awards";
+import AllNews from "../pages/Dashboard/News/AllNews";
+import Profile from "../pages/Dashboard/UserProfile/Profile";
 
 const routes = createBrowserRouter([
   {
@@ -236,6 +238,14 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/awards",
         element: <Awards />,
+      },
+      {
+        path: "/dashboard/news",
+        element: <AllNews />,
+      },
+      {
+        path: "/dashboard/profile",
+        element: <Profile />,
       },
     ],
   },

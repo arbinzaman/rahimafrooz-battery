@@ -65,6 +65,7 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
             <input
               type="text"
               placeholder="Employee ID"
+              disabled
               {...register("emp_id", { required: true })}
               className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
             />
@@ -74,6 +75,7 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
             <label className="block text-sm font-medium mb-2">Email</label>
             <input
               type="email"
+              disabled
               placeholder="Email"
               {...register("email", { required: true })}
               className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
@@ -81,10 +83,10 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Role</label>
+            <label  className="block text-sm font-medium mb-2 ">Role</label>
             <select
               {...register("role", { required: true })}
-              className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
+              disabled className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
             >
               <option value="">Select Role</option>
               <option value="Admin">Admin</option>
