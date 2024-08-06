@@ -1,51 +1,66 @@
-import React from 'react'
-import FindDealerGoogleMap from '../components/FindDealer/FindDealerGoogle.Map'
-
-import DealerOne from "../assets/images/FindDealer/Image-01.png"
-import DealerTwo from "../assets/images/FindDealer/Image-02.png"
-import { allDeviceMaxWidth } from '../styles/maxWidth'
+import { useEffect, useState } from "react";
+import DealerOne from "../assets/images/FindDealer/Image-01.png";
+import HomeDealerLocator from "../components/Home/HomeDealerLocator";
+import { allDeviceMaxWidth } from "../styles/maxWidth";
 
 const FindDealer = () => {
-    return (
-        <div>
-            <section>
-                <FindDealerGoogleMap />
-            </section>
-            <section className={allDeviceMaxWidth}>
-                <div className='max-w-7xl mx-auto my-10'>
-                    <h1 className='text-sky-700 font-normal text-3xl'>Search Results</h1>
-                    <p className='text-sky-700 font-light text-lg'>02 Dealers founded</p>
-                    <p className='border border-primary mt-8'></p>
-                    <div className='grid lg:grid-cols-2 grid-cols-1 pt-4 gap-4 pb-8'>
-                        <div className='mt-14 border-2 border-sky-700 p-8'>
-                            <h1 className='text-sky-700 font-bold text-lg'>Dealer Name: New Saika Motors</h1>
-                            <h2 className='text-sky-700 font-normal text-lg'>Address : Hazi Kalu Miah Market, C & B Road, Narsingdi.</h2>
-                            <h2 className='text-sky-700 font-normal text-lg'>Proprietor Name:</h2>
-                            <h2 className='text-sky-700 font-normal text-lg'>Phone: 017116-21552, 01717-156527</h2>
-                            <h2 className='text-sky-700 font-normal text-lg'>Email:</h2>
-                            <h2 className='text-sky-700 font-normal text-lg'>Locate on map</h2>
-                        </div>
-                        <div>
-                            <h1 className='text-sky-700 font-bold text-lg pb-7'>Dealer Network:</h1>
-                            <img src={DealerOne} alt="dealer" />
-                        </div>
-                        <div className='mt-14'>
-                            <h1 className='text-sky-700 font-bold text-lg'>Dealer Name: : Elham Enterprise</h1>
-                            <h2 className='text-sky-700 font-normal text-lg'>Address : Raja Complex Shahporan Road Sylhet.</h2>
-                            <h2 className='text-sky-700 font-normal text-lg'>Proprietor Name:</h2>
-                            <h2 className='text-sky-700 font-normal text-lg'>Phone: 01733-391618, 01719-147847</h2>
-                            <h2 className='text-sky-700 font-normal text-lg'>Email:</h2>
-                            <h2 className='text-sky-700 font-normal text-lg'>Locate on map</h2>
-                        </div>
-                        <div>
-                            <h1 className='text-sky-700 font-bold text-lg pb-7'>Dealer Network:</h1>
-                            <img src={DealerTwo} alt="dealer" />
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    )
-}
+  const [dealers, setDealers] = useState([]);
+  useEffect(() => {
+    const dealers = JSON.parse(localStorage.getItem("dealer_locations"));
+    setDealers(dealers);
+  }, [dealers]);
 
-export default FindDealer
+  return (
+    <div>
+      <section className={allDeviceMaxWidth}>
+        <HomeDealerLocator />
+        <div className=" mx-auto my-10">
+          <h1 className="text-sky-700 font-normal text-large">
+            Search Results
+          </h1>
+          <p className="text-sky-700 font-light text-lg">
+            {dealers.length} Dealers founded
+          </p>
+          <p className="border border-primary my-8"></p>
+          <div className="flex flex-col justify-center">
+            {dealers.length > 0 &&
+              dealers.map((dealer, i) => (
+                <div
+                  key={i}
+                  className="grid lg:grid-cols-2 grid-cols-1 items-center pt-4 gap-4 pb-8"
+                >
+                  <div className="flex items-center border-2 border-sky-700 p-8 h-full">
+                    <div className="">
+                      <h1 className="text-sky-700 font-bold text-lg lg:pt-3">
+                        Dealer/Shop Name: {dealer.shop_name}
+                      </h1>
+                      <h2 className="text-sky-700 font-normal text-lg lg:pt-3">
+                        Address : {dealer.address}
+                      </h2>
+                      <h2 className="text-sky-700 font-normal text-lg lg:pt-3">
+                        Proprietor Name: {dealer.proprietor_name}
+                      </h2>
+                      <h2 className="text-sky-700 font-normal text-lg lg:pt-3">
+                        Phone: {dealer.phone_numbers}
+                      </h2>
+                      <h2 className="text-sky-700 font-normal text-lg lg:pt-3">
+                        Email: {dealer.email}
+                      </h2>
+                      <h2 className="text-sky-700 font-normal text-lg lg:pt-3">
+                        {dealer.coordinates !== "" && <p>Locate On Map</p>}
+                      </h2>
+                    </div>
+                  </div>
+                  <div>
+                    <img width={"100%"} src={DealerOne} alt="dealer" />
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default FindDealer;
