@@ -41,7 +41,7 @@ const AddAUser = ({ onClose }) => {
   };
 
   return (
-    <dialog id="my_modal_2" className="modal">
+    <dialog id="addUser" className="modal">
       <div className="modal-box bg-white text-black">
         <h2 className="text-lg font-bold mb-4 bg-white text-black">
           Update User

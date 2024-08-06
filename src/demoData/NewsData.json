@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "title": "TechFusion",
+        "image_url": "https://via.placeholder.com/150?text=TechFusion",
+        "description": "Innovative technology solutions for modern businesses.",
+        "publish_date": "2024-08-04"
+    },
+    { 
+        "id": 2,
+        "title": "NanoTech Labs",
+        "image_url": "https://via.placeholder.com/150?text=NanoTech+Labs",
+        "description": "Pioneering advancements in nanotechnology and material science.",
+        "publish_date": "2024-08-04"
+    },
+    {
+        "id": 3,
+        "title": "QuantumEdge",
+        "image_url": "https://via.placeholder.com/150?text=QuantumEdge",
+        "description": "Leading provider of quantum computing solutions and services.",
+        "publish_date": "2024-08-04"
+    },
+    {
+        "id": 4,
+        "title": "CyberShield",
+        "image_url": "https://via.placeholder.com/150?text=CyberShield",
+        "description": "Advanced cybersecurity solutions to protect your digital assets.",
+        "publish_date": "2024-08-04"
+    },
+    {
+        "id": 5,
+        "title": "AI Horizon",
+        "image_url": "https://via.placeholder.com/150?text=AI+Horizon",
+        "description": "Cutting-edge AI technologies for smart automation.",
+        "publish_date": "2024-08-04"
+    },
+    {
+        "id": 6,
+        "title": "BioTech Innovate",
+        "image_url": "https://via.placeholder.com/150?text=BioTech+Innovate",
+        "description": "Revolutionizing biotechnology with innovative solutions.",
+        "publish_date": "2024-08-04"
+    },
+    {
+        "id": 7,
+        "title": "SmartTech",
+        "image_url": "https://via.placeholder.com/150?text=SmartTech",
+        "description": "Smart technology solutions for a connected world.",
+        "publish_date": "2024-08-04"
+    },
+    {
+        "id": 8,
+        "title": "MaxPower",
+        "image_url": "https://via.placeholder.com/150?text=MaxPower",
+        "description": "High-performance energy solutions for technology enthusiasts.",
+        "publish_date": "2024-08-04"
+    }
+]

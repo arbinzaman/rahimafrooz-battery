@@ -4,6 +4,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Loader from "../../../components/shared/Loaders/Loader";
 import UserUpdateModal from "./UserUpdateModal"; // Import the Update Modal component
 import { TiUserAdd } from "react-icons/ti";
+import AddAUser from "./AddAUser";
 
 const AllUsers = () => {
   const queryClient = useQueryClient(); // Initialize the queryClient
@@ -99,12 +100,12 @@ const AllUsers = () => {
           {/* <Link to="/dashboard/add-a-user"> */}
           <button
             className="btn btn-ghost btn-xs hover:bg-sky-700 text-white bg-sky-400"
-            onClick={() => document.getElementById("my_modal_2").showModal()}
+            onClick={() => document.getElementById("addUser").showModal()}
           >
             {" "}
             Add User <TiUserAdd />
           </button>
-          {/* </Link> */}
+          <AddAUser />
 
           <button
             className="btn btn-ghost btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
