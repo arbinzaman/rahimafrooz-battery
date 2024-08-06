@@ -4,7 +4,6 @@ import axios from "axios";
 import {
   FaEye,
   FaEyeSlash,
-  // FaUserAlt
 } from "react-icons/fa";
 import { AiOutlineSave } from "react-icons/ai";
 import { useUser } from "../../../contexts/AuthContext";
@@ -129,18 +128,19 @@ const UpdatePassword = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && <div className="text-red-500 mb-4">{error}</div>}
 
-              <div className="relative mb-4">
+              <div className="relative mb-6">
                 <input
                   id="password"
+                  name="password"
                   type={showPassword.current ? "text" : "password"}
-                  className="peer w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-black placeholder-transparent"
+                  className="peer w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-black placeholder-transparent focus:outline-none"
                   required
                 />
                 <label
                   htmlFor="password"
-                  className="absolute top-2 left-3 text-sm text-gray-500 transition-transform duration-300 transform peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:font-medium peer-placeholder-shown:scale-100 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
+                  className="absolute left-3 top-2 text-sm text-gray-500 transition-transform duration-300 transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
                 >
-                  Current Password:
+                  Current Password
                 </label>
                 <button
                   type="button"
@@ -160,19 +160,20 @@ const UpdatePassword = () => {
                 </button>
               </div>
 
-              <div className="relative mb-4">
+              <div className="relative mb-6">
                 <input
                   id="newPassword"
+                  name="newPassword"
                   type={showPassword.new ? "text" : "password"}
                   onChange={handleNewPasswordChange}
-                  className="peer w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-black placeholder-transparent"
+                  className="peer w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-black placeholder-transparent focus:outline-none"
                   required
                 />
                 <label
                   htmlFor="newPassword"
-                  className="absolute top-2 left-3 text-sm text-gray-500 transition-transform duration-300 transform peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:font-medium peer-placeholder-shown:scale-100 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
+                  className="absolute left-3 top-2 text-sm text-gray-500 transition-transform duration-300 transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
                 >
-                  New Password:
+                  New Password
                 </label>
                 <button
                   type="button"
@@ -189,18 +190,19 @@ const UpdatePassword = () => {
                 </button>
               </div>
 
-              <div className="relative mb-4">
+              <div className="relative mb-6">
                 <input
                   id="confirmNewPassword"
+                  name="confirmNewPassword"
                   type={showPassword.confirm ? "text" : "password"}
-                  className="peer w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-black placeholder-transparent"
+                  className="peer w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-black placeholder-transparent focus:outline-none"
                   required
                 />
                 <label
                   htmlFor="confirmNewPassword"
-                  className="absolute top-2 left-3 text-sm text-gray-500 transition-transform duration-300 transform peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:font-medium peer-placeholder-shown:scale-100 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
+                  className="absolute left-3 top-2 text-sm text-gray-500 transition-transform duration-300 transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
                 >
-                  Confirm Password:
+                  Confirm Password
                 </label>
                 <button
                   type="button"
@@ -221,13 +223,6 @@ const UpdatePassword = () => {
               </div>
 
               <div className="flex justify-end gap-3 items-center mt-4 pb-5">
-                {/* <button
-                  type="button"
-                  className="flex gap-2 items-center btn btn-sm bg-teal-500 text-white border-none hover:bg-teal-700"
-                  onClick={() => window.history.back()}
-                >
-                  <FaUserAlt className="text-sm" /> Back
-                </button> */}
                 <button
                   type="submit"
                   className={`flex gap-2 items-center btn btn-sm ${
