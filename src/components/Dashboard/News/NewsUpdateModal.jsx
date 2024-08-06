@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 const NewsUpdateModal = ({ updateModalProps }) => {
   const { selectedId, allNews, refetch } = updateModalProps;
   const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState(null); // State to handle image
+  const [publishDate, setPublishDate] = useState(""); // State for timestamp
 
   const singleNews = allNews?.find(
     (details) => details.id === selectedId
@@ -17,18 +19,30 @@ const NewsUpdateModal = ({ updateModalProps }) => {
   useEffect(() => {
     if (singleNews) {
       reset(singleNews);
+      setPublishDate(new Date().toISOString()); // Set default publish date
     }
   }, [singleNews, reset]);
 
   const handleUpdate = async (data) => {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("publish_date", publishDate);
+    if (image) {
+      formData.append("image_url", image);
+    }
+    console.log(formData);
+
     try {
       setIsLoading(true);
-      console.log(data);
       const res = await axios.patch(
-        `${
-          import.meta.env.VITE_BASE_URL
-        }/contact/global-locations/${selectedId}`,
-        data
+        `${import.meta.env.VITE_BASE_URL}/news/${selectedId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Necessary for file uploads
+          },
+        }
       );
 
       if (res.status === 200) {
@@ -36,7 +50,6 @@ const NewsUpdateModal = ({ updateModalProps }) => {
         document.getElementById("my_modal_2").open = false;
         toast.success("Record updated successfully");
       }
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
       toast.error("Something error occurred!");
@@ -45,15 +58,19 @@ const NewsUpdateModal = ({ updateModalProps }) => {
     }
   };
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   return (
     <div>
       <dialog id="my_modal_2" className="modal">
-        <div className="modal-box bg-white text-black ">
+        <div className="modal-box bg-white text-black">
           <form method="dialog" className="flex justify-between items-center">
             <p className="text-primary text-medium font-bold flex gap-2 my-2">
-              Update Location
+              Update News
             </p>
-            <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+            <button className="btn btn-sm btn-circle btn-ghost">✕</button>
           </form>
           <form method="dialog" onSubmit={handleSubmit(handleUpdate)}>
             <div className="my-2">
@@ -62,59 +79,40 @@ const NewsUpdateModal = ({ updateModalProps }) => {
               </label>
               <input
                 type="text"
-                className="bg-white border  rounded-md px-2 py-1 w-full"
+                className="bg-white border rounded-md px-2 py-1 w-full"
                 {...register("title")}
               />
             </div>
 
             <div className="my-2">
               <label>
-              Description <span className="text-red-600">*</span>
+                Description <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
-                className="bg-white border  rounded-md px-2 py-1 w-full"
+                className="bg-white border rounded-md px-2 py-1 w-full"
                 {...register("description")}
               />
             </div>
 
             <div className="my-2">
-              <label>
-                Location <span className="text-red-600">*</span>
-              </label>
-              <textarea
-                type="text"
-                className="bg-white border  rounded-md px-2 py-1 w-full"
-                {...register("location")}
-              />
-            </div>
-            <div className="my-2">
-              <label>
-                Phone Numbers <span className="text-red-600">*</span>
-              </label>
               <input
-                type="text"
-                className="bg-white border  rounded-md px-2 py-1 w-full"
-                {...register("phone_numbers")}
-              />
-            </div>
-            <div className="my-2">
-              <label>
-                Email<span className="text-red-600">*</span>
-              </label>
-              <input
-                type="text"
-                className="bg-white border  rounded-md px-2 py-1 w-full"
-                {...register("email")}
+                type="file"
+                className="file-input file-input-bordered file-input-sm w-full bg-white text-black"
+                onChange={handleImageChange}
               />
             </div>
 
+
             <div className="flex justify-end gap-3 items-center mt-3">
               <button
-                type=""
-                className="flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white"
+                type="submit"
+                className={`flex gap-2 btn btn-sm ${
+                  isLoading ? "bg-gray-400" : "bg-primary text-white hover:bg-secondary hover:text-white"
+                }`}
+                disabled={isLoading}
               >
-                Update
+                {isLoading ? "Updating..." : "Update"}
               </button>
             </div>
           </form>

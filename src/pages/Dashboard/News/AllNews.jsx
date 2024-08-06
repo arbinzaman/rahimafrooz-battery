@@ -32,7 +32,7 @@ const AllNews = () => {
   };
 
   const openModal = () => {
-    document.getElementById("my_modal_69").showModal();
+    document.getElementById("addNews").showModal();
   };
 
   // if (isLoading) {
@@ -56,6 +56,13 @@ const AllNews = () => {
           >
             Add A News <FaRegNewspaper />
           </button>
+          <AddANews
+            prompts={
+              {
+                // refetch
+              }
+            }
+          />
         </div>
         <div>
           <button
@@ -72,13 +79,6 @@ const AllNews = () => {
           allNews,
           // refetch
         }}
-      />
-      <AddANews
-        addLocationModalProps={
-          {
-            // refetch
-          }
-        }
       />
     </div>
   );
