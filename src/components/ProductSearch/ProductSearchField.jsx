@@ -136,7 +136,7 @@ const ProductSearchField = () => {
             <select
               name="category"
               id="cars"
-              className="select select-bordered bg-secondary text-white font-semibold px-3 rounded-md w-full"
+              className="select select-sm select-bordered bg-secondary text-white font-semibold px-3 rounded-md w-full"
               defaultValue={"Hybrid"}
               onChange={(e) => {
                 fetchTechnologies(
@@ -167,7 +167,7 @@ const ProductSearchField = () => {
             <select
               name="technology"
               id="cars"
-              className="select select-bordered bg-secondary text-white font-semibold px-3 rounded-md w-full"
+              className="select select-sm select-bordered bg-secondary text-white font-semibold px-3 rounded-md w-full"
               value={queryDatas.technology}
               onChange={(e) => {
                 fetchBrands(e.target.value);
@@ -195,7 +195,7 @@ const ProductSearchField = () => {
             <select
               name="brand"
               id="cars"
-              className="select select-bordered bg-secondary text-white font-semibold px-3 rounded-md w-full"
+              className="select select-sm select-bordered bg-secondary text-white font-semibold px-3 rounded-md w-full"
               value={queryDatas.brand}
               onChange={(e) => {
                 fetchModels(e.target.value);
@@ -222,7 +222,7 @@ const ProductSearchField = () => {
             <select
               name="model"
               id="cars"
-              className="select select-bordered bg-secondary text-white font-semibold px-3 rounded-md w-full"
+              className="select select-sm select-bordered bg-secondary text-white font-semibold px-3 rounded-md w-full"
               value={queryDatas.model}
               onChange={(e) => {
                 fetchMakeYears(e.target.value);
@@ -249,7 +249,7 @@ const ProductSearchField = () => {
             <select
               name="year"
               id="cars"
-              className="select select-bordered bg-secondary text-white font-semibold px-3 rounded-md w-full"
+              className="select select-sm select-bordered bg-secondary text-white font-semibold px-3 rounded-md w-full"
               value={queryDatas.year}
               onChange={(e) => {
                 fetchBatteries(e.target.value);
@@ -273,7 +273,7 @@ const ProductSearchField = () => {
 
           <div>
             <button
-              className="w-full flex items-center justify-center bg-button2 text-primary font-semibold px-3 py-[10.5px] rounded-md border border-primary"
+              className="w-full flex items-center justify-center bg-button2 text-primary font-semibold px-3 py-[3px] rounded-md border border-primary"
               onClick={handleFindBattery}
               disabled={shortCodes === null ? true : false}
             >

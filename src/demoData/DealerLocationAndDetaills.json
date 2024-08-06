@@ -86,14 +86,14 @@
     {
       "id": 8,
       "shop_name": "Kazi Auto Parts",
-      "address": "Bashundhara, Dhaka",
+      "address": "Manikganj, Dhaka",
       "proprietor_name": "Kazi Mahmud",
       "phone_numbers": "01713-215688, 01714-156534",
       "email": "kaziautoparts@gmail.com",
       "coordinates": "",
       "division": "Dhaka",
-      "district": "Dhaka",
-      "thana": "Bashundhara"
+      "district": "Manikganj",
+      "thana": "Murapara"
     },
     {
       "id": 9,
@@ -110,14 +110,14 @@
     {
       "id": 10,
       "shop_name": "Morshed Auto",
-      "address": "Dhanmondi, Dhaka",
+      "address": "Chairman Bari, Dhaka",
       "proprietor_name": "Morshed Alam",
       "phone_numbers": "01719-215700, 01720-156536",
       "email": "morshedauto@gmail.com",
-      "coordinates": "",
+      "coordinates": "123456789",
       "division": "Dhaka",
       "district": "Dhaka",
-      "thana": "Dhanmondi"
+      "thana": "Banani"
     }
   ]
   
