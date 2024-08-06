@@ -1,10 +1,4 @@
 import BannerImage from "../../assets/images/AboutPage/RahimafroozBatteriesLtd.png";
-import MilestonesImage from "../../assets/images/AboutPage/RSPB-Milestones.png";
-import ValueIcon1 from "../../assets/images/AboutPage/01.png";
-import ValueIcon2 from "../../assets/images/AboutPage/02.png";
-import ValueIcon3 from "../../assets/images/AboutPage/03.png";
-import ValueIcon4 from "../../assets/images/AboutPage/04.png";
-import ValueIcon5 from "../../assets/images/AboutPage/05.png";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import { useQuery } from "@tanstack/react-query";
 
