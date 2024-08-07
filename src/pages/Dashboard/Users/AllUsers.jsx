@@ -5,6 +5,7 @@ import Loader from "../../../components/shared/Loaders/Loader";
 import UserUpdateModal from "./UserUpdateModal"; // Import the Update Modal component
 import { TiUserAdd } from "react-icons/ti";
 import AddAUser from "./AddAUser";
+import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
 
 const AllUsers = () => {
   const queryClient = useQueryClient(); // Initialize the queryClient
@@ -86,7 +87,7 @@ const AllUsers = () => {
   }
 
   if (isError) {
-    return <div>Error: {error.message}</div>;
+    return <FetchErrorMessage/>
   }
 
   return (

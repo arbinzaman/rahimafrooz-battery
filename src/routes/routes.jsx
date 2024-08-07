@@ -47,6 +47,7 @@ import AllGlobalPresenceCountry from "../pages/Dashboard/GlobalPresence/AllGloba
 import Awards from "../pages/Dashboard/Awards/Awards";
 import AllNews from "../pages/Dashboard/News/AllNews";
 import Profile from "../pages/Dashboard/UserProfile/Profile";
+import AllReviews from "../pages/Dashboard/Review/AllReviews";
 
 const routes = createBrowserRouter([
   {
@@ -246,6 +247,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/profile",
         element: <Profile />,
+      },
+      {
+        path: "/dashboard/reviews",
+        element: <AllReviews />,
       },
     ],
   },
