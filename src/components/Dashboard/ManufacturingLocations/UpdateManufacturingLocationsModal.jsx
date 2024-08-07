@@ -121,7 +121,6 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
               )}
               <input
                 type="file"
-                defaultValue={singleManufacturingDetails?.imageurl}
                 className="file-input file-input-bordered file-input-sm w-full"
                 {...register("image")}
               />

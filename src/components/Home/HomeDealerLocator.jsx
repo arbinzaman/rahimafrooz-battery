@@ -1,17 +1,28 @@
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
-import dealerLocations from "../../demoData/DealerLocationAndDetaills.json";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const HomeDealerLocator = () => {
   const navigate = useNavigate();
   const [division, setDivision] = useState("");
   const [district, setDistrict] = useState("");
   const [thana, setThana] = useState("");
-  const dealerLocs = dealerLocations;
+
+  const { data: dealerLocs = [] } = useQuery({
+    queryKey: ["dealerLocs"],
+    queryFn: async () => {
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/dealer-details/`
+      );
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
   const getUniqueDivisions = (data) => {
-    return [...new Set(data.map((item) => item.division))];
+    return [...new Set(data && data.map((item) => item.division))];
   };
 
   const divisions = getUniqueDivisions(dealerLocs);
