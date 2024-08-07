@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { GrDocumentUpdate } from "react-icons/gr";
 
-const AddAUser = ({ onClose }) => {
+const AddAUser = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
 
@@ -43,9 +43,12 @@ const AddAUser = ({ onClose }) => {
   return (
     <dialog id="addUser" className="modal">
       <div className="modal-box bg-white text-black">
-        <h2 className="text-lg font-bold mb-4 bg-white text-black">
-          Add A  User
-        </h2>
+        <form method="dialog" className="flex justify-between items-center">
+          <p className="text-primary text-medium font-bold flex gap-2 my-2">
+            Add A User
+          </p>
+          <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+        </form>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-2">Username</label>
@@ -92,13 +95,13 @@ const AddAUser = ({ onClose }) => {
           </div>
 
           <div className="flex justify-end gap-4">
-            <button
+            {/* <button
               type="button"
               onClick={onClose}
               className="bg-red-500 text-white  rounded-md btn-sm hover:bg-red-700"
             >
               Cancel
-            </button>
+            </button> */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -110,6 +113,9 @@ const AddAUser = ({ onClose }) => {
           </div>
         </form>
       </div>
+      <form method="dialog" className="modal-backdrop">
+        <button>close</button>
+      </form>
     </dialog>
   );
 };
