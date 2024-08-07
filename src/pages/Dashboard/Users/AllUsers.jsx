@@ -99,14 +99,11 @@ const AllUsers = () => {
             <>
               <button
                 className="btn btn-ghost btn-xs hover:bg-sky-700 text-white bg-sky-400"
-                onClick={() =>
-                  document.getElementById("addUser").showModal() &&
-                  setModalOpen(true)
-                }
+                onClick={() => document.getElementById("addUser").showModal()}
               >
                 Add User <TiUserAdd />
               </button>
-              <AddAUser onClose={() => setModalOpen(false)} />
+              <AddAUser />
             </>
           )}
 

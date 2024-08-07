@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { PiCertificateFill } from "react-icons/pi";
-import { Link } from "react-router-dom";
 import { MdDeleteOutline } from "react-icons/md";
 import { LuRefreshCcw } from "react-icons/lu";
 import { FaEdit } from "react-icons/fa";
 import CertificateUpdateModal from "./CertificateUpdateModal";
 import certificateData from "../../../demoData/CertificateData.json";
+import AddACertificateData from "./AddACertificateData";
 
 const AllCertificates = () => {
   const [selectedIds, setSelectedIds] = useState([]);
@@ -39,7 +39,7 @@ const AllCertificates = () => {
     if (selectAll) {
       setSelectedIds([]);
     } else {
-      setSelectedIds(allCertificates.map(certificate => certificate.id));
+      setSelectedIds(allCertificates.map((certificate) => certificate.id));
     }
     setSelectAll(!selectAll);
   };
@@ -48,7 +48,7 @@ const AllCertificates = () => {
   const handleCheckboxChange = (id) => {
     setSelectedIds((prevSelectedIds) => {
       const updatedSelectedIds = prevSelectedIds.includes(id)
-        ? prevSelectedIds.filter(selectedId => selectedId !== id)
+        ? prevSelectedIds.filter((selectedId) => selectedId !== id)
         : [...prevSelectedIds, id];
       setSelectAll(updatedSelectedIds.length === allCertificates.length);
       return updatedSelectedIds;
@@ -109,11 +109,13 @@ const AllCertificates = () => {
 
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
-          <Link to="/dashboard/add-a-certificate">
-            <button className="flex gap-2 btn btn-xs border-0 text-white bg-sky-400 hover:bg-sky-700 hover:text-white">
+            <button
+              className="flex gap-2 btn btn-xs border-0 text-white bg-sky-400 hover:bg-sky-700 hover:text-white"
+              onClick={() => document.getElementById("addCertificate").showModal()}
+            >
               Add Certificate <PiCertificateFill />
             </button>
-          </Link>
+            <AddACertificateData/>
           <button
             className="flex gap-2 btn btn-xs bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
             onClick={handleDelete}
@@ -164,7 +166,11 @@ const AllCertificates = () => {
               <td>{i + 1}</td>
               <td>{certificate.title}</td>
               <td>
-                <img src={certificate.img_url} alt={certificate.title} width="100" />
+                <img
+                  src={certificate.img_url}
+                  alt={certificate.title}
+                  width="100"
+                />
               </td>
               <td>{certificate.created_at}</td>
               <td>
