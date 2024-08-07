@@ -39,7 +39,6 @@ import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
 import PrivateRoute from "./PrivateRoutes/PrivateRoute";
 import RestricIfLoggedInRoute from "./RestricIfLoggedInRoute/RestricIfLoggedInRoute";
 import DealerLocationAndDetailsList from "../pages/Dashboard/DealerLocation&Details/DealerLocationAndDetailsList";
-import AddADealerLocationAndDetails from "../pages/Dashboard/DealerLocation&Details/AddADealerLocationAndDetails";
 import AllBrandImg from "../pages/Dashboard/BrandsImage/AllBrandImg";
 import StoragePowerSection from "../pages/Dashboard/StoragePower/StoragePowerSection";
 import MultoSelect from "../components/Dashboard/MultiSelect";
@@ -214,10 +213,6 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/add-a-user",
         element: <AddAUser />,
-      },
-      {
-        path: "/dashboard/add-a-dealer-location-and-details",
-        element: <AddADealerLocationAndDetails />,
       },
       {
         path: "/dashboard/brand-image",
