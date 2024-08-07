@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { GrDocumentUpdate } from "react-icons/gr";
+import { useUser } from "../../../contexts/AuthContext"; // Import useUser context hook
 
 const UserUpdateModal = ({ user, onClose, onUpdate }) => {
+  const { user: currentUser } = useUser(); // Get current user's role from context
   const { register, handleSubmit, reset } = useForm({
     defaultValues: user,
   });
@@ -48,7 +50,7 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
   return (
     <div className="modal modal-open">
       <div className="modal-box bg-white text-black">
-        <h2 className="text-lg font-bold mb-4 bg-white text-black">Update User</h2>
+        <h2 className="text-lg font-bold mb-4">Update User</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-2">Username</label>
@@ -83,10 +85,11 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
           </div>
 
           <div>
-            <label  className="block text-sm font-medium mb-2 ">Role</label>
+            <label className="block text-sm font-medium mb-2">Role</label>
             <select
               {...register("role", { required: true })}
-              disabled className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
+              disabled={currentUser.role !== "Super Admin"} // Disable if not Super Admin
+              className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
             >
               <option value="">Select Role</option>
               <option value="Admin">Admin</option>
@@ -98,16 +101,17 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
             <button
               type="button"
               onClick={onClose}
-              className="bg-red-500 text-white  rounded-md btn-sm hover:bg-red-700"
+              className="bg-red-500 text-white rounded-md btn-sm hover:bg-red-700"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-green-500 text-white  py-2 rounded-md flex  btn-sm hover:bg-green-700 "
+              className="bg-green-500 text-white py-2 rounded-md flex btn-sm hover:bg-green-700"
             >
-           <GrDocumentUpdate className="mr-2 mt-1" />   {isSubmitting ? "Updating..." : "Update User"}
+              <GrDocumentUpdate className="mr-2 mt-1" />
+              {isSubmitting ? "Updating..." : "Update User"}
             </button>
           </div>
         </form>

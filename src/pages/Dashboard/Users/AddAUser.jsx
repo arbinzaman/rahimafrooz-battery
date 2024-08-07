@@ -44,7 +44,7 @@ const AddAUser = ({ onClose }) => {
     <dialog id="addUser" className="modal">
       <div className="modal-box bg-white text-black">
         <h2 className="text-lg font-bold mb-4 bg-white text-black">
-          Update User
+          Add A  User
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
@@ -105,7 +105,7 @@ const AddAUser = ({ onClose }) => {
               className="bg-green-500 text-white  py-2 rounded-md flex  btn-sm hover:bg-green-700 "
             >
               <GrDocumentUpdate className="mr-2 mt-1" />{" "}
-              {isSubmitting ? "Updating..." : "Update User"}
+              {isSubmitting ? "Adding..." : "Add User"}
             </button>
           </div>
         </form>

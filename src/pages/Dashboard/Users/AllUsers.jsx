@@ -2,21 +2,21 @@ import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Loader from "../../../components/shared/Loaders/Loader";
-import UserUpdateModal from "./UserUpdateModal"; // Import the Update Modal component
+import UserUpdateModal from "./UserUpdateModal";
 import { TiUserAdd } from "react-icons/ti";
 import AddAUser from "./AddAUser";
 import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
+import { useUser } from "../../../contexts/AuthContext";
 
 const AllUsers = () => {
-  const queryClient = useQueryClient(); // Initialize the queryClient
+  const queryClient = useQueryClient();
+  const { user } = useUser(); // Fetch the user context
   const [selectedIds, setSelectedIds] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  // Define the API URL
   const API_URL = `${import.meta.env.VITE_BASE_URL}/users`;
 
-  // Fetch users function
   const fetchUsers = async () => {
     const res = await fetch(API_URL);
     if (!res.ok) {
@@ -29,13 +29,11 @@ const AllUsers = () => {
     data: users = [],
     isLoading,
     isError,
-    error,
   } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUsers,
   });
 
-  // Delete users function
   const handleDelete = async () => {
     try {
       const res = await fetch(API_URL, {
@@ -53,7 +51,6 @@ const AllUsers = () => {
       const data = await res.json();
       console.log("Delete success:", data);
 
-      // Refetch users after deletion
       queryClient.invalidateQueries(["users"]);
       setSelectedIds([]);
     } catch (error) {
@@ -87,7 +84,7 @@ const AllUsers = () => {
   }
 
   if (isError) {
-    return <FetchErrorMessage/>
+    return <FetchErrorMessage />;
   }
 
   return (
@@ -98,15 +95,20 @@ const AllUsers = () => {
 
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
-          {/* <Link to="/dashboard/add-a-user"> */}
-          <button
-            className="btn btn-ghost btn-xs hover:bg-sky-700 text-white bg-sky-400"
-            onClick={() => document.getElementById("addUser").showModal()}
-          >
-            {" "}
-            Add User <TiUserAdd />
-          </button>
-          <AddAUser />
+          {user?.role === "Super Admin" && (
+            <>
+              <button
+                className="btn btn-ghost btn-xs hover:bg-sky-700 text-white bg-sky-400"
+                onClick={() =>
+                  document.getElementById("addUser").showModal() &&
+                  setModalOpen(true)
+                }
+              >
+                Add User <TiUserAdd />
+              </button>
+              <AddAUser onClose={() => setModalOpen(false)} />
+            </>
+          )}
 
           <button
             className="btn btn-ghost btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
@@ -137,27 +139,31 @@ const AllUsers = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
+          {users.map((singleUser) => (
+            <tr key={singleUser.id}>
               <td>
                 <input
                   type="checkbox"
-                  onChange={() => handleCheckboxChange(user.id)}
-                  checked={selectedIds.includes(user.id)}
+                  onChange={() => handleCheckboxChange(singleUser.id)}
+                  checked={selectedIds.includes(singleUser.id)}
                 />
               </td>
-              <td>{user.username}</td>
-              <td>{user.emp_id}</td>
-              <td>{user.email}</td>
-              <td>{user.role}</td>
-              <td>{user.joined_at}</td>
+              <td>{singleUser.username}</td>
+              <td>{singleUser.emp_id}</td>
+              <td>{singleUser.email}</td>
+              <td>{singleUser.role}</td>
+              <td>{singleUser.joined_at}</td>
               <td>
-                <button
-                  className="btn btn-xs btn-ghost bg-white text-black hover:bg-green-400 hover:text-white"
-                  onClick={() => handleUpdate(user)}
-                >
-                  <FaEdit />
-                </button>
+                {user?.role === "Super Admin" && (
+                  <>
+                    <button
+                      className="btn btn-xs btn-ghost bg-white text-black hover:bg-green-400 hover:text-white"
+                      onClick={() => handleUpdate(singleUser)}
+                    >
+                      <FaEdit />
+                    </button>
+                  </>
+                )}
               </td>
             </tr>
           ))}
