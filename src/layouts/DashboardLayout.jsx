@@ -117,7 +117,7 @@ const DashboardLayout = () => {
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/awards">
+              <Link to="/dashboard/reviews">
                 {" "}
                 <MdReviews />
                 Reviews{" "}

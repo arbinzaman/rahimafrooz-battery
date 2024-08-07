@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "user_name": "Rahim",
+        "review": "This is a great product. I am very happy with the purchase."
+    },
+    {
+        "id": 2,
+        "user_name": "Ayesha",
+        "review": "Excellent quality and fast delivery. Will definitely buy again!"
+    },
+    {
+        "id": 3,
+        "user_name": "Ali",
+        "review": "The product is as described. Very satisfied with my purchase."
+    },
+    {
+        "id": 4,
+        "user_name": "Sara",
+        "review": "Good value for money. The product works perfectly."
+    },
+    {
+        "id": 5,
+        "user_name": "Omar",
+        "review": "Received the item on time and it exceeded my expectations."
+    },
+    {
+        "id": 6,
+        "user_name": "Fatima",
+        "review": "Very pleased with the quality. Will recommend to others."
+    },
+    {
+        "id": 7,
+        "user_name": "Ahmed",
+        "review": "Great product and excellent customer service. Highly recommended."
+    },
+    {
+        "id": 8,
+        "user_name": "Hina",
+        "review": "The product is fantastic and exactly what I was looking for. Five stars!"
+    }
+]
