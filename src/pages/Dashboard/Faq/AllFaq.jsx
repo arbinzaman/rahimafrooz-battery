@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { MdDeleteOutline } from "react-icons/md";
 import { LuRefreshCcw } from "react-icons/lu";
 import FaqUpdateModal from "./FaqUpdateModal";
@@ -7,13 +6,14 @@ import batetryFaqData from "../../../demoData/BatteryFaqData.json";
 import { toast } from "react-hot-toast";
 import { FaQuestion } from "react-icons/fa6";
 import { TbPencilQuestion } from "react-icons/tb";
+import AddAFaq from "./AddAFaq";
 
 const AllFaqs = () => {
   const [selectedIds, setSelectedIds] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [updatedData, setUpdatedData] = useState({});
-//   const [loading, setLoading] = useState(false);
+  //   const [loading, setLoading] = useState(false);
 
   const allFaqs = batetryFaqData;
 
@@ -23,7 +23,7 @@ const AllFaqs = () => {
       const updatedSelectedIds = isSelected
         ? prevSelectedIds.filter((selectedId) => selectedId !== id)
         : [...prevSelectedIds, id];
-      
+
       setSelectAll(updatedSelectedIds.length === allFaqs.length);
       return updatedSelectedIds;
     });
@@ -44,10 +44,10 @@ const AllFaqs = () => {
   const handleDelete = async () => {
     try {
       await Promise.all(
-        selectedIds.map(id =>
+        selectedIds.map((id) =>
           fetch(`${import.meta.env.VITE_BASE_URL}/faqs/${id}`, {
             method: "DELETE",
-          }).then(res => {
+          }).then((res) => {
             if (!res.ok) {
               throw new Error("Failed to delete");
             }
@@ -79,23 +79,25 @@ const AllFaqs = () => {
       toast.error("Error updating FAQ.");
     }
   };
-//   console.log("Selected IDs:", selectedIds);
-// console.log("Select All:", selectAll);
-
+  //   console.log("Selected IDs:", selectedIds);
+  // console.log("Select All:", selectAll);
 
   return (
     <div>
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary flex justify-center">
-        Frequently Asked Questions <FaQuestion className="text-semi_large mt-3 ml-2" />
+        Frequently Asked Questions{" "}
+        <FaQuestion className="text-semi_large mt-3 ml-2" />
       </h1>
 
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
-          <Link to="/dashboard/add-a-faq">
-            <button className="flex gap-2 btn btn-xs  border-0 text-white bg-sky-400 hover:bg-sky-700 hover:text-white">
-              Add FAQ <FaQuestion />
-            </button>
-          </Link>
+          <button
+            className="flex gap-2 btn btn-xs  border-0 text-white bg-sky-400 hover:bg-sky-700 hover:text-white"
+            onClick={() => document.getElementById("addFaq").showModal()}
+          >
+            Add FAQ <FaQuestion />
+          </button>
+          <AddAFaq />
           <button
             className="flex gap-2 btn btn-xs bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
             onClick={handleDelete}
@@ -153,7 +155,7 @@ const AllFaqs = () => {
                     setModalOpen(true);
                   }}
                 >
-                  <TbPencilQuestion  className="text-regular" />
+                  <TbPencilQuestion className="text-regular" />
                 </button>
               </td>
             </tr>

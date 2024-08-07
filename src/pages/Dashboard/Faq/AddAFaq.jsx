@@ -39,47 +39,58 @@ const AddAFaq = () => {
   };
 
   return (
-    <section className="max-w-screen-md mx-auto p-4">
-      <h1 className="text-center text-2xl font-bold mb-6 text-primary">
-        Add New FAQ <FaQuestion className="inline-block ml-2" />
-      </h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-black">
-        <div>
-          <label className="block text-sm font-medium mb-2">Question</label>
-          <input
-            type="text"
-            placeholder="Enter the question"
-            {...register("question", { required: true })}
-            className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
-          />
-        </div>
+    <dialog id="addFaq" className="modal">
+      <div className="modal-box bg-white text-black">
+        <form method="dialog" className="flex justify-between items-center">
+          <p className="text-primary text-medium font-bold flex gap-2 my-2">
+            Add Faq <FaQuestion className="inline-block ml-2" />
+          </p>
+          <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+        </form>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-4 text-black"
+        >
+          <div>
+            <label className="block text-sm font-medium mb-2">Question</label>
+            <input
+              type="text"
+              placeholder="Enter the question"
+              {...register("question", { required: true })}
+              className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
+            />
+          </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-2">Answer</label>
-          <textarea
-            placeholder="Enter the answer"
-            {...register("answer", { required: true })}
-            className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full h-32 resize-none"
-          />
-        </div>
+          <div>
+            <label className="block text-sm font-medium mb-2">Answer</label>
+            <textarea
+              placeholder="Enter the answer"
+              {...register("answer", { required: true })}
+              className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full h-32 resize-none"
+            />
+          </div>
 
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center gap-2"
-          >
-            {isSubmitting ? (
-              <span>Submitting...</span>
-            ) : (
-              <>
-                Add FAQ <FaQuestion  />
-              </>
-            )}
-          </button>
-        </div>
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center gap-2"
+            >
+              {isSubmitting ? (
+                <span>Submitting...</span>
+              ) : (
+                <>
+                  Add FAQ <FaQuestion />
+                </>
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+      <form method="dialog" className="modal-backdrop">
+        <button>close</button>
       </form>
-    </section>
+    </dialog>
   );
 };
 
