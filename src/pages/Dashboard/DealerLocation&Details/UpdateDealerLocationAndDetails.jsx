@@ -52,6 +52,8 @@ const UpdateDealerLocationAndDetails = ({ updateModalProps }) => {
     } catch (error) {
       toast.error("Error updating dealer details.");
       console.error("Error updating dealer details:", error);
+    }finally{
+      setIsLoading(false)
     }
   };
 

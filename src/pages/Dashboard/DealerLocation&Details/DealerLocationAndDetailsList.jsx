@@ -65,7 +65,7 @@ const DealerLocationAndDetailsList = () => {
         <div>
           <button
             className="flex gap-2 btn btn-xs border-0 text-white bg-teal-400 hover:bg-teal-700 hover:text-white"
-            // Implement refresh logic if needed
+            onClick={refetch}
           >
             Refresh
             <LuRefreshCcw />
