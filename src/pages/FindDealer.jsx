@@ -1,25 +1,41 @@
-import { useEffect, useState } from "react";
-import DealerOne from "../assets/images/FindDealer/Image-01.png";
+import { useEffect, useRef, useState } from "react";
 import HomeDealerLocator from "../components/Home/HomeDealerLocator";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
+import axios from "axios";
 
 const FindDealer = () => {
   const [dealers, setDealers] = useState([]);
+  const ids = JSON.parse(localStorage.getItem("dealers_id"));
+  const componentRef = useRef();
+  
   useEffect(() => {
-    const dealers = JSON.parse(localStorage.getItem("dealer_locations"));
-    setDealers(dealers);
-  }, [dealers]);
+    const fetchData = async () => {
+      const data = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/dealer-details/selected-dealers`,
+        ids
+      );
+      setDealers(data.data);
+    };
+    fetchData();
+  }, []);
+
+
+    const handleRefresh = () => {
+        if (componentRef.current) {
+            componentRef.current.forceUpdate();
+        }
+    };
 
   return (
     <div>
       <section className={allDeviceMaxWidth}>
-        <HomeDealerLocator />
-        <div className=" mx-auto my-10">
+        <HomeDealerLocator props={{handleRefresh}}/>
+        <div ref={componentRef} className=" mx-auto my-10">
           <h1 className="text-sky-700 font-normal text-large">
             Search Results
           </h1>
           <p className="text-sky-700 font-light text-lg">
-            {dealers.length} Dealers founded
+            {dealers && dealers.length} Dealers founded
           </p>
           <p className="border border-primary my-8"></p>
           <div className="flex flex-col justify-center">
@@ -52,7 +68,7 @@ const FindDealer = () => {
                     </div>
                   </div>
                   <div>
-                    <img width={"100%"} src={DealerOne} alt="dealer" />
+                    <img width={"100%"} src={dealer.image_url} alt="dealer" />
                   </div>
                 </div>
               ))}

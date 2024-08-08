@@ -54,12 +54,12 @@ const HomeDealerLocator = () => {
   const filteredThanas = getThanasByDistrict(district);
   const location = getDataByThana(thana);
 
-  console.log(filteredDistricts, filteredThanas);
   const handleFindDealer = (e) => {
     e.preventDefault();
-    console.log(location);
-    localStorage.setItem("dealer_locations", JSON.stringify(location));
+    const ids = location.map(item=>item.id);
+    localStorage.setItem("dealers_id", JSON.stringify(ids));
     navigate('/find-dealer');
+    window.location.reload(false)
   };
 
   return (
