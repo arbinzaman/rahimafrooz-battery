@@ -3,16 +3,14 @@ import { MdDeleteOutline } from "react-icons/md";
 import { LuRefreshCcw } from "react-icons/lu";
 import { toast } from "react-hot-toast";
 import { TbPencilQuestion } from "react-icons/tb";
-import { RiUserLocationFill, RiUserLocationLine } from "react-icons/ri";
+import { RiUserLocationFill } from "react-icons/ri";
 import UpdateDealerLocationAndDetails from "./UpdateDealerLocationAndDetails";
 import AddADealerDetailsModal from "./AddADealerDetailsModal";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const DealerLocationAndDetailsList = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [updatedData, setUpdatedData] = useState(null); // Ensure this is null initially
-
+  const [selectedId, setSelectedId] = useState();
   const { data: allDealersDetails = null, refetch } = useQuery({
     queryKey: ["allDealersDetails"],
     queryFn: async () => {
@@ -44,35 +42,16 @@ const DealerLocationAndDetailsList = () => {
     }
   };
 
-  const handleUpdate = async (id, updatedData) => {
-    try {
-      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/faqs/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
-      }
-      toast.success("FAQ updated successfully!");
-    } catch (error) {
-      toast.error("Error updating FAQ.");
-    }
-  };
-
   const openModal = () => {
     document.getElementById("my_modal_69").open = true;
   };
 
+  const openUpdateModal = () => {
+    document.getElementById("dealer_details_update").open = true;
+  };
+
   return (
     <div className="overflow-x-auto">
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary flex justify-center">
-        Dealer Location & Details{" "}
-        <RiUserLocationLine className="text-semi_large mt-2 ml-2" />
-      </h1>
-
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
           <button
@@ -139,12 +118,19 @@ const DealerLocationAndDetailsList = () => {
                   <button
                     className="btn btn-ghost btn-xs bg-white hover:bg-lime-500 hover:text-white"
                     onClick={() => {
-                      setUpdatedData(dealerLocationDetail);
-                      setModalOpen(true);
+                      setSelectedId(dealerLocationDetail.id);
+                      openUpdateModal();
                     }}
                   >
                     <TbPencilQuestion className="text-regular" />
                   </button>
+                  <UpdateDealerLocationAndDetails
+                    updateModalProps={{
+                      selectedId,
+                      allDealersDetails,
+                      refetch,
+                    }}
+                  />
                 </td>
                 <td>
                   <button
@@ -158,17 +144,6 @@ const DealerLocationAndDetailsList = () => {
             ))}
         </tbody>
       </table>
-
-      {modalOpen && (
-        <UpdateDealerLocationAndDetails
-          initialData={updatedData}
-          onClose={() => setModalOpen(false)}
-          onUpdate={(updatedData) => {
-            handleUpdate(updatedData.id, updatedData);
-            setModalOpen(false);
-          }}
-        />
-      )}
     </div>
   );
 };
