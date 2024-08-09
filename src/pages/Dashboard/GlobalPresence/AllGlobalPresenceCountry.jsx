@@ -1,28 +1,28 @@
 import { LuRefreshCcw } from "react-icons/lu";
 import { useState } from "react";
 import Loader from "../../../components/shared/Loaders/Loader";
-import regions from "../../../demoData/regions.json";
 import AddAGlobalPresenceCountry from "../../../components/Dashboard/GlobalPresence/AddAGlobalPresenceCountry";
 import GlobalPresenceCountryList from "../../../components/Dashboard/GlobalPresence/GlobalPresenceCountryList";
 import { AiOutlineGlobal } from "react-icons/ai";
+import { useQuery } from "@tanstack/react-query";
 
 const AllGlobalPresenceCountry = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const countryList = regions;
+  const { data: countryList = [], refetch } = useQuery({
+    queryKey: ["countryList"],
+    queryFn: async () => {
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/global-presence/`
+      );
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
-  //   const { data: countryList = null, refetch } = useQuery({
-  //     queryKey: ["countryList"],
-  //     queryFn: async () => {
-  //       // console.log("Fetching data...");
-  //       const res = await fetch(
-  //         `${import.meta.env.VITE_BASE_URL}/manufacturing-locations`
-  //       );
-  //       const data = await res.json();
-  //       // console.log("Data fetched:", data);
-  //       return data;
-  //     },
-  //     refetchOnWindowFocus: true,
-  //   });
+  const openModal = () => {
+    document.getElementById("AddCountry").open = true;
+  };
 
   if (isLoading) return <Loader />;
 
@@ -35,21 +35,21 @@ const AllGlobalPresenceCountry = () => {
         <div>
           <button
             className="flex gap-2 btn btn-xs  border-0 text-white bg-sky-400 hover:bg-sky-700"
-            onClick={() => document.getElementById("AddCountry").showModal()}
+            onClick={openModal}
           >
-            Add new country <AiOutlineGlobal />
+            Add new continent and countries <AiOutlineGlobal />
           </button>
-          
+
           <AddAGlobalPresenceCountry
             props={{
               setIsLoading,
-              //  refetch
+              refetch,
             }}
           />
         </div>
         <button
           className="flex gap-2 btn btn-xs  border-0 text-white bg-teal-400 hover:bg-teal-700"
-          //   onClick={refetch}
+          onClick={refetch}
         >
           Refresh
           <LuRefreshCcw />
@@ -59,8 +59,7 @@ const AllGlobalPresenceCountry = () => {
       <GlobalPresenceCountryList
         prompts={{
           countryList,
-          setIsLoading,
-          // refetch
+          refetch,
         }}
       />
     </div>

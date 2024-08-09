@@ -1,7 +1,7 @@
 [
   {
       "id": 1,
-      "region": "AFRICA",
+      "continent": "AFRICA",
       "countries": [
           "Algeria", "Senegal", "Nigeria", "Gabon", "Botswana",
           "Mozambique", "Congo", "Uganda", "South Sudan", "Ethiopia",
@@ -11,7 +11,7 @@
   },
   {
       "id": 2,
-      "region": "ASIA",
+      "continent": "ASIA",
       "countries": [
           "Bangladesh", "India", "China", "Japan", "South Korea",
           "Thailand", "Vietnam", "Malaysia", "Singapore", "Indonesia",
@@ -21,7 +21,7 @@
   },
   {
       "id": 3,
-      "region": "EUROPE",
+      "continent": "EUROPE",
       "countries": [
           "France", "Germany", "Italy", "Spain", "Portugal",
           "Netherlands", "Belgium", "Switzerland", "Austria", "Sweden",
@@ -31,7 +31,7 @@
   },
   {
       "id": 4,
-      "region": "USA",
+      "continent": "USA",
       "countries": [
           "California", "Texas", "Florida", "New York", "Illinois",
           "Pennsylvania", "Ohio", "Georgia", "North Carolina", "Michigan",
@@ -41,7 +41,7 @@
   },
   {
       "id": 5,
-      "region": "AUSTRALIA",
+      "continent": "AUSTRALIA",
       "countries": [
           "New South Wales", "Victoria", "Queensland", "Western Australia", "South Australia",
           "Tasmania", "Northern Territory", "Australian Capital Territory"
