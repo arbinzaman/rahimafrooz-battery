@@ -1,5 +1,3 @@
-import React from 'react'
-
 import "../../styles/Home.css"
 
 const HomeAboutUs = () => {
@@ -33,10 +31,10 @@ const HomeAboutUs = () => {
 
             <section className="bg-sky-600 rounded-3xl pt-8 pb-8 mt-8 mb-12 lg:hidden max-w-sm mx-auto">
                 <div className="text-right max-w-xs mx-auto">
-                    <h1 className="text-xl text-center font-semibold text-sky-300 opacity-95 mb-8">
+                    <h1 className="text-xl text-center font-semibold text-white opacity-95 mb-8">
                         ABOUT
                     </h1>
-                    <p className="text-sm text-left text-sky-300 opacity-95 mb-8">
+                    <p className="text-sm text-left text-white opacity-95 mb-8">
                         Rahimafrooz was founded in 1954 as a pioneer in the Bangladeshi
                         battery industry. Rahimafrooz Storage Power Business (RSPB) is the
                         core business of the Group, with leadership in the local and some

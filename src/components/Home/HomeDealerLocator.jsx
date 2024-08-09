@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { allDeviceMaxWidth } from "../../styles/maxWidth";
 
 const HomeDealerLocator = () => {
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ const HomeDealerLocator = () => {
   };
 
   return (
-    <section>
+    <section className={allDeviceMaxWidth}>
       <h1 className="uppercase text-center text-medium lg:text-large text-primary font-semibold pt-10 lg:pt-20">
         Find Rahimafrooz Dealer
       </h1>
