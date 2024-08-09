@@ -1,6 +1,5 @@
 import BangladeshPageBanner from "../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
 import ProductSearchField from "../components/ProductSearch/ProductSearchField";
-import RelatedProducts from "../components/ProductSearch/RelatedProducts";
 import Table from "../components/ProductSearch/Table";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
 
