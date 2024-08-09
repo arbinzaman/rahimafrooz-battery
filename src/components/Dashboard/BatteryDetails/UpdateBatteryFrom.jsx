@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Select from "react-select";
 import { FaCarBattery } from "react-icons/fa";
 import CustomMultiSelect from "./CustomMultiSelect";
+import ModelSelect from "./ModelSelect";
+import YearSelect from "./YearSelect";
 
 const UpdateBatteryForm = ({
   showVehicleFields,
@@ -18,6 +20,14 @@ const UpdateBatteryForm = ({
   handleSupportedVehicleMakesChange,
   handleVehicleModelsChange,
   handleMakeYearsChange,
+  options,
+  setOptions,
+  setModelOptions,
+  modelOptions,
+  setYearOptions,
+  yearOptions,
+  VehicleOptions,
+  setVehicleOptions,
 }) => {
   const {
     battery_name = "",
@@ -33,13 +43,52 @@ const UpdateBatteryForm = ({
     supported_vehicle_models = {},
     make_years_models = {},
   } = formData;
+  // console.log(options);
 
+  // setting option to supported_vehicle_makes
+  setVehicleOptions(supported_vehicle_makes);
 
-  const [options, setOptions] = useState([]);
-  console.log(options);
-  const [inputValue, setInputValue] = useState('');
-  console.log(inputValue);
+  const [inputValue, setInputValue] = useState();
+  const [modelInputValue, setModelInputValue] = useState({});
+  const [yearInputValue, setYearInputValue] = useState({});
   // Utility functions to safely access arrays
+
+  const handleModelInputValueChange = (make, value) => {
+    setModelInputValue((prevState) => ({
+      ...prevState,
+      [make]: value,
+    }));
+  };
+
+  const handleYearInputValueChange = (make, model, value) => {
+    setYearInputValue((prevState) => ({
+      ...prevState,
+      [make]: {
+        ...prevState[make],
+        [model]: value,
+      },
+    }));
+  };
+
+  const handleModelOptionsChange = (make, newModels) => {
+    setModelOptions((prevState) => ({
+      ...prevState,
+      [make]: newModels,
+    }));
+    handleVehicleModelsChange(make, newModels);
+  };
+
+  const handleYearOptionsChange = (make, model, newYears) => {
+    setYearOptions((prevState) => ({
+      ...prevState,
+      [make]: {
+        ...prevState[make],
+        [model]: newYears,
+      },
+    }));
+    handleMakeYearsChange(make, model, newYears);
+  };
+
   const getModels = (make) =>
     Array.isArray(supported_vehicle_models[make])
       ? supported_vehicle_models[make]
@@ -188,37 +237,55 @@ const UpdateBatteryForm = ({
                   Supported Vehicle Makes:
                 </label>
                 <CustomMultiSelect
-                  prompts={{supported_vehicle_makes,setOptions,setInputValue,options,inputValue}}
+                  prompts={{
+                    supported_vehicle_makes,
+                    setOptions,
+                    setInputValue,
+                    options,
+                    inputValue,
+                    setVehicleOptions,
+                    VehicleOptions,
+                  }}
                   setOptions={(newMakes) =>
                     handleSupportedVehicleMakesChange(newMakes)
                   }
-                  placeholder="Type and press space to add"
+                  placeholder="press space to add supported makes"
                 />
               </div>
-              {supported_vehicle_makes.map((make, index) => (
+              {supported_vehicle_makes?.map((make, index) => (
                 <div key={index} className="mb-4">
                   <label className="block text-small text-gray-800 pb-1">
                     {make} Models:
                   </label>
-                  <CustomMultiSelect
-                  
-                  prompts={getModels(make)}
+                  <ModelSelect
+                    prompts={{
+                      options: modelOptions[make] || getModels(make),
+                      setInputValue: (value) =>
+                        handleModelInputValueChange(make, value),
+                      inputValue: modelInputValue[make] || "",
+                    }}
                     setOptions={(newModels) =>
-                      handleVehicleModelsChange(make, newModels)
+                      handleModelOptionsChange(make, newModels)
                     }
-                    placeholder="Type and press space to add"
+                    placeholder="press space to add models"
                   />
                   {getModels(make).map((model, modelIndex) => (
                     <div key={modelIndex} className="mt-2 ml-4">
                       <label className="block text-small text-gray-800 pb-1">
                         {model} Years:
                       </label>
-                      <CustomMultiSelect
-                        prompts={getYears(make, model)}
+                      <YearSelect
+                        prompts={{
+                          options:
+                            yearOptions[make]?.[model] || getYears(make, model),
+                          setInputValue: (value) =>
+                            handleYearInputValueChange(make, model, value),
+                          inputValue: yearInputValue[make]?.[model] || "",
+                        }}
                         setOptions={(newYears) =>
-                          handleMakeYearsChange(make, model, newYears)
+                          handleYearOptionsChange(make, model, newYears)
                         }
-                        placeholder="Type and press space to add"
+                        placeholder="press space to add years"
                       />
                     </div>
                   ))}
@@ -227,13 +294,13 @@ const UpdateBatteryForm = ({
             </>
           )}
         </div>
-
-        <div className="text-center">
+        <div className="mt-4 flex justify-end">
           <button
             type="submit"
-            className="btn btn-sm btn-ghost bg-primary text-white hover:bg-blue-800"
+            className="btn btn-primary w-full max-w-xs rounded-sm"
           >
-            Update Battery <FaCarBattery />
+            <FaCarBattery className="inline-block mr-2" />
+            Update Battery
           </button>
         </div>
       </form>
