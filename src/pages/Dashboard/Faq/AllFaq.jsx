@@ -2,85 +2,39 @@ import { useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { LuRefreshCcw } from "react-icons/lu";
 import FaqUpdateModal from "./FaqUpdateModal";
-import batetryFaqData from "../../../demoData/BatteryFaqData.json";
 import { toast } from "react-hot-toast";
 import { FaQuestion } from "react-icons/fa6";
 import { TbPencilQuestion } from "react-icons/tb";
 import AddAFaq from "./AddAFaq";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const AllFaqs = () => {
-  const [selectedIds, setSelectedIds] = useState([]);
-  const [selectAll, setSelectAll] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [updatedData, setUpdatedData] = useState({});
-  //   const [loading, setLoading] = useState(false);
+  const [selectedId, setSelectedId] = useState();
 
-  const allFaqs = batetryFaqData;
+  const { data: allFaqs = [], refetch } = useQuery({
+    queryKey: ["allFaqs"],
+    queryFn: async () => {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/faqs`);
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
-  const handleCheckboxChange = (id) => {
-    setSelectedIds((prevSelectedIds) => {
-      const isSelected = prevSelectedIds.includes(id);
-      const updatedSelectedIds = isSelected
-        ? prevSelectedIds.filter((selectedId) => selectedId !== id)
-        : [...prevSelectedIds, id];
-
-      setSelectAll(updatedSelectedIds.length === allFaqs.length);
-      return updatedSelectedIds;
-    });
-  };
-
-  const handleSelectAllChange = () => {
-    const allIds = allFaqs.map((faq) => faq.id);
-
-    if (selectAll) {
-      setSelectedIds([]);
-    } else {
-      setSelectedIds(allIds);
-    }
-
-    setSelectAll(!selectAll);
-  };
-
-  const handleDelete = async () => {
+  const handleDelete = async (id) => {
     try {
-      await Promise.all(
-        selectedIds.map((id) =>
-          fetch(`${import.meta.env.VITE_BASE_URL}/faqs/${id}`, {
-            method: "DELETE",
-          }).then((res) => {
-            if (!res.ok) {
-              throw new Error("Failed to delete");
-            }
-          })
-        )
+      const res = await axios.delete(
+        `${import.meta.env.VITE_BASE_URL}/faqs/${id}`
       );
-      setSelectedIds([]);
-      setSelectAll(false);
-      toast.success("Selected FAQs deleted successfully!");
-    } catch (error) {
-      toast.error("Error deleting selected FAQs.");
-    }
-  };
-
-  const handleUpdate = async (id, updatedData) => {
-    try {
-      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/faqs/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
+      if (res.status === 200) {
+        refetch();
+        toast.success("Deleted successfully!");
       }
-      toast.success("FAQ updated successfully!");
     } catch (error) {
-      toast.error("Error updating FAQ.");
+      toast.error("Deletion Failed.");
     }
   };
-  //   console.log("Selected IDs:", selectedIds);
-  // console.log("Select All:", selectAll);
 
   return (
     <div>
@@ -92,19 +46,12 @@ const AllFaqs = () => {
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
           <button
-            className="flex gap-2 btn btn-xs  border-0 text-white bg-sky-400 hover:bg-sky-700 hover:text-white"
-            onClick={() => document.getElementById("addFaq").showModal()}
+            className="flex gap-2 btn btn-xs  border-0 text-white bg-sky-400 hover:bg-primary"
+            onClick={() => (document.getElementById("addFaq").open = true)}
           >
             Add FAQ <FaQuestion />
           </button>
-          <AddAFaq />
-          <button
-            className="flex gap-2 btn btn-xs bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
-            onClick={handleDelete}
-          >
-            Delete
-            <MdDeleteOutline />
-          </button>
+          <AddAFaq addModalProps={{refetch}}/>
         </div>
         <div>
           <button
@@ -120,14 +67,6 @@ const AllFaqs = () => {
       <table className="table w-full text-black">
         <thead>
           <tr className="text-black">
-            <th>
-              <input
-                type="checkbox"
-                onChange={handleSelectAllChange}
-                checked={selectAll}
-                className="bg-white border-0"
-              />
-            </th>
             <th>Serial</th>
             <th>Question</th>
             <th>Answer</th>
@@ -137,13 +76,6 @@ const AllFaqs = () => {
         <tbody>
           {allFaqs.map((faq, i) => (
             <tr key={faq.id}>
-              <td>
-                <input
-                  type="checkbox"
-                  onChange={() => handleCheckboxChange(faq.id)}
-                  checked={selectedIds.includes(faq.id)}
-                />
-              </td>
               <td>{i + 1}</td>
               <td>{faq.question}</td>
               <td>{faq.answer}</td>
@@ -151,29 +83,28 @@ const AllFaqs = () => {
                 <button
                   className="btn btn-ghost btn-xs bg-white hover:bg-lime-500 hover:text-white"
                   onClick={() => {
-                    setUpdatedData(faq);
-                    setModalOpen(true);
+                    setSelectedId(faq.id);
+                    document.getElementById("updateFAQ").open = true;
                   }}
                 >
                   <TbPencilQuestion className="text-regular" />
+                </button>
+                <FaqUpdateModal
+                  updateModalProps={{ selectedId, allFaqs, refetch }}
+                />
+              </td>
+              <td>
+                <button
+                  className="flex gap-2 btn btn-xs bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
+                  onClick={() => handleDelete(faq.id)}
+                >
+                  <MdDeleteOutline />
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      {modalOpen && (
-        <FaqUpdateModal
-          updatedData={updatedData}
-          dataId={updatedData.id}
-          onClose={() => setModalOpen(false)}
-          onUpdate={(updatedData) => {
-            handleUpdate(updatedData.id, updatedData);
-            setModalOpen(false);
-          }}
-        />
-      )}
     </div>
   );
 };

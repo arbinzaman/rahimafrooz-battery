@@ -1,85 +1,94 @@
 import { useState, useEffect } from "react";
+import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-const FaqUpdateModal = ({ dataId, onClose, onUpdate, updatedData }) => {
-  const [updateFaqData, setUpdateFaqData] = useState(updatedData);
-  const [formData, setFormData] = useState({
-    question: "",
-    answer: "",
+const FaqUpdateModal = ({ updateModalProps }) => {
+  const { selectedId, allFaqs, refetch } = updateModalProps;
+  const [isLoading, setIsLoading] = useState(false);
+
+  const faq = allFaqs?.find((details) => details.id === selectedId);
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: faq,
   });
-  console.log(formData);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/faqs/${dataId}`);
-      const data = await res.json();
-      setFormData(data);
-    };
-    fetchData();
-  }, [dataId]);
+    if (faq) {
+      reset(faq);
+    }
+  }, [faq, reset]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUpdateFaqData((prevFaqData) => ({
-      ...prevFaqData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleUpdate = async (data) => {
     try {
-      await onUpdate(updateFaqData);
-      onClose(); // Close the modal on successful update
+      setIsLoading(true);
+      const res = await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/faqs/${selectedId}`,
+        data
+      );
+
+      if (res.status === 200) {
+        reset();
+        document.getElementById("updateFAQ").open = false;
+        refetch();
+        toast.success("Record updated successfully");
+      }
     } catch (error) {
-      console.error("Error updating FAQ:", error);
+      toast.error("Update FAQ failed!");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <dialog open className="modal">
-      <div className="modal-box bg-white text-black">
-        <h3 className="font-bold text-lg">Update FAQ</h3>
+    <dialog id="updateFAQ" className="modal">
+      <div className="modal-box bg-white text-black ">
+        <form method="dialog" className="flex justify-between items-center">
+          <p className="text-primary text-medium font-bold flex gap-2 my-2">
+            Update FAQ
+          </p>
+          <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+        </form>
+        <form method="dialog" onSubmit={handleSubmit(handleUpdate)}>
+          <div className="my-2">
+            <label>
+              Question <span className="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              className="bg-white border  rounded-md px-2 py-1 w-full"
+              {...register("question")}
+            />
+          </div>
 
-        <form key={updateFaqData.id} onSubmit={handleSubmit} className="mt-4">
-          <div className="mb-4">
-            <label className="block">Question</label>
-            <input
+          <div className="my-2">
+            <label>
+              Answer<span className="text-red-600">*</span>
+            </label>
+            <textarea
               type="text"
-              name="question"
-              value={updateFaqData.question || ""}
-              onChange={handleChange}
-              className="input w-full bg-white text-black border-black"
-              required
+              className="bg-white border rounded-md px-2 py-1 w-full"
+              {...register("answer")}
             />
           </div>
-          <div className="mb-4">
-            <label className="block">Answer</label>
-            <input
-              type="text"
-              name="answer"
-              value={updateFaqData.answer || ""}
-              onChange={handleChange}
-              className="input w-full bg-white text-black border-black"
-              required
-            />
-          </div>
-          <div className="modal-action">
-            <button
-              type="submit"
-              className="btn btn-xs bg-teal-500 text-white btn-ghost border-0 hover:bg-teal-700"
-            >
-              Update
-            </button>
-            <button
-              type="button"
-              className="btn btn-xs bg-red-600 text-white border-0 btn-ghost hover:bg-red-700"
-              onClick={onClose}
-            >
-              Close
-            </button>
+
+          <div className="flex justify-end gap-3 items-center mt-3">
+            {!isLoading ? (
+              <button
+                type=""
+                className="flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white"
+              >
+                Update
+              </button>
+            ) : (
+              <ThreeDotLoader />
+            )}
           </div>
         </form>
       </div>
+      <form method="dialog" className="modal-backdrop">
+        <button>close</button>
+      </form>
     </dialog>
   );
 };
