@@ -5,8 +5,9 @@ import Loader from "../../../components/shared/Loaders/Loader";
 
 const fetchCategories = async () => {
   const response = await fetch(
-    "https://rahimafrooz-battery-backend.vercel.app/api/v1/categories/"
+    `${import.meta.env.VITE_BASE_URL}/categories`
   );
+
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
@@ -111,30 +112,28 @@ const AddANewBattery = () => {
     });
   };
 
- const handleVehicleModelsChange = (make, models) => {
-  setFormData((prevData) => ({
-    ...prevData,
-    supported_vehicle_models: {
-      ...prevData.supported_vehicle_models,
-      [make]: models,
-    },
-  }));
-};
-
-
-const handleMakeYearsChange = (make, model, years) => {
-  setFormData((prevData) => ({
-    ...prevData,
-    make_years_models: {
-      ...prevData.make_years_models,
-      [make]: {
-        ...prevData.make_years_models[make],
-        [model]: years,
+  const handleVehicleModelsChange = (make, models) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      supported_vehicle_models: {
+        ...prevData.supported_vehicle_models,
+        [make]: models,
       },
-    },
-  }));
-};
+    }));
+  };
 
+  const handleMakeYearsChange = (make, model, years) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      make_years_models: {
+        ...prevData.make_years_models,
+        [make]: {
+          ...prevData.make_years_models[make],
+          [model]: years,
+        },
+      },
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -188,7 +187,9 @@ const handleMakeYearsChange = (make, model, years) => {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-      <h1 className="text-primary text-center text-medium lg:text-large font-bold uppercase mb-2">Add Battery Form</h1>
+      <h1 className="text-primary text-center text-medium lg:text-large font-bold uppercase mb-2">
+        Add Battery Form
+      </h1>
       <AddANewBatteryForm
         prompts={{
           showVehicleFields,

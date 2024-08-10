@@ -9,18 +9,29 @@ import toast from "react-hot-toast";
 
 const UpdateBattery = () => {
   const { short_code } = useParams();
+  let [options, setOptions] = useState([]);
+  let [VehicleOptions, setVehicleOptions] = useState([]);
+  const [modelOptions, setModelOptions] = useState({});
+  // const [loadModelOption, setLoadModelOption] = useState({});
+  // const [loadYearOption, setLoadYearOption] = useState({});
+  const [yearOptions, setYearOptions] = useState({});
+  console.log(options);
+  console.log(VehicleOptions);
+  console.log(modelOptions);
+  console.log(yearOptions);
 
   const fetchBatteryDetails = async ({ queryKey }) => {
     const [_key, { short_code }] = queryKey;
     const response = await axios.get(
-      `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries/${short_code}`
+      `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`
     );
     return response.data;
+    // return console.log(response.data);
   };
 
   const fetchCategories = async () => {
     const response = await axios.get(
-      "https://rahimafrooz-battery-backend.vercel.app/api/v1/categories/"
+      `${import.meta.env.VITE_BASE_URL}/categories`
     );
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
@@ -41,6 +52,7 @@ const UpdateBattery = () => {
     data: categoriesData,
     error: categoriesError,
     isLoading: categoriesLoading,
+    refetch,
   } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategories,
@@ -142,7 +154,8 @@ const UpdateBattery = () => {
   };
 
   const handleSupportedVehicleMakesChange = (e) => {
-    const makes = e.target.value.split(",")?.map((make) => make.trim());
+    const makes = options;
+    console.log(makes);
     setFormData((prev) => ({
       ...prev,
       supported_vehicle_makes: makes,
@@ -161,52 +174,42 @@ const UpdateBattery = () => {
     }));
   };
 
-//   const handleMakeYearsChange = (make, model, years) => {
-//     setFormData((prev) => ({
-//       ...prev,
-//       make_years_models: {
-//         ...prev.make_years_models,
-//         [make]: {
-//           ...prev.make_years_models[make],
-//           [model]: years,
-//         },
-//       },
-//     }));
-//   };
+  //   const handleMakeYearsChange = (make, model, years) => {
+  //     setFormData((prev) => ({
+  //       ...prev,
+  //       make_years_models: {
+  //         ...prev.make_years_models,
+  //         [make]: {
+  //           ...prev.make_years_models[make],
+  //           [model]: years,
+  //         },
+  //       },
+  //     }));
+  //   };
 
-
-
-
-
-const handleMakeYearsChange = (make, model, years) => {
+  const handleMakeYearsChange = (make, model, years) => {
     setFormData((prev) => {
       const updatedMakeYearsModels = { ...prev.make_years_models };
-  
+
       // Initialize the make if not already present
       if (!updatedMakeYearsModels[make]) {
         updatedMakeYearsModels[make] = {};
       }
-  
+
       // Initialize the model if not already present
       if (!updatedMakeYearsModels[make][model]) {
         updatedMakeYearsModels[make][model] = [];
       }
-  
+
       // Update the years
       updatedMakeYearsModels[make][model] = years;
-  
+
       return {
         ...prev,
         make_years_models: updatedMakeYearsModels,
       };
     });
   };
-  
-
-
-
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -228,10 +231,10 @@ const handleMakeYearsChange = (make, model, years) => {
       supported_vehicle_models: supportedVehicleModels,
       make_years: makeYears,
     };
-console.log(formattedData);
+    console.log(formattedData);
     try {
       const response = await axios.patch(
-        `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries/${short_code}`,
+        `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`,
         formattedData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -246,7 +249,7 @@ console.log(formattedData);
   const showVehicleFields =
     formData.applicable_categories.includes("Passenger Car") ||
     formData.applicable_categories.includes("Commercial Vehicle");
-
+  // console.log(categories);
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       <h1 className="text-primary text-center text-medium lg:text-large font-bold uppercase mb-2">
@@ -266,6 +269,14 @@ console.log(formattedData);
         handleSupportedVehicleMakesChange={handleSupportedVehicleMakesChange}
         handleVehicleModelsChange={handleVehicleModelsChange}
         handleMakeYearsChange={handleMakeYearsChange}
+        options={options}
+        setOptions={setOptions}
+        yearOptions={yearOptions}
+        setYearOptions={setYearOptions}
+        modelOptions={modelOptions}
+        setModelOptions={setModelOptions}
+        VehicleOptions={VehicleOptions}
+        setVehicleOptions={setVehicleOptions}
       />
     </div>
   );
