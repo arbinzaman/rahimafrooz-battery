@@ -9,17 +9,6 @@ import toast from "react-hot-toast";
 
 const UpdateBattery = () => {
   const { short_code } = useParams();
-  let [options, setOptions] = useState([]);
-  let [VehicleOptions, setVehicleOptions] = useState([]);
-  const [modelOptions, setModelOptions] = useState({});
-  // const [loadModelOption, setLoadModelOption] = useState({});
-  // const [loadYearOption, setLoadYearOption] = useState({});
-  const [yearOptions, setYearOptions] = useState({});
-  console.log(options);
-  console.log(VehicleOptions);
-  console.log(modelOptions);
-  console.log(yearOptions);
-
   const fetchBatteryDetails = async ({ queryKey }) => {
     const [_key, { short_code }] = queryKey;
     const response = await axios.get(
@@ -58,6 +47,13 @@ const UpdateBattery = () => {
     queryFn: fetchCategories,
   });
 
+  let [VehicleOptions, setVehicleOptions] = useState([]);
+  let [options, setOptions] = useState([]);
+  const [modelOptions, setModelOptions] = useState({});
+  // const [loadModelOption, setLoadModelOption] = useState({});
+  // const [loadYearOption, setLoadYearOption] = useState({});
+  const [yearOptions, setYearOptions] = useState({});
+
   const [formData, setFormData] = useState({
     battery_name: "",
     short_code: "",
@@ -83,6 +79,8 @@ const UpdateBattery = () => {
     supported_vehicle_models: {},
     make_years_models: {},
   });
+
+  console.log(VehicleOptions);
 
   useEffect(() => {
     if (batteryDetails) {

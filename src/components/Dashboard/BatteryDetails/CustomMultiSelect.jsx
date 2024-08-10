@@ -2,8 +2,8 @@ const CustomMultiSelect = ({ prompts }) => {
   const {
     setInputValue,
     inputValue,
-    setVehicleOptions, // Added
     VehicleOptions, // Added
+    setVehicleOptions,
   } = prompts;
 
   const handleInputChange = (e) => {
@@ -13,10 +13,13 @@ const CustomMultiSelect = ({ prompts }) => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
+      // const inputValue = e.target.value;
+      console.log(inputValue);
       if (inputValue.trim()) {
         const newOption = inputValue.trim();
-        VehicleOptions.push(newOption); // Added
-        // setVehicleOptions(VehicleOptions); // Added
+        const newOptions = VehicleOptions.push(newOption);
+        console.log(newOptions);
+        setVehicleOptions(newOptions);
         setInputValue("");
       }
     }
@@ -25,29 +28,14 @@ const CustomMultiSelect = ({ prompts }) => {
   const handleRemoveOption = (optionToRemove) => {
     const index = VehicleOptions.indexOf(optionToRemove);
     const valueToRemove = VehicleOptions.splice(index, 1);
-    console.log(VehicleOptions);
-    console.log(valueToRemove);
+    const newOptions = VehicleOptions.filter((opt) => opt !== valueToRemove);
+    console.log(newOptions);
+    setVehicleOptions(newOptions);
+    setInputValue("");
   };
 
   return (
     <div>
-      <div className="mb-2">
-        {VehicleOptions?.map((option, index) => (
-          <span
-            key={index}
-            className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm mr-2 inline-flex items-center"
-          >
-            {option}
-            <button
-              type="button"
-              className="ml-2 text-white"
-              onClick={() => handleRemoveOption(option)}
-            >
-              x
-            </button>
-          </span>
-        ))}
-      </div>
       <input
         type="text"
         value={inputValue}
@@ -56,6 +44,24 @@ const CustomMultiSelect = ({ prompts }) => {
         onKeyDown={handleKeyDown}
         placeholder="Type and press space to add"
       />
+      <div className="my-2">
+        {VehicleOptions.length > 0 &&
+          VehicleOptions?.map((option, index) => (
+            <span
+              key={index}
+              className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
+            >
+              {option}
+              <button
+                type="button"
+                className="ml-2 text-white"
+                onClick={() => handleRemoveOption(option)}
+              >
+                x
+              </button>
+            </span>
+          ))}
+      </div>
     </div>
   );
 };
