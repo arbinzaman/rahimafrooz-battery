@@ -22,23 +22,6 @@ const YearSelect = ({ prompts, setOptions, placeholder }) => {
 
   return (
     <div>
-      <div>
-        {options.map((option, index) => (
-          <span
-            key={index}
-            className="bg-sky-500 text-white px-1 rounded-md text-sm"
-            style={{ margin: "0 5px", display: "inline-block" }}
-          >
-            {option}{" "}
-            <button
-              className="text-white"
-              onClick={() => handleRemoveOption(option)}
-            >
-              x
-            </button>
-          </span>
-        ))}
-      </div>
       <input
         type="text"
         value={inputValue}
@@ -46,7 +29,24 @@ const YearSelect = ({ prompts, setOptions, placeholder }) => {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-      />
+        />
+        <div>
+          {options.map((option, index) => (
+            <span
+              key={index}
+              className="bg-sky-500 text-white px-1 rounded-md text-sm"
+              style={{ margin: "0 5px", display: "inline-block" }}
+            >
+              {option}{" "}
+              <button
+                className="text-white"
+                onClick={() => handleRemoveOption(option)}
+              >
+                x
+              </button>
+            </span>
+          ))}
+        </div>
     </div>
   );
 };

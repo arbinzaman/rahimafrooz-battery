@@ -11,7 +11,7 @@ const CustomMultiSelect = ({ prompts }) => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       // const inputValue = e.target.value;
       console.log(inputValue);
@@ -42,7 +42,7 @@ const CustomMultiSelect = ({ prompts }) => {
         className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        placeholder="Type and press space to add"
+        placeholder="press enter to add items"
       />
       <div className="my-2">
         {VehicleOptions.length > 0 &&

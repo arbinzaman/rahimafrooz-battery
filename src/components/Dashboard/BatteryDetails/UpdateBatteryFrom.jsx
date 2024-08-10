@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { FaCarBattery } from "react-icons/fa";
 import CustomMultiSelect from "./CustomMultiSelect";
@@ -20,14 +20,14 @@ const UpdateBatteryForm = ({
   handleSupportedVehicleMakesChange,
   handleVehicleModelsChange,
   handleMakeYearsChange,
-  options,
-  setOptions,
   setModelOptions,
   modelOptions,
   setYearOptions,
   yearOptions,
   VehicleOptions,
   setVehicleOptions,
+  options,
+  setOptions,
 }) => {
   const {
     battery_name = "",
@@ -43,15 +43,13 @@ const UpdateBatteryForm = ({
     supported_vehicle_models = {},
     make_years_models = {},
   } = formData;
-  // console.log(options);
-
   // setting option to supported_vehicle_makes
   setVehicleOptions(supported_vehicle_makes);
-
-  const [inputValue, setInputValue] = useState();
+  setModelOptions(supported_vehicle_models);
+  console.log(modelOptions);
+  const [inputValue, setInputValue] = useState("");
   const [modelInputValue, setModelInputValue] = useState({});
   const [yearInputValue, setYearInputValue] = useState({});
-  // Utility functions to safely access arrays
 
   const handleModelInputValueChange = (make, value) => {
     setModelInputValue((prevState) => ({
@@ -109,7 +107,6 @@ const UpdateBatteryForm = ({
           Battery Form
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
-          {/* Form Fields */}
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
               Battery Name:
@@ -171,7 +168,6 @@ const UpdateBatteryForm = ({
             />
           </div>
 
-          {/* File Inputs */}
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
               Upload Image:
@@ -196,7 +192,6 @@ const UpdateBatteryForm = ({
             />
           </div>
 
-          {/* Select Inputs */}
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
               Applicable Categories:
@@ -229,7 +224,6 @@ const UpdateBatteryForm = ({
             />
           </div>
 
-          {/* Conditional Vehicle Fields */}
           {showVehicleFields && (
             <>
               <div className="mb-4">
@@ -239,9 +233,7 @@ const UpdateBatteryForm = ({
                 <CustomMultiSelect
                   prompts={{
                     supported_vehicle_makes,
-                    setOptions,
                     setInputValue,
-                    options,
                     inputValue,
                     setVehicleOptions,
                     VehicleOptions,
@@ -249,7 +241,7 @@ const UpdateBatteryForm = ({
                   setOptions={(newMakes) =>
                     handleSupportedVehicleMakesChange(newMakes)
                   }
-                  placeholder="press space to add supported makes"
+                  placeholder="press enter to add supported makes"
                 />
               </div>
               {supported_vehicle_makes?.map((make, index) => (
@@ -259,11 +251,14 @@ const UpdateBatteryForm = ({
                   </label>
                   <ModelSelect
                     prompts={{
-                      options: modelOptions[make] || getModels(make),
+                      options: modelOptions,
                       setInputValue: (value) =>
                         handleModelInputValueChange(make, value),
                       inputValue: modelInputValue[make] || "",
+                      setModelOptions,
+                      modelOptions,
                     }}
+                    make={make}
                     setOptions={(newModels) =>
                       handleModelOptionsChange(make, newModels)
                     }

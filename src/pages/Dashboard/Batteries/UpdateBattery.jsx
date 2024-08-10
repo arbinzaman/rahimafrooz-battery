@@ -80,7 +80,7 @@ const UpdateBattery = () => {
     make_years_models: {},
   });
 
-  console.log(VehicleOptions);
+  // console.log(VehicleOptions);
 
   useEffect(() => {
     if (batteryDetails) {
