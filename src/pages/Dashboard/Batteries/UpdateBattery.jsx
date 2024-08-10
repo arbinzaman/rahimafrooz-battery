@@ -9,8 +9,8 @@ import toast from "react-hot-toast";
 
 const UpdateBattery = () => {
   const { short_code } = useParams();
-  const [options, setOptions] = useState([]);
-  const [VehicleOptions, setVehicleOptions] = useState([]);
+  let [options, setOptions] = useState([]);
+  let [VehicleOptions, setVehicleOptions] = useState([]);
   const [modelOptions, setModelOptions] = useState({});
   // const [loadModelOption, setLoadModelOption] = useState({});
   // const [loadYearOption, setLoadYearOption] = useState({});

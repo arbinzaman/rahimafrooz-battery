@@ -1,11 +1,8 @@
-
 const CustomMultiSelect = ({ prompts }) => {
   const {
-    setOptions,
     setInputValue,
     inputValue,
-    options,
-    // setVehicleOptions, // Added
+    setVehicleOptions, // Added
     VehicleOptions, // Added
   } = prompts;
 
@@ -14,26 +11,28 @@ const CustomMultiSelect = ({ prompts }) => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === " ") {
+    if (e.key === "Enter") {
       e.preventDefault();
       if (inputValue.trim()) {
         const newOption = inputValue.trim();
-        const updatedOptions = [...options, newOption];
-        setOptions(updatedOptions || VehicleOptions);
+        VehicleOptions.push(newOption); // Added
+        // setVehicleOptions(VehicleOptions); // Added
         setInputValue("");
       }
     }
   };
 
   const handleRemoveOption = (optionToRemove) => {
-    const updatedOptions = options?.filter((option) => option !== optionToRemove);
-    setOptions(updatedOptions || VehicleOptions);
+    const index = VehicleOptions.indexOf(optionToRemove);
+    const valueToRemove = VehicleOptions.splice(index, 1);
+    console.log(VehicleOptions);
+    console.log(valueToRemove);
   };
 
   return (
     <div>
       <div className="mb-2">
-        {options?.map((option, index) => (
+        {VehicleOptions?.map((option, index) => (
           <span
             key={index}
             className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm mr-2 inline-flex items-center"
