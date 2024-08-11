@@ -47,6 +47,7 @@ const UpdateBatteryForm = ({
   setVehicleOptions(supported_vehicle_makes);
   setModelOptions(supported_vehicle_models);
   console.log(modelOptions);
+  
   const [inputValue, setInputValue] = useState("");
   const [modelInputValue, setModelInputValue] = useState({});
   const [yearInputValue, setYearInputValue] = useState({});

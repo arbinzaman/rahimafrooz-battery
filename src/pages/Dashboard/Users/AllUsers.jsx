@@ -104,16 +104,15 @@ const AllUsers = () => {
                 Add User <TiUserAdd />
               </button>
               <AddAUser />
+              <button
+                className="btn btn-ghost btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
+                onClick={handleDelete}
+                // disabled={selectedIds.length === 0}
+              >
+                Delete <FaTrashAlt />
+              </button>
             </>
           )}
-
-          <button
-            className="btn btn-ghost btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
-            onClick={handleDelete}
-            // disabled={selectedIds.length === 0}
-          >
-            Delete <FaTrashAlt />
-          </button>
         </div>
       </div>
 
@@ -121,29 +120,41 @@ const AllUsers = () => {
         <thead>
           <tr className="text-black">
             <th>
-              <input
-                type="checkbox"
-                onChange={handleSelectAll}
-                checked={selectedIds.length === users.length}
-              />
+              {user?.role === "Super Admin" && (
+                <>
+                  <input
+                    type="checkbox"
+                    onChange={handleSelectAll}
+                    checked={selectedIds.length === users.length}
+                  />
+                </>
+              )}
             </th>
             <th>Username</th>
             <th>Employee ID</th>
             <th>Email</th>
             <th>Role</th>
             <th>Joined At</th>
-            <th>Actions</th>
+            {user?.role === "Super Admin" && (
+              <>
+                <th>Actions</th>
+              </>
+            )}
           </tr>
         </thead>
         <tbody>
           {users.map((singleUser) => (
             <tr key={singleUser.id}>
               <td>
-                <input
-                  type="checkbox"
-                  onChange={() => handleCheckboxChange(singleUser.id)}
-                  checked={selectedIds.includes(singleUser.id)}
-                />
+                {user?.role === "Super Admin" && (
+                  <>
+                    <input
+                      type="checkbox"
+                      onChange={() => handleCheckboxChange(singleUser.id)}
+                      checked={selectedIds.includes(singleUser.id)}
+                    />
+                  </>
+                )}
               </td>
               <td>{singleUser.username}</td>
               <td>{singleUser.emp_id}</td>
