@@ -1,82 +1,95 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
 
 const AddBrandImg = ({ props }) => {
-  const { setIsLoading, refetch } = props;
-  const { register, handleSubmit } = useForm();
-  const formRef = useRef();
+  const { refetch } = props;
+  const [isLoading, setIsLoading] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
 
-  const handleFormSubmit = async (data) => {
+  const handleAddBrandImage = async (data) => {
     try {
       setIsLoading(true);
       const formdata = new FormData();
-      formdata.append("title", data.title);
-      formdata.append("location", data.location);
-      formdata.append("description", data.description);
-      formdata.append("image", data.image[0]);
+      formdata.append("brand_name", data.brand_name);
+      formdata.append("image_url", data.image_url[0]);
 
       const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/`,
+        `${import.meta.env.VITE_BASE_URL}/brands`,
         formdata
       );
 
       if (res.status === 201) {
-        formRef.current.reset();
-        toast.success("New record has been added.");
+        reset();
+        document.getElementById("addBrandModal").open = false;
         refetch();
-        setIsLoading(false);
+        toast.success("New record has been added.");
       }
     } catch (error) {
+      const message = error.response.data.message.split(":")[1];
+      toast.error(message);
+    } finally {
       setIsLoading(false);
-      console.log(error.message);
-      toast.error("Something error occurred!");
     }
   };
 
   return (
     <div>
-      <dialog id="my_modal_2" className="modal">
+      <dialog id="addBrandModal" className="modal">
         <div className="modal-box bg-white text-black">
-          <p className="font-semibold font-primary uppercase text-primary">
-            Add New Brand Image
-          </p>
+          <form method="dialog" className="flex justify-between items-center">
+            <p className="font-semibold font-primary uppercase text-primary">
+              Add New Brand Image
+            </p>
+            <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+          </form>
+
           <div className="">
             <form
               method="dialog"
-              ref={formRef}
-              onSubmit={handleSubmit(handleFormSubmit)}
+              onSubmit={handleSubmit(handleAddBrandImage)}
               className=""
             >
               <div className="my-2">
                 <label>
-                Brand Code <span className="text-red-600">*</span>
+                  Brand Name <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
                   required
                   className="border  rounded-md p-1 w-full bg-white text-black border-black "
-                  {...register("title")}
+                  {...register("brand_name")}
                 />
+                <small className="text-gray-500">
+                  Preferred to write in BLOCK letter and Unique brand name.
+                </small>
               </div>
 
               <div className="my-2">
+                <label>
+                  Image <span className="text-red-600">*</span>
+                </label>
                 <input
                   type="file"
                   required
                   className="file-input file-input-bordered file-input-sm w-full bg-white"
-                  {...register("image")}
+                  {...register("image_url")}
                 />
               </div>
 
               <div className="flex justify-end gap-3 items-center mt-3">
-                <button
-                  type=""
-                  className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
-                >
-                  Add
-                </button>
+                {isLoading ? (
+                  <ThreeDotLoader />
+                ) : (
+                  <button
+                    type=""
+                    className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
+                  >
+                    Add
+                  </button>
+                )}
               </div>
             </form>
           </div>
