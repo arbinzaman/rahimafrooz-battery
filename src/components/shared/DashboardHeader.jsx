@@ -20,9 +20,7 @@ const DashboardHeader = () => {
             <div className="flex justify-between items-center">
               <Link to="/dashboard">
                 <div className="flex items-center">
-                  <a href="/dashboard">
-                    <img className="w-5 lg:w-8 " src={Logo} alt="logo" />
-                  </a>
+                  <img className="w-5 lg:w-8 " src={Logo} alt="logo" />
                   <p className="text-white lg:text-primary ml-3 text-medium lg:text-semi_large font-bold">
                     Dashboard
                   </p>

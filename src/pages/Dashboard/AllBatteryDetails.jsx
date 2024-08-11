@@ -18,10 +18,8 @@ const AllBatteryDetails = () => {
   } = useQuery({
     queryKey: ["allBatteryDetails"],
     queryFn: async () => {
-      // console.log("Fetching data...");
       const res = await fetch(url);
       const data = await res.json();
-      // console.log("Data fetched:", data);
       return data;
     },
     refetchOnWindowFocus: true,
@@ -30,7 +28,6 @@ const AllBatteryDetails = () => {
     console.log(selectedIds);
     await refetch();
   };
-  refetch();
 
   if (isLoading) {
     return <Loader />;

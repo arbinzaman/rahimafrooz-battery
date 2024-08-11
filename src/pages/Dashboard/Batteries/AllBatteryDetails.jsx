@@ -27,11 +27,12 @@
       },
       refetchOnWindowFocus: true,
     });
+    
     const handleDelete = async () => {
       console.log(selectedIds);
       await refetch();
     };
-    refetch();
+
     if (isLoading) {
       return <Loader />;
     }
