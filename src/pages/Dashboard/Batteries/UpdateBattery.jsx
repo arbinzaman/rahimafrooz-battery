@@ -49,7 +49,7 @@ const UpdateBattery = () => {
 
   let [VehicleOptions, setVehicleOptions] = useState([]);
   let [options, setOptions] = useState([]);
-  const [modelOptions, setModelOptions] = useState({});
+  const [modelOptions, setModelOptions] = useState([]);
   // const [loadModelOption, setLoadModelOption] = useState({});
   // const [loadYearOption, setLoadYearOption] = useState({});
   const [yearOptions, setYearOptions] = useState({});

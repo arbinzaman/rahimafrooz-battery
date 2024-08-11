@@ -1,93 +1,68 @@
-const ModelSelect = ({ prompts, setOptions, placeholder, make }) => {
-  const { options, setInputValue, inputValue } = prompts;
-  console.log("options: ", options);
+import { useEffect } from "react";
+import { useRef } from "react";
+import { useState } from "react";
 
-  // Ensure options is always an array
-  const safeOptions = Array.isArray(options) ? options : [];
-
-  // Log safeOptions to debug
-  console.log("safeOptions: ", safeOptions);
+const ModelSelect = ({ props }) => {
+  const { make, options, modelInputValue, setModelInputValue } = props;
+  const [selectedModelOptions, setSelectedModelOptions] = useState(
+    options?.models
+  );
 
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+    setModelInputValue(e.target.value);
   };
-  
+
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      if (inputValue.trim()) {
-        const newModel = inputValue.trim();
-        const existingMake = safeOptions.find((option) => option.make === make);
-        let updatedOptions;
-        if (existingMake) {
-          updatedOptions = safeOptions.map((option) =>
-            option.make === make
-          ? { ...option, models: [...option.models, newModel] }
-          : option
-        );
-      } else {
-        updatedOptions = [...safeOptions, { make: make, models: [newModel] }];
+      console.log(modelInputValue);
+      if (modelInputValue.trim()) {
+        const newOption = modelInputValue.trim();
+        const newOptions = options?.models?.push(newOption);
+        // setSelectedModelOptions([...selectedModelOptions, newOption]);
+        console.log(newOptions);
       }
-      
-      // Log updatedOptions to debug
-      console.log("updatedOptions: ", updatedOptions);
-      
-      setOptions(updatedOptions);
-      setInputValue("");
     }
-  }
-};
-// console.log("existingMake", safeOptions.find((option) => option.make === make));
-
-  const handleRemoveOption = (modelToRemove) => {
-    const updatedOptions = safeOptions
-      .map((option) =>
-        option.make === make
-          ? {
-              ...option,
-              models: option.models.filter((model) => model !== modelToRemove),
-            }
-          : option
-      )
-      .filter((option) => option.models.length > 0);
-
-    setOptions(updatedOptions);
-    console.log(updatedOptions);
   };
 
-  const currentModels =
-    safeOptions.find((option) => option.make === make)?.models || [];
+  const handleRemoveOption = (optionToRemove) => {
+    const index = options?.models?.indexOf(optionToRemove);
+    const valueToRemove = options?.models?.splice(index, 1);
+    const newOptions = options?.models?.filter((opt) => opt !== valueToRemove);
+    setSelectedModelOptions(newOptions);
+  };
 
-  // Log currentModels to debug
-  console.log("currentModels: ", currentModels);
 
+  // console.log(selectedModelOptions);
+  console.log(options);
   return (
     <div>
       <input
         type="text"
-        value={inputValue}
+        id="InputID"
+        // value={modelInputValue}
         className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        placeholder={placeholder}
-        />
-        <div>
-          {currentModels.map((model, index) => (
-            <span
-              key={index}
-                        className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
-              style={{ margin: "0 5px", display: "inline-block" }}
+        // placeholder={placeholder}
+      />
+      <div>
+        {selectedModelOptions?.map((model, index) => (
+          <span
+            key={index}
+            className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
+            style={{ margin: "0 5px", display: "inline-block" }}
+          >
+            {model}{" "}
+            <button
+              className="text-white"
+              onClick={() => handleRemoveOption(model)}
             >
-              {model}{" "}
-              <button
-                className="text-white"
-                onClick={() => handleRemoveOption(model)}
-              >
-                x
-              </button>
-            </span>
-          ))}
-        </div>
+              x
+            </button>
+          </span>
+        ))}
+      </div>
     </div>
   );
 };
