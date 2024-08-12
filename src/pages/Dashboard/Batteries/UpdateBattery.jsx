@@ -46,14 +46,15 @@ const UpdateBattery = () => {
     queryKey: ["categories"],
     queryFn: fetchCategories,
   });
-
+  const makeYears = batteryDetails?.make_years;
+  // console.log(makeYears);
   let [VehicleOptions, setVehicleOptions] = useState([]);
   let [options, setOptions] = useState([]);
   const [modelOptions, setModelOptions] = useState([]);
   // const [loadModelOption, setLoadModelOption] = useState({});
   // const [loadYearOption, setLoadYearOption] = useState({});
-  const [yearOptions, setYearOptions] = useState({});
-
+  const [yearOptions, setYearOptions] = useState(makeYears || []);
+  // console.log(yearOptions);
   const [formData, setFormData] = useState({
     battery_name: "",
     short_code: "",
@@ -77,7 +78,7 @@ const UpdateBattery = () => {
     technology: "",
     supported_vehicle_makes: [],
     supported_vehicle_models: {},
-    make_years_models: {},
+    make_years: {},
   });
 
   // console.log(VehicleOptions);
@@ -158,7 +159,7 @@ const UpdateBattery = () => {
       ...prev,
       supported_vehicle_makes: makes,
       supported_vehicle_models: {},
-      make_years_models: {},
+      make_years: {},
     }));
   };
 
@@ -175,10 +176,10 @@ const UpdateBattery = () => {
   //   const handleMakeYearsChange = (make, model, years) => {
   //     setFormData((prev) => ({
   //       ...prev,
-  //       make_years_models: {
-  //         ...prev.make_years_models,
+  //       make_years: {
+  //         ...prev.make_years,
   //         [make]: {
-  //           ...prev.make_years_models[make],
+  //           ...prev.make_years[make],
   //           [model]: years,
   //         },
   //       },
@@ -187,7 +188,7 @@ const UpdateBattery = () => {
 
   const handleMakeYearsChange = (make, model, years) => {
     setFormData((prev) => {
-      const updatedMakeYearsModels = { ...prev.make_years_models };
+      const updatedMakeYearsModels = { ...prev.make_years };
 
       // Initialize the make if not already present
       if (!updatedMakeYearsModels[make]) {
@@ -204,7 +205,7 @@ const UpdateBattery = () => {
 
       return {
         ...prev,
-        make_years_models: updatedMakeYearsModels,
+        make_years: updatedMakeYearsModels,
       };
     });
   };
@@ -219,9 +220,9 @@ const UpdateBattery = () => {
       models: formData.supported_vehicle_models[make],
     }));
 
-    const makeYears = Object.keys(formData.make_years_models)?.map((model) => ({
+    const makeYears = Object.keys(formData.make_years)?.map((model) => ({
       model,
-      years: formData.make_years_models[model],
+      years: formData.make_years[model],
     }));
 
     const formattedData = {
