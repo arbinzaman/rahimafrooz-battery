@@ -5,7 +5,7 @@
   import { FaCarBattery } from "react-icons/fa";
   import { useState } from "react";
   import { LuRefreshCcw } from "react-icons/lu";
-  import { Link } from "react-router-dom";
+  import { Link,  } from "react-router-dom";
 
   const AllBatteryDetails = () => {
     const [selectedIds, setSelectedIds] = useState([]);
@@ -32,7 +32,7 @@
       console.log(selectedIds);
       await refetch();
     };
-
+  
     if (isLoading) {
       return <Loader />;
     }
