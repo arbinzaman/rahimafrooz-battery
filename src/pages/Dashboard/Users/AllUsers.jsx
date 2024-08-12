@@ -128,12 +128,14 @@ const AllUsers = () => {
                 )}
               </td>
               <td>
-                <button
-                  className="btn btn-ghost btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
-                  onClick={() => handleDelete(singleUser.id)}
-                >
-                  <FaTrashAlt />
-                </button>
+                {user?.role === "Super Admin" && (
+                  <button
+                    className="btn btn-ghost btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
+                    onClick={() => handleDelete(singleUser.id)}
+                  >
+                    <FaTrashAlt />
+                  </button>
+                )}
               </td>
             </tr>
           ))}
