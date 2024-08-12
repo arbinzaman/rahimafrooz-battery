@@ -7,11 +7,13 @@ import { TiUserAdd } from "react-icons/ti";
 import AddAUser from "./AddAUser";
 import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
 import { useUser } from "../../../contexts/AuthContext";
+import axios from "axios";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 const AllUsers = () => {
   const queryClient = useQueryClient();
-  const { user } = useUser(); // Fetch the user context
-  const [selectedIds, setSelectedIds] = useState([]);
+  const { user } = useUser();
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -29,49 +31,30 @@ const AllUsers = () => {
     data: users = [],
     isLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUsers,
   });
 
-  const handleDelete = async () => {
+  const handleDelete = async (id) => {
     try {
-      const res = await fetch(API_URL, {
-        method: "DELETE",
+      const res = await axios.delete(API_URL + `/${id}`, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
         },
-        body: JSON.stringify({ ids: selectedIds }),
       });
 
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
+      if (res.status === 200) {
+        toast.success("Successfully deleted!");
       }
 
-      const data = await res.json();
-      console.log("Delete success:", data);
-
       queryClient.invalidateQueries(["users"]);
-      setSelectedIds([]);
     } catch (error) {
+      toast.error("User deletion failed! Try again");
       console.error("Error deleting users:", error);
     }
-  };
-
-  const handleSelectAll = (event) => {
-    if (event.target.checked) {
-      setSelectedIds(users.map((user) => user.id));
-    } else {
-      setSelectedIds([]);
-    }
-  };
-
-  const handleCheckboxChange = (id) => {
-    setSelectedIds((prevSelectedIds) =>
-      prevSelectedIds.includes(id)
-        ? prevSelectedIds.filter((selectedId) => selectedId !== id)
-        : [...prevSelectedIds, id]
-    );
   };
 
   const handleUpdate = (user) => {
@@ -99,18 +82,11 @@ const AllUsers = () => {
             <>
               <button
                 className="btn btn-ghost btn-xs hover:bg-sky-700 text-white bg-sky-400"
-                onClick={() => document.getElementById("addUser").showModal()}
+                onClick={() => (document.getElementById("addUser").open = true)}
               >
                 Add User <TiUserAdd />
               </button>
-              <AddAUser />
-              <button
-                className="btn btn-ghost btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
-                onClick={handleDelete}
-                // disabled={selectedIds.length === 0}
-              >
-                Delete <FaTrashAlt />
-              </button>
+              <AddAUser addModalProps={{ refetch }} />
             </>
           )}
         </div>
@@ -119,17 +95,6 @@ const AllUsers = () => {
       <table className="table w-full text-black">
         <thead>
           <tr className="text-black">
-            <th>
-              {user?.role === "Super Admin" && (
-                <>
-                  <input
-                    type="checkbox"
-                    onChange={handleSelectAll}
-                    checked={selectedIds.length === users.length}
-                  />
-                </>
-              )}
-            </th>
             <th>Username</th>
             <th>Employee ID</th>
             <th>Email</th>
@@ -145,17 +110,6 @@ const AllUsers = () => {
         <tbody>
           {users.map((singleUser) => (
             <tr key={singleUser.id}>
-              <td>
-                {user?.role === "Super Admin" && (
-                  <>
-                    <input
-                      type="checkbox"
-                      onChange={() => handleCheckboxChange(singleUser.id)}
-                      checked={selectedIds.includes(singleUser.id)}
-                    />
-                  </>
-                )}
-              </td>
               <td>{singleUser.username}</td>
               <td>{singleUser.emp_id}</td>
               <td>{singleUser.email}</td>
@@ -172,6 +126,14 @@ const AllUsers = () => {
                     </button>
                   </>
                 )}
+              </td>
+              <td>
+                <button
+                  className="btn btn-ghost btn-xs  bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
+                  onClick={() => handleDelete(singleUser.id)}
+                >
+                  <FaTrashAlt />
+                </button>
               </td>
             </tr>
           ))}

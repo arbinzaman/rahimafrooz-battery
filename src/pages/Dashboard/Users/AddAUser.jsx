@@ -1,40 +1,35 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { GrDocumentUpdate } from "react-icons/gr";
+import axios from "axios";
+import Cookies from "js-cookie";
 
-const AddAUser = () => {
-  const navigate = useNavigate();
+const AddAUser = ({ addModalProps }) => {
   const { register, handleSubmit, reset } = useForm();
-
+  const { refetch } = addModalProps;
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Define the API URL for adding users
   const API_URL = `${import.meta.env.VITE_BASE_URL}/users`;
 
   const onSubmit = async (data) => {
-    setIsSubmitting(true);
     try {
-      const res = await fetch(API_URL, {
-        method: "POST",
+      setIsSubmitting(true);
+      const res = await axios.post(API_URL, data, {
         headers: {
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
         },
-        body: JSON.stringify(data),
       });
 
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
+      if (res.status === 201) {
+        reset();
+        document.getElementById("addUser").open = false;
+        refetch();
+        toast.success("User added successfully");
       }
-
-      // const result = await res.json();
-      toast.success("User added successfully!");
-      reset(); // Reset form fields after successful submission
-      navigate("/dashboard/all-users"); // Redirect to the users list
     } catch (error) {
       toast.error("Failed to add user. Please try again.");
-      console.error("Error adding user:", error);
     } finally {
       setIsSubmitting(false);
     }
