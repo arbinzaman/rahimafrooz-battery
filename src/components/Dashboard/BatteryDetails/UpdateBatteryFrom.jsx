@@ -49,7 +49,7 @@ const UpdateBatteryForm = ({
   console.log(modelOptions);
   
   const [inputValue, setInputValue] = useState("");
-  const [modelInputValue, setModelInputValue] = useState({});
+  const [modelInputValue, setModelInputValue] = useState("");
   const [yearInputValue, setYearInputValue] = useState({});
 
   const handleModelInputValueChange = (make, value) => {
@@ -251,19 +251,14 @@ const UpdateBatteryForm = ({
                     {make} Models:
                   </label>
                   <ModelSelect
-                    prompts={{
-                      options: modelOptions,
-                      setInputValue: (value) =>
-                        handleModelInputValueChange(make, value),
-                      inputValue: modelInputValue[make] || "",
-                      setModelOptions,
-                      modelOptions,
+                    props={{
+                      make,
+                      options: modelOptions.find(
+                        (options) => options.make === make
+                      ),
+                      modelInputValue,
+                      setModelInputValue,
                     }}
-                    make={make}
-                    setOptions={(newModels) =>
-                      handleModelOptionsChange(make, newModels)
-                    }
-                    placeholder="press space to add models"
                   />
                   {getModels(make).map((model, modelIndex) => (
                     <div key={modelIndex} className="mt-2 ml-4">
