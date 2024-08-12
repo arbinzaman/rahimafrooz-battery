@@ -17,7 +17,7 @@ const Login = () => {
       const email = form.email.value;
       const password = form.password.value;
       const res = await login(email, password);
-      
+
       if (res === 200) {
         navigate("/dashboard");
       }
@@ -59,9 +59,9 @@ const Login = () => {
               className="w-full px-4 py-3 rounded-md border border-gray-300 text-gray-800 focus:border-primary focus:outline-none bg-white"
             />
             <div className="flex justify-end text-xs text-gray-500">
-              <a rel="noopener noreferrer" href="#">
+              <button onClick={() => navigate("/forgot-password")}>
                 Forgot Password?
-              </a>
+              </button>
             </div>
           </div>
           {!isLoading ? (

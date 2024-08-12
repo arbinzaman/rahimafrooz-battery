@@ -19,8 +19,6 @@ export const AuthProvider = ({ children }) => {
         { email, password }
       );
 
-      // console.log(res)
-
       if (res.status === 200) {
         localStorage.setItem(
           "user",
@@ -37,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       // console.log(error)
       // console.error("Login failed:", error.message);
-      toast.error(`${error.response.data.message}`)
+      toast.error(`${error.response.data.message}`);
     }
   };
 

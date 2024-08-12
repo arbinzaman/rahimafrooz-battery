@@ -33,7 +33,6 @@ import AllCerificates from "../pages/Dashboard/Certificates/AllCerificates";
 import AddACertificateData from "../pages/Dashboard/Certificates/AddACertificateData";
 import AllFaqs from "../pages/Dashboard/Faq/AllFaq";
 import AllUsers from "../pages/Dashboard/Users/AllUsers";
-import AddAUser from "../pages/Dashboard/Users/AddAUser";
 import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
 import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
 import PrivateRoute from "./PrivateRoutes/PrivateRoute";
@@ -47,6 +46,7 @@ import Awards from "../pages/Dashboard/Awards/Awards";
 import AllNews from "../pages/Dashboard/News/AllNews";
 import Profile from "../pages/Dashboard/UserProfile/Profile";
 import AllReviews from "../pages/Dashboard/Review/AllReviews";
+import ForgotPass from "../pages/Dashboard/ForgotPass";
 
 const routes = createBrowserRouter([
   {
@@ -132,6 +132,14 @@ const routes = createBrowserRouter([
     ),
   },
   {
+    path: "/forgot-password",
+    element: (
+      <RestricIfLoggedInRoute>
+        <ForgotPass />
+      </RestricIfLoggedInRoute>
+    ),
+  },
+  {
     path: "/dashboard",
     element: (
       <PrivateRoute>
@@ -210,10 +218,6 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/all-users",
         element: <AllUsers />,
-      },
-      {
-        path: "/dashboard/add-a-user",
-        element: <AddAUser />,
       },
       {
         path: "/dashboard/brand-image",

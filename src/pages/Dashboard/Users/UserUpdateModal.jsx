@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { GrDocumentUpdate } from "react-icons/gr";
-import { useUser } from "../../../contexts/AuthContext"; // Import useUser context hook
+import { useUser } from "../../../contexts/AuthContext";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const UserUpdateModal = ({ user, onClose, onUpdate }) => {
-  const { user: currentUser } = useUser(); // Get current user's role from context
+  const { user: currentUser } = useUser();
   const { register, handleSubmit, reset } = useForm({
     defaultValues: user,
   });
@@ -19,21 +21,17 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      const res = await fetch(API_URL, {
-        method: "PATCH",
+      const res = await axios.patch(API_URL, data, {
         headers: {
-          "Content-Type": "application/json",
+          authorization: `Bearer ${Cookies.get("XTOKEN")}`,
         },
-        body: JSON.stringify(data),
       });
 
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
+      if (res.status === 200) {
+        onUpdate();
+        onClose();
+        toast.success("User updated successfully!");
       }
-
-      toast.success("User updated successfully!");
-      onUpdate(); // Refresh the user list
-      onClose(); // Close the modal
     } catch (error) {
       toast.error("Failed to update user. Please try again.");
       console.error("Error updating user:", error);
@@ -42,7 +40,6 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
     }
   };
 
-  // Reset form when user prop changes
   useEffect(() => {
     reset(user);
   }, [user, reset]);
@@ -57,18 +54,20 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
             <input
               type="text"
               placeholder="Username"
-              {...register("username", { required: true })}
+              {...register("username")}
               className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Employee ID</label>
+            <label className="block text-sm font-medium mb-2">
+              Employee ID
+            </label>
             <input
               type="text"
               placeholder="Employee ID"
               disabled
-              {...register("emp_id", { required: true })}
+              {...register("emp_id")}
               className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
             />
           </div>
@@ -79,7 +78,7 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
               type="email"
               disabled
               placeholder="Email"
-              {...register("email", { required: true })}
+              {...register("email")}
               className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
             />
           </div>
@@ -87,7 +86,7 @@ const UserUpdateModal = ({ user, onClose, onUpdate }) => {
           <div>
             <label className="block text-sm font-medium mb-2">Role</label>
             <select
-              {...register("role", { required: true })}
+              {...register("role")}
               disabled={currentUser.role !== "Super Admin"} // Disable if not Super Admin
               className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
             >
