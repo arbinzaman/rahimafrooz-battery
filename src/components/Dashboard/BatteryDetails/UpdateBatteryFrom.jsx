@@ -41,12 +41,17 @@ const UpdateBatteryForm = ({
     technology = "",
     supported_vehicle_makes = [],
     supported_vehicle_models = {},
-    make_years_models = {},
+    make_years = {},
   } = formData;
   // setting option to supported_vehicle_makes
   setVehicleOptions(supported_vehicle_makes);
   setModelOptions(supported_vehicle_models);
-  console.log(modelOptions);
+  // setYearOptions(make_years);
+  // console.log(yearOptions);
+  // console.log(make_years);
+  // console.log(modelOptions);
+  // console.log(modelOptions);
+
   const [inputValue, setInputValue] = useState("");
   const [modelInputValue, setModelInputValue] = useState("");
   const [yearInputValue, setYearInputValue] = useState({});
@@ -86,16 +91,6 @@ const UpdateBatteryForm = ({
     }));
     handleMakeYearsChange(make, model, newYears);
   };
-
-  const getModels = (make) =>
-    Array.isArray(supported_vehicle_models[make])
-      ? supported_vehicle_models[make]
-      : [];
-
-  const getYears = (make, model) =>
-    Array.isArray(make_years_models[make]?.[model])
-      ? make_years_models[make][model]
-      : [];
 
   return (
     <div>
@@ -259,26 +254,30 @@ const UpdateBatteryForm = ({
                       setModelInputValue,
                     }}
                   />
-                  {getModels(make).map((model, modelIndex) => (
-                    <div key={modelIndex} className="mt-2 ml-4">
-                      <label className="block text-small text-gray-800 pb-1">
-                        {model} Years:
-                      </label>
-                      <YearSelect
-                        prompts={{
-                          options:
-                            yearOptions[make]?.[model] || getYears(make, model),
-                          setInputValue: (value) =>
-                            handleYearInputValueChange(make, model, value),
-                          inputValue: yearInputValue[make]?.[model] || "",
-                        }}
-                        setOptions={(newYears) =>
-                          handleYearOptionsChange(make, model, newYears)
-                        }
-                        placeholder="press space to add years"
-                      />
-                    </div>
-                  ))}
+             
+                  {supported_vehicle_models
+                    ?.find((vehicle) => vehicle.make === make)
+                    ?.models.map((model, modelIndex) => {
+                      const matchedYears =
+                        make_years.find((yearData) => yearData.model === model)
+                          ?.years || [];
+                      return (
+                        <div key={modelIndex} className="mt-2 ml-4">
+                          <label className="block text-small text-gray-800 pb-1">
+                            {model} Years:
+                          </label>
+                          <YearSelect
+                            props={{
+                              make,
+                              model,
+                              options: matchedYears,
+                              yearInputValue,
+                              setYearInputValue,
+                            }}
+                          />
+                        </div>
+                      );
+                    })}
                 </div>
               ))}
             </>

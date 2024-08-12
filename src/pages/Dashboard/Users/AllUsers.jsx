@@ -100,7 +100,11 @@ const AllUsers = () => {
             <th>Email</th>
             <th>Role</th>
             <th>Joined At</th>
-            <th>Actions</th>
+            {user?.role === "Super Admin" && (
+              <>
+                <th>Actions</th>
+              </>
+            )}
           </tr>
         </thead>
         <tbody>
