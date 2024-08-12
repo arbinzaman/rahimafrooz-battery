@@ -2,6 +2,8 @@ import { useState } from "react";
 import BatteryDetailsModal from "./BatteryDetailsModal";
 import { BiDetail } from "react-icons/bi";
 import ButtonLoader from "../../shared/Loaders/ButtonLoader";
+import { useNavigate } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
 
 const BatteryDetailsTable = ({ prompts }) => {
   const [selectAll, setSelectAll] = useState(false);
@@ -9,6 +11,7 @@ const BatteryDetailsTable = ({ prompts }) => {
     useState(null);
   const [loading, setLoading] = useState(false);
   const { allBatteryDetails, selectedIds, setSelectedIds } = prompts;
+  const navigate = useNavigate();
 
   const handleCheckboxChange = (short_code) => {
     setSelectedIds((prevSelectedIds) => {
@@ -51,6 +54,10 @@ const BatteryDetailsTable = ({ prompts }) => {
     setSelectAll(!selectAll);
   };
 
+  const handleUpdateClick = (short_code) => {
+    navigate(`/dashboard/update-battery/${short_code}`);
+  };
+
   return (
     <div className="overflow-x-auto">
       <dialog
@@ -58,7 +65,9 @@ const BatteryDetailsTable = ({ prompts }) => {
         className="modal modal-bottom sm:modal-middle "
       >
         {selectTableDetailsForModal && (
-          <BatteryDetailsModal prompts={{selectTableDetailsForModal,loading}} />
+          <BatteryDetailsModal
+            prompts={{ selectTableDetailsForModal, loading }}
+          />
         )}
       </dialog>
       <table className="table w-full text-black">
@@ -81,6 +90,7 @@ const BatteryDetailsTable = ({ prompts }) => {
             <th>Capacity (Ah)</th>
             <th>CCA</th>
             <th>Country of Origin</th>
+            <th>Update</th>
             <th>Details</th>
           </tr>
         </thead>
@@ -104,12 +114,21 @@ const BatteryDetailsTable = ({ prompts }) => {
               <td>{battery.cold_cranking_ability_cca}</td>
               <td>{battery.country_of_origin}</td>
               <td>
+                {" "}
+                <button
+                  className="btn btn-xs bg-sky-400 border-0 text-white hover:bg-sky-700 hover:text-white"
+                  onClick={() => handleUpdateClick(battery.short_code)}
+                >
+                  <FaEdit />
+                </button>
+              </td>
+              <td>
                 <button
                   className="btn btn-xs bg-blue-400 border-0"
                   onClick={() => handleModalOpen(battery.short_code)}
                 >
                   {loading ? (
-                    <ButtonLoader  />
+                    <ButtonLoader />
                   ) : (
                     <BiDetail className="text-white" />
                   )}

@@ -10,28 +10,33 @@ import "../../styles/Home.css";
 
 const HomeCounter = () => {
   const [counterOn, setCounterOn] = useState(false);
-  const [businessPartnersCount, setBusinessPartnersCount] = useState(75);
+  const [businessPartnersCount, setBusinessPartnersCount] = useState(0);
   const [productInUseCount, setProductInUseCount] = useState(0);
   const [dealersCount, setDealersCount] = useState(0);
 
-  console.log(businessPartnersCount, productInUseCount, dealersCount);
   useEffect(() => {
     // Fetch BUSINESS PARTNERS data
     const fetchBusinessPartners = async () => {
-      // try {
-      //   const res = await fetch("http://localhost:8000/api/v1/global-location");
-      //   const data = await res.json();
-      //   console.log(data);
-      //   setBusinessPartnersCount(data.length); // Assuming the response is an array
-      // } catch (error) {
-      //   console.error("Error fetching business partners data:", error);
-      // }
+      try {
+        const res = await fetch(
+          `${import.meta.env.VITE_BASE_URL}/global-presence/`
+        );
+        const data = await res.json();
+        // Calculate the total number of countries
+        const totalCountries = data.reduce(
+          (acc, continent) => acc + continent.countries.length,
+          0
+        );
+        setBusinessPartnersCount(totalCountries);
+      } catch (error) {
+        console.error("Error fetching business partners data:", error);
+      }
     };
 
     // Fetch PRODUCT IN-USE data
     const fetchProductInUse = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/v1/batteries");
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/batteries`);
         const data = await res.json();
         setProductInUseCount(data.length); // Assuming the response is an array
       } catch (error) {
@@ -42,7 +47,9 @@ const HomeCounter = () => {
     // Fetch DEALERS data
     const fetchDealers = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/v1/dealer-applications");
+        const res = await fetch(
+          `${import.meta.env.VITE_BASE_URL}/dealer-applications`
+        );
         const data = await res.json();
         setDealersCount(data.length); // Assuming the response is an array
       } catch (error) {
