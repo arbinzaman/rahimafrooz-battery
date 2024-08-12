@@ -1,10 +1,7 @@
 /* eslint-disable no-useless-escape */
 import { useState } from "react";
 import axios from "axios";
-import {
-  FaEye,
-  FaEyeSlash,
-} from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AiOutlineSave } from "react-icons/ai";
 import { useUser } from "../../../contexts/AuthContext";
 import toast from "react-hot-toast";
@@ -139,6 +136,7 @@ const UpdatePassword = () => {
                 <label
                   htmlFor="password"
                   className="absolute left-3 top-2 text-sm text-gray-500 transition-transform duration-300 transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
+                  //  className="absolute left-3 top-2 text-sm text-gray-500 transition-transform duration-300 transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
                 >
                   Current Password
                 </label>
@@ -172,6 +170,7 @@ const UpdatePassword = () => {
                 <label
                   htmlFor="newPassword"
                   className="absolute left-3 top-2 text-sm text-gray-500 transition-transform duration-300 transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
+                  // className="absolute left-3 top-2 text-sm text-gray-500 transition-transform duration-300 transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
                 >
                   New Password
                 </label>
