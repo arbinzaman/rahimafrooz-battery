@@ -1,9 +1,9 @@
-const CustomMultiSelect = ({ prompts }) => {
+const SupportedVehicleMakesSelect = ({ prompts }) => {
   const {
     setInputValue,
     inputValue,
-    VehicleOptions, // Added
-    setVehicleOptions,
+    supportedVehicleMakes,
+    setSupportedVehicleMakes,
   } = prompts;
 
   const handleInputChange = (e) => {
@@ -13,24 +13,22 @@ const CustomMultiSelect = ({ prompts }) => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      // const inputValue = e.target.value;
-      console.log(inputValue);
       if (inputValue.trim()) {
         const newOption = inputValue.trim();
-        const newOptions = VehicleOptions.push(newOption);
+        const newOptions = supportedVehicleMakes.push(newOption);
         console.log(newOptions);
-        setVehicleOptions(newOptions);
+        setSupportedVehicleMakes(newOptions);
         setInputValue("");
       }
     }
   };
 
   const handleRemoveOption = (optionToRemove) => {
-    const index = VehicleOptions.indexOf(optionToRemove);
-    const valueToRemove = VehicleOptions.splice(index, 1);
-    const newOptions = VehicleOptions.filter((opt) => opt !== valueToRemove);
+    const index = supportedVehicleMakes.indexOf(optionToRemove);
+    const valueToRemove = supportedVehicleMakes.splice(index, 1);
+    const newOptions = supportedVehicleMakes.filter((opt) => opt !== valueToRemove);
     console.log(newOptions);
-    setVehicleOptions(newOptions);
+    setSupportedVehicleMakes(newOptions);
     setInputValue("");
   };
 
@@ -45,8 +43,8 @@ const CustomMultiSelect = ({ prompts }) => {
         placeholder="press enter to add items"
       />
       <div className="my-2">
-        {VehicleOptions.length > 0 &&
-          VehicleOptions?.map((option, index) => (
+        {supportedVehicleMakes.length > 0 &&
+          supportedVehicleMakes?.map((option, index) => (
             <span
               key={index}
               className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
@@ -66,4 +64,4 @@ const CustomMultiSelect = ({ prompts }) => {
   );
 };
 
-export default CustomMultiSelect;
+export default SupportedVehicleMakesSelect;

@@ -9,13 +9,20 @@ import toast from "react-hot-toast";
 
 const UpdateBattery = () => {
   const { short_code } = useParams();
+  const [supportedVehicleMakes, setSupportedVehicleMakes] = useState([]);
+  const [supportedVehicleModels, setSupportedVehicleModels] = useState([]);
+  const [vehicleMakeYears, setVehicleMakeYears] = useState([]);
+
   const fetchBatteryDetails = async ({ queryKey }) => {
     const [_key, { short_code }] = queryKey;
     const response = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`
     );
+    // console.log(response.data);
+    setSupportedVehicleMakes(response.data.supported_vehicle_makes);
+    setSupportedVehicleModels(response.data.supported_vehicle_models);
+    setVehicleMakeYears(response.data.make_years);
     return response.data;
-    // return console.log(response.data);
   };
 
   const fetchCategories = async () => {
@@ -46,15 +53,11 @@ const UpdateBattery = () => {
     queryKey: ["categories"],
     queryFn: fetchCategories,
   });
-  const makeYears = batteryDetails?.make_years;
-  // console.log(makeYears);
-  let [VehicleOptions, setVehicleOptions] = useState([]);
-  let [options, setOptions] = useState([]);
-  const [modelOptions, setModelOptions] = useState([]);
-  // const [loadModelOption, setLoadModelOption] = useState({});
-  // const [loadYearOption, setLoadYearOption] = useState({});
-  const [yearOptions, setYearOptions] = useState(makeYears || []);
-  // console.log(yearOptions);
+
+  // console.log(supportedVehicleMakes);
+  // console.log(supportedVehicleModels);
+  // console.log(vehicleMakeYears);
+
   const [formData, setFormData] = useState({
     battery_name: "",
     short_code: "",
@@ -81,7 +84,6 @@ const UpdateBattery = () => {
     make_years: {},
   });
 
-  // console.log(VehicleOptions);
 
   useEffect(() => {
     if (batteryDetails) {
@@ -90,10 +92,12 @@ const UpdateBattery = () => {
   }, [batteryDetails]);
 
   if (batteryLoading || categoriesLoading) return <Loader />;
+
   if (batteryError) {
     toast.error(batteryError.message);
     return <div>Error: {batteryError.message}</div>;
   }
+
   if (categoriesError) {
     toast.error(categoriesError.message);
     return <div>Error: {categoriesError.message}</div>;
@@ -210,40 +214,40 @@ const UpdateBattery = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    const supportedVehicleModels = Object.keys(
-      formData.supported_vehicle_models
-    )?.map((make) => ({
-      make,
-      models: formData.supported_vehicle_models[make],
-    }));
+  //   const supportedVehicleModels = Object.keys(
+  //     formData.supported_vehicle_models
+  //   )?.map((make) => ({
+  //     make,
+  //     models: formData.supported_vehicle_models[make],
+  //   }));
 
-    const makeYears = Object.keys(formData.make_years)?.map((model) => ({
-      model,
-      years: formData.make_years[model],
-    }));
+  //   const makeYears = Object.keys(formData.make_years)?.map((model) => ({
+  //     model,
+  //     years: formData.make_years[model],
+  //   }));
 
-    const formattedData = {
-      ...formData,
-      supported_vehicle_models: supportedVehicleModels,
-      make_years: makeYears,
-    };
-    console.log(formattedData);
-    try {
-      const response = await axios.patch(
-        `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`,
-        formattedData,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
-      console.log("Update successful:", response.data);
-      // Optionally, redirect or show a success message
-    } catch (error) {
-      console.error("Update failed:", error);
-      // Optionally, show an error message
-    }
-  };
+  //   const formattedData = {
+  //     ...formData,
+  //     supported_vehicle_models: supportedVehicleModels,
+  //     make_years: makeYears,
+  //   };
+  //   console.log(formattedData);
+  //   try {
+  //     // const response = await axios.patch(
+  //     //   `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`,
+  //     //   formattedData,
+  //     //   { headers: { "Content-Type": "multipart/form-data" } }
+  //     // );
+  //     // console.log("Update successful:", response.data);
+  //     // Optionally, redirect or show a success message
+  //   } catch (error) {
+  //     console.error("Update failed:", error);
+  //     // Optionally, show an error message
+  //   }
+  // };
 
   const showVehicleFields =
     formData.applicable_categories.includes("Passenger Car") ||
@@ -255,27 +259,26 @@ const UpdateBattery = () => {
         Update Battery Form
       </h1>
       <UpdateBatteryForm
-        showVehicleFields={showVehicleFields}
-        categories={categories}
-        technologyOptions={technologyOptions}
-        formData={formData}
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        handleFileChange={handleFileChange}
-        handleTerminalLayoutChange={handleTerminalLayoutChange}
-        handleCategoryChange={handleCategoryChange}
-        handleTechnologyChange={handleTechnologyChange}
-        handleSupportedVehicleMakesChange={handleSupportedVehicleMakesChange}
-        handleVehicleModelsChange={handleVehicleModelsChange}
-        handleMakeYearsChange={handleMakeYearsChange}
-        options={options}
-        setOptions={setOptions}
-        yearOptions={yearOptions}
-        setYearOptions={setYearOptions}
-        modelOptions={modelOptions}
-        setModelOptions={setModelOptions}
-        VehicleOptions={VehicleOptions}
-        setVehicleOptions={setVehicleOptions}
+        batteryUpdateProps={{
+          showVehicleFields,
+          categories,
+          technologyOptions,
+          formData,
+          handleChange,
+          handleFileChange,
+          handleTerminalLayoutChange,
+          handleCategoryChange,
+          handleTechnologyChange,
+          handleSupportedVehicleMakesChange,
+          handleVehicleModelsChange,
+          handleMakeYearsChange,
+          supportedVehicleModels,
+          setSupportedVehicleModels,
+          vehicleMakeYears,
+          setVehicleMakeYears,
+          supportedVehicleMakes,
+          setSupportedVehicleMakes,
+        }}
       />
     </div>
   );
