@@ -2,33 +2,33 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { FaCarBattery } from "react-icons/fa";
-import CustomMultiSelect from "./CustomMultiSelect";
+import SupportedVehicleMakesSelect from "./SupportedVehicleMakesSelect";
 import ModelSelect from "./ModelSelect";
 import YearSelect from "./YearSelect";
 
-const UpdateBatteryForm = ({
-  showVehicleFields,
-  categories,
-  technologyOptions,
-  formData,
-  handleSubmit,
-  handleChange,
-  handleFileChange,
-  handleTerminalLayoutChange,
-  handleCategoryChange,
-  handleTechnologyChange,
-  handleSupportedVehicleMakesChange,
-  handleVehicleModelsChange,
-  handleMakeYearsChange,
-  setModelOptions,
-  modelOptions,
-  setYearOptions,
-  yearOptions,
-  VehicleOptions,
-  setVehicleOptions,
-  options,
-  setOptions,
-}) => {
+const UpdateBatteryForm = ({ batteryUpdateProps }) => {
+  const {
+    showVehicleFields,
+    categories,
+    technologyOptions,
+    formData,
+    // handleSubmit,
+    handleChange,
+    handleFileChange,
+    handleTerminalLayoutChange,
+    handleCategoryChange,
+    handleTechnologyChange,
+    handleSupportedVehicleMakesChange,
+    handleVehicleModelsChange,
+    handleMakeYearsChange,
+    supportedVehicleModels,
+    setSupportedVehicleModels,
+    vehicleMakeYears,
+    setVehicleMakeYears,
+    supportedVehicleMakes,
+    setSupportedVehicleMakes,
+  } = batteryUpdateProps;
+
   const {
     battery_name = "",
     short_code = "",
@@ -43,53 +43,80 @@ const UpdateBatteryForm = ({
     supported_vehicle_models = {},
     make_years = {},
   } = formData;
-  // setting option to supported_vehicle_makes
-  setVehicleOptions(supported_vehicle_makes);
-  setModelOptions(supported_vehicle_models);
-  // setYearOptions(make_years);
-  // console.log(yearOptions);
-  // console.log(make_years);
-  // console.log(modelOptions);
-  // console.log(modelOptions);
 
   const [inputValue, setInputValue] = useState("");
   const [modelInputValue, setModelInputValue] = useState("");
   const [yearInputValue, setYearInputValue] = useState({});
 
-  const handleModelInputValueChange = (make, value) => {
-    setModelInputValue((prevState) => ({
-      ...prevState,
-      [make]: value,
-    }));
-  };
+  // const handleModelInputValueChange = (make, value) => {
+  //   setModelInputValue((prevState) => ({
+  //     ...prevState,
+  //     [make]: value,
+  //   }));
+  // };
 
-  const handleYearInputValueChange = (make, model, value) => {
-    setYearInputValue((prevState) => ({
-      ...prevState,
-      [make]: {
-        ...prevState[make],
-        [model]: value,
-      },
-    }));
-  };
+  // const handleYearInputValueChange = (make, model, value) => {
+  //   setYearInputValue((prevState) => ({
+  //     ...prevState,
+  //     [make]: {
+  //       ...prevState[make],
+  //       [model]: value,
+  //     },
+  //   }));
+  // };
 
-  const handleModelOptionsChange = (make, newModels) => {
-    setModelOptions((prevState) => ({
-      ...prevState,
-      [make]: newModels,
-    }));
-    handleVehicleModelsChange(make, newModels);
-  };
+  // const handleModelOptionsChange = (make, newModels) => {
+  //   setSupportedVehicleModels((prevState) => ({
+  //     ...prevState,
+  //     [make]: newModels,
+  //   }));
+  //   handleVehicleModelsChange(make, newModels);
+  // };
 
-  const handleYearOptionsChange = (make, model, newYears) => {
-    setYearOptions((prevState) => ({
-      ...prevState,
-      [make]: {
-        ...prevState[make],
-        [model]: newYears,
-      },
+  // const handleYearOptionsChange = (make, model, newYears) => {
+  //   setVehicleMakeYears((prevState) => ({
+  //     ...prevState,
+  //     [make]: {
+  //       ...prevState[make],
+  //       [model]: newYears,
+  //     },
+  //   }));
+  //   handleMakeYearsChange(make, model, newYears);
+  // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const supportedVehicleModels = Object.keys(
+      formData.supported_vehicle_models
+    )?.map((make) => ({
+      make,
+      models: formData.supported_vehicle_models[make],
     }));
-    handleMakeYearsChange(make, model, newYears);
+
+    const makeYears = Object.keys(formData.make_years)?.map((model) => ({
+      model,
+      years: formData.make_years[model],
+    }));
+
+    const formattedData = {
+      ...formData,
+      supported_vehicle_models: supportedVehicleModels,
+      make_years: makeYears,
+    };
+    console.log(formattedData);
+    try {
+      // const response = await axios.patch(
+      //   `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`,
+      //   formattedData,
+      //   { headers: { "Content-Type": "multipart/form-data" } }
+      // );
+      // console.log("Update successful:", response.data);
+      // Optionally, redirect or show a success message
+    } catch (error) {
+      console.error("Update failed:", error);
+      // Optionally, show an error message
+    }
   };
 
   return (
@@ -225,13 +252,13 @@ const UpdateBatteryForm = ({
                 <label className="block text-small text-gray-800 pb-1">
                   Supported Vehicle Makes:
                 </label>
-                <CustomMultiSelect
+                <SupportedVehicleMakesSelect
                   prompts={{
                     supported_vehicle_makes,
                     setInputValue,
                     inputValue,
-                    setVehicleOptions,
-                    VehicleOptions,
+                    setSupportedVehicleMakes,
+                    supportedVehicleMakes,
                   }}
                   setOptions={(newMakes) =>
                     handleSupportedVehicleMakesChange(newMakes)
@@ -247,14 +274,13 @@ const UpdateBatteryForm = ({
                   <ModelSelect
                     props={{
                       make,
-                      options: modelOptions.find(
-                        (options) => options.make === make
-                      ),
+                      supportedVehicleModels,
+                      setSupportedVehicleModels,
                       modelInputValue,
                       setModelInputValue,
                     }}
                   />
-             
+
                   {supported_vehicle_models
                     ?.find((vehicle) => vehicle.make === make)
                     ?.models.map((model, modelIndex) => {
