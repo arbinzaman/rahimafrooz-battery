@@ -157,7 +157,7 @@ const UpdateBattery = () => {
   };
 
   const handleSupportedVehicleMakesChange = (e) => {
-    const makes = options;
+    const makes = supportedVehicleMakes;
     console.log(makes);
     setFormData((prev) => ({
       ...prev,

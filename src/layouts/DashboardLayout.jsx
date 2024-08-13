@@ -10,7 +10,7 @@ import {
   FaLocationDot,
   FaQuestion,
   FaUserTie,
-  FaAward
+  FaAward,
 } from "react-icons/fa6";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { PiCertificateFill } from "react-icons/pi";
@@ -22,7 +22,7 @@ import { LuUserCircle2 } from "react-icons/lu";
 import { useUser } from "../contexts/AuthContext";
 
 const DashboardLayout = () => {
-  const {logout} = useUser()
+  const { logout } = useUser();
   return (
     <div>
       <DashboardHeader />
@@ -91,7 +91,7 @@ const DashboardLayout = () => {
             <li>
               <Link to="/dashboard/global-presence-country-list">
                 {" "}
-                <AiOutlineGlobal  />
+                <AiOutlineGlobal />
                 Global Presence{" "}
               </Link>
             </li>
@@ -152,7 +152,10 @@ const DashboardLayout = () => {
               </Link>
             </li>
             <li>
-              <button onClick={()=>logout()}><RiLogoutBoxLine />Logout</button>
+              <button onClick={() => logout()}>
+                <RiLogoutBoxLine />
+                Logout
+              </button>
             </li>
           </ul>
         </div>
