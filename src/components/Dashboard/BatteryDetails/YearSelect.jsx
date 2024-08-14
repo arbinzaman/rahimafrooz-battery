@@ -1,10 +1,13 @@
-
 const YearSelect = ({ props }) => {
   const {
     yearInputValue,
     setYearInputValue,
     matchedYears,
+    setVehicleMakeYears,
+    model,
+    vehicleMakeYears,
   } = props;
+  console.log(vehicleMakeYears);
 
   const handleInputChange = (e) => {
     setYearInputValue(e.target.value);
@@ -15,6 +18,7 @@ const YearSelect = ({ props }) => {
       e.preventDefault();
       if (yearInputValue.trim()) {
         const newOption = yearInputValue.trim();
+        // const newOptions = [...matchedYears, newOption];
         const newOptions = matchedYears.push(newOption);
         console.log(newOptions);
         setYearInputValue("");
@@ -23,8 +27,11 @@ const YearSelect = ({ props }) => {
   };
 
   const handleRemoveOption = (optionToRemove) => {
-    const newOptions = matchedYears.filter((opt) => opt !== optionToRemove);
+    const index = matchedYears.indexOf(optionToRemove);
+    const valueToRemove = matchedYears.splice(index, 1);
+    const newOptions = vehicleMakeYears.filter((opt) => opt !== valueToRemove);
     console.log(newOptions);
+    setVehicleMakeYears(newOptions);
   };
 
   return (
@@ -36,21 +43,23 @@ const YearSelect = ({ props }) => {
         onKeyDown={handleKeyDown}
       />
       <div>
-        {matchedYears.map((year, index) => (
-          <span
-            key={index}
-            className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
-            style={{ margin: "0 5px", display: "inline-block" }}
-          >
-            {year}{" "}
+        {vehicleMakeYears
+          .find((yearData) => yearData.model === model)
+          ?.years.map((year, index) => (
             <span
-              className="text-white hover:cursor-pointer"
-              onClick={() => handleRemoveOption(year)}
+              key={index}
+              className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
+              style={{ margin: "0 5px", display: "inline-block" }}
             >
-              x
+              {year}{" "}
+              <span
+                className="text-white hover:cursor-pointer"
+                onClick={() => handleRemoveOption(year)}
+              >
+                x
+              </span>
             </span>
-          </span>
-        ))}
+          ))}
       </div>
     </div>
   );

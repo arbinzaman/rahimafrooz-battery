@@ -244,12 +244,11 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
                             props={{
                               make,
                               model,
-                              // options: matchedYears,
                               matchedYears,
                               yearInputValue,
                               setYearInputValue,
                               setVehicleMakeYears,
-                              vehicleMakeYears
+                              vehicleMakeYears,
                             }}
                           />
                         </div>
