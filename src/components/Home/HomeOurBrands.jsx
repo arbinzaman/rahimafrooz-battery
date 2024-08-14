@@ -31,7 +31,7 @@ const settingsForProductsMobileScreen = {
 };
 
 const HomeOurBrands = () => {
-  const { data: brandImgs = null } = useQuery({
+  const { data: brandImgs = [] } = useQuery({
     queryKey: ["brandImg"],
     queryFn: async () => {
       const res = await fetch(`${import.meta.env.VITE_BASE_URL}/brands`);
