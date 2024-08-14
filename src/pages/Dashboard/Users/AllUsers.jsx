@@ -45,7 +45,7 @@ const AllUsers = () => {
           Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
         },
       });
-
+      
       if (res.status === 200) {
         toast.success("Successfully deleted!");
       }
