@@ -7,7 +7,7 @@ const YearSelect = ({ props }) => {
     model,
     vehicleMakeYears,
   } = props;
-  console.log(vehicleMakeYears);
+  // console.log(vehicleMakeYears);
 
   const handleInputChange = (e) => {
     setYearInputValue(e.target.value);
@@ -30,7 +30,7 @@ const YearSelect = ({ props }) => {
     const index = matchedYears.indexOf(optionToRemove);
     const valueToRemove = matchedYears.splice(index, 1);
     const newOptions = vehicleMakeYears.filter((opt) => opt !== valueToRemove);
-    console.log(newOptions);
+    // console.log(newOptions);
     setVehicleMakeYears(newOptions);
   };
 
@@ -56,7 +56,7 @@ const YearSelect = ({ props }) => {
                 className="text-white hover:cursor-pointer"
                 onClick={() => handleRemoveOption(year)}
               >
-                x
+               x
               </span>
             </span>
           ))}
