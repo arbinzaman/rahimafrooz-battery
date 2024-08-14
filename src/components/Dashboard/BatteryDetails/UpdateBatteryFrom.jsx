@@ -12,15 +12,11 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
     categories,
     technologyOptions,
     formData,
-    // handleSubmit,
     handleChange,
     handleFileChange,
     handleTerminalLayoutChange,
     handleCategoryChange,
     handleTechnologyChange,
-    handleSupportedVehicleMakesChange,
-    handleVehicleModelsChange,
-    handleMakeYearsChange,
     supportedVehicleModels,
     setSupportedVehicleModels,
     vehicleMakeYears,
@@ -48,61 +44,13 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
   const [modelInputValue, setModelInputValue] = useState("");
   const [yearInputValue, setYearInputValue] = useState({});
 
-  // const handleModelInputValueChange = (make, value) => {
-  //   setModelInputValue((prevState) => ({
-  //     ...prevState,
-  //     [make]: value,
-  //   }));
-  // };
-
-  // const handleYearInputValueChange = (make, model, value) => {
-  //   setYearInputValue((prevState) => ({
-  //     ...prevState,
-  //     [make]: {
-  //       ...prevState[make],
-  //       [model]: value,
-  //     },
-  //   }));
-  // };
-
-  // const handleModelOptionsChange = (make, newModels) => {
-  //   setSupportedVehicleModels((prevState) => ({
-  //     ...prevState,
-  //     [make]: newModels,
-  //   }));
-  //   handleVehicleModelsChange(make, newModels);
-  // };
-
-  // const handleYearOptionsChange = (make, model, newYears) => {
-  //   setVehicleMakeYears((prevState) => ({
-  //     ...prevState,
-  //     [make]: {
-  //       ...prevState[make],
-  //       [model]: newYears,
-  //     },
-  //   }));
-  //   handleMakeYearsChange(make, model, newYears);
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const supportedVehicleModels = Object.keys(
-      formData.supported_vehicle_models
-    )?.map((make) => ({
-      make,
-      models: formData.supported_vehicle_models[make],
-    }));
-
-    const makeYears = Object.keys(formData.make_years)?.map((model) => ({
-      model,
-      years: formData.make_years[model],
-    }));
-
     const formattedData = {
       ...formData,
+      supported_vehicle_makes: supportedVehicleMakes,
       supported_vehicle_models: supportedVehicleModels,
-      make_years: makeYears,
+      make_years: vehicleMakeYears,
     };
     console.log(formattedData);
     try {
@@ -254,19 +202,18 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
                 </label>
                 <SupportedVehicleMakesSelect
                   prompts={{
-                    supported_vehicle_makes,
                     setInputValue,
                     inputValue,
                     setSupportedVehicleMakes,
                     supportedVehicleMakes,
                   }}
-                  setOptions={(newMakes) =>
-                    handleSupportedVehicleMakesChange(newMakes)
-                  }
+                  // setOptions={(newMakes) =>
+                  //   handleSupportedVehicleMakesChange(newMakes)
+                  // }
                   placeholder="press enter to add supported makes"
                 />
               </div>
-              {supported_vehicle_makes?.map((make, index) => (
+              {supportedVehicleMakes?.map((make, index) => (
                 <div key={index} className="mb-4">
                   <label className="block text-small text-gray-800 pb-1">
                     {make} Models:
@@ -281,12 +228,13 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
                     }}
                   />
 
-                  {supported_vehicle_models
+                  {supportedVehicleModels
                     ?.find((vehicle) => vehicle.make === make)
                     ?.models.map((model, modelIndex) => {
                       const matchedYears =
-                        make_years.find((yearData) => yearData.model === model)
-                          ?.years || [];
+                        vehicleMakeYears.find(
+                          (yearData) => yearData.model === model
+                        )?.years || [];
                       return (
                         <div key={modelIndex} className="mt-2 ml-4">
                           <label className="block text-small text-gray-800 pb-1">
@@ -296,9 +244,12 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
                             props={{
                               make,
                               model,
-                              options: matchedYears,
+                              // options: matchedYears,
+                              matchedYears,
                               yearInputValue,
                               setYearInputValue,
+                              setVehicleMakeYears,
+                              vehicleMakeYears
                             }}
                           />
                         </div>
@@ -312,7 +263,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
         <div className="mt-4 flex justify-end">
           <button
             type="submit"
-            className="btn btn-primary w-full max-w-xs rounded-sm"
+            className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
           >
             <FaCarBattery className="inline-block mr-2" />
             Update Battery

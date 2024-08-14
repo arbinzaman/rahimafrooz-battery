@@ -1,9 +1,10 @@
-import { useState } from "react";
 
 const YearSelect = ({ props }) => {
-  const { options, yearInputValue, setYearInputValue } = props;
-
-  const [selectedYearOptions, setSelectedYearOptions] = useState(options);
+  const {
+    yearInputValue,
+    setYearInputValue,
+    matchedYears,
+  } = props;
 
   const handleInputChange = (e) => {
     setYearInputValue(e.target.value);
@@ -14,19 +15,16 @@ const YearSelect = ({ props }) => {
       e.preventDefault();
       if (yearInputValue.trim()) {
         const newOption = yearInputValue.trim();
-        const newOptions = [...selectedYearOptions, newOption];
-        setSelectedYearOptions(newOptions);
-        console.log(selectedYearOptions);
+        const newOptions = matchedYears.push(newOption);
+        console.log(newOptions);
         setYearInputValue("");
       }
     }
   };
 
   const handleRemoveOption = (optionToRemove) => {
-    const newOptions = selectedYearOptions.filter(
-      (opt) => opt !== optionToRemove
-    );
-    setSelectedYearOptions(newOptions);
+    const newOptions = matchedYears.filter((opt) => opt !== optionToRemove);
+    console.log(newOptions);
   };
 
   return (
@@ -38,19 +36,19 @@ const YearSelect = ({ props }) => {
         onKeyDown={handleKeyDown}
       />
       <div>
-        {selectedYearOptions.map((year, index) => (
+        {matchedYears.map((year, index) => (
           <span
             key={index}
             className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
             style={{ margin: "0 5px", display: "inline-block" }}
           >
             {year}{" "}
-            <button
-              className="text-white"
+            <span
+              className="text-white hover:cursor-pointer"
               onClick={() => handleRemoveOption(year)}
             >
               x
-            </button>
+            </span>
           </span>
         ))}
       </div>
