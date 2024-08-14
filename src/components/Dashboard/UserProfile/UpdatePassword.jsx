@@ -145,6 +145,7 @@ const UpdatePassword = () => {
                   type={showPassword.current ? "text" : "password"}
                   className="peer w-full bg-white border border-gray-400 rounded-md px-3 py-2 text-black placeholder-transparent focus:outline-none"
                   required
+                    //  className="absolute left-3 top-2 text-sm text-gray-500 transition-transform duration-300 transform -translate-y-1/2 scale-75 origin-top-left peer-placeholder-shown:top-1/2 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-gray-400 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:text-gray-600 peer-focus:scale-75"
                 />
                 <button
                   type="button"

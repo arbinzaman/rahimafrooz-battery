@@ -22,6 +22,7 @@ const UpdateBattery = () => {
     setSupportedVehicleMakes(response.data.supported_vehicle_makes);
     setSupportedVehicleModels(response.data.supported_vehicle_models);
     setVehicleMakeYears(response.data.make_years);
+    setFormData(response.data);
     return response.data;
   };
 
@@ -83,13 +84,6 @@ const UpdateBattery = () => {
     supported_vehicle_models: {},
     make_years: {},
   });
-
-
-  useEffect(() => {
-    if (batteryDetails) {
-      setFormData(batteryDetails);
-    }
-  }, [batteryDetails]);
 
   if (batteryLoading || categoriesLoading) return <Loader />;
 
@@ -156,103 +150,10 @@ const UpdateBattery = () => {
     }));
   };
 
-  const handleSupportedVehicleMakesChange = (e) => {
-    const makes = options;
-    console.log(makes);
-    setFormData((prev) => ({
-      ...prev,
-      supported_vehicle_makes: makes,
-      supported_vehicle_models: {},
-      make_years: {},
-    }));
-  };
-
-  const handleVehicleModelsChange = (make, models) => {
-    setFormData((prev) => ({
-      ...prev,
-      supported_vehicle_models: {
-        ...prev.supported_vehicle_models,
-        [make]: models,
-      },
-    }));
-  };
-
-  //   const handleMakeYearsChange = (make, model, years) => {
-  //     setFormData((prev) => ({
-  //       ...prev,
-  //       make_years: {
-  //         ...prev.make_years,
-  //         [make]: {
-  //           ...prev.make_years[make],
-  //           [model]: years,
-  //         },
-  //       },
-  //     }));
-  //   };
-
-  const handleMakeYearsChange = (make, model, years) => {
-    setFormData((prev) => {
-      const updatedMakeYearsModels = { ...prev.make_years };
-
-      // Initialize the make if not already present
-      if (!updatedMakeYearsModels[make]) {
-        updatedMakeYearsModels[make] = {};
-      }
-
-      // Initialize the model if not already present
-      if (!updatedMakeYearsModels[make][model]) {
-        updatedMakeYearsModels[make][model] = [];
-      }
-
-      // Update the years
-      updatedMakeYearsModels[make][model] = years;
-
-      return {
-        ...prev,
-        make_years: updatedMakeYearsModels,
-      };
-    });
-  };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const supportedVehicleModels = Object.keys(
-  //     formData.supported_vehicle_models
-  //   )?.map((make) => ({
-  //     make,
-  //     models: formData.supported_vehicle_models[make],
-  //   }));
-
-  //   const makeYears = Object.keys(formData.make_years)?.map((model) => ({
-  //     model,
-  //     years: formData.make_years[model],
-  //   }));
-
-  //   const formattedData = {
-  //     ...formData,
-  //     supported_vehicle_models: supportedVehicleModels,
-  //     make_years: makeYears,
-  //   };
-  //   console.log(formattedData);
-  //   try {
-  //     // const response = await axios.patch(
-  //     //   `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`,
-  //     //   formattedData,
-  //     //   { headers: { "Content-Type": "multipart/form-data" } }
-  //     // );
-  //     // console.log("Update successful:", response.data);
-  //     // Optionally, redirect or show a success message
-  //   } catch (error) {
-  //     console.error("Update failed:", error);
-  //     // Optionally, show an error message
-  //   }
-  // };
-
   const showVehicleFields =
     formData.applicable_categories.includes("Passenger Car") ||
     formData.applicable_categories.includes("Commercial Vehicle");
-  // console.log(categories);
+
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       <h1 className="text-primary text-center text-medium lg:text-large font-bold uppercase mb-2">
@@ -269,15 +170,12 @@ const UpdateBattery = () => {
           handleTerminalLayoutChange,
           handleCategoryChange,
           handleTechnologyChange,
-          handleSupportedVehicleMakesChange,
-          handleVehicleModelsChange,
-          handleMakeYearsChange,
           supportedVehicleModels,
           setSupportedVehicleModels,
           vehicleMakeYears,
           setVehicleMakeYears,
           supportedVehicleMakes,
-          setSupportedVehicleMakes,
+          setSupportedVehicleMakes
         }}
       />
     </div>

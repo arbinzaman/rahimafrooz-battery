@@ -5,6 +5,7 @@ const SupportedVehicleMakesSelect = ({ prompts }) => {
     supportedVehicleMakes,
     setSupportedVehicleMakes,
   } = prompts;
+  // console.log(supportedVehicleMakes);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -15,14 +16,16 @@ const SupportedVehicleMakesSelect = ({ prompts }) => {
       e.preventDefault();
       if (inputValue.trim()) {
         const newOption = inputValue.trim();
-        const newOptions = supportedVehicleMakes.push(newOption);
+        console.log(newOption);
+        const newOptions =[...supportedVehicleMakes, newOption];
+        // const newOptions = supportedVehicleMakes.push(newOption);
         console.log(newOptions);
         setSupportedVehicleMakes(newOptions);
         setInputValue("");
       }
     }
   };
-
+  // console.log(supportedVehicleMakes);
   const handleRemoveOption = (optionToRemove) => {
     const index = supportedVehicleMakes.indexOf(optionToRemove);
     const valueToRemove = supportedVehicleMakes.splice(index, 1);

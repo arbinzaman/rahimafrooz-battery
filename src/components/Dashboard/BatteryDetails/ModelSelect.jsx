@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const ModelSelect = ({ props }) => {
   const {
     make,
@@ -58,7 +56,7 @@ const ModelSelect = ({ props }) => {
           <span
             key={index}
             className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
-            style={{ margin: "0 5px", display: "inline-block" }}
+
           >
             {model}{" "}
             <span
