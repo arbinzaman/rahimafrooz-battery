@@ -49,7 +49,7 @@ const YearSelect = ({ props }) => {
             <span
               key={index}
               className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
-              style={{ margin: "0 5px", display: "inline-block" }}
+
             >
               {year}{" "}
               <span
