@@ -175,7 +175,7 @@ const UpdateBattery = () => {
           vehicleMakeYears,
           setVehicleMakeYears,
           supportedVehicleMakes,
-          setSupportedVehicleMakes,
+          setSupportedVehicleMakes
         }}
       />
     </div>

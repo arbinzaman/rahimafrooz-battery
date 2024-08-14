@@ -207,9 +207,6 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
                     setSupportedVehicleMakes,
                     supportedVehicleMakes,
                   }}
-                  // setOptions={(newMakes) =>
-                  //   handleSupportedVehicleMakesChange(newMakes)
-                  // }
                   placeholder="press enter to add supported makes"
                 />
               </div>
