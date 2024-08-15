@@ -75,7 +75,7 @@ const DashboardLayout = () => {
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/customers-queries">
+              <Link to="/dashboard/warranty-service">
                 {" "}
                 <AiOutlineFileDone />
                 Warranty & Service{" "}

@@ -42,8 +42,8 @@ const AllBatteryDetails = () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
-        Batteries Table
+      <h1 className="flex justify-center text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+        Batteries <FaCarBattery className="mt-2 ml-2" />
       </h1>
       <div className="flex gap-4 justify-between mb-4 px-4">
         <div className="flex gap-5">
