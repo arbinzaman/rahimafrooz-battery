@@ -46,8 +46,7 @@ const HomeSocialEmbed = () => {
     },
   ];
 
-  console.log(allYoutubeLinks)
-
+  console.log(allYoutubeLinks);
 
   const SocialSelectComponents = ({ index }) => {
     switch (index) {
