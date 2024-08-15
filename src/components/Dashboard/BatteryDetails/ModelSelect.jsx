@@ -60,7 +60,7 @@ const ModelSelect = ({ props }) => {
           >
             {model}{" "}
             <span
-              className="text-white hover:cursor-pointer"
+              className="text-white gap-2 hover:cursor-pointer"
               onClick={() => handleRemoveOption(model)}
             >
               x

@@ -55,7 +55,7 @@ const UpdateGlobalPresenceCountryList = ({ updateModalProps }) => {
         <div className="modal-box bg-white text-black ">
           <form method="dialog" className="flex justify-between items-center">
             <p className="text-primary text-medium font-bold flex gap-2 my-2">
-              Add New Country to the continent
+              Add or Delete Country from the continent
             </p>
             <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
           </form>

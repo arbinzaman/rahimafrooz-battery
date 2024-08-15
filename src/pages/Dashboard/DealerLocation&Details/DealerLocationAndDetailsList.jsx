@@ -51,7 +51,11 @@ const DealerLocationAndDetailsList = () => {
   };
 
   return (
-    <div className="overflow-x-auto">
+    <div className="">
+       <h1 className="flex justify-center text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+        Dealers Location & Details<RiUserLocationFill  className="mt-2 ml-2" />
+      </h1>
+
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
           <button
