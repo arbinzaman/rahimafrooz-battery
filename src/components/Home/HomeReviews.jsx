@@ -3,7 +3,7 @@ import reviewsData from "../../demoData/ReviewData.json";
 import ReviewImg from "../../assets/images/HomePage/review.png";
 const HomeReviews = () => {
   const settingsForCertificatesLarge = {
-    dots: false,
+    dots: true,
     arrows: false,
     infinite: true,
     slidesToShow: 1,
@@ -21,10 +21,10 @@ const HomeReviews = () => {
         <img src={ReviewImg} alt="" />
         <Slider
           {...settingsForCertificatesLarge}
-          className="bg-white text-blue-900 py-10 text-center"
+          className="bg-white text-blue-900 py-10 text-center "
         >
           {reviewsData?.map((review) => (
-            <div key={review?.id} className="card-body">
+            <div key={review?.id} className="text-center p-5">
               <p> {review.review}</p>
               <p >- {review.user_name}</p>
             </div>
