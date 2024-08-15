@@ -47,6 +47,7 @@ import AllNews from "../pages/Dashboard/News/AllNews";
 import Profile from "../pages/Dashboard/UserProfile/Profile";
 import AllReviews from "../pages/Dashboard/Review/AllReviews";
 import ForgotPass from "../pages/Dashboard/ForgotPass";
+import AllWarrantyService from "../pages/Dashboard/WarrantyService/AllWarrantyService";
 
 const routes = createBrowserRouter([
   {
@@ -250,6 +251,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/reviews",
         element: <AllReviews />,
+      },
+      {
+        path: "/dashboard/warranty-service",
+        element: <AllWarrantyService />,
       },
     ],
   },
