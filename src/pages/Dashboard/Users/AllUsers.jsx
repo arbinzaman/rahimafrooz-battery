@@ -10,6 +10,7 @@ import { useUser } from "../../../contexts/AuthContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import { FaUsers } from "react-icons/fa";
 
 const AllUsers = () => {
   const queryClient = useQueryClient();
@@ -72,8 +73,8 @@ const AllUsers = () => {
 
   return (
     <div>
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
-        Users
+      <h1 className="flex justify-center text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+        Users <FaUsers className="mt-2 ml-2" />
       </h1>
 
       <div className="flex gap-4 justify-between mb-4">

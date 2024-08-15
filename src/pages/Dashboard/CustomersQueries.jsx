@@ -5,6 +5,7 @@ import axios from "axios";
 import Loader from "../../components/shared/Loaders/Loader";
 import Modal from "../../components/Dashboard/CustomerQueries/Modal";
 import toast from "react-hot-toast";
+import { FaCommentAlt } from "react-icons/fa";
 
 const CustomersQueries = () => {
   const [selectedQuery, setSelectedQuery] = useState(null);
@@ -87,8 +88,8 @@ const CustomersQueries = () => {
 
   return (
     <div>
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
-        Customer Queries
+      <h1 className="flex justify-center text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+        Customer Queries <FaCommentAlt  className="mt-2 ml-2" />
       </h1>
 
       <dialog

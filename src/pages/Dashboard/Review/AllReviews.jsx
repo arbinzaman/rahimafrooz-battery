@@ -1,12 +1,11 @@
 // import { useQuery } from "@tanstack/react-query";
-import { FaLocationDot } from "react-icons/fa6";
 import { LuRefreshCcw } from "react-icons/lu";
 import ReviewList from "../../../components/Dashboard/Awards/Review/ReviewList";
 import AddAReview from "../../../components/Dashboard/Awards/Review/AddAReview";
 // import Loader from "../../../components/shared/Loaders/Loader";
 // import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
 import ReviewData from "../../../demoData/ReviewData.json";
-import { MdReviews } from "react-icons/md";
+import { MdReviews,MdOutlineRateReview } from "react-icons/md";
 
 const AllReviews = () => {
   const allReviews = ReviewData;
@@ -49,8 +48,8 @@ const AllReviews = () => {
 
   return (
     <div>
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
-        Reviews
+      <h1 className="flex justify-center text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+        Reviews <MdOutlineRateReview className="mt-2 ml-2" />
       </h1>
       <div className="flex gap-4 justify-between mb-3">
         <div className="flex gap-5">

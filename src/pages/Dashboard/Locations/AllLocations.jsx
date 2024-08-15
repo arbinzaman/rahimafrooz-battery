@@ -44,8 +44,8 @@ const AllLocations = () => {
 
   return (
     <div>
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
-        Locations Table
+      <h1 className="flex justify-center text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+       Contact Locations <FaLocationDot className="mt-2 ml-2" />
       </h1>
       <div className="flex gap-4 justify-between mb-3">
         <div className="flex gap-5">
