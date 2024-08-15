@@ -19,6 +19,7 @@ const HomeReviews = () => {
     <section>
       <div className="shadow-2xl ">
         <img src={ReviewImg} alt="" />
+
         <div className="bg-white  py-10">
           <Slider
             {...settingsForCertificatesLarge}
@@ -32,6 +33,7 @@ const HomeReviews = () => {
             ))}
           </Slider>
         </div>
+
       </div>
     </section>
   );
