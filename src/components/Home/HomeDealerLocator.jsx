@@ -23,7 +23,7 @@ const HomeDealerLocator = () => {
   });
 
   const getUniqueDivisions = (data) => {
-    return [...new Set(data && data.map((item) => item.division))];
+    return [...new Set(data && data?.map((item) => item?.division))];
   };
 
   const divisions = getUniqueDivisions(dealerLocs);
@@ -57,7 +57,7 @@ const HomeDealerLocator = () => {
 
   const handleFindDealer = (e) => {
     e.preventDefault();
-    const ids = location.map((item) => item.id);
+    const ids = location.map((item) => item?.id);
     localStorage.setItem("dealers_id", JSON.stringify(ids));
     navigate("/find-dealer");
     window.location.reload(false);
@@ -86,7 +86,7 @@ const HomeDealerLocator = () => {
                   }}
                 >
                   <option>Division</option>
-                  {divisions.length > 0 ? (
+                  {divisions?.length > 0 ? (
                     divisions.map((div, i) => (
                       <option key={i} value={div}>
                         {div}
@@ -132,8 +132,8 @@ const HomeDealerLocator = () => {
                   }}
                 >
                   <option>Thana</option>
-                  {filteredThanas.length > 0 ? (
-                    filteredThanas.map((div, i) => (
+                  {filteredThanas?.length > 0 ? (
+                    filteredThanas?.map((div, i) => (
                       <option key={i} value={div}>
                         {div}
                       </option>
