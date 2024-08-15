@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-
 const DealerApplicationList = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -79,7 +78,7 @@ const DealerApplicationList = () => {
     <div>
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
         Dealership Applicants
-
+      </h1>
 
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
