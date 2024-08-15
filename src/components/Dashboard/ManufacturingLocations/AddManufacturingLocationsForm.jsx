@@ -1,10 +1,13 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import ThreeDotLoader from "../../shared/Loaders/ThreeDotLoader";
 
 const AddManufacturingLocationsForm = ({ props }) => {
-  const { setIsLoading, refetch } = props;
+  const { refetch } = props;
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const formRef = useRef();
 
@@ -19,13 +22,19 @@ const AddManufacturingLocationsForm = ({ props }) => {
 
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/`,
-        formdata
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 201) {
         formRef.current.reset();
-        toast.success("New record has been added.");
+        document.getElementById("my_modal_2").open = false;
         refetch();
+        toast.success("New record has been added.");
         setIsLoading(false);
       }
     } catch (error) {
@@ -94,12 +103,16 @@ const AddManufacturingLocationsForm = ({ props }) => {
               </div>
 
               <div className="flex justify-end gap-3 items-center mt-3">
-                <button
-                  type=""
-                  className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
-                >
-                  Add
-                </button>
+                {isLoading ? (
+                  <ThreeDotLoader />
+                ) : (
+                  <button
+                    type=""
+                    className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
+                  >
+                    Add
+                  </button>
+                )}
               </div>
             </form>
           </div>

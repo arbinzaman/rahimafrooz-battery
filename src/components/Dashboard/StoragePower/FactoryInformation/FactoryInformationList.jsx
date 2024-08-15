@@ -5,30 +5,52 @@ import { MdDeleteForever } from "react-icons/md";
 import FetchErrorMessage from "../../../shared/Error/FetchErrorMessage";
 import { FaEdit } from "react-icons/fa";
 import UpdateFactoryInformationModal from "./UpdateFactoryInformationModal";
+import Cookies from "js-cookie";
 
 const FactoryInformationList = ({ prompts }) => {
+  const { allFactoryInformations, setIsLoading, refetch } = prompts;
+
   const [selectedId, setSelectedId] = useState();
   const [readMore, setReadMore] = useState(false);
-  const { allFactoryInformations, setIsLoading, refetch } = prompts;
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const handleDelete = async (id) => {
     try {
       setIsLoading(true);
       const body = allFactoryInformations.find((details) => details.id === id);
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/storage-power/factory-informations/${id}`,
-        { data: body }
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/storage-power/factory-informations/${id}`,
+        {
+          data: body,
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
-        toast.success("Record deleted successfully");
+        setDeleteModalOpen(false);
+        setSelectedId(null);
         refetch();
         setIsLoading(false);
+        toast.success("Record deleted successfully");
       }
     } catch (error) {
       setIsLoading(false);
       toast.error("Something error occurred!");
     }
+  };
+
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
   };
 
   return (
@@ -106,7 +128,7 @@ const FactoryInformationList = ({ prompts }) => {
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-400"
-                      onClick={() => handleDelete(details.id)}
+                      onClick={() => openDeleteModal(details.id)}
                     >
                       <MdDeleteForever className="text-white" />
                     </button>
@@ -117,6 +139,30 @@ const FactoryInformationList = ({ prompts }) => {
           </table>
         )}
       </div>
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">
+              You want to remove this Factory Information?
+            </h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

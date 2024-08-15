@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaYoutube } from "react-icons/fa";
 import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
+
 
 const AddAYouTubeLink = ({ props }) => {
   const { refetch } = props;
@@ -16,7 +18,12 @@ const AddAYouTubeLink = ({ props }) => {
       setIsLoading(true);
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/storage-power/youtube-video`,
-        data
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
       if (res.status === 201) {
         formRef.current.reset();

@@ -31,7 +31,7 @@ const AllLocations = () => {
   };
 
   const openModal = () => {
-    document.getElementById("my_modal_69").showModal();
+    document.getElementById("my_modal_69").open = true;
   };
 
   if (isLoading) {

@@ -2,23 +2,41 @@ import { MdDeleteForever } from "react-icons/md";
 import FetchErrorMessage from "../../shared/Error/FetchErrorMessage";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { TbPencilQuestion } from "react-icons/tb";
 import UpdateBrandImgModal from "./UpdateBrandImgModal";
 import { useState } from "react";
+import Cookies from "js-cookie";
+import { TiEdit } from "react-icons/ti";
 
 const BrandImgList = ({ prompts }) => {
   const { brandImgs, refetch } = prompts;
   const [selectedId, setSelectedId] = useState();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
+  };
 
   const handleDelete = async (id) => {
     try {
       const body = brandImgs.find((details) => details.id === id);
       const res = await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/brands/${id}`,
-        { data: body }
+        {
+          data: body,
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
+        closeDeleteModal();
         refetch();
         toast.success("Record deleted successfully");
       }
@@ -49,19 +67,19 @@ const BrandImgList = ({ prompts }) => {
                   <td>
                     <img
                       src={details.image_url}
-                      alt={details.brand_name+" product image"}
+                      alt={details.brand_name + " product image"}
                       className="w-52"
                     />
                   </td>
                   <td>
                     <button
-                      className="btn btn-ghost btn-xs bg-white hover:bg-lime-500 hover:text-white"
+                      className="btn btn-xs bg-white hover:text-white border-none hover:bg-gray-200"
                       onClick={() => {
                         setSelectedId(details.id);
                         document.getElementById("updateBrand").open = true;
                       }}
                     >
-                      <TbPencilQuestion className="text-regular" />
+                      <TiEdit className="text-regular text-primary " />
                     </button>
                     <UpdateBrandImgModal
                       updateModalProps={{ selectedId, brandImgs, refetch }}
@@ -70,7 +88,7 @@ const BrandImgList = ({ prompts }) => {
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-400"
-                      onClick={() => handleDelete(details.id)}
+                      onClick={() => openDeleteModal(details.id)}
                     >
                       <MdDeleteForever className="text-white" />
                     </button>
@@ -81,6 +99,30 @@ const BrandImgList = ({ prompts }) => {
           </table>
         )}
       </div>
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">
+              You want to remove this Brand Image?
+            </h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

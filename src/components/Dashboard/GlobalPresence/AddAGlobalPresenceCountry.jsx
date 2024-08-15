@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { AiOutlineGlobal } from "react-icons/ai";
 import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+
 const AddAGlobalPresenceCountry = ({ props }) => {
   const { refetch } = props;
   const [isLoading, setIsLoading] = useState(false);
@@ -22,9 +24,14 @@ const AddAGlobalPresenceCountry = ({ props }) => {
 
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/global-presence`,
-        body
+        body,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
-      
+
       if (res.status === 201) {
         reset();
         document.getElementById("AddCountry").open = false;

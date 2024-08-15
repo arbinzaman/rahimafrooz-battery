@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const UpdateFactoryInformationModal = ({ updateModalProps }) => {
   const { selectedId, allFactoryInformations, refetch } = updateModalProps;
@@ -34,7 +35,12 @@ const UpdateFactoryInformationModal = ({ updateModalProps }) => {
         `${
           import.meta.env.VITE_BASE_URL
         }/storage-power/factory-informations/${selectedId}`,
-        formdata
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {

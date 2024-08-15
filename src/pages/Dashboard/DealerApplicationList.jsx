@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Loader from "../../components/shared/Loaders/Loader";
 import FetchErrorMessage from "../../components/shared/Error/FetchErrorMessage";
 import toast from "react-hot-toast";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const DealerApplicationList = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const url = `${import.meta.env.VITE_BASE_URL}/dealer-applications`;
+  const API_URL = `${import.meta.env.VITE_BASE_URL}/dealer-applications`;
 
   const {
     data: allDealerApplicationDetails = [],
@@ -19,7 +20,11 @@ const DealerApplicationList = () => {
   } = useQuery({
     queryKey: ["allDealerApplicationDetails"],
     queryFn: async () => {
-      const res = await fetch(url);
+      const res = await fetch(API_URL, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+        },
+      });
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
@@ -32,20 +37,17 @@ const DealerApplicationList = () => {
     console.log(selectedIds);
     console.log(typeof selectedIds);
     try {
-      const res = await axios.delete(`${url}/${selectedIds}`, {
+      const res = await axios.delete(API_URL + `/${selectedIds}`, {
         headers: {
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
         },
-        data: selectedIds,
       });
 
       if (res.status === 200) {
         console.log(res.data);
         refetch();
-        toast.success("Selected queries deleted successfully.");  
-        QueryClient.invalidateQueries(["allDealerApplicationDetails"]);
-        toast.success("Selected queries deleted successfully.");
         setDeleteModalOpen(false);
+        toast.success("Selected queries deleted successfully.");
       } else {
         throw new Error("Failed to delete the selected queries.");
       }
@@ -53,8 +55,6 @@ const DealerApplicationList = () => {
       console.error("Error deleting queries:", error);
     }
   };
-  
-  
 
   const openDeleteModal = (id) => {
     setSelectedId(id);
@@ -77,7 +77,7 @@ const DealerApplicationList = () => {
   return (
     <div>
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
-        Dealers List
+        Dealership Applicants
       </h1>
 
       {/* Delete Confirmation Modal */}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const UpdateMilestoneInfoModal = ({ updateModalProps }) => {
   const { selectedId, allMiltestone, refetch } = updateModalProps;
@@ -32,7 +33,12 @@ const UpdateMilestoneInfoModal = ({ updateModalProps }) => {
         `${
           import.meta.env.VITE_BASE_URL
         }/storage-power/milestone-image/${selectedId}`,
-        formdata
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {

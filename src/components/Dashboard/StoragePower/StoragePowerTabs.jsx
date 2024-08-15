@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AllImageText from "./FactoryInformation/FactoryInformations";
+import FactoryInformations from "./FactoryInformation/FactoryInformations";
 import AllMilestone from "./Milestone/AllMilestone";
 import AllValues from "./OurValues/AllValues";
 import AllYouTubeLinks from "./YouTubeLink/AllYouTubeLinks";
@@ -54,7 +54,7 @@ const StoragePowerTabs = () => {
       <div>
         {tab === "imgText" ? (
           <div>
-            <AllImageText />
+            <FactoryInformations />
           </div>
         ) : (
           <></>

@@ -1,114 +1,116 @@
 import { useState, useEffect } from "react";
+import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import axios from "axios";
+import Cookies from "js-cookie";
 
-const CertificateUpdateModal = ({
-  dataId,
-  onClose,
-  onUpdate,
-  updatedData,
-}) => {
-  const [updateCertificateData, setUpdateCertificateData] =
-    useState(updatedData);
-//   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    title: "",
+const CertificateUpdateModal = ({ updateModalData }) => {
+  const { selectedId, allCertificates, refetch } = updateModalData;
+  const [isLoading, setLoading] = useState(false);
+
+  const certificate = allCertificates?.find(
+    (details) => details.id === selectedId
+  );
+
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: certificate,
   });
 
-  const currentTimestamp = new Date()
-  .toISOString()
-  .slice(0, 19)
-  .replace("T", " ");
-
-const dataWithTimestamp = {
-  ...formData,
-  created_at: currentTimestamp,
-};
-
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(
-        `${import.meta.env.VITE_BASE_URL}/certificates/${dataId}`
-      );
-      const data = await res.json();
-      setFormData(data);
-    };
-    fetchData();
-  }, [dataId]);
+    if (certificate) {
+      reset(certificate);
+    }
+  }, [certificate, reset]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUpdateCertificateData((prevCertificateData) => ({
-      ...prevCertificateData,
-      [name]: value,
-    }));
-  };
-  console.log(updateCertificateData);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // setLoading(true);
+  const handleUpdate = async (data) => {
     try {
-      await onUpdate(dataWithTimestamp);
-      onClose(); // Close the modal on successful update
+      setLoading(true);
+      const formdata = new FormData();
+      formdata.append("title", data.title);
+      formdata.append("img_url", data.img_url[0]);
+
+      const res = await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/certificates/${selectedId}`,
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+
+      if (res.status === 200) {
+        reset();
+        document.getElementById("updateCertificateModal").open = false;
+        refetch();
+        toast.success("Record updated successfully");
+      }
     } catch (error) {
       console.error("Error updating location:", error);
     } finally {
-      // setLoading(false);
+      setLoading(false);
     }
-  };
-  const handleImgUrl = (e) => {
-    const files = Array.from(e.target.files);
-    const fileUrls = files.map((file) => URL.createObjectURL(file));
-    setFormData({
-      ...formData,
-      image_url: fileUrls[0],
-    });
   };
 
   return (
-    <dialog open className="modal ">
+    <dialog id="updateCertificateModal" className="modal">
       <div className="modal-box bg-white text-black">
-        <h3 className="font-bold text-lg">Update Manufacturing Data</h3>
-   
-        <form key={updateCertificateData.id} onSubmit={handleSubmit} className="mt-4">
-            <div className="mb-4">
-              <label className="block">Title</label>
+        <form method="dialog" className="flex justify-between items-center">
+          <p className="font-semibold font-primary uppercase text-primary">
+            Update Certificate
+          </p>
+          <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+        </form>
+
+        <div className="">
+          <form
+            method="dialog"
+            onSubmit={handleSubmit(handleUpdate)}
+            className=""
+          >
+            <div className="my-2">
+              <label>
+                Certificate Title <span className="text-red-600">*</span>
+              </label>
               <input
                 type="text"
-                name="title"
-                value={updateCertificateData.title || ""}
-                onChange={handleChange}
-                className="input w-full bg-white text-black border-black"
                 required
+                className="border  rounded-md p-1 w-full bg-white text-black border-black "
+                {...register("title")}
               />
             </div>
-            <div className="mb-4">
-              <label className="block text-small text-gray-800 pb-1">
-                Upload Image
+
+            <div className="my-2">
+              <label>
+                Image <span className="text-red-600">*</span>
               </label>
               <input
                 type="file"
-                name="image_url"
-                // value={updateCertificateData.image_url || ""}
-                onChange={handleImgUrl}
-                className="file-input w-full max-w-xs input-sm rounded-sm bg-white text-black max-h-10 "
+                accept="image/png,image/jpg, image/jpeg"
+                className="file-input file-input-bordered file-input-sm w-full bg-white"
+                {...register("img_url")}
               />
             </div>
-            <div className="modal-action">
-              <button
-                type="submit"
-                className="btn btn-xs bg-teal-500 text-white btn-ghost border-0 hover:bg-teal-700 "
-              >
-                Update
-              </button>
-              <button
-                type="button"
-                className="btn btn-xs bg-red-600 text-white border-0 btn-ghost hover:bg-red-700  "
-                onClick={onClose}
-              >
-                Close
-              </button>
+
+            <div className="flex justify-end gap-3 items-center mt-3">
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button
+                  type=""
+                  className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
+                >
+                  Update
+                </button>
+              )}
             </div>
           </form>
+        </div>
       </div>
+      <form method="dialog" className="modal-backdrop">
+        <button>close</button>
+      </form>
     </dialog>
   );
 };

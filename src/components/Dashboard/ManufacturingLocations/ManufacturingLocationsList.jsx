@@ -5,33 +5,48 @@ import { MdDeleteForever } from "react-icons/md";
 import UpdateManufacturingLocationsModal from "./UpdateManufacturingLocationsModal";
 import FetchErrorMessage from "../../shared/Error/FetchErrorMessage";
 import { FaEdit } from "react-icons/fa";
+import Cookies from "js-cookie";
 
 const ManufacturingLocationsList = ({ manufacturingProps }) => {
-  const [selectedId, setSelectedId] = useState();
+  const { manufacturingDetails, refetch } = manufacturingProps;
+
+  const [selectedId, setSelectedId] = useState(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [readMore, setReadMore] = useState(false);
-  const { manufacturingDetails, setIsLoading, refetch } = manufacturingProps;
 
   const handleDelete = async (id) => {
     try {
-      setIsLoading(true);
       const body = manufacturingDetails.find((details) => details.id === id);
       const res = await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
-        { data: body }
+        {
+          data: body,
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
-        toast.success("Record deleted successfully");
+        setDeleteModalOpen(false)
         refetch();
-        setIsLoading(false);
+        toast.success("Record deleted successfully");
       }
     } catch (error) {
-      setIsLoading(false);
       // console.log(error);
       toast.error("Something error occurred!");
     }
   };
   // console.log(manufacturingDetails);
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -100,7 +115,6 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
                       updateModalProps={{
                         selectedId,
                         manufacturingDetails,
-                        setIsLoading,
                         refetch,
                       }}
                     />
@@ -108,7 +122,7 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-400"
-                      onClick={() => handleDelete(details.id)}
+                      onClick={() => openDeleteModal(details.id)}
                     >
                       <MdDeleteForever className="text-white" />
                     </button>
@@ -119,6 +133,30 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
           </table>
         )}
       </div>
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">
+              You want to remove this dealer&apos;s location?
+            </h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

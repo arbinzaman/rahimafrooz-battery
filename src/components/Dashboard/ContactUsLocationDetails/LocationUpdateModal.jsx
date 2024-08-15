@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import ThreeDotLoader from "../../shared/Loaders/ThreeDotLoader";
 
 const LocationUpdateModal = ({ updateModalProps }) => {
   const { selectedId, allLocationDetails, refetch } = updateModalProps;
@@ -23,12 +25,16 @@ const LocationUpdateModal = ({ updateModalProps }) => {
   const handleUpdate = async (data) => {
     try {
       setIsLoading(true);
-      console.log(data);
       const res = await axios.patch(
         `${
           import.meta.env.VITE_BASE_URL
         }/contact/global-locations/${selectedId}`,
-        data
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
@@ -110,12 +116,16 @@ const LocationUpdateModal = ({ updateModalProps }) => {
             </div>
 
             <div className="flex justify-end gap-3 items-center mt-3">
-              <button
-                type=""
-                className="flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white"
-              >
-                Update
-              </button>
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button
+                  type=""
+                  className="flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white"
+                >
+                  Update
+                </button>
+              )}
             </div>
           </form>
         </div>

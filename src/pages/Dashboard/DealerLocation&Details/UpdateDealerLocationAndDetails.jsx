@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const UpdateDealerLocationAndDetails = ({ updateModalProps }) => {
   const { selectedId, allDealersDetails, refetch } = updateModalProps;
@@ -39,7 +40,12 @@ const UpdateDealerLocationAndDetails = ({ updateModalProps }) => {
 
       const res = await axios.patch(
         `${import.meta.env.VITE_BASE_URL}/dealer-details/${selectedId}`,
-        formData
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
@@ -52,8 +58,8 @@ const UpdateDealerLocationAndDetails = ({ updateModalProps }) => {
     } catch (error) {
       toast.error("Error updating dealer details.");
       console.error("Error updating dealer details:", error);
-    }finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
 

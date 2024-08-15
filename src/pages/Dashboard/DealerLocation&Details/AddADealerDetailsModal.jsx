@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const AddADealerDetailsModal = ({ addModalProps }) => {
   const { refetch } = addModalProps;
@@ -27,7 +28,12 @@ const AddADealerDetailsModal = ({ addModalProps }) => {
 
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/dealer-details`,
-        formData
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (response.status === 201) {

@@ -4,7 +4,7 @@ import { GrDocumentImage } from "react-icons/gr";
 import AddFactoryInformationModal from "./AddFactoryInformationModal";
 import FactoryInformationList from "./FactoryInformationList";
 import { useQuery } from "@tanstack/react-query";
-const AllImageText = () => {
+const FactoryInformations = () => {
   const [
     ,
     // isLoading
@@ -25,9 +25,6 @@ const AllImageText = () => {
 
   return (
     <div>
-      <h1 className="text-medium lg:text-semi_large text-center font-bold mb-10 mt-5 text-primary uppercase flex justify-center ">
-        Factory Information <GrDocumentImage className=" ml-2 mt-2 text-large" />
-      </h1>
       <div className="flex justify-between items-center my-3">
         <div>
           <button
@@ -53,11 +50,11 @@ const AllImageText = () => {
         prompts={{
           allFactoryInformations,
           setIsLoading,
-          refetch
+          refetch,
         }}
       />
     </div>
   );
 };
 
-export default AllImageText;
+export default FactoryInformations;

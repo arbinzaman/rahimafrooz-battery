@@ -3,25 +3,42 @@ import LocationUpdateModal from "./LocationUpdateModal";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 const LocationDetailsTable = ({ prompts }) => {
-  const [selectedId, setSelectedId] = useState();
   const { allLocationDetails, refetch } = prompts;
-
+  const [selectedId, setSelectedId] = useState(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/contact/global-locations/${id}`
+        `${import.meta.env.VITE_BASE_URL}/contact/global-locations/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
-        toast.success("Successfully deleted!");
+        setDeleteModalOpen(false);
         refetch();
+        toast.success("Successfully deleted!");
       }
     } catch (error) {
       console.error("Error updating location:", error);
       toast.error("Please try again!");
     }
+  };
+
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
   };
 
   return (
@@ -64,7 +81,7 @@ const LocationDetailsTable = ({ prompts }) => {
               <td>
                 <button
                   className="btn btn-xs bg-red-500  border-none text-white hover:bg-red-700 hover:text-white"
-                  onClick={() => handleDelete(location.id)}
+                  onClick={() => openDeleteModal(location.id)}
                 >
                   <MdDeleteOutline />
                 </button>
@@ -73,6 +90,30 @@ const LocationDetailsTable = ({ prompts }) => {
           ))}
         </tbody>
       </table>
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">
+              You want to remove this location?
+            </h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

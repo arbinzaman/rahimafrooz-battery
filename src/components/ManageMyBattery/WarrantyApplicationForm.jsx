@@ -14,7 +14,6 @@ const WarrantyApplicationForm = () => {
         return;
       }
       data.remainingDays = "59 days (1 Year Warrienty)";
-      data.batteryType = "ABC";
       console.log(data);
       localStorage.setItem("warrantyInformation", JSON.stringify(data));
       successPopup("Application Submitted.");
@@ -44,6 +43,15 @@ const WarrantyApplicationForm = () => {
             placeholder="Phone Number*"
             className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("phoneNumber")}
+          />
+        </div>
+
+        <div>
+          <input
+            type="email"
+            placeholder="Email*"
+            className="bg-base border border-border_primary rounded-md p-1 w-full"
+            {...register("email")}
           />
         </div>
 

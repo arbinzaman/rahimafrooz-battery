@@ -161,7 +161,7 @@ const StoragePower = () => {
           ))}
         </div>
         {/* Milestones */}
-        {milestoneInfo.length > 0 && (
+        {milestoneInfo?.length > 0 && (
           <div className="my-10 lg:my-20">
             <p className="text-center text-large text-primary font-semibold">
               RSPB MILESTONES
