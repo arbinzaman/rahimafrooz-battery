@@ -22,10 +22,6 @@ const AllYouTubeLinks = () => {
 
   return (
     <div>
-      <h1 className="text-medium lg:text-semi_large text-center font-bold mb-10 mt-5 text-primary uppercase flex justify-center ">
-        YouTube Links
-        <FaYoutube className=" ml-2 mt-1.5 text-large" />
-      </h1>
       <div className="flex justify-between items-center my-3">
         <div>
           <button

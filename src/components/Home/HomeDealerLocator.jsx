@@ -23,7 +23,7 @@ const HomeDealerLocator = () => {
   });
 
   const getUniqueDivisions = (data) => {
-    return [...new Set(data && data.map((item) => item.division))];
+    return [...new Set(data && data?.map((item) => item?.division))];
   };
 
   const divisions = getUniqueDivisions(dealerLocs);
@@ -31,8 +31,8 @@ const HomeDealerLocator = () => {
   // Function to get districts of a selected division
   const getDistrictsByDivision = (division) => {
     const filteredDistricts = dealerLocs
-      .filter((item) => item.division === division)
-      .map((item) => item.district);
+      ?.filter((item) => item.division === division)
+      ?.map((item) => item.district);
 
     return [...new Set(filteredDistricts)];
   };
@@ -40,15 +40,15 @@ const HomeDealerLocator = () => {
   // Function to get thanas of a selected district
   const getThanasByDistrict = (district) => {
     const filteredThanas = dealerLocs
-      .filter((item) => item.district === district)
-      .map((item) => item.thana);
+      ?.filter((item) => item.district === district)
+      ?.map((item) => item.thana);
 
     return [...new Set(filteredThanas)];
   };
 
   // Function to get the data object of a selected thana
   const getDataByThana = (thana) => {
-    return dealerLocs.filter((item) => item.thana === thana);
+    return dealerLocs?.filter((item) => item.thana === thana);
   };
 
   const filteredDistricts = getDistrictsByDivision(division);
@@ -57,10 +57,10 @@ const HomeDealerLocator = () => {
 
   const handleFindDealer = (e) => {
     e.preventDefault();
-    const ids = location.map(item=>item.id);
+    const ids = location.map((item) => item?.id);
     localStorage.setItem("dealers_id", JSON.stringify(ids));
-    navigate('/find-dealer');
-    window.location.reload(false)
+    navigate("/find-dealer");
+    window.location.reload(false);
   };
 
   return (
@@ -86,7 +86,7 @@ const HomeDealerLocator = () => {
                   }}
                 >
                   <option>Division</option>
-                  {divisions.length > 0 ? (
+                  {divisions?.length > 0 ? (
                     divisions.map((div, i) => (
                       <option key={i} value={div}>
                         {div}
@@ -132,8 +132,8 @@ const HomeDealerLocator = () => {
                   }}
                 >
                   <option>Thana</option>
-                  {filteredThanas.length > 0 ? (
-                    filteredThanas.map((div, i) => (
+                  {filteredThanas?.length > 0 ? (
+                    filteredThanas?.map((div, i) => (
                       <option key={i} value={div}>
                         {div}
                       </option>

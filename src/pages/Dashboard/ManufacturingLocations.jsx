@@ -31,7 +31,7 @@ const ManufacturingLocations = () => {
         <div>
           <button
             className="flex gap-2 btn btn-xs  border-0  bg-sky-500 hover:bg-sky-700 text-white"
-            onClick={() => document.getElementById("my_modal_2").showModal()}
+            onClick={() => (document.getElementById("my_modal_2").open = true)}
           >
             Add new details <MdPrecisionManufacturing />
           </button>

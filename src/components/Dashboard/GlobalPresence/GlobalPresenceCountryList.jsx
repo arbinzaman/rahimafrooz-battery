@@ -5,26 +5,43 @@ import { useState } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const GlobalPresenceCountryList = ({ prompts }) => {
   const { countryList, refetch } = prompts;
   const [selectedId, setSelectedId] = useState();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/global-presence/${id}`
+        `${import.meta.env.VITE_BASE_URL}/global-presence/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
-        toast.success("Record deleted successfully");
+        setDeleteModalOpen(false);
         refetch();
+        toast.success("Record deleted successfully");
       }
     } catch (error) {
       toast.error("Something error occurred!");
     }
   };
 
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -69,7 +86,7 @@ const GlobalPresenceCountryList = ({ prompts }) => {
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-400"
-                      onClick={() => handleDelete(continent.id)}
+                      onClick={() => openDeleteModal(continent.id)}
                     >
                       <MdDeleteForever className="text-white" />
                     </button>
@@ -78,6 +95,28 @@ const GlobalPresenceCountryList = ({ prompts }) => {
               ))}
             </tbody>
           </table>
+        )}
+        {/* Delete Confirmation Modal */}
+        {deleteModalOpen && (
+          <dialog open className="modal modal-bottom sm:modal-middle">
+            <div className="modal-box bg-white text-red-500">
+              <h2 className="text-lg ">You want to remove this continent?</h2>
+              <div className="modal-action">
+                <button
+                  className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                  onClick={() => handleDelete(selectedId)}
+                >
+                  Yes, Remove
+                </button>
+                <button
+                  className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                  onClick={closeDeleteModal}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </dialog>
         )}
       </div>
     </div>

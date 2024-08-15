@@ -3,6 +3,7 @@ import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const FaqUpdateModal = ({ updateModalProps }) => {
   const { selectedId, allFaqs, refetch } = updateModalProps;
@@ -24,7 +25,12 @@ const FaqUpdateModal = ({ updateModalProps }) => {
       setIsLoading(true);
       const res = await axios.patch(
         `${import.meta.env.VITE_BASE_URL}/faqs/${selectedId}`,
-        data
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {

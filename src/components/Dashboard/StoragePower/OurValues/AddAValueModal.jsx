@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const AddAValueModal = ({ props }) => {
   const { refetch } = props;
@@ -16,10 +17,15 @@ const AddAValueModal = ({ props }) => {
       const formdata = new FormData();
       formdata.append("caption", data.caption);
       formdata.append("image_url", data.image_url[0]);
-      
+
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/storage-power/our-values/`,
-        formdata
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 201) {

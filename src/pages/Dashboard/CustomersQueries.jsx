@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { BiDetail, BiTrash } from "react-icons/bi";
 import axios from "axios";
 import Loader from "../../components/shared/Loaders/Loader";
 import Modal from "../../components/Dashboard/CustomerQueries/Modal";
 import toast from "react-hot-toast";
-import { FaCommentAlt } from "react-icons/fa";
+import Cookies from "js-cookie";
 
 const CustomersQueries = () => {
   const [selectedQuery, setSelectedQuery] = useState(null);
   const [selectedIds, setSelectedIds] = useState([]);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const queryClient = useQueryClient();
 
   const CONTACT_API_URL = `${import.meta.env.VITE_BASE_URL}/contact`;
 
@@ -20,10 +19,15 @@ const CustomersQueries = () => {
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery({
     queryKey: ["customersQueries"],
     queryFn: async () => {
-      const res = await fetch(CONTACT_API_URL);
+      const res = await fetch(CONTACT_API_URL, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+        },
+      });
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
@@ -39,19 +43,18 @@ const CustomersQueries = () => {
   const handleDelete = async () => {
     console.log(selectedIds);
     try {
-      const res = await axios.delete(`${CONTACT_API_URL}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const res = await axios.delete(CONTACT_API_URL, {
         data: selectedIds,
+        headers: {
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+        },
       });
 
       if (res.status === 200) {
-        console.log(res.data);
-        queryClient.invalidateQueries(["customersQueries"]);
-        toast.success("Selected queries deleted successfully.");
-        setDeleteModalOpen(false);
         setSelectedIds([]);
+        refetch();
+        setDeleteModalOpen(false);
+        toast.success("Selected queries deleted successfully.");
       } else {
         throw new Error("Failed to delete the selected queries.");
       }
@@ -89,7 +92,7 @@ const CustomersQueries = () => {
   return (
     <div>
       <h1 className="flex justify-center text-semi_large text-center font-bold mb-10 mt-5 text-primary">
-        Customer Queries <FaCommentAlt  className="mt-2 ml-2" />
+        Customer Queries
       </h1>
 
       <dialog
@@ -130,7 +133,7 @@ const CustomersQueries = () => {
         <button
           className="btn btn-xs bg-red-500 text-white border-0"
           onClick={() => setDeleteModalOpen(true)}
-          // disabled={selectedIds.length === 0}
+          disabled={selectedIds.length === 0}
         >
           <BiTrash /> Delete
         </button>

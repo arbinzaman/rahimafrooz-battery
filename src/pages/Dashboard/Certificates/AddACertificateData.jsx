@@ -1,123 +1,100 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { PiCertificateFill } from "react-icons/pi";
+import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
-const AddACertificateData = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-  });
+const AddACertificateData = ({ addCertificateModal }) => {
+  const { refetch } = addCertificateModal;
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const currentTimestamp = new Date()
-    .toISOString()
-    .slice(0, 19)
-    .replace("T", " ");
+  const { register, handleSubmit, reset } = useForm();
 
-  const dataWithTimestamp = {
-    ...formData,
-    created_at: currentTimestamp,
-  };
-  //   console.log(dataWithTimestamp);
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleImgUrl = (e) => {
-    const files = Array.from(e.target.files);
-    const fileUrls = files.map((file) => URL.createObjectURL(file));
-    setFormData({
-      ...formData,
-      imageurl: fileUrls[0],
-    });
-  };
-  const handleSubmit = async (e) => {
-    console.log(dataWithTimestamp);
-    e.preventDefault();
-    setIsLoading(true);
+  const handleAddCertificate = async (data) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/certificates`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataWithTimestamp),
-      });
+      setIsLoading(true);
+      const formdata = new FormData();
+      formdata.append("title", data.title);
+      formdata.append("img_url", data.img_url[0]);
 
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/certificates`,
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+
+      if (res.status === 201) {
+        reset();
+        document.getElementById("addCertificateModal").open = false;
+        refetch();
+        toast.success("New record has been added.");
       }
-
-      setFormData({
-        title: "",
-        image_url: "",
-      });
-
-      navigate("/dashboard/all-Certificates"); // Redirect after successful submission
     } catch (error) {
-      setError(error.message);
+      toast.error("Add certificate failed!");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <dialog id="addCertificate" className="modal">
+    <dialog id="addCertificateModal" className="modal">
       <div className="modal-box bg-white text-black">
         <form method="dialog" className="flex justify-between items-center">
-          <p className="text-primary text-medium font-bold flex gap-2 my-2">
-            Add Certificate
+          <p className="font-semibold font-primary uppercase text-primary">
+            Add New Certificate
           </p>
           <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
         </form>
-        <form
-          onSubmit={handleSubmit}
-          className="max-w-lg mx-auto p-6 bg-white  border-gray-300 rounded-md "
-        >
-          {error && <div className="text-red-500 mb-4">{error}</div>}
-          <div className="mb-4">
-            <label className="block">Title</label>
-            <input
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              className="input w-full bg-white text-black border:border-gray-300 rounded-md shadow-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-              required
-            />
-          </div>
 
-          <div className="mb-4">
-            <label className="block text-small text-gray-800 pb-1">
-              Upload Image
-            </label>
-            <input
-              type="file"
-              name="imageurl"
-              onChange={handleImgUrl}
-              className="file-input w-full max-w-xs input-sm rounded-sm bg-white text-black max-h-10 "
-            />
-          </div>
-          <div className="flex justify-between">
-            <button
-              type="button"
-              className="btn btn-xs bg-teal-500 text-white border-none hover:bg-teal-700 "
-              onClick={() => navigate("/dashboard/all-Certificates")}
-            >
-              Back to Certificates <PiCertificateFill className="" />
-            </button>
-            <button
-              type="submit"
-              className={`btn ${
-                isLoading ? "bg-gray-400" : "bg-green-500"
-              } text-white border-none text-xs hover:bg-emerald-300 btn-xs `}
-              disabled={isLoading}
-            >
-              {isLoading ? "Submitting..." : "Submit"}
-            </button>
-          </div>
-        </form>
+        <div className="">
+          <form
+            method="dialog"
+            onSubmit={handleSubmit(handleAddCertificate)}
+            className=""
+          >
+            <div className="my-2">
+              <label>
+                Certificate Title <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                className="border  rounded-md p-1 w-full bg-white text-black border-black "
+                {...register("title")}
+              />
+            </div>
+
+            <div className="my-2">
+              <label>
+                Image <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="file"
+                required
+                accept="image/png,image/jpg, image/jpeg"
+                className="file-input file-input-bordered file-input-sm w-full bg-white"
+                {...register("img_url")}
+              />
+            </div>
+
+            <div className="flex justify-end gap-3 items-center mt-3">
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button
+                  type=""
+                  className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
+                >
+                  Add
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
       </div>
       <form method="dialog" className="modal-backdrop">
         <button>close</button>

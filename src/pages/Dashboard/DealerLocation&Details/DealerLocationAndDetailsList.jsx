@@ -8,9 +8,11 @@ import UpdateDealerLocationAndDetails from "./UpdateDealerLocationAndDetails";
 import AddADealerDetailsModal from "./AddADealerDetailsModal";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const DealerLocationAndDetailsList = () => {
   const [selectedId, setSelectedId] = useState();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const { data: allDealersDetails = null, refetch } = useQuery({
     queryKey: ["allDealersDetails"],
     queryFn: async () => {
@@ -29,10 +31,16 @@ const DealerLocationAndDetailsList = () => {
       console.log(id, dealer);
       const response = await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/dealer-details/${id}`,
-        { data: dealer }
+        {
+          data: dealer,
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
-      console.log(response);
+
       if (response.status === 200) {
+        setDeleteModalOpen(false);
         refetch();
         toast.success("Records deleted successfully.");
       }
@@ -50,12 +58,21 @@ const DealerLocationAndDetailsList = () => {
     document.getElementById("dealer_details_update").open = true;
   };
 
-  return (
-    <div className="">
-       <h1 className="flex justify-center text-semi_large text-center font-bold mb-10 mt-5 text-primary">
-        Dealers Location & Details<RiUserLocationFill  className="mt-2 ml-2" />
-      </h1>
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
 
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
+  };
+
+  return (
+    <div className="overflow-x-auto">
+      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+        Dealer location and details
+      </h1>
       <div className="flex gap-4 justify-between mb-4">
         <div className="flex gap-5">
           <button
@@ -139,7 +156,7 @@ const DealerLocationAndDetailsList = () => {
                 <td>
                   <button
                     className="flex gap-2 btn btn-xs bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
-                    onClick={() => handleDelete(dealerLocationDetail.id)}
+                    onClick={() => openDeleteModal(dealerLocationDetail.id)}
                   >
                     <MdDeleteOutline />
                   </button>
@@ -148,6 +165,30 @@ const DealerLocationAndDetailsList = () => {
             ))}
         </tbody>
       </table>
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">
+              You want to remove this dealer&apos;s location?
+            </h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

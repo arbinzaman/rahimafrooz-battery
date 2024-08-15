@@ -17,19 +17,23 @@ const HomeReviews = () => {
 
   return (
     <section>
-      <div className="shadow-2xl">
+      <div className="shadow-2xl ">
         <img src={ReviewImg} alt="" />
-        <Slider
-          {...settingsForCertificatesLarge}
-          className="bg-white text-blue-900 py-10 text-center "
-        >
-          {reviewsData?.map((review) => (
-            <div key={review?.id} className="text-center p-5">
-              <p> {review.review}</p>
-              <p >- {review.user_name}</p>
-            </div>
-          ))}
-        </Slider>
+
+        <div className="bg-white  py-10">
+          <Slider
+            {...settingsForCertificatesLarge}
+            className="bg-white text-blue-900 text-center"
+          >
+            {reviewsData?.map((review) => (
+              <div key={review?.id} className="card-body">
+                <p> {review.review}</p>
+                <p>- {review.user_name}</p>
+              </div>
+            ))}
+          </Slider>
+        </div>
+
       </div>
     </section>
   );

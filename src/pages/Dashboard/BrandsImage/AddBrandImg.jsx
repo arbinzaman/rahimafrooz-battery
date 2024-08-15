@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const AddBrandImg = ({ props }) => {
   const { refetch } = props;
@@ -18,7 +19,12 @@ const AddBrandImg = ({ props }) => {
 
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/brands`,
-        formdata
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 201) {
@@ -74,6 +80,7 @@ const AddBrandImg = ({ props }) => {
                 <input
                   type="file"
                   required
+                  accept="image/png,image/jpg, image/jpeg"
                   className="file-input file-input-bordered file-input-sm w-full bg-white"
                   {...register("image_url")}
                 />

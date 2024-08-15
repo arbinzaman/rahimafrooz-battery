@@ -1,10 +1,23 @@
 import Slider from "react-slick";
-import { homeCertificates } from "../../utils/Home/certificates";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import "../../styles/Home.css";
+import { useQuery } from "@tanstack/react-query";
 
 const HomeCertificate = () => {
-  
+  const url = `${import.meta.env.VITE_BASE_URL}/certificates`;
+
+  const { data: allCertificates = [] } = useQuery({
+    queryKey: ["allCertificates"],
+    queryFn: async () => {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
   var settings = {
     dots: true,
@@ -42,15 +55,15 @@ const HomeCertificate = () => {
           </h1>
           <div className="slider-container">
             <Slider {...settings}>
-              {homeCertificates?.map((certificate) => (
+              {allCertificates?.map((certificate) => (
                 <div key={certificate?.id}>
                   <img
                     className="max-w-60 max-h-60 mx-auto"
-                    src={certificate?.certificateImage}
-                    alt={certificate?.certificateAlt}
+                    src={certificate?.img_url}
+                    alt={certificate?.title}
                   />
                   <h1 className="text-xl text-cyan-600 pt-8 font-semibold">
-                    {certificate.certificateText}
+                    {certificate?.title}
                   </h1>
                 </div>
               ))}
