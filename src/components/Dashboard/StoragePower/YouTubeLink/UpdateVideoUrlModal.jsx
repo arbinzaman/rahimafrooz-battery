@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const UpdateVideoUrlModal = ({ props }) => {
   const { allYoutubeLinks, selectedId, refetch } = props;
@@ -29,7 +30,12 @@ const UpdateVideoUrlModal = ({ props }) => {
         `${
           import.meta.env.VITE_BASE_URL
         }/storage-power/youtube-video/${selectedId}`,
-        data
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
       if (res.status === 200) {
         refetch();

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { VscMilestone } from "react-icons/vsc";
 import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const AddAMilestoneModal = ({ props }) => {
   const { refetch } = props;
@@ -19,7 +20,12 @@ const AddAMilestoneModal = ({ props }) => {
 
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/storage-power/milestone-image/`,
-        formdata
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 201) {

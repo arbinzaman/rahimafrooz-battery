@@ -5,19 +5,28 @@ import FetchErrorMessage from "../../../../components/shared/Error/FetchErrorMes
 import { FaEdit } from "react-icons/fa";
 import UpdateVideoUrlModal from "./UpdateVideoUrlModal";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 const YouTubeList = ({ prompts }) => {
   const { allYoutubeLinks, refetch } = prompts;
   const [selectedId, setSelectedId] = useState();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/storage-power/youtube-video/${id}`
+        `${import.meta.env.VITE_BASE_URL}/storage-power/youtube-video/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
-        toast.success("Record deleted successfully");
+        setDeleteModalOpen(false);
         refetch();
+        toast.success("Record deleted successfully");
       }
     } catch (error) {
       toast.error("Something error occurred!");
@@ -27,6 +36,16 @@ const YouTubeList = ({ prompts }) => {
   const openModal = (id) => {
     setSelectedId(id);
     document.getElementById("update_videoURL").open = true;
+  };
+
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
   };
 
   return (
@@ -69,7 +88,7 @@ const YouTubeList = ({ prompts }) => {
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-600 hover:bg-red-400"
-                      onClick={() => handleDelete(details.id)}
+                      onClick={() => openDeleteModal(details.id)}
                     >
                       <MdDeleteForever className="text-white" />
                     </button>
@@ -80,6 +99,28 @@ const YouTubeList = ({ prompts }) => {
           </table>
         )}
       </div>
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">You want to remove this video url?</h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

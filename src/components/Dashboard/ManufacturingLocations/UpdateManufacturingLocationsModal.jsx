@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Loader from "../../shared/Loaders/Loader";
+import Cookies from "js-cookie";
+import ThreeDotLoader from "../../shared/Loaders/ThreeDotLoader";
 
 const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
   const { selectedId, manufacturingDetails, refetch } = updateModalProps;
@@ -33,7 +35,12 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
         `${
           import.meta.env.VITE_BASE_URL
         }/manufacturing-locations/${selectedId}`,
-        formdata
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
@@ -127,12 +134,16 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
             </div>
 
             <div className="flex justify-end gap-3 items-center mt-3">
-              <button
-                type=""
-                className="flex gap-2 btn btn-sm bg-secondary text-white hover:bg-primary hover:text-white"
-              >
-                Update
-              </button>
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button
+                  type=""
+                  className="flex gap-2 btn btn-sm bg-secondary text-white hover:bg-primary hover:text-white"
+                >
+                  Update
+                </button>
+              )}
             </div>
           </form>
         </div>

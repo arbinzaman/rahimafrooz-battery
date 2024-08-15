@@ -3,6 +3,8 @@ import ThreeDotLoader from "../../shared/Loaders/ThreeDotLoader";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+
 
 const UpdateBrandImgModal = ({ updateModalProps }) => {
   const { selectedId, brandImgs, refetch } = updateModalProps;
@@ -28,7 +30,12 @@ const UpdateBrandImgModal = ({ updateModalProps }) => {
 
       const res = await axios.patch(
         `${import.meta.env.VITE_BASE_URL}/brands/${selectedId}`,
-        formdata
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
@@ -79,11 +86,7 @@ const UpdateBrandImgModal = ({ updateModalProps }) => {
                 {brandImg?.image_url && (
                   <div className="flex flex-col items-center justify-center my-1">
                     <p>Current Image</p>
-                    <img
-                      src={brandImg?.image_url}
-                      className="w-40"
-                      alt=""
-                    />
+                    <img src={brandImg?.image_url} className="w-40" alt="" />
                   </div>
                 )}
 
@@ -92,7 +95,7 @@ const UpdateBrandImgModal = ({ updateModalProps }) => {
                 </label>
                 <input
                   type="file"
-                  required
+                  accept="image/png, image/jpeg, image/jpg"
                   className="file-input file-input-bordered file-input-sm w-full bg-white"
                   {...register("image_url")}
                 />

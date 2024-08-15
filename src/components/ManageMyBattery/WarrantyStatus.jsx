@@ -13,11 +13,11 @@ const WarrantyStatus = ({ warrantyInformation }) => {
           <p>Vehicle/Device/Application : {warrantyInformation?.vehicleType}</p>
           <p>Purchase Date : {warrantyInformation?.purchaseDate}</p>
           <p>Purchase DLR : {warrantyInformation?.purchaseDLR}</p>
+          <p>Total Warranty: {1} year</p>
           <p>
             Warranty Period - Remaining Days :{" "}
             {warrantyInformation?.remainingDays}
           </p>
-          <p>Battery Type : {warrantyInformation?.batteryType}</p>
         </div>
       </div>
     </section>

@@ -3,14 +3,13 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const UpdateValueInfoModal = ({ updateModalProps }) => {
   const { selectedId, allValues, refetch } = updateModalProps;
   const [isLoading, setIsLoading] = useState(false);
 
-  const singleValue = allValues.find(
-    (details) => details.id === selectedId
-  );
+  const singleValue = allValues.find((details) => details.id === selectedId);
   const { register, handleSubmit, reset } = useForm({
     defaultValues: singleValue,
   });
@@ -32,7 +31,12 @@ const UpdateValueInfoModal = ({ updateModalProps }) => {
         `${
           import.meta.env.VITE_BASE_URL
         }/storage-power/our-values/${selectedId}`,
-        formdata
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {

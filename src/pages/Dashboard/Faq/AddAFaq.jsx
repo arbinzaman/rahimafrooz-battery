@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { FaQuestion } from "react-icons/fa";
 import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const AddAFaq = ({ addModalProps }) => {
   const { refetch } = addModalProps;
@@ -16,7 +17,11 @@ const AddAFaq = ({ addModalProps }) => {
   const handleAddFAQ = async (data) => {
     try {
       setIsLoading(true);
-      const res = await axios.post(API_URL, data);
+      const res = await axios.post(API_URL, data, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+        },
+      });
       if (res.status === 201) {
         reset();
         document.getElementById("addFaq").open = false;

@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { GrDocumentImage } from "react-icons/gr";
+import Cookies from "js-cookie";
+import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
 
 const AddFactoryInformationModal = ({ props }) => {
   const { refetch } = props;
@@ -16,12 +18,18 @@ const AddFactoryInformationModal = ({ props }) => {
       formdata.append("description", data.description);
       formdata.append("corner_text", data.corner_text);
       formdata.append("image_url", data.image_url[0]);
-      
+
       setIsLoading(true);
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/storage-power/factory-informations/`,
-        formdata
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
+
       if (res.status === 201) {
         reset();
         document.getElementById("img_text").open = false;
@@ -97,12 +105,16 @@ const AddFactoryInformationModal = ({ props }) => {
             </div>
 
             <div className="flex justify-center">
-              <button
-                type="submit"
-                className="bg-secondary hove:bg-primary hover:cursor-pointer text-white px-4  rounded-md btn-sm "
-              >
-                Add Factory Information
-              </button>
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button
+                  type="submit"
+                  className="bg-secondary hove:bg-primary hover:cursor-pointer text-white px-4  rounded-md btn-sm "
+                >
+                  Add Factory Information
+                </button>
+              )}
             </div>
           </form>
         </div>

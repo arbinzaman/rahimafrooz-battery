@@ -4,13 +4,14 @@ import { LuRefreshCcw } from "react-icons/lu";
 import FaqUpdateModal from "./FaqUpdateModal";
 import { toast } from "react-hot-toast";
 import { FaQuestion } from "react-icons/fa6";
-import { TbPencilQuestion } from "react-icons/tb";
 import AddAFaq from "./AddAFaq";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
+import Cookies from "js-cookie";
+import { TiEdit } from "react-icons/ti";
 const AllFaqs = () => {
   const [selectedId, setSelectedId] = useState();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const { data: allFaqs = [], refetch } = useQuery({
     queryKey: ["allFaqs"],
@@ -22,12 +23,28 @@ const AllFaqs = () => {
     refetchOnWindowFocus: true,
   });
 
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
+  };
+
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/faqs/${id}`
+        `${import.meta.env.VITE_BASE_URL}/faqs/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
       if (res.status === 200) {
+        closeDeleteModal();
         refetch();
         toast.success("Deleted successfully!");
       }
@@ -51,12 +68,12 @@ const AllFaqs = () => {
           >
             Add FAQ <FaQuestion />
           </button>
-          <AddAFaq addModalProps={{refetch}}/>
+          <AddAFaq addModalProps={{ refetch }} />
         </div>
         <div>
           <button
             className="flex gap-2 btn btn-xs  border-0 text-white bg-teal-400 hover:bg-teal-700 hover:text-white"
-            // Implement refresh logic if needed
+            onClick={refetch}
           >
             Refresh
             <LuRefreshCcw />
@@ -81,13 +98,13 @@ const AllFaqs = () => {
               <td>{faq.answer}</td>
               <td>
                 <button
-                  className="btn btn-ghost btn-xs bg-white hover:bg-lime-500 hover:text-white"
+                  className="btn btn-xs bg-white hover:text-white border-none hover:bg-gray-200"
                   onClick={() => {
                     setSelectedId(faq.id);
                     document.getElementById("updateFAQ").open = true;
                   }}
                 >
-                  <TbPencilQuestion className="text-regular" />
+                  <TiEdit className="text-regular text-primary " />
                 </button>
                 <FaqUpdateModal
                   updateModalProps={{ selectedId, allFaqs, refetch }}
@@ -96,7 +113,7 @@ const AllFaqs = () => {
               <td>
                 <button
                   className="flex gap-2 btn btn-xs bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
-                  onClick={() => handleDelete(faq.id)}
+                  onClick={() => openDeleteModal(faq.id)}
                 >
                   <MdDeleteOutline />
                 </button>
@@ -105,6 +122,28 @@ const AllFaqs = () => {
           ))}
         </tbody>
       </table>
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">Do you want to remove this FAQ?</h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

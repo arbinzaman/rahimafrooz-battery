@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const UpdateGlobalPresenceCountryList = ({ updateModalProps }) => {
   const { selectedId, countryList, refetch } = updateModalProps;
@@ -33,7 +34,12 @@ const UpdateGlobalPresenceCountryList = ({ updateModalProps }) => {
 
       const res = await axios.patch(
         `${import.meta.env.VITE_BASE_URL}/global-presence/${selectedId}`,
-        body
+        body,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
