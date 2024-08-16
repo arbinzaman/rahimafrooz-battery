@@ -31,8 +31,8 @@ const HomeDealerLocator = () => {
   // Function to get districts of a selected division
   const getDistrictsByDivision = (division) => {
     const filteredDistricts = dealerLocs
-      ?.filter((item) => item.division === division)
-      ?.map((item) => item.district);
+      ?.filter((item) => item?.division === division)
+      ?.map((item) => item?.district);
 
     return [...new Set(filteredDistricts)];
   };

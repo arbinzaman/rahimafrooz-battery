@@ -2,28 +2,28 @@
     {
         "id": 1,
         "title": "TechFusion",
-        "image_url": "https://via.placeholder.com/150?text=TechFusion",
+        "image_url": "https://media.gettyimages.com/id/1448705361/photo/energy-storage-system-with-solar-panel-wind-turbines-and-li-ion-battery-container.jpg?s=612x612&w=0&k=20&c=70EdZdlPdzDAtcCfMDChlHm__3waIaUagyJNOYGI2GQ=",
         "description": "Innovative technology solutions for modern businesses.",
         "publish_date": "2024-08-04"
     },
     { 
         "id": 2,
         "title": "NanoTech Labs",
-        "image_url": "https://via.placeholder.com/150?text=NanoTech+Labs",
+        "image_url": "https://media.gettyimages.com/id/646335957/photo/battery-recycling.jpg?s=612x612&w=0&k=20&c=PqWVcaiUbnbpOKS6J5zxNnEdVvvDGctw_26Z9CYi3LM=",
         "description": "Pioneering advancements in nanotechnology and material science.",
         "publish_date": "2024-08-04"
     },
     {
         "id": 3,
         "title": "QuantumEdge",
-        "image_url": "https://via.placeholder.com/150?text=QuantumEdge",
+        "image_url": "https://media.gettyimages.com/id/1335026774/photo/electric-car-lithium-battery-pack-and-power-connections.jpg?s=612x612&w=0&k=20&c=Lc-BoztgWZTWJ7sTuWvJa9Y4D63pTN3f4uhaJZANwnQ=",
         "description": "Leading provider of quantum computing solutions and services.",
         "publish_date": "2024-08-04"
     },
     {
         "id": 4,
         "title": "CyberShield",
-        "image_url": "https://via.placeholder.com/150?text=CyberShield",
+        "image_url": "https://media.gettyimages.com/id/1263282440/photo/battery.jpg?s=612x612&w=0&k=20&c=TiWpMpffkifArWhD-cQeORV82BDju2Xe2SYY-V_vDaM=",
         "description": "Advanced cybersecurity solutions to protect your digital assets.",
         "publish_date": "2024-08-04"
     },
@@ -53,6 +53,20 @@
         "title": "MaxPower",
         "image_url": "https://via.placeholder.com/150?text=MaxPower",
         "description": "High-performance energy solutions for technology enthusiasts.",
+        "publish_date": "2024-08-04"
+    },
+    {
+        "id": 9,
+        "title": "GreenEnergy Co.",
+        "image_url": "https://media.gettyimages.com/id/1367438209/photo/renewable-energy-sources-and-energy-efficiency-concept.jpg?s=612x612&w=0&k=20&c=TvC5F3bS1Q1CW8eYkpBdFziEIj87BfHHLuexUZBfG1Y=",
+        "description": "Sustainable energy solutions for a greener planet.",
+        "publish_date": "2024-08-04"
+    },
+    {
+        "id": 10,
+        "title": "EcoBuild",
+        "image_url": "https://media.gettyimages.com/id/1447460176/photo/concept-of-environmental-protection-and-renewable-energy.jpg?s=612x612&w=0&k=20&c=zr1HRNUkVz74BpPrwJ48BFLROtxwQbbzPguo3MFy6zg=",
+        "description": "Eco-friendly building materials and construction innovations.",
         "publish_date": "2024-08-04"
     }
 ]
