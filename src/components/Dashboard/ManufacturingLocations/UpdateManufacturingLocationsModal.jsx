@@ -128,6 +128,7 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
               )}
               <input
                 type="file"
+                accept="image/png, image/jpg, image/jpeg"
                 className="file-input file-input-bordered file-input-sm w-full"
                 {...register("image")}
               />
