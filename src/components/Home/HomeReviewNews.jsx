@@ -12,10 +12,10 @@ const HomeReviewNews = () => {
           text-white pt-8 pb-8"
         >
           <WhyChooseUs />
-          <div className="shadow-2xl">
+          <div className="">
             <HomeReviews />
           </div>
-          <div className="shadow-2xl">
+          <div className="">
             <HomeNewsSlider />
           </div>
         </div>
