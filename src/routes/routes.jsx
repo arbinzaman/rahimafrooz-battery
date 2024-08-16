@@ -48,6 +48,8 @@ import Profile from "../pages/Dashboard/UserProfile/Profile";
 import AllReviews from "../pages/Dashboard/Review/AllReviews";
 import ForgotPass from "../pages/Dashboard/ForgotPass";
 import AllWarrantyService from "../pages/Dashboard/WarrantyService/AllWarrantyService";
+import News from "../pages/News";
+import SingleNewsCard from "../components/News/SingleNewsCard";
 
 const routes = createBrowserRouter([
   {
@@ -113,6 +115,14 @@ const routes = createBrowserRouter([
       {
         path: "/find-dealer",
         element: <FindDealer />,
+      },
+      {
+        path: "/News",
+        element: <News />,
+      },
+      {
+        path: "/News/:id",
+        element: <SingleNewsCard />,
       },
       {
         path: "/manufacturing",

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import NewsData from "../../demoData/NewsData.json";
 import Slider from "react-slick";
 // import { useQuery } from "@tanstack/react-query";
@@ -9,6 +10,7 @@ import Slider from "react-slick";
 // };
 
 const NewsEvents = () => {
+  const navigate = useNavigate();
   // const { data, isLoading, error } = useQuery(["news"], fetchNews);
   const data = NewsData; // Use the entire data set
   console.log(data);
@@ -44,9 +46,13 @@ const NewsEvents = () => {
           <div className="bg-white">
             <Slider {...settings}>
               {groupedData?.map((group, index) => (
-                <div key={index} className=" text-blue-900 p-4 ">
+                <div key={index} className=" text-blue-900 p-4">
                   {group?.map((item) => (
-                    <div key={item?.id} className="flex items-center bg-gray-200 px-2  my-2">
+                    <div
+                      key={item?.id}
+                      className="flex items-center bg-gray-200 px-2 my-2 hover:cursor-pointer "
+                      onClick={() => navigate(`/news/`)}
+                    >
                       <img
                         src={item?.image_url}
                         alt={item?.title}
@@ -57,7 +63,7 @@ const NewsEvents = () => {
                           {item?.title}
                         </p>
                         <p className="text-gray-500 text-xsmall">
-                          {item?.description}
+                          {item?.description.slice(0, 50)}
                         </p>
                       </div>
                     </div>
