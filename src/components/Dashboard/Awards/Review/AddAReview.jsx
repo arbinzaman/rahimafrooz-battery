@@ -1,34 +1,40 @@
-//import axios from "axios";/
 import { useForm } from "react-hook-form";
-//import toast from "react-hot-toast";
 import { useLoading } from "../../../../contexts/LoadingContext";
+import axios from "axios";
+import toast from "react-hot-toast";
+import ThreeDotLoader from "../../../../components/shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const AddAReview = ({ prompts }) => {
   const { refetch } = prompts;
   const { isLoading, setIsLoading } = useLoading();
   const { register, handleSubmit, reset } = useForm();
 
-  // console.log(singleLocationDetails);
-
   const handleAddData = async (data) => {
-    console.log(data);
-    // try {
+    try {
       setIsLoading(true);
-      console.log(data);
-    //   const res = await axios.post(
-    //     `${import.meta.env.VITE_BASE_URL}/contact/global-locations`,
-    //     data
-    //   );
-    //   if (res.status === 201) {
-    //     toast.success("New global location added successfully");
-    //     reset();
-    //     setIsLoading(false);
-    //     refetch();
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   toast.error("Something error occurred!");
-    // }
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/reviews`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+
+      if (res.status === 201) {
+        reset();
+        document.getElementById("reviews").open = false;
+        refetch();
+        toast.success("New global location added successfully");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something error occurred!");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -49,14 +55,14 @@ const AddAReview = ({ prompts }) => {
               <input
                 type="text"
                 required
-                className="bg-white border rounded-md px- py-1 w-full"
+                className="bg-white border rounded-md px-2 py-1 w-full"
                 {...register("user_name")}
               />
             </div>
 
             <div className="my-2">
               <label>
-              Review <span className="text-red-600">*</span>
+                Review <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
@@ -66,16 +72,18 @@ const AddAReview = ({ prompts }) => {
               />
             </div>
 
-         
-
             <div className="flex justify-end gap-3 items-center mt-3">
-              <button
-                type=""
-                disabled={isLoading ? true : false}
-                className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
-              >
-                Add
-              </button>
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button
+                  type=""
+                  disabled={isLoading ? true : false}
+                  className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
+                >
+                  Add
+                </button>
+              )}
             </div>
           </form>
         </div>
