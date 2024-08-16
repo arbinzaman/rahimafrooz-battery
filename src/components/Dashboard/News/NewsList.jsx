@@ -1,23 +1,45 @@
-import { MdDeleteOutline,  } from "react-icons/md";
+import { MdDeleteOutline } from "react-icons/md";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import NewsUpdateModal from "./NewsUpdateModal";
 import { TiEdit } from "react-icons/ti";
+import Cookies from "js-cookie";
 
 const NewsList = ({ prompts }) => {
-  const [selectedId, setSelectedId] = useState();
   const { allNews, refetch } = prompts;
+
+  const [selectedId, setSelectedId] = useState();
+  const [readMore, setReadMore] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
+  };
 
   const handleDelete = async (id) => {
     try {
+      const body = allNews.find((item) => item.id === selectedId);
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/contact/global-locations/${id}`
+        `${import.meta.env.VITE_BASE_URL}/news/${id}`,
+        {
+          data: body,
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
-        toast.success("Successfully deleted!");
+        closeDeleteModal();
         refetch();
+        toast.success("Successfully deleted!");
       }
     } catch (error) {
       console.error("Error updating location:", error);
@@ -41,22 +63,47 @@ const NewsList = ({ prompts }) => {
         </thead>
         <tbody>
           {allNews?.map((news, i) => (
-            <tr key={news.id}>
+            <tr key={news?.id}>
               <th>{i + 1}</th>
-              <td>{news.title}</td>
-              <td>{news.description}</td>
+              <td>{news?.title}</td>
+              <td className="w-96">
+                {selectedId === news?.id && readMore
+                  ? news?.description
+                  : news?.description.slice(0, 100)}{" "}
+                {selectedId === news?.id && readMore ? (
+                  <span
+                    className="text-blue-500 hover:cursor-pointer"
+                    onClick={() => {
+                      setSelectedId(news?.id);
+                      setReadMore(false);
+                    }}
+                  >
+                    collapse
+                  </span>
+                ) : (
+                  <span
+                    className="text-blue-500 hover:cursor-pointer"
+                    onClick={() => {
+                      setSelectedId(news?.id);
+                      setReadMore(true);
+                    }}
+                  >
+                    read more
+                  </span>
+                )}
+              </td>
               <td>
                 {" "}
-                <img src={news.image_url} alt="" width={"100%"} />
+                <img src={news?.image_url} alt="" className="w-48" />
               </td>
-              <td>{news.publish_date}</td>
+              <td>{news?.publish_date}</td>
               <td>
                 <button
                   title="Update News"
                   className="btn btn-xs bg-white hover:text-white border-none hover:bg-green-500 "
                   onClick={() => {
                     document.getElementById("my_modal_2").open = true;
-                    setSelectedId(news.id);
+                    setSelectedId(news?.id);
                   }}
                 >
                   <TiEdit className="text-regular text-primary " />
@@ -68,7 +115,7 @@ const NewsList = ({ prompts }) => {
               <td>
                 <button
                   className="btn btn-xs bg-red-500  border-none text-white hover:bg-red-700 hover:text-white"
-                  onClick={() => handleDelete(news.id)}
+                  onClick={() => openDeleteModal(news?.id)}
                 >
                   <MdDeleteOutline />
                 </button>
@@ -77,6 +124,28 @@ const NewsList = ({ prompts }) => {
           ))}
         </tbody>
       </table>
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">Do you want to remove this news?</h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

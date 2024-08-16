@@ -2,16 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import ThreeDotLoader from "../../shared/Loaders/ThreeDotLoader";
 
 const NewsUpdateModal = ({ updateModalProps }) => {
   const { selectedId, allNews, refetch } = updateModalProps;
   const [isLoading, setIsLoading] = useState(false);
-  const [image, setImage] = useState(null); // State to handle image
-  const [publishDate, setPublishDate] = useState(""); // State for timestamp
 
-  const singleNews = allNews?.find(
-    (details) => details.id === selectedId
-  );
+  const singleNews = allNews?.find((details) => details.id === selectedId);
   const { register, handleSubmit, reset } = useForm({
     defaultValues: singleNews,
   });
@@ -19,35 +17,30 @@ const NewsUpdateModal = ({ updateModalProps }) => {
   useEffect(() => {
     if (singleNews) {
       reset(singleNews);
-      setPublishDate(new Date().toISOString()); // Set default publish date
     }
   }, [singleNews, reset]);
 
   const handleUpdate = async (data) => {
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("description", data.description);
-    formData.append("publish_date", publishDate);
-    if (image) {
-      formData.append("image_url", image);
-    }
-    console.log(formData);
-
     try {
       setIsLoading(true);
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("image_url", data.image_url[0]);
       const res = await axios.patch(
         `${import.meta.env.VITE_BASE_URL}/news/${selectedId}`,
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Necessary for file uploads
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
           },
         }
       );
 
       if (res.status === 200) {
-        refetch();
         document.getElementById("my_modal_2").open = false;
+        refetch();
         toast.success("Record updated successfully");
       }
     } catch (error) {
@@ -56,10 +49,6 @@ const NewsUpdateModal = ({ updateModalProps }) => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
   };
 
   return (
@@ -88,32 +77,44 @@ const NewsUpdateModal = ({ updateModalProps }) => {
               <label>
                 Description <span className="text-red-600">*</span>
               </label>
-              <input
+              <textarea
                 type="text"
-                className="bg-white border rounded-md px-2 py-1 w-full"
+                className="bg-white border rounded-md px-2 py-1 h-40 w-full"
                 {...register("description")}
               />
             </div>
 
             <div className="my-2">
+              {singleNews?.image_url && (
+                <div className="flex justify-center">
+                  <img
+                    src={singleNews?.image_url}
+                    className="w-96 my-3"
+                    alt=""
+                  />
+                </div>
+              )}
               <input
                 type="file"
                 className="file-input file-input-bordered file-input-sm w-full bg-white text-black"
-                onChange={handleImageChange}
+                accept="image/png, image/jpg, image/jpeg"
+                {...register("image_url")}
               />
             </div>
 
-
             <div className="flex justify-end gap-3 items-center mt-3">
-              <button
-                type="submit"
-                className={`flex gap-2 btn btn-sm ${
-                  isLoading ? "bg-gray-400" : "bg-primary text-white hover:bg-secondary hover:text-white"
-                }`}
-                disabled={isLoading}
-              >
-                {isLoading ? "Updating..." : "Update"}
-              </button>
+              <div className="flex justify-end gap-3 items-center mt-3">
+                {isLoading ? (
+                  <ThreeDotLoader />
+                ) : (
+                  <button
+                    type="submit"
+                    className={`flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white`}
+                  >
+                    {isLoading ? "Updating..." : "Update"}
+                  </button>
+                )}
+              </div>
             </div>
           </form>
         </div>
