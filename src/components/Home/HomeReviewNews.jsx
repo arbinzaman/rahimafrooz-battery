@@ -15,7 +15,7 @@ const HomeReviewNews = () => {
           <div className="">
             <HomeReviews />
           </div>
-          <div className="shadow-2xl">
+          <div className="">
             <HomeNewsSlider />
           </div>
         </div>
