@@ -1,50 +1,46 @@
-// import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { LuRefreshCcw } from "react-icons/lu";
 import ReviewList from "../../../components/Dashboard/Awards/Review/ReviewList";
 import AddAReview from "../../../components/Dashboard/Awards/Review/AddAReview";
-// import Loader from "../../../components/shared/Loaders/Loader";
-// import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
-import ReviewData from "../../../demoData/ReviewData.json";
-import { MdReviews,MdOutlineRateReview } from "react-icons/md";
+import Loader from "../../../components/shared/Loaders/Loader";
+import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
+import { MdReviews, MdOutlineRateReview } from "react-icons/md";
 
 const AllReviews = () => {
-  const allReviews = ReviewData;
-
-  //   const url = `${import.meta.env.VITE_BASE_URL}/contact/global-locations`;
-
-  //   const {
-  //     data: allReviews = [],
-  //     isLoading,
-  //     error,
-  //     refetch,
-  //   } = useQuery({
-  //     queryKey: ["allReviews"],
-  //     queryFn: async () => {
-  //       const res = await fetch(url);
-  //       if (!res.ok) {
-  //         throw new Error("Network response was not ok");
-  //       }
-  //       const data = await res.json();
-  //       return data;
-  //     },
-  //     refetchOnWindowFocus: true,
-  //   });
+  const url = `${import.meta.env.VITE_BASE_URL}/reviews`;
+  const {
+    data: allReviews = [],
+    isLoading,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["allReviews"],
+    queryFn: async () => {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
   const handleRefresh = async () => {
-    // await refetch();
+    await refetch();
   };
 
   const openModal = () => {
-    document.getElementById("reviews").showModal();
+    document.getElementById("reviews").open = true;
   };
 
-  //   if (isLoading) {
-  //     return <Loader />;
-  //   }
+  if (isLoading) {
+    return <Loader />;
+  }
 
-  //   if (error) {
-  //     return <FetchErrorMessage />;
-  //   }
+  if (error) {
+    return <FetchErrorMessage />;
+  }
 
   return (
     <div>
@@ -60,11 +56,9 @@ const AllReviews = () => {
             Add A Review <MdReviews className="mt-0.5" />
           </button>
           <AddAReview
-            prompts={
-              {
-                //  refetch
-              }
-            }
+            prompts={{
+              refetch,
+            }}
           />
         </div>
         <div>
@@ -80,7 +74,7 @@ const AllReviews = () => {
       <ReviewList
         prompts={{
           allReviews,
-          // refetch
+          refetch,
         }}
       />
     </div>
