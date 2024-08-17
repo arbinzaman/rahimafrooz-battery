@@ -5,6 +5,7 @@ import { AiOutlineGlobal } from "react-icons/ai";
 import { ImNewspaper } from "react-icons/im";
 import { AiOutlineFileDone } from "react-icons/ai";
 import { IoMdImages } from "react-icons/io";
+import { GrHostMaintenance } from "react-icons/gr";
 
 import {
   FaCarBattery,
@@ -76,12 +77,20 @@ const DashboardLayout = () => {
               </Link>
             </li>
             <li>
+              <Link to="/dashboard/maintenance-guidelines">
+                {" "}
+                <GrHostMaintenance  />
+                Maintenance Guidelines{" "}
+              </Link>
+            </li>
+            <li>
               <Link to="/dashboard/warranty-service">
                 {" "}
                 <AiOutlineFileDone />
                 Warranty & Service{" "}
               </Link>
             </li>
+         
             <li>
               <Link to="/dashboard/customers-queries">
                 {" "}

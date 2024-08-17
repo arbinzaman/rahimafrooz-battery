@@ -82,16 +82,23 @@ const CertificateUpdateModal = ({ updateModalData }) => {
             </div>
 
             <div className="my-2">
-              <label>
-                Image <span className="text-red-600">*</span>
-              </label>
-              <input
-                type="file"
-                accept="image/png,image/jpg, image/jpeg"
-                className="file-input file-input-bordered file-input-sm w-full bg-white"
-                {...register("img_url")}
-              />
-            </div>
+                {certificate?.img_url && (
+                  <div className="flex flex-col items-center justify-center my-1">
+                    <p>Current Image</p>
+                    <img src={certificate?.img_url} className="w-40" alt="" />
+                  </div>
+                )}
+
+                <label>
+                  Image <span className="text-red-600">*</span>
+                </label>
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg, image/jpg"
+                  className="file-input file-input-bordered file-input-sm w-full bg-white"
+                  {...register("img_url")}
+                />
+              </div>
 
             <div className="flex justify-end gap-3 items-center mt-3">
               {isLoading ? (
