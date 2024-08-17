@@ -7,6 +7,7 @@ import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import { sample } from "../../utils/Products/sample";
 const FounderAndBoardMembers = () => {
   console.log(sample);
+  const pageKey = "board_members";
 
   return (
     <section className="">

@@ -4,6 +4,7 @@ import DashboardHeader from "../components/shared/DashboardHeader";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { ImNewspaper } from "react-icons/im";
 import { AiOutlineFileDone } from "react-icons/ai";
+import { IoMdImages } from "react-icons/io";
 
 import {
   FaCarBattery,
@@ -93,6 +94,13 @@ const DashboardLayout = () => {
                 {" "}
                 <AiOutlineGlobal />
                 Global Presence{" "}
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/banner-image">
+                {" "}
+                <IoMdImages />
+                Banner Images{" "}
               </Link>
             </li>
             <li>

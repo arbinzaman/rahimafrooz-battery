@@ -50,6 +50,7 @@ import ForgotPass from "../pages/Dashboard/ForgotPass";
 import AllWarrantyService from "../pages/Dashboard/WarrantyService/AllWarrantyService";
 import News from "../pages/News";
 import SingleNewsCard from "../components/News/SingleNewsCard";
+import AllBannerImg from "../pages/Dashboard/BannerImage/AllBannerImg";
 
 const routes = createBrowserRouter([
   {
@@ -265,6 +266,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/warranty-service",
         element: <AllWarrantyService />,
+      },
+      {
+        path: "/dashboard/banner-image",
+        element: <AllBannerImg />,
       },
     ],
   },
