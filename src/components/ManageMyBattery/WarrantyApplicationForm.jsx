@@ -1,24 +1,22 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
-import {
-  errorPopup,
-  successPopup,
-} from "../../utils/Toasts/WarrantyRelated/warrantyToasts";
+import toast from "react-hot-toast";
 
 const WarrantyApplicationForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const API_URL = `${import.meta.env.VITE_BASE_URL}/warranty-services`;
 
-  const handleApplicationSubmit = (data) => {
+  const handleApplicationSubmit = async (data) => {
     try {
-      if (data?.serialNumber == "") {
-        errorPopup("Something went wrong, Please try again!");
-        return;
+      data.approval_status = false;
+      const res = await axios.post(API_URL, data);
+
+      if (res.status === 201) {
+        reset();
+        toast.success("Application submitted successfully");
       }
-      data.remainingDays = "59 days (1 Year Warrienty)";
-      console.log(data);
-      localStorage.setItem("warrantyInformation", JSON.stringify(data));
-      successPopup("Application Submitted.");
     } catch (error) {
-      console.log(error.message);
+      toast.error("Application failed. Please try again!");
     }
   };
   return (
@@ -31,7 +29,8 @@ const WarrantyApplicationForm = () => {
         <div>
           <input
             type="text"
-            placeholder="Name*"
+            required
+            placeholder="Name *"
             className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("name")}
           />
@@ -40,16 +39,17 @@ const WarrantyApplicationForm = () => {
         <div>
           <input
             type="text"
-            placeholder="Phone Number*"
+            required
+            placeholder="Phone Number *"
             className="bg-base border border-border_primary rounded-md p-1 w-full"
-            {...register("phoneNumber")}
+            {...register("phone_number")}
           />
         </div>
 
         <div>
           <input
             type="email"
-            placeholder="Email*"
+            placeholder="Email"
             className="bg-base border border-border_primary rounded-md p-1 w-full"
             {...register("email")}
           />
@@ -57,37 +57,41 @@ const WarrantyApplicationForm = () => {
 
         <div>
           <input
-            type="number"
-            placeholder="Product Serial Number*"
+            type="text"
+            required
+            placeholder="Product Short Code *"
             className="bg-base border border-border_primary rounded-md p-1 w-full"
-            {...register("serialNumber")}
+            {...register("short_code")}
           />
         </div>
 
         <div>
           <input
             type="text"
-            placeholder="Vehicle/Device/Application"
+            required
+            placeholder="Vehicle/Battery Type"
             className="bg-base border border-border_primary rounded-md p-1 w-full"
-            {...register("vehicleType")}
+            {...register("vehicle_type")}
           />
         </div>
 
         <div>
           <input
             type="date"
-            placeholder="Purchase Date*"
+            required
+            placeholder="Purchase Date *"
             className="bg-base border border-border_primary rounded-md p-1 w-full"
-            {...register("purchaseDate")}
+            {...register("purchase_date")}
           />
         </div>
 
         <div>
           <input
             type="text"
+            required
             placeholder="Purchase DLR*"
             className="bg-base border border-border_primary rounded-md p-1 w-full"
-            {...register("purchaseDLR")}
+            {...register("purchase_dlr")}
           />
         </div>
       </div>

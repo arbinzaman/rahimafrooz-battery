@@ -92,7 +92,7 @@ const Footer = () => {
               to={"/manage-my-battery"}
               className="link link-hover opacity-80"
             >
-              Find Your Battery
+              Warranty and Services
             </Link>
             <Link to={"/find-dealer"} className="link link-hover opacity-80">
               Nearest Dealer
@@ -121,10 +121,7 @@ const Footer = () => {
               className="link link-hover opacity-80"
               href="/privacy-policy"
             >
-              Privacy policy
-            </Link>
-            <Link to={""} className="link link-hover opacity-80" href="#">
-              Cookies ppolicy
+              Privacy Policy
             </Link>
             <Link to={""} className="link link-hover opacity-80" href="#">
               Copyright notification
@@ -194,7 +191,7 @@ const Footer = () => {
                 to={"/manage-my-battery"}
                 className="link link-hover opacity-80"
               >
-                Find Your Battery
+                Warrany and Services
               </Link>
               <br />
               <Link to={"/find-dealer"} className="link link-hover opacity-80">
@@ -233,12 +230,8 @@ const Footer = () => {
                 className="link link-hover opacity-80"
                 href="/privacy-policy"
               >
-                Privacy policy
+                Privacy Policy
               </Link>{" "}
-              <br />
-              <a className="link link-hover opacity-80" href="#">
-                Cookies ppolicy
-              </a>
               <br />
               <a className="link link-hover opacity-80" href="#">
                 Copyright notification
