@@ -10,8 +10,8 @@ const SingleNewsCard = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="card lg:card-side bg-base-100 shadow-xl">
+    <div className="container mx-auto p-6 ">
+      <div className="card lg:card-side bg-white text-black shadow-xl">
         <figure>
           <img
             src={news.image_url}

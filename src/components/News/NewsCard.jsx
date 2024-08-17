@@ -1,7 +1,7 @@
 const NewsCard = ({ news, onClick }) => {
   return (
     <div onClick={() => onClick(news.id)}>
-      <div className="card lg:card-side   mb-10 bg-white">
+      <div className="card lg:card-side   mb-10 bg-white hover:cursor-pointer">
         <figure>
           <img
             src={news?.image_url}
