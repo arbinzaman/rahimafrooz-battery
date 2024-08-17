@@ -3,14 +3,14 @@
     "id": 1,
     "name": "Md. Yasir Omar Fahim",
     "email": "mdyasiromar@gmail.com",
-    "serialNumber": "1234567",
-    "phoneNumber": "01639607507",
-    "purchaseDLR": "232456",
-    "purchaseDate": "2024-08-15",
-    "vehicleType": "Two wheeler",
-    "warrantyDeadline": "2025-08-15",
-    "totalWarranty": 12,
-    "approvalStatus": false
+    "short_code": 123456789,
+    "phone_number": "01639607507",
+    "purchase_dlr": "New Saika Motors",
+    "purchase_date": "2024-08-14T18:00:00.000Z",
+    "vehicle_type": "Two wheeler",
+    "total_warranty": null,
+    "warranty_deadline": null,
+    "approval_status": false
   },
   {
     "id": 2,

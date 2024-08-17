@@ -100,32 +100,30 @@ const PrivacyPolicy = () => {
       </div>
 
       {/*List section of privacy policy Start */}
-      <section className="bg-background2 py-1 text-black">
-        <div className={allDeviceMaxWidth + "my-5 lg:my-16"}>
-          <ul>
-            <li className="my-2 flex items-center gap-1">
-              <LuDot />
-              <p>
-                Total warranty includes pro-rata warranty. Please refer to the
-                warranty card for terms and conditions.
-              </p>
-            </li>
-            <li className="my-2 flex items-center gap-1">
-              <LuDot />
-              <p>
-                Battery image shown is only for reference. Actual image may
-                vary.
-              </p>
-            </li>
-            <li className="my-2 flex items-center gap-1">
-              <LuDot />
-              <p>
-                Updation of Application chart is a continuous process in Amara
-                Raja. As a result battery recommendation may subject to change
-                without prior notice.
-              </p>
-            </li>
-          </ul>
+
+      <section className="bg-background2 py-1  text-black">
+        <div className={"py-10 " + allDeviceMaxWidth}>
+          <p className="my-2 flex items-center gap-1">
+            <LuDot />
+            <p>
+              Total warranty includes pro-rata warranty. Please refer to the
+              warranty card for terms and conditions.
+            </p>
+          </p>
+          <p className="my-2 flex items-center gap-1">
+            <LuDot />
+            <p>
+              Battery image shown is only for reference. Actual image may vary.
+            </p>
+          </p>
+          <p className="my-2 flex items-center gap-1">
+            <LuDot />
+            <p>
+              Updation of Application chart is a continuous process in Amara
+              Raja. As a result battery recommendation may subject to change
+              without prior notice.
+            </p>
+          </p>
         </div>
       </section>
       {/*List section of privacy policy End */}

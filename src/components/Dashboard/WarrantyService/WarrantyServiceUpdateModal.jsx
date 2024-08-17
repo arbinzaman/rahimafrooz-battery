@@ -2,8 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { MdOutlineDoneOutline } from "react-icons/md";
-import Loader from "../../../components/shared/Loaders/Loader";
+import { MdEdit } from "react-icons/md";
+import Cookies from "js-cookie";
+import ThreeDotLoader from "../../shared/Loaders/ThreeDotLoader";
 
 const WarrantyServiceUpdateModal = ({ updateModalProps }) => {
   const { selectedId, allWarrantyDetails, refetch } = updateModalProps;
@@ -25,20 +26,22 @@ const WarrantyServiceUpdateModal = ({ updateModalProps }) => {
   const handleUpdate = async (data) => {
     try {
       setIsLoading(true);
-      console.log(data);
+
       const res = await axios.patch(
-        `${
-          import.meta.env.VITE_BASE_URL
-        }/contact/global-locations/${selectedId}`,
-        data
+        `${import.meta.env.VITE_BASE_URL}/warranty-services/${selectedId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
         refetch();
-        document.getElementById("warrantyStatusModal").open = false;
+        document.getElementById("warrantyServiceModal").open = false;
         toast.success("Record updated successfully");
       }
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
       toast.error("Something error occurred!");
@@ -46,20 +49,16 @@ const WarrantyServiceUpdateModal = ({ updateModalProps }) => {
       setIsLoading(false);
     }
   };
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <div>
-      <dialog id="warrantyStatusModal" className="modal">
+      <dialog id="warrantyServiceModal" className="modal">
         <div className="modal-box bg-white text-black ">
-          <label className="text-medium flex ">
-            Status Update{" "}
-            <MdOutlineDoneOutline className="text-medium ml-2 text-primary" />
-          </label>
           <form method="dialog" className="flex justify-between items-center">
-            <p className="text-primary text-medium font-bold flex gap-2 my-2"></p>
+            <p className="text-primary text-medium font-bold flex gap-2 my-2">
+              Edit Warranty Service
+              <MdEdit className="text-medium ml-2 text-primary" />
+            </p>
             <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
           </form>
           <form method="dialog" onSubmit={handleSubmit(handleUpdate)}>
@@ -67,12 +66,15 @@ const WarrantyServiceUpdateModal = ({ updateModalProps }) => {
               <label>
                 Warranty Deadline<span className="text-red-600">*</span>
               </label>
+              <p className="text-xs text-gray-500 py-1">
+                Current Deadline:{" "}
+                {singleWarranty?.warranty_deadline?.split("T")[0]}
+              </p>
               <input
                 type="date"
                 className="bg-white border  rounded-md px-2 py-1 w-full"
-                {...register("warrantyDeadline")}
+                {...register("warranty_deadline")}
               />
-              <small className="text-gray-500 ml-2">mm-dd-yyyy</small>
             </div>
 
             <div className="my-2">
@@ -82,7 +84,7 @@ const WarrantyServiceUpdateModal = ({ updateModalProps }) => {
               <input
                 type="number"
                 className="bg-white border  rounded-md px-2 py-1 w-full"
-                {...register("totalWarranty")}
+                {...register("total_warranty")}
               />
             </div>
             <small className="text-gray-500">
@@ -90,12 +92,16 @@ const WarrantyServiceUpdateModal = ({ updateModalProps }) => {
             </small>
 
             <div className="flex justify-end gap-3 items-center mt-3">
-              <button
-                type=""
-                className="flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white"
-              >
-                Update
-              </button>
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button
+                  type=""
+                  className="flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white"
+                >
+                  Update
+                </button>
+              )}
             </div>
           </form>
         </div>

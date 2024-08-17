@@ -2,8 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { MdEdit, } from "react-icons/md";
+import { MdOutlineDoneOutline } from "react-icons/md";
 import Loader from "../../../components/shared/Loaders/Loader";
+import Cookies from "js-cookie";
 
 const WarrantyStatusModal = ({ updateModalProps }) => {
   const { selectedId, allWarrantyDetails, refetch } = updateModalProps;
@@ -25,20 +26,28 @@ const WarrantyStatusModal = ({ updateModalProps }) => {
   const handleUpdate = async (data) => {
     try {
       setIsLoading(true);
-      console.log(data);
+      data.name = singleWarranty?.name;
+      data.email = singleWarranty?.email;
+      data.short_code = singleWarranty?.short_code;
+      data.vehicle_type = singleWarranty?.vehicle_type;
+      data.purchase_dlr = singleWarranty?.purchase_dlr;
+      data.purchase_date = singleWarranty?.purchase_date;
+
       const res = await axios.patch(
-        `${
-          import.meta.env.VITE_BASE_URL
-        }/contact/global-locations/${selectedId}`,
-        data
+        `${import.meta.env.VITE_BASE_URL}/warranty-services/${selectedId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
+        document.getElementById("warrantyStatusModal").open = false;
         refetch();
-        document.getElementById("warrantyServiceModal").open = false;
         toast.success("Record updated successfully");
       }
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
       toast.error("Something error occurred!");
@@ -46,22 +55,19 @@ const WarrantyStatusModal = ({ updateModalProps }) => {
       setIsLoading(false);
     }
   };
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <div>
-      <dialog id="warrantyServiceModal" className="modal">
+      <dialog id="warrantyStatusModal" className="modal">
         <div className="modal-box bg-white text-black ">
-          <label className="text-medium flex ">
-            Edit Warranty Service
-            <MdEdit className="text-medium ml-2 text-primary" />
-          </label>
           <form method="dialog" className="flex justify-between items-center">
-            <p className="text-primary text-medium font-bold flex gap-2 my-2"></p>
+            <p className="text-primary text-medium font-bold flex gap-2 my-2">
+              Status Update
+              <MdOutlineDoneOutline className="text-medium ml-2 text-primary" />
+            </p>
             <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
           </form>
+
           <form method="dialog" onSubmit={handleSubmit(handleUpdate)}>
             <div className="my-2">
               <label>
@@ -70,9 +76,8 @@ const WarrantyStatusModal = ({ updateModalProps }) => {
               <input
                 type="date"
                 className="bg-white border  rounded-md px-2 py-1 w-full"
-                {...register("warrantyDeadline")}
+                {...register("warranty_deadline")}
               />
-              <small className="text-gray-500 ml-2">mm-dd-yyyy</small>
             </div>
 
             <div className="my-2">
@@ -82,7 +87,7 @@ const WarrantyStatusModal = ({ updateModalProps }) => {
               <input
                 type="number"
                 className="bg-white border  rounded-md px-2 py-1 w-full"
-                {...register("totalWarranty")}
+                {...register("total_warranty")}
               />
             </div>
             <small className="text-gray-500">
