@@ -34,7 +34,7 @@ const AllAwardsImage = () => {
         <div>
           <button
             className="flex gap-2 btn btn-xs border-0 text-white bg-sky-400 hover:bg-sky-700"
-            onClick={() => document.getElementById("allAwardImage").showModal()}
+            onClick={() => document.getElementById("allAwardImage").open = true}
           >
             Add new details <BiSolidImageAdd />
           </button>

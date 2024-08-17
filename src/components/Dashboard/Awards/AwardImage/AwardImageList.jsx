@@ -1,9 +1,13 @@
 // import axios from "axios";
 // import toast from "react-hot-toast";
+import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import FetchErrorMessage from "../../../shared/Error/FetchErrorMessage";
+import UpdateAwardImage from "./UpdateAwardImage";
+import { useState } from "react";
 
 const AwardImageList = ({ prompts }) => {
+  const [selectedId, setSelectedId] = useState();
   const {
     awardImage,
     // setIsLoading,
@@ -42,7 +46,6 @@ const AwardImageList = ({ prompts }) => {
                 <th>Serial</th>
                 <th>Caption</th>
                 <th>Image</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -51,8 +54,26 @@ const AwardImageList = ({ prompts }) => {
                   <th>{i + 1}</th>
                   <td>{achievement.caption}</td>
                   <td>
-                    <img src={achievement.image_url} alt={achievement.caption} className="w-20" />
+                    <img
+                      src={achievement.image_url}
+                      alt={achievement.caption}
+                      className="w-20"
+                    />
                   </td>
+                  <td>
+                    <button
+                      className="btn btn-xs border-0 bg-teal-400"
+                      onClick={() => {
+                        setSelectedId(achievement.id);
+                        document.getElementById(
+                          "allAwardImageUpdate"
+                        ).open = true;
+                      }}
+                    >
+                      <FaEdit className="text-white" />
+                    </button>
+                  </td>
+                  <UpdateAwardImage props={{ awardImage, selectedId }} />
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-400"

@@ -2,6 +2,9 @@
 // import toast from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 import FetchErrorMessage from "../../../shared/Error/FetchErrorMessage";
+import { FaEdit } from "react-icons/fa";
+import { useState } from "react";
+import UpdateSpecialAwardSection from "./UpdateSpecialAwardSection";
 
 const SpecialAwardAndAchievementList = ({ prompts }) => {
   const {
@@ -9,6 +12,7 @@ const SpecialAwardAndAchievementList = ({ prompts }) => {
     // setIsLoading,
     // refetch
   } = prompts;
+  const [selectedId, setSelectedId] = useState();
 
   // const handleDelete = async (id) => {
   //   try {
@@ -42,7 +46,6 @@ const SpecialAwardAndAchievementList = ({ prompts }) => {
                 <th>Serial</th>
                 <th>Description</th>
                 <th>Image</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -51,7 +54,27 @@ const SpecialAwardAndAchievementList = ({ prompts }) => {
                   <th>{i + 1}</th>
                   <td>{achievement.description}</td>
                   <td>
-                    <img src={achievement.img_url} alt={achievement.description} className="w-96" />
+                    <img
+                      src={achievement.img_url}
+                      alt={achievement.description}
+                      className="w-96"
+                    />
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-xs border-0 bg-teal-400"
+                      onClick={() => {
+                        setSelectedId(achievement.id);
+                        document.getElementById(
+                          "specialAwardAndAchievementUpdateModal"
+                        ).open = true;
+                      }}
+                    >
+                      <FaEdit className="text-white" />
+                    </button>
+                    <UpdateSpecialAwardSection
+                      props={{ selectedId, achievementList }}
+                    />
                   </td>
                   <td>
                     <button
