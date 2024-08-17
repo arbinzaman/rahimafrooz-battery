@@ -1,14 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import NewsBanner from "../utils/News/News.png";
-import NewsData from "../demoData/NewsData.json";
-import NewsCard from "../components/News/NewsCard"; // Make sure to import the NewsCard component
-
+import NewsCard from "../components/News/NewsCard";
+import { allDeviceMaxWidth } from "../styles/maxWidth";
+import { useQuery } from "@tanstack/react-query";
 const News = () => {
   const navigate = useNavigate();
 
-  // Handle the click event and navigate to the SingleNewsCard page with the news ID
+  const url = `${import.meta.env.VITE_BASE_URL}/news`;
+  const { data: allNews = [] } = useQuery({
+    queryKey: ["allNews"],
+    queryFn: async () => {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
+
   const handleNewsClick = (id) => {
-    navigate(`/news/${id}`); // Adjust the path according to your routing setup
+    navigate(`/news/${id}`);
   };
 
   return (
@@ -30,13 +43,17 @@ const News = () => {
         />
       </div>
 
-      <div className="mx-72 mt-10 bg-white mb-28 ">
-        {NewsData.map((newsItem) => (
-          <NewsCard
-            key={newsItem.id}
-            news={newsItem}
-            onClick={handleNewsClick}
-          />
+      <div className={allDeviceMaxWidth + " my-10 bg-[#e6f2ff] p-10 shadow-sm"}>
+        {allNews.map((newsItem, i) => (
+          <div key={i}>
+            <NewsCard
+              key={newsItem.id}
+              news={newsItem}
+              onClick={handleNewsClick}
+              className="hover:cursor-pointer"
+            />
+            {allNews?.length > 1 && <p className="border border-gray-400"></p>}
+          </div>
         ))}
       </div>
     </section>
