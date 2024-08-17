@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FaAward } from "react-icons/fa";
 // import axios from "axios";
@@ -8,9 +9,15 @@ const UpdateAwardImage = ({ props }) => {
 
   const achievement = awardImage?.find((details) => details.id === selectedId);
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: achievement,
   });
+
+  useEffect(() => {
+    if (achievement) {
+      reset(achievement);
+    }
+  }, [achievement, reset]);
 
   const handleFormSubmit = async (data) => {
     //   setIsLoading(true);
@@ -66,7 +73,11 @@ const UpdateAwardImage = ({ props }) => {
               {achievement?.image_url && (
                 <div className="flex flex-col items-center justify-center my-1">
                   <p>Current Image</p>
-                  <img src={achievement?.image_url} className="w-20 shadow-2xl" alt="" />
+                  <img
+                    src={achievement?.image_url}
+                    className="w-20 shadow-2xl"
+                    alt=""
+                  />
                 </div>
               )}
 
