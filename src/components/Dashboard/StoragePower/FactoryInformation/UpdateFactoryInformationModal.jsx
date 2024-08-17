@@ -101,10 +101,10 @@ const UpdateFactoryInformationModal = ({ updateModalProps }) => {
             </div>
 
             <div className="my-2">
-              {singleFactoryInformation?.imageurl && (
+              {singleFactoryInformation?.image_url && (
                 <div className="flex justify-center">
                   <img
-                    src={singleFactoryInformation?.imageurl}
+                    src={singleFactoryInformation?.image_url}
                     className="w-96 my-3"
                     alt=""
                   />
