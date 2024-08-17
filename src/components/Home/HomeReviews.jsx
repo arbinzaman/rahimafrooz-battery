@@ -36,13 +36,13 @@ const HomeReviews = () => {
       <div className="shadow-2xl">
         <img src={ReviewImg} alt="" />
 
-        <div className="bg-white  py-12">
+        <div className="bg-white h-52 py-12">
           <Slider
             {...settingsForCertificatesLarge}
             className="bg-white text-blue-900 text-center"
           >
             {allReviews?.map((review) => (
-              <div key={review?.id} className="card-body h-66">
+              <div key={review?.id} className="card-body">
                 <p> {review.review}</p>
                 <p>- {review.user_name}</p>
               </div>

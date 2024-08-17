@@ -1,19 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import NewsData from "../../demoData/NewsData.json";
 import Slider from "react-slick";
-// import { useQuery } from "@tanstack/react-query";
-// import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
-// const fetchNews = async () => {
-//   const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/news`);
-//   return data;
-// };
 
 const NewsEvents = () => {
   const navigate = useNavigate();
-  // const { data, isLoading, error } = useQuery(["news"], fetchNews);
-  const data = NewsData; // Use the entire data set
-  console.log(data);
+  const url = `${import.meta.env.VITE_BASE_URL}/news`;
+  const { data: allNews = [] } = useQuery({
+    queryKey: ["allNews"],
+    queryFn: async () => {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
   const settings = {
     dots: true,
@@ -28,10 +32,10 @@ const NewsEvents = () => {
     cssEase: "linear",
   };
 
-  // Split data into groups of 5 items each
+  // Split allNews into groups of 5 items each
   const groupedData = [];
-  for (let i = 0; i < data?.length; i += 4) {
-    groupedData.push(data?.slice(i, i + 4));
+  for (let i = 0; i < allNews?.length; i += 4) {
+    groupedData.push(allNews?.slice(i, i + 4));
   }
 
   return (
@@ -43,9 +47,35 @@ const NewsEvents = () => {
           <h2 className="text-primary font-bold text-center my-4 text-regular lg:text-semi_large bg-white ">
             NEWS & EVENT
           </h2>
-          <div className="bg-white">
-            <Slider {...settings}>
-              {groupedData?.map((group, index) => (
+          <div className="bg-white h-60">
+            {groupedData?.length > 4 ? (
+              <Slider {...settings} className="pb-10">
+                {groupedData?.map((group, index) => (
+                  <div key={index} className=" text-blue-900 p-4">
+                    {group?.map((item) => (
+                      <div
+                        key={item?.id}
+                        className="flex items-center bg-gray-200 px-2 my-2 hover:cursor-pointer "
+                        onClick={() => navigate(`/news/`)}
+                      >
+                        <img
+                          src={item?.image_url}
+                          alt={item?.title}
+                          className="w-14 h-10 object-cover mr-4"
+                        />
+                        <div className="text-left">
+                          <p className="font-medium text-xs">{item?.title}</p>
+                          <p className="text-gray-500 text-xsmall">
+                            {item?.description.slice(0, 50)}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </Slider>
+            ) : (
+              groupedData?.map((group, index) => (
                 <div key={index} className=" text-blue-900 p-4">
                   {group?.map((item) => (
                     <div
@@ -56,12 +86,10 @@ const NewsEvents = () => {
                       <img
                         src={item?.image_url}
                         alt={item?.title}
-                        className="w-12 h-12 object-cover mr-4"
+                        className="w-14 h-10 object-cover mr-4"
                       />
                       <div className="text-left">
-                        <p className="font-semibold text-small">
-                          {item?.title}
-                        </p>
+                        <p className="font-medium text-xs">{item?.title}</p>
                         <p className="text-gray-500 text-xsmall">
                           {item?.description.slice(0, 50)}
                         </p>
@@ -69,8 +97,8 @@ const NewsEvents = () => {
                     </div>
                   ))}
                 </div>
-              ))}
-            </Slider>
+              ))
+            )}
           </div>
         </div>
       </div>
