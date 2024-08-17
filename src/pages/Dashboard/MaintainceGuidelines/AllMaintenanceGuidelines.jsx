@@ -4,7 +4,7 @@ import { LuRefreshCcw } from "react-icons/lu";
 import { toast } from "react-hot-toast";
 import { GrHostMaintenance } from "react-icons/gr";
 // import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import axios, { all } from "axios";
 import Cookies from "js-cookie";
 import { TiEdit } from "react-icons/ti";
 import allMaintenanceGuidelines from "../../../demoData/MaintainceGuidelinesData.json"
@@ -58,8 +58,8 @@ const AllMaintenanceGuidelines = () => {
   return (
     <div>
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary flex justify-center">
-        Frequently Asked Questions{" "}
-        <GrHostMaintenance className="text-semi_large mt-3 ml-2" />
+       Maintaince Guidelines{" "}
+        <GrHostMaintenance className="text-semi_large mt-1.5 ml-2" />
       </h1>
 
       <div className="flex gap-4 justify-between mb-4">
@@ -67,6 +67,7 @@ const AllMaintenanceGuidelines = () => {
           <button
             className="flex gap-2 btn btn-xs  border-0 text-white bg-sky-400 hover:bg-primary"
             onClick={() => (document.getElementById("addAMaintainceGuidelines").open = true)}
+            disabled={allMaintenanceGuidelines?.length >3}
           >
             Add Details <GrHostMaintenance />
           </button>
@@ -98,15 +99,15 @@ const AllMaintenanceGuidelines = () => {
         </thead>
         <tbody>
           {allMaintenanceGuidelines.map((maintain, i) => (
-            <tr key={maintain.id}>
+            <tr key={maintain?.id}>
               <td>{i + 1}</td>
-              <td>{maintain.title}</td>
-              <td>{maintain.description}</td>
+              <td>{maintain?.title}</td>
+              <td>{maintain?.description}</td>
               <td>
                 <button
                   className="btn btn-xs bg-white hover:text-white border-none hover:bg-gray-200"
                   onClick={() => {
-                    setSelectedId(maintain.id);
+                    setSelectedId(maintain?.id);
                     document.getElementById("updateMaintainceGuidelines").open = true;
                   }}
                 >
