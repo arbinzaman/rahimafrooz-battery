@@ -26,7 +26,7 @@ const SingleNewsCard = () => {
 
   return (
     <div className={"my-10 " + allDeviceMaxWidth}>
-      <div className={"bg-base-100 shadow-xl"}>
+      <div className={"bg-white shadow-xl"}>
         <img
           src={news[0]?.image_url}
           alt={news[0]?.title}

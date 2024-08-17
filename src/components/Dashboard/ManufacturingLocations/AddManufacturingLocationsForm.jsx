@@ -47,11 +47,13 @@ const AddManufacturingLocationsForm = ({ props }) => {
   return (
     <div>
       <dialog id="my_modal_2" className="modal">
-        <div className="modal-box bg-white text-black">
-          <p className="font-semibold font-primary uppercase text-primary">
-            Add New Details
-          </p>
-          <div className="">
+          <div className="modal-box bg-white text-black ">
+          <form method="dialog" className="flex justify-between items-center">
+            <p className="text-primary text-medium font-bold flex gap-2 my-2">
+              Add A Review
+            </p>
+            <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+          </form>
             <form
               method="dialog"
               ref={formRef}
@@ -116,7 +118,7 @@ const AddManufacturingLocationsForm = ({ props }) => {
               </div>
             </form>
           </div>
-        </div>
+ 
         <form method="dialog" className="modal-backdrop">
           <button>close</button>
         </form>

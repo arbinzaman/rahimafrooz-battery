@@ -38,14 +38,19 @@ const AddAAwardImage = ({ props }) => {
   return (
     <div>
       <dialog id="allAwardImage" className="modal">
-        <form
-          method="dialog"
-          className="modal-box bg-white text-black"
-          onSubmit={handleSubmit(handleFormSubmit)}
-        >
+      <div className="modal-box bg-white text-black ">
+          <form method="dialog" className="flex justify-between items-center">
           <h3 className="font-bold text-lg flex text-primary">
             Add New Achievement Image<FaAward className="mt-1.5 ml-1" />
           </h3>
+            <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+          </form>
+        <form
+          method="dialog"
+          className=" bg-white text-black"
+          onSubmit={handleSubmit(handleFormSubmit)}
+        >
+          
           <div className="py-4">
             <textarea
               type="text"
@@ -70,13 +75,12 @@ const AddAAwardImage = ({ props }) => {
             >
               Add
             </button>
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn btn-xs btn-ghost bg-red-500 text-white">
-                Close
-              </button>
-            </form>
+        
           </div>
+        </form>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
         </form>
       </dialog>
     </div>

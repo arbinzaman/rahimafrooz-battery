@@ -38,45 +38,47 @@ const AddSpecialAwardAndAchievement = ({ props }) => {
   return (
     <div>
       <dialog id="my_modal_2" className="modal">
-        <form
-          method="dialog"
-          className="modal-box bg-white text-black"
-          onSubmit={handleSubmit(handleFormSubmit)}
-        >
-          <h3 className="font-bold text-lg flex text-primary">
-            Add a new Achievement <FaAward className="mt-1.5 ml-1" />
-          </h3>
-          <div className="py-4">
-            <textarea
-              type="text"
-              placeholder="Description"
-              className="input input-bordered w-full mb-4 bg-white text-black"
-              {...register("description")}
-            />
-          </div>
-          <div className="my-2">
-            <input
-              type="file"
-              required
-              className="file-input file-input-bordered file-input-sm w-full bg-white text-black"
-              {...register("img_url")}
-            />
-          </div>
+        <div className="modal-box bg-white text-black ">
+          <form method="dialog" className="flex justify-between items-center">
+            <h3 className="font-bold text-lg flex text-primary">
+              Add a new Achievement <FaAward className="mt-1.5 ml-1" />
+            </h3>
+            <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+          </form>
+          <form
+            method="dialog"
+            className="bg-white text-black"
+            onSubmit={handleSubmit(handleFormSubmit)}
+          >
+            <div className="py-4">
+              <textarea
+                type="text"
+                placeholder="Description"
+                className="input input-bordered w-full mb-4 bg-white text-black"
+                {...register("description")}
+              />
+            </div>
+            <div className="my-2">
+              <input
+                type="file"
+                required
+                className="file-input file-input-bordered file-input-sm w-full bg-white text-black"
+                {...register("img_url")}
+              />
+            </div>
 
-          <div className="modal-action">
-            <button
-              className="btn  btn-xs btn-ghost bg-green-500 text-white"
-              onClick={handleFormSubmit}
-            >
-              Add
-            </button>
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn btn-xs btn-ghost bg-red-500 text-white">
-                Close
+            <div className="modal-action">
+              <button
+                className="btn  btn-xs btn-ghost bg-green-500 text-white"
+                onClick={handleFormSubmit}
+              >
+                Add
               </button>
-            </form>
-          </div>
+            </div>
+          </form>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
         </form>
       </dialog>
     </div>
