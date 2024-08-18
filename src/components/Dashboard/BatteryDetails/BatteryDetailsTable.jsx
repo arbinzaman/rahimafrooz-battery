@@ -11,6 +11,12 @@ const BatteryDetailsTable = ({ prompts }) => {
     useState(null);
   const [loading, setLoading] = useState(false);
   const { allBatteryDetails, selectedIds, setSelectedIds } = prompts;
+
+  // pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage] = useState(10);
+
+  // reroute to update battery page
   const navigate = useNavigate();
 
   const handleCheckboxChange = (short_code) => {
@@ -58,6 +64,13 @@ const BatteryDetailsTable = ({ prompts }) => {
     navigate(`/dashboard/update-battery/${short_code}`);
   };
 
+  // Pagination logic
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentData = allBatteryDetails.slice(indexOfFirstData, indexOfLastData);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="overflow-x-auto">
       <dialog
@@ -95,7 +108,7 @@ const BatteryDetailsTable = ({ prompts }) => {
           </tr>
         </thead>
         <tbody>
-          {allBatteryDetails?.map((battery, i) => (
+          {currentData.map((battery, i) => (
             <tr key={battery.short_code}>
               <td>
                 <input
@@ -104,7 +117,7 @@ const BatteryDetailsTable = ({ prompts }) => {
                   checked={selectedIds.includes(battery.short_code)}
                 />
               </td>
-              <th>{i + 1}</th>
+              <th>{indexOfFirstData + i + 1}</th>
               <td>{battery.battery_name}</td>
               <td>{battery.series}</td>
               <td>{battery.item_code}</td>
@@ -114,7 +127,6 @@ const BatteryDetailsTable = ({ prompts }) => {
               <td>{battery.cold_cranking_ability_cca}</td>
               <td>{battery.country_of_origin}</td>
               <td>
-                {" "}
                 <button
                   className="btn btn-xs bg-sky-400 border-0 text-white hover:bg-sky-700 hover:text-white"
                   onClick={() => handleUpdateClick(battery.short_code)}
@@ -138,6 +150,27 @@ const BatteryDetailsTable = ({ prompts }) => {
           ))}
         </tbody>
       </table>
+
+      {/* pagination logic */}
+      {allBatteryDetails.length > dataPerPage && (
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[
+              ...Array(Math.ceil(allBatteryDetails.length / dataPerPage)).keys(),
+            ].map((number) => (
+              <input
+                key={number}
+                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                type="radio"
+                name="options"
+                aria-label={number + 1}
+                checked={currentPage === number + 1}
+                onChange={() => paginate(number + 1)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
