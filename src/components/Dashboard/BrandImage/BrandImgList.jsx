@@ -9,8 +9,12 @@ import { TiEdit } from "react-icons/ti";
 
 const BrandImgList = ({ prompts }) => {
   const { brandImgs, refetch } = prompts;
-  const [selectedId, setSelectedId] = useState();
+  const [selectedId, setSelectedId] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   const openDeleteModal = (id) => {
     setSelectedId(id);
@@ -45,6 +49,14 @@ const BrandImgList = ({ prompts }) => {
     }
   };
 
+  // Pagination calculations
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = brandImgs.slice(indexOfFirstItem, indexOfLastItem);
+  // const totalPages = Math.ceil(brandImgs.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -57,12 +69,14 @@ const BrandImgList = ({ prompts }) => {
                 <th>Serial</th>
                 <th>Brand</th>
                 <th>Image</th>
+                <th>Update</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              {brandImgs.map((details, i) => (
+              {currentItems.map((details, i) => (
                 <tr key={details.id}>
-                  <th>{i + 1}</th>
+                  <th>{indexOfFirstItem + i + 1}</th>
                   <td>{details.brand_name}</td>
                   <td>
                     <img
@@ -99,6 +113,28 @@ const BrandImgList = ({ prompts }) => {
           </table>
         )}
       </div>
+
+      {/* Pagination Controls */}
+      {brandImgs && brandImgs.length > itemsPerPage && (
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[
+              ...Array(Math.ceil(brandImgs.length / itemsPerPage)).keys(),
+            ].map((number) => (
+              <input
+                key={number}
+                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                type="radio"
+                name="options"
+                aria-label={number + 1}
+                checked={currentPage === number + 1}
+                onChange={() => paginate(number + 1)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
         <dialog open className="modal modal-bottom sm:modal-middle">
