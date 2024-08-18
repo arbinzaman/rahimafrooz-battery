@@ -13,6 +13,8 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
   const [selectedId, setSelectedId] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [readMore, setReadMore] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage] = useState(4); // Number of items per page
 
   const handleDelete = async (id) => {
     try {
@@ -28,16 +30,15 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
       );
 
       if (res.status === 200) {
-        setDeleteModalOpen(false)
+        setDeleteModalOpen(false);
         refetch();
         toast.success("Record deleted successfully");
       }
     } catch (error) {
-      // console.log(error);
       toast.error("Something error occurred!");
     }
   };
-  // console.log(manufacturingDetails);
+
   const openDeleteModal = (id) => {
     setSelectedId(id);
     setDeleteModalOpen(true);
@@ -47,6 +48,14 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
     setDeleteModalOpen(false);
     setSelectedId(null);
   };
+
+  // Pagination calculations
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentData = manufacturingDetails?.slice(indexOfFirstData, indexOfLastData);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -62,12 +71,13 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
                 <th>Description</th>
                 <th>Image</th>
                 <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              {manufacturingDetails.map((details, i) => (
+              {currentData && currentData.map((details, i) => (
                 <tr key={details.id}>
-                  <th>{i + 1}</th>
+                  <th>{indexOfFirstData + i + 1}</th>
                   <td>{details.title}</td>
                   <td>{details.location}</td>
                   <td>
@@ -103,10 +113,8 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
                     <button
                       className=""
                       onClick={() => {
-                        {
-                          document.getElementById("my_modal_3").open = true;
-                          setSelectedId(details.id);
-                        }
+                        document.getElementById("my_modal_3").open = true;
+                        setSelectedId(details.id);
                       }}
                     >
                       <FaEdit />
@@ -133,12 +141,32 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
           </table>
         )}
       </div>
+      {/* Pagination */}
+      {manufacturingDetails && manufacturingDetails.length > dataPerPage && (
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[
+              ...Array(Math.ceil(manufacturingDetails.length / dataPerPage)).keys(),
+            ].map((number) => (
+              <input
+                key={number}
+                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                type="radio"
+                name="options"
+                aria-label={number + 1}
+                checked={currentPage === number + 1}
+                onChange={() => paginate(number + 1)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
         <dialog open className="modal modal-bottom sm:modal-middle">
           <div className="modal-box bg-white text-red-500">
             <h2 className="text-lg ">
-              You want to remove this dealer&apos;s location?
+              You want to remove this manufacturing location?
             </h2>
             <div className="modal-action">
               <button
