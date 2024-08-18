@@ -12,7 +12,7 @@ const GlobalPresence = () => {
       <div
         className={
           allDeviceMaxWidth +
-          "grid grid-cols-1 lg:grid-cols-2  gap-10 lg:gap-48 text-center m-0 lg:mb-10 mt-10 bg-background text-black"
+           " grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-48 text-center m-0 lg:mb-10 mt-10 bg-background text-black "
         }
       >
         <InternationalOperations />

@@ -58,7 +58,7 @@ const AllMaintenanceGuidelines = () => {
   return (
     <div>
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary flex justify-center">
-       Maintaince Guidelines{" "}
+       Maintenance Guidelines{" "}
         <GrHostMaintenance className="text-semi_large mt-1.5 ml-2" />
       </h1>
 
