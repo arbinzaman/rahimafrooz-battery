@@ -58,9 +58,9 @@ const FactoryInformationList = ({ prompts }) => {
   // Pagination Logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = allFactoryInformations.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = allFactoryInformations?.slice(indexOfFirstItem, indexOfLastItem);
 
-  const totalPages = Math.ceil(allFactoryInformations.length / itemsPerPage);
+  const totalPages = Math.ceil(allFactoryInformations?.length / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -84,16 +84,16 @@ const FactoryInformationList = ({ prompts }) => {
               {currentItems.map((details, i) => (
                 <tr key={details.id}>
                   <th>{indexOfFirstItem + i + 1}</th>
-                  <td>{details.factory_title}</td>
+                  <td>{details?.factory_title}</td>
                   <td>
-                    {selectedId === details.id && readMore
-                      ? details.description
-                      : details.description.slice(0, 100)}{" "}
-                    {selectedId === details.id && readMore ? (
+                    {selectedId === details?.id && readMore
+                      ? details?.description
+                      : details?.description?.slice(0, 100)}{" "}
+                    {selectedId === details?.id && readMore ? (
                       <span
                         className="text-blue-500 hover:cursor-pointer"
                         onClick={() => {
-                          setSelectedId(details.id);
+                          setSelectedId(details?.id);
                           setReadMore(false);
                         }}
                       >
@@ -103,7 +103,7 @@ const FactoryInformationList = ({ prompts }) => {
                       <span
                         className="text-blue-500 hover:cursor-pointer"
                         onClick={() => {
-                          setSelectedId(details.id);
+                          setSelectedId(details?.id);
                           setReadMore(true);
                         }}
                       >
@@ -111,16 +111,16 @@ const FactoryInformationList = ({ prompts }) => {
                       </span>
                     )}
                   </td>
-                  <td>{details.corner_text}</td>
+                  <td>{details?.corner_text}</td>
                   <td>
-                    <img src={details.image_url} alt="" className="w-96" />
+                    <img src={details?.image_url} alt="" className="w-96" />
                   </td>
 
                   <td>
                     <button
                       className="text-xl"
                       onClick={() => {
-                        setSelectedId(details.id);
+                        setSelectedId(details?.id);
                         document.getElementById(
                           "update_factory_info_modal"
                         ).open = true;
@@ -139,7 +139,7 @@ const FactoryInformationList = ({ prompts }) => {
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-400"
-                      onClick={() => openDeleteModal(details.id)}
+                      onClick={() => openDeleteModal(details?.id)}
                     >
                       <MdDeleteForever className="text-white" />
                     </button>

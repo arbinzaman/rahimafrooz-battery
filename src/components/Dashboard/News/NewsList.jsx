@@ -169,7 +169,7 @@ const NewsList = ({ prompts }) => {
                 onClick={closeDeleteModal}
               >
                 Cancel
-              </button>
+              </button>     
             </div>
           </div>
         </dialog>
