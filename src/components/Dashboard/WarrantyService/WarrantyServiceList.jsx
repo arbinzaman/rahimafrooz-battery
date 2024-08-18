@@ -53,7 +53,7 @@ const WarrantyServiceList = ({ prompts }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto xl:overflow-hidden">
       <table className="table w-full text-black">
         <thead>
           <tr className="text-black">
