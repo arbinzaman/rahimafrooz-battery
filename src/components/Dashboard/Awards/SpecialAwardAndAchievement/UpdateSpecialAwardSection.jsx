@@ -49,8 +49,7 @@ const UpdateSpecialAwardSection = ({ props }) => {
         toast.success("Achievement updated successfully");
       }
     } catch (error) {
-      // console.log(error);
-      // toast.error("Something went wrong!");
+      toast.error("Something went wrong!");
     } finally {
       setIsLoading(false);
     }
@@ -94,11 +93,10 @@ const UpdateSpecialAwardSection = ({ props }) => {
                 </div>
               )}
 
-              <label>
-                Image <span className="text-red-600">*</span>
-              </label>
+              <label>Image</label>
               <input
                 type="file"
+                accept="image/png, image/jpg, image/jpeg"
                 className="file-input file-input-bordered file-input-sm w-full bg-white text-black"
                 {...register("img_url")}
               />
@@ -108,10 +106,7 @@ const UpdateSpecialAwardSection = ({ props }) => {
               {isLoading ? (
                 <ThreeDotLoader />
               ) : (
-                <button
-                  className="btn  btn-xs btn-ghost bg-primary text-white"
-                  onClick={handleFormSubmit}
-                >
+                <button className="btn  btn-xs btn-ghost bg-primary text-white">
                   Update
                 </button>
               )}

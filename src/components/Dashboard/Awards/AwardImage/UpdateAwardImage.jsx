@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaAward } from "react-icons/fa";
-// import axios from "axios";
-// import toast from "react-hot-toast";
+import axios from "axios";
+import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
 
 const UpdateAwardImage = ({ props }) => {
-  const { awardImage, selectedId } = props;
+  const { awardImage, selectedId, refetch } = props;
+  const [isLoading, setIsLoading] = useState(false);
 
   const achievement = awardImage?.find((details) => details.id === selectedId);
 
@@ -20,32 +23,35 @@ const UpdateAwardImage = ({ props }) => {
   }, [achievement, reset]);
 
   const handleFormSubmit = async (data) => {
-    //   setIsLoading(true);
-    const formdata = new FormData();
-    formdata.append("caption", data.caption);
-    formdata.append("img_url", data.img_url[0]);
+    try {
+      setIsLoading(true);
+      const formdata = new FormData();
+      formdata.append("caption", data.caption);
+      formdata.append("img_url", data.img_url[0]);
 
-    //   const newAchievement = { caption, image_url: imageUrl };
-    //   try {
-    //     const res = await axios.post(
-    //       `${import.meta.env.VITE_BASE_URL}/achievements`,
-    //       formdata
-    //     );
-    //     if (res.status === 201) {
-    //       toast.success("Achievement added successfully");
-    //       refetch();
-    //       setIsLoading(false);
-    //       setImageUrl("");
-    document.getElementById("allAwardImageUpdate").close();
-    //     }
-    //   } catch (error) {
-    //     setIsLoading(false);
-    //     toast.error("Something went wrong!");
-    //   }
+      const res = await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/achievements/${selectedId}`,
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+      if (res.status === 200) {
+        document.getElementById("allAwardImageUpdate").close();
+        refetch();
+        toast.success("Achievement added successfully");
+      }
+    } catch (error) {
+      toast.error("Something went wrong!");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div>
+    <section>
       <dialog id="allAwardImageUpdate" className="modal">
         <div className="modal-box bg-white text-black ">
           <form method="dialog" className="flex justify-between items-center">
@@ -60,11 +66,11 @@ const UpdateAwardImage = ({ props }) => {
             className=" bg-white text-black"
             onSubmit={handleSubmit(handleFormSubmit)}
           >
-            <div className="py-4">
-              <textarea
+            <div className="my-2">
+              <label>Caption</label>
+              <input
                 type="text"
-                placeholder="caption"
-                className="input input-bordered w-full mb-4 bg-white text-black"
+                className="input input-sm input-bordered w-full bg-white text-black"
                 {...register("caption")}
               />
             </div>
@@ -81,24 +87,23 @@ const UpdateAwardImage = ({ props }) => {
                 </div>
               )}
 
-              <label>
-                Image <span className="text-red-600">*</span>
-              </label>
+              <label>Image</label>
               <input
                 type="file"
-                required
+                accept="image/png, image/jpg, image/jpeg"
                 className="file-input file-input-bordered file-input-sm w-full bg-white text-black"
                 {...register("img_url")}
               />
             </div>
 
             <div className="modal-action">
-              <button
-                className="btn  btn-xs btn-ghost bg-green-500 text-white"
-                onClick={handleFormSubmit}
-              >
-                Add
-              </button>
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button className="btn  btn-xs btn-ghost bg-primary text-white">
+                  Update
+                </button>
+              )}
             </div>
           </form>
         </div>
@@ -106,7 +111,7 @@ const UpdateAwardImage = ({ props }) => {
           <button>close</button>
         </form>
       </dialog>
-    </div>
+    </section>
   );
 };
 

@@ -1,38 +1,50 @@
-// import axios from "axios";
-// import toast from "react-hot-toast";
+import axios from "axios";
+import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import FetchErrorMessage from "../../../shared/Error/FetchErrorMessage";
 import UpdateAwardImage from "./UpdateAwardImage";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 const AwardImageList = ({ prompts }) => {
+  const { awardImage, refetch } = prompts;
   const [selectedId, setSelectedId] = useState();
-  const {
-    awardImage,
-    // setIsLoading,
-    // refetch
-  } = prompts;
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     setIsLoading(true);
-  //     const body = awardImage.find((details) => details.id === id);
-  //     const res = await axios.delete(
-  //       `${import.meta.env.VITE_BASE_URL}/achievements/${id}`,
-  //       { data: body }
-  //     );
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
 
-  //     if (res.status === 200) {
-  //       toast.success("Record deleted successfully");
-  //       refetch();
-  //       setIsLoading(false);
-  //     }
-  //   } catch (error) {
-  //     setIsLoading(false);
-  //     toast.error("Something error occurred!");
-  //   }
-  // };
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const body = awardImage.find((details) => details.id === id);
+
+      const res = await axios.delete(
+        `${import.meta.env.VITE_BASE_URL}/achievements/${id}`,
+        {
+          data: body,
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+
+      if (res.status === 200) {
+        closeDeleteModal();
+        refetch();
+        toast.success("Record deleted successfully");
+      }
+    } catch (error) {
+      toast.error("Something error occurred!");
+    }
+  };
 
   return (
     <div>
@@ -55,7 +67,7 @@ const AwardImageList = ({ prompts }) => {
                   <td>{achievement.caption}</td>
                   <td>
                     <img
-                      src={achievement.image_url}
+                      src={achievement.img_url}
                       alt={achievement.caption}
                       className="w-20"
                     />
@@ -73,11 +85,10 @@ const AwardImageList = ({ prompts }) => {
                       <FaEdit className="text-white" />
                     </button>
                   </td>
-                  <UpdateAwardImage props={{ awardImage, selectedId }} />
                   <td>
                     <button
-                      className="btn btn-xs border-0 bg-red-400"
-                      // onClick={() => handleDelete(achievement.id)}
+                      className="btn btn-xs border-0 bg-red-500"
+                      onClick={() => openDeleteModal(achievement.id)}
                     >
                       <MdDeleteForever className="text-white" />
                     </button>
@@ -88,6 +99,29 @@ const AwardImageList = ({ prompts }) => {
           </table>
         )}
       </div>
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">Do you want to remove this award?</h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
+      <UpdateAwardImage props={{ awardImage, selectedId, refetch }} />
     </div>
   );
 };

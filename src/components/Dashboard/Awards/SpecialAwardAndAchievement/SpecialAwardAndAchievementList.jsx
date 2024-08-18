@@ -36,7 +36,7 @@ const SpecialAwardAndAchievementList = ({ prompts }) => {
       );
 
       if (res.status === 200) {
-        closeDeleteModal()
+        closeDeleteModal();
         refetch();
         toast.success("Record deleted successfully");
       }
@@ -67,7 +67,7 @@ const SpecialAwardAndAchievementList = ({ prompts }) => {
                   <td>
                     <img
                       src={achievement.img_url}
-                      alt='Achievement image'
+                      alt="Achievement image"
                       className="w-96"
                     />
                   </td>
@@ -83,13 +83,11 @@ const SpecialAwardAndAchievementList = ({ prompts }) => {
                     >
                       <FaEdit className="text-white" />
                     </button>
-                    <UpdateSpecialAwardSection
-                      props={{ selectedId, achievementList, refetch }}
-                    />
                   </td>
+
                   <td>
                     <button
-                      className="btn btn-xs border-0 bg-red-400"
+                      className="btn btn-xs border-0 bg-red-500"
                       onClick={() => openDeleteModal(achievement.id)}
                     >
                       <MdDeleteForever className="text-white" />
@@ -125,6 +123,9 @@ const SpecialAwardAndAchievementList = ({ prompts }) => {
           </div>
         </dialog>
       )}
+      <UpdateSpecialAwardSection
+        props={{ selectedId, achievementList, refetch }}
+      />
     </div>
   );
 };

@@ -18,7 +18,7 @@ const AddSpecialAwardAndAchievement = ({ props }) => {
       const formdata = new FormData();
       formdata.append("description", data.description);
       formdata.append("img_url", data.img_url[0]);
-      console.log(data.img_url[0])
+
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/achievements`,
         formdata,
@@ -28,7 +28,7 @@ const AddSpecialAwardAndAchievement = ({ props }) => {
           },
         }
       );
-      console.log(res);
+
       if (res.status === 201) {
         reset();
         document.getElementById("my_modal_2").close();
@@ -36,8 +36,7 @@ const AddSpecialAwardAndAchievement = ({ props }) => {
         toast.success("Achievement added successfully");
       }
     } catch (error) {
-      console.log(error)
-      // toast.error("Something went wrong!");
+      toast.error("Something went wrong!");
     } finally {
       setIsLoading(false);
     }
@@ -86,10 +85,7 @@ const AddSpecialAwardAndAchievement = ({ props }) => {
               {isLoading ? (
                 <ThreeDotLoader />
               ) : (
-                <button
-                  className="btn  btn-xs btn-ghost bg-primary text-white"
-                  onClick={handleFormSubmit}
-                >
+                <button className="btn  btn-xs btn-ghost bg-primary text-white">
                   Add
                 </button>
               )}
