@@ -53,7 +53,9 @@ const BannerImageList = ({ prompts }) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = BannerImageData.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(BannerImageData.length / itemsPerPage);
+  // const totalPages = Math.ceil(BannerImageData.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div>
@@ -117,33 +119,25 @@ const BannerImageList = ({ prompts }) => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex justify-center mt-4">
-        <button
-          className="btn btn-xs mx-1"
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        {[...Array(totalPages)].map((_, index) => (
-          <button
-            key={index}
-            className={`btn btn-xs mx-1 ${
-              currentPage === index + 1 ? "btn-primary" : ""
-            }`}
-            onClick={() => setCurrentPage(index + 1)}
-          >
-            {index + 1}
-          </button>
-        ))}
-        <button
-          className="btn btn-xs mx-1"
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
-      </div>
+      {BannerImageData && BannerImageData.length > itemsPerPage && (
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[
+              ...Array(Math.ceil(BannerImageData.length / itemsPerPage)).keys(),
+            ].map((number) => (
+              <input
+                key={number}
+                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                type="radio"
+                name="options"
+                aria-label={number + 1}
+                checked={currentPage === number + 1}
+                onChange={() => paginate(number + 1)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
