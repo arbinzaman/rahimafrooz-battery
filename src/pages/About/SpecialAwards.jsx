@@ -4,6 +4,7 @@ import AwardSlider from "../../components/AboutPage/AwardSlider";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 
 const fetchAchievements = async () => {
+  
   const res = await fetch(`${import.meta.env.VITE_BASE_URL}/achievements`);
   if (!res.ok) {
     throw new Error("Network response was not ok");
@@ -13,7 +14,10 @@ const fetchAchievements = async () => {
 };
 
 const SpecialAwards = () => {
-  const { data, error, isLoading } = useQuery(["achievements"], fetchAchievements);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["achievements"],
+    queryFn: fetchAchievements,
+  });
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -50,9 +54,9 @@ const SpecialAwards = () => {
           {filteredAchievementData.map((achievement, index) => (
             <div className="grid mt-20 lg:mt-32" key={index}>
               <div>
-                <img src={achievement.image_url} alt="" width={"100%"} />
+                <img src={achievement.img_url} alt="" width={"100%"} />
               </div>
-              <p className="my-10">{achievement.caption}</p>
+              <p className="my-10">{achievement.description}</p>
               <p className="border border-b-primary"></p>
             </div>
           ))}
@@ -63,9 +67,9 @@ const SpecialAwards = () => {
           {filteredAwardData.map((award, index) => (
             <div className="grid mt-20 lg:mt-32" key={index}>
               <div>
-                <img src={award.image_url} alt="" width={"100%"} />
+                <img src={award.img_url} alt="" width={"100%"} />
               </div>
-              <p className="my-10">{award.description}</p>
+              <p className="my-10">{award.caption}</p>
               <p className="border border-b-primary"></p>
             </div>
           ))}
