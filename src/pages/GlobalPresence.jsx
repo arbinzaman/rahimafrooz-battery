@@ -2,7 +2,6 @@ import banner from "../assets/images/7. Global Presence-ai.png";
 import GlobalPresenceSlider from "../components/GlobalPresence/GlobalPresenceSlider";
 import InternationalOperations from "../components/GlobalPresence/InternationalOperations";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
-
 const GlobalPresence = () => {
   return (
     <section>
