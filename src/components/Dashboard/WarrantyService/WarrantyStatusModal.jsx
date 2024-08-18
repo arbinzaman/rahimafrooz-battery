@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { MdOutlineDoneOutline } from "react-icons/md";
-import Loader from "../../../components/shared/Loaders/Loader";
 import Cookies from "js-cookie";
+import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
 
 const WarrantyStatusModal = ({ updateModalProps }) => {
   const { selectedId, allWarrantyDetails, refetch } = updateModalProps;
@@ -95,12 +95,16 @@ const WarrantyStatusModal = ({ updateModalProps }) => {
             </small>
 
             <div className="flex justify-end gap-3 items-center mt-3">
-              <button
-                type=""
-                className="flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white"
-              >
-                Update
-              </button>
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button
+                  type=""
+                  className="flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white"
+                >
+                  Update
+                </button>
+              )}
             </div>
           </form>
         </div>
