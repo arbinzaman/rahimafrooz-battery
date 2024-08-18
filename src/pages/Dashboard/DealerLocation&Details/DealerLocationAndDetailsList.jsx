@@ -13,6 +13,9 @@ import Cookies from "js-cookie";
 const DealerLocationAndDetailsList = () => {
   const [selectedId, setSelectedId] = useState();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage] = useState(6); // Number of items per page
+
   const { data: allDealersDetails = null, refetch } = useQuery({
     queryKey: ["allDealersDetails"],
     queryFn: async () => {
@@ -68,6 +71,13 @@ const DealerLocationAndDetailsList = () => {
     setSelectedId(null);
   };
 
+  // Pagination calculations
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentData = allDealersDetails?.slice(indexOfFirstData, indexOfLastData);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="overflow-x-auto">
       <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
@@ -109,13 +119,14 @@ const DealerLocationAndDetailsList = () => {
             <th>Thana</th>
             <th>Image</th>
             <th>Update</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {allDealersDetails &&
-            allDealersDetails.map((dealerLocationDetail, i) => (
+          {currentData &&
+            currentData.map((dealerLocationDetail, i) => (
               <tr key={dealerLocationDetail.id}>
-                <td>{i + 1}</td>
+                <td>{indexOfFirstData + i + 1}</td>
                 <td>{dealerLocationDetail.shop_name}</td>
                 <td>{dealerLocationDetail.address}</td>
                 <td>{dealerLocationDetail.proprietor_name}</td>
@@ -165,6 +176,28 @@ const DealerLocationAndDetailsList = () => {
             ))}
         </tbody>
       </table>
+
+      {/* Pagination */}
+      {allDealersDetails && allDealersDetails.length > dataPerPage && (
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[
+              ...Array(Math.ceil(allDealersDetails.length / dataPerPage)).keys(),
+            ].map((number) => (
+              <input
+                key={number}
+                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                type="radio"
+                name="options"
+                aria-label={number + 1}
+                checked={currentPage === number + 1}
+                onChange={() => paginate(number + 1)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
         <dialog open className="modal modal-bottom sm:modal-middle">
