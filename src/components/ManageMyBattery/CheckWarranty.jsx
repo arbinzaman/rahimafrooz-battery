@@ -3,13 +3,17 @@ import WarrantyStatus from "./WarrantyStatus";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import ThreeDotLoader from "../shared/Loaders/ThreeDotLoader";
 
 const CheckWarranty = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const [warrantyInformation, setWarrantyInformation] = useState();
 
   const handleGetStatus = async (data) => {
     try {
+      setIsLoading(true);
+
       if (data?.short_code == "") {
         toast.error("Provide Product's Short Code");
       }
@@ -22,11 +26,13 @@ const CheckWarranty = () => {
 
       setWarrantyInformation(res?.data[0]);
 
-      if(warrantyInformation?.approval_status === false){
-        toast.error('Sorry your warranty application is not approved yet!')
+      if (warrantyInformation?.approval_status === false) {
+        toast.error("Sorry your warranty application is not approved yet!");
       }
     } catch (error) {
-      toast.error(error.response.data)
+      toast.error(error.response.data);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -55,9 +61,13 @@ const CheckWarranty = () => {
             />
           </div>
           <div className="lg:flex justify-end">
-            <button className="bg-button px-8 py-1 text-2xl text-base font-bold rounded-md lg:w-full">
-              Search
-            </button>
+            {isLoading ? (
+              <ThreeDotLoader />
+            ) : (
+              <button className="bg-button px-8 py-1 text-2xl text-base font-bold rounded-md lg:w-full">
+                Search
+              </button>
+            )}
           </div>
         </div>
       </form>

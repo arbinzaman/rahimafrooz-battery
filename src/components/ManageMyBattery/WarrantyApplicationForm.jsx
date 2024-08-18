@@ -1,13 +1,17 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import ThreeDotLoader from "../shared/Loaders/ThreeDotLoader";
+import { useState } from "react";
 
 const WarrantyApplicationForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const API_URL = `${import.meta.env.VITE_BASE_URL}/warranty-services`;
 
   const handleApplicationSubmit = async (data) => {
     try {
+      setIsLoading(true);
       data.approval_status = false;
       const res = await axios.post(API_URL, data);
 
@@ -17,6 +21,8 @@ const WarrantyApplicationForm = () => {
       }
     } catch (error) {
       toast.error("Application failed. Please try again!");
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -95,9 +101,13 @@ const WarrantyApplicationForm = () => {
           />
         </div>
       </div>
-      <button className="bg-button px-8 py-1 my-4 text-2xl text-base font-bold rounded-md">
-        Submit
-      </button>
+      {isLoading ? (
+        <ThreeDotLoader />
+      ) : (
+        <button className="bg-button px-8 py-1 my-4 text-2xl text-base font-bold rounded-md">
+          Submit
+        </button>
+      )}
     </form>
   );
 };
