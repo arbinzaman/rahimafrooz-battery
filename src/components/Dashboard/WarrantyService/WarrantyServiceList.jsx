@@ -10,6 +10,8 @@ const WarrantyServiceList = ({ prompts }) => {
   const { allWarrantyDetails, refetch } = prompts;
   const [selectedId, setSelectedId] = useState();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage] = useState(10); // Number of items per page
 
   const openDeleteModal = (id) => {
     setSelectedId(id);
@@ -43,6 +45,13 @@ const WarrantyServiceList = ({ prompts }) => {
     }
   };
 
+  // Pagination calculations
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentData = allWarrantyDetails?.slice(indexOfFirstData, indexOfLastData);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="overflow-x-auto">
       <table className="table w-full text-black">
@@ -65,9 +74,9 @@ const WarrantyServiceList = ({ prompts }) => {
           </tr>
         </thead>
         <tbody>
-          {allWarrantyDetails?.map((warranty, i) => (
+          {currentData && currentData.map((warranty, i) => (
             <tr key={warranty?.id}>
-              <th>{i + 1}</th>
+              <th>{indexOfFirstData + i + 1}</th>
               <td>{warranty?.name}</td>
               <td>{warranty?.email}</td>
               <td>{warranty?.phone_number}</td>
@@ -156,6 +165,26 @@ const WarrantyServiceList = ({ prompts }) => {
           ))}
         </tbody>
       </table>
+      {/* Pagination */}
+      {allWarrantyDetails && allWarrantyDetails.length > dataPerPage && (
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[
+              ...Array(Math.ceil(allWarrantyDetails.length / dataPerPage)).keys(),
+            ].map((number) => (
+              <input
+                key={number}
+                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                type="radio"
+                name="options"
+                aria-label={number + 1}
+                checked={currentPage === number + 1}
+                onChange={() => paginate(number + 1)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
         <dialog open className="modal modal-bottom sm:modal-middle">
