@@ -12,6 +12,8 @@ const NewsList = ({ prompts }) => {
   const [selectedId, setSelectedId] = useState();
   const [readMore, setReadMore] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
 
   const openDeleteModal = (id) => {
     setSelectedId(id);
@@ -47,6 +49,15 @@ const NewsList = ({ prompts }) => {
     }
   };
 
+  // Pagination Logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = allNews.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(allNews.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="overflow-x-auto">
       <table className="table w-full text-black">
@@ -62,9 +73,9 @@ const NewsList = ({ prompts }) => {
           </tr>
         </thead>
         <tbody>
-          {allNews?.map((news, i) => (
+          {currentItems.map((news, i) => (
             <tr key={news?.id}>
-              <th>{i + 1}</th>
+              <th>{indexOfFirstItem + i + 1}</th>
               <td>{news?.title}</td>
               <td className="w-96">
                 {selectedId === news?.id && readMore
@@ -93,7 +104,6 @@ const NewsList = ({ prompts }) => {
                 )}
               </td>
               <td>
-                {" "}
                 <img src={news?.image_url} alt="" className="w-48" />
               </td>
               <td>{news?.publish_date}</td>
@@ -114,7 +124,7 @@ const NewsList = ({ prompts }) => {
               </td>
               <td>
                 <button
-                  className="btn btn-xs bg-red-500  border-none text-white hover:bg-red-700 hover:text-white"
+                  className="btn btn-xs bg-red-500 border-none text-white hover:bg-red-700 hover:text-white"
                   onClick={() => openDeleteModal(news?.id)}
                 >
                   <MdDeleteOutline />
@@ -124,20 +134,38 @@ const NewsList = ({ prompts }) => {
           ))}
         </tbody>
       </table>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex justify-center my-4">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              className={`btn btn-xs mx-1 ${
+                currentPage === index + 1 ? "btn-active" : ""
+              }`}
+              onClick={() => paginate(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
         <dialog open className="modal modal-bottom sm:modal-middle">
           <div className="modal-box bg-white text-red-500">
-            <h2 className="text-lg ">Do you want to remove this news?</h2>
+            <h2 className="text-lg">Do you want to remove this news?</h2>
             <div className="modal-action">
               <button
-                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                className="btn bg-red-500 text-white border-0 btn-ghost btn-xs hover:bg-red-700 hover:text-white"
                 onClick={() => handleDelete(selectedId)}
               >
                 Yes, Remove
               </button>
               <button
-                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                className="btn text-red-500 border-0 btn-ghost btn-xs bg-gray-200"
                 onClick={closeDeleteModal}
               >
                 Cancel

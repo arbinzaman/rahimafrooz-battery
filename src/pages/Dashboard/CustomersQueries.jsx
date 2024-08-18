@@ -11,6 +11,8 @@ const CustomersQueries = () => {
   const [selectedQuery, setSelectedQuery] = useState(null);
   const [selectedIds, setSelectedIds] = useState([]);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [queriesPerPage] = useState(10); // Number of items per page
 
   const CONTACT_API_URL = `${import.meta.env.VITE_BASE_URL}/contact`;
 
@@ -80,6 +82,13 @@ const CustomersQueries = () => {
       setSelectedIds([]);
     }
   };
+
+  // Pagination calculations
+  const indexOfLastQuery = currentPage * queriesPerPage;
+  const indexOfFirstQuery = indexOfLastQuery - queriesPerPage;
+  const currentQueries = customersQueries?.slice(indexOfFirstQuery, indexOfLastQuery);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (isLoading) {
     return <Loader />;
@@ -156,7 +165,7 @@ const CustomersQueries = () => {
             </tr>
           </thead>
           <tbody>
-            {customersQueries.map((customersQuery, i) => (
+            {currentQueries.map((customersQuery, i) => (
               <tr key={customersQuery.id}>
                 <td>
                   <input
@@ -165,7 +174,7 @@ const CustomersQueries = () => {
                     onChange={() => handleCheckboxChange(customersQuery.id)}
                   />
                 </td>
-                <th>{i + 1}</th>
+                <th>{indexOfFirstQuery + i + 1}</th>
                 <td>{customersQuery.email}</td>
                 <td>{customersQuery.customer_name}</td>
                 <td>{customersQuery.phone_number}</td>
@@ -187,6 +196,26 @@ const CustomersQueries = () => {
             ))}
           </tbody>
         </table>
+        {/* Pagination */}
+        {customersQueries.length > queriesPerPage && (
+          <div className="flex justify-center mt-4">
+            <div className="join">
+              {[
+                ...Array(Math.ceil(customersQueries.length / queriesPerPage)).keys(),
+              ].map((number) => (
+                <input
+                  key={number}
+                  className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                  type="radio"
+                  name="options"
+                  aria-label={number + 1}
+                  checked={currentPage === number + 1}
+                  onChange={() => paginate(number + 1)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

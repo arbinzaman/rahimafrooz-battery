@@ -13,6 +13,8 @@ const FactoryInformationList = ({ prompts }) => {
   const [selectedId, setSelectedId] = useState();
   const [readMore, setReadMore] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
 
   const handleDelete = async (id) => {
     try {
@@ -53,6 +55,15 @@ const FactoryInformationList = ({ prompts }) => {
     setSelectedId(null);
   };
 
+  // Pagination Logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = allFactoryInformations.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(allFactoryInformations.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -70,9 +81,9 @@ const FactoryInformationList = ({ prompts }) => {
               </tr>
             </thead>
             <tbody>
-              {allFactoryInformations.map((details, i) => (
+              {currentItems.map((details, i) => (
                 <tr key={details.id}>
-                  <th>{i + 1}</th>
+                  <th>{indexOfFirstItem + i + 1}</th>
                   <td>{details.factory_title}</td>
                   <td>
                     {selectedId === details.id && readMore
@@ -139,6 +150,24 @@ const FactoryInformationList = ({ prompts }) => {
           </table>
         )}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex justify-center my-4">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              className={`btn btn-xs mx-1 ${
+                currentPage === index + 1 ? "btn-active" : ""
+              }`}
+              onClick={() => paginate(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
         <dialog open className="modal modal-bottom sm:modal-middle">

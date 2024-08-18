@@ -9,8 +9,12 @@ import { TiEdit } from "react-icons/ti";
 
 const BannerImageList = ({ prompts }) => {
   const { BannerImageData, refetch } = prompts;
-  const [selectedId, setSelectedId] = useState();
+  const [selectedId, setSelectedId] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   const openDeleteModal = (id) => {
     setSelectedId(id);
@@ -45,6 +49,12 @@ const BannerImageList = ({ prompts }) => {
     }
   };
 
+  // Pagination calculations
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = BannerImageData.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(BannerImageData.length / itemsPerPage);
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -57,17 +67,19 @@ const BannerImageList = ({ prompts }) => {
                 <th>Serial</th>
                 <th>Brand</th>
                 <th>Image</th>
+                <th>Update</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              {BannerImageData.map((details, i) => (
+              {currentItems.map((details, i) => (
                 <tr key={details.id}>
-                  <th>{i + 1}</th>
+                  <th>{indexOfFirstItem + i + 1}</th>
                   <td>{details.page_name}</td>
                   <td>
                     <img
                       src={details.image_url}
-                      alt={details.page_name + "image"}
+                      alt={`${details.page_name} image`}
                       className="w-52"
                     />
                   </td>
@@ -104,6 +116,35 @@ const BannerImageList = ({ prompts }) => {
         )}
       </div>
 
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-4">
+        <button
+          className="btn btn-xs mx-1"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index}
+            className={`btn btn-xs mx-1 ${
+              currentPage === index + 1 ? "btn-primary" : ""
+            }`}
+            onClick={() => setCurrentPage(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          className="btn btn-xs mx-1"
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
+
       {/* Delete Confirmation Modal */}
       {deleteModalOpen && (
         <dialog open className="modal modal-bottom sm:modal-middle">
@@ -111,13 +152,13 @@ const BannerImageList = ({ prompts }) => {
             <h2 className="text-lg ">You want to remove this Brand Image?</h2>
             <div className="modal-action">
               <button
-                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                className="btn bg-red-500 text-white border-0 btn-ghost btn-xs hover:bg-red-700 hover:text-white"
                 onClick={() => handleDelete(selectedId)}
               >
                 Yes, Remove
               </button>
               <button
-                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                className="btn text-red-500 border-0 btn-ghost btn-xs bg-gray-200"
                 onClick={closeDeleteModal}
               >
                 Cancel
