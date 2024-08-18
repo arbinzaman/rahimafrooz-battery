@@ -10,6 +10,8 @@ import Cookies from "js-cookie";
 const DealerApplicationList = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage] = useState(10);
   const API_URL = `${import.meta.env.VITE_BASE_URL}/dealer-applications`;
 
   const {
@@ -34,8 +36,6 @@ const DealerApplicationList = () => {
   });
 
   const handleDelete = async (selectedIds) => {
-    console.log(selectedIds);
-    console.log(typeof selectedIds);
     try {
       const res = await axios.delete(API_URL + `/${selectedIds}`, {
         headers: {
@@ -44,7 +44,6 @@ const DealerApplicationList = () => {
       });
 
       if (res.status === 200) {
-        console.log(res.data);
         refetch();
         setDeleteModalOpen(false);
         toast.success("Selected queries deleted successfully.");
@@ -65,6 +64,15 @@ const DealerApplicationList = () => {
     setDeleteModalOpen(false);
     setSelectedId(null);
   };
+
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentData = allDealerApplicationDetails.slice(
+    indexOfFirstData,
+    indexOfLastData
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (isLoading) {
     return <Loader />;
@@ -122,9 +130,9 @@ const DealerApplicationList = () => {
             </tr>
           </thead>
           <tbody>
-            {allDealerApplicationDetails.map((becomeADealer, i) => (
+            {currentData.map((becomeADealer, i) => (
               <tr key={becomeADealer.id}>
-                <th>{i + 1}</th>
+                <th>{indexOfFirstData + i + 1}</th>
                 <td>{becomeADealer.email}</td>
                 <td>{becomeADealer.full_name}</td>
                 <td>{becomeADealer.phone}</td>
@@ -146,6 +154,28 @@ const DealerApplicationList = () => {
           </tbody>
         </table>
       </div>
+
+      {allDealerApplicationDetails.length > dataPerPage && (
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[
+              ...Array(
+                Math.ceil(allDealerApplicationDetails.length / dataPerPage)
+              ).keys(),
+            ].map((number) => (
+              <input
+                key={number}
+                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                type="radio"
+                name="options"
+                aria-label={number + 1}
+                checked={currentPage === number + 1}
+                onChange={() => paginate(number + 1)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -18,7 +18,8 @@ const BatteryDetailsTable = ({ prompts }) => {
 
   // reroute to update battery page
   const navigate = useNavigate();
-
+  
+  //multiSelect functionality
   const handleCheckboxChange = (short_code) => {
     setSelectedIds((prevSelectedIds) => {
       const updatedSelectedIds = prevSelectedIds.includes(short_code)
