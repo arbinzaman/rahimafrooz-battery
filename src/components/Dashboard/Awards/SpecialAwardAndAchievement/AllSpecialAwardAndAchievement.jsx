@@ -1,27 +1,26 @@
 import { LuRefreshCcw } from "react-icons/lu";
 import { useState } from "react";
 import Loader from "../../../shared/Loaders/Loader";
-import achievements from "../../../../demoData/SpecialAwardAndAchivement.json";
 import AddSpecialAwardAndAchievement from "./AddSpecialAwardAndAchievement";
 import { FaRegImage } from "react-icons/fa";
 import { BiSolidImageAdd } from "react-icons/bi";
 import SpecialAwardAndAchievementList from "./SpecialAwardAndAchievementList";
+import { useQuery } from "@tanstack/react-query";
+
 
 const AllSpecialAwardAndAchievement = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const achievementList = achievements;
+  // const achievementList = achievements;
 
-  //   const { data: achievementList = null, refetch } = useQuery({
-  //     queryKey: ["achievementList"],
-  //     queryFn: async () => {
-  //       const res = await fetch(
-  //         `${import.meta.env.VITE_BASE_URL}/achievements`
-  //       );
-  //       const data = await res.json();
-  //       return data;
-  //     },
-  //     refetchOnWindowFocus: true,
-  //   });
+  const { data: achievementList = null, refetch } = useQuery({
+    queryKey: ["achievementList"],
+    queryFn: async () => {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/achievements`);
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
   if (isLoading) return <Loader />;
 
@@ -41,14 +40,13 @@ const AllSpecialAwardAndAchievement = () => {
 
           <AddSpecialAwardAndAchievement
             props={{
-              setIsLoading,
-              //  refetch
+              refetch,
             }}
           />
         </div>
         <button
           className="flex gap-2 btn btn-xs border-0 text-white bg-teal-400 hover:bg-teal-700"
-          //   onClick={refetch}
+          onClick={refetch}
         >
           Refresh
           <LuRefreshCcw />
@@ -59,7 +57,7 @@ const AllSpecialAwardAndAchievement = () => {
         prompts={{
           achievementList,
           setIsLoading,
-          // refetch
+          refetch
         }}
       />
     </div>

@@ -1,38 +1,46 @@
 import { useForm } from "react-hook-form";
 import { FaAward } from "react-icons/fa";
-// import axios from "axios";
-// import toast from "react-hot-toast";
+import axios from "axios";
+import toast from "react-hot-toast";
+import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
+import { useState } from "react";
+import Cookies from "js-cookie";
 
 const AddSpecialAwardAndAchievement = ({ props }) => {
-  const {
-    setIsLoading,
-    // refetch
-  } = props;
-  const { register, handleSubmit } = useForm();
+  const { refetch } = props;
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { register, handleSubmit, reset } = useForm();
 
   const handleFormSubmit = async (data) => {
-    //   setIsLoading(true);
-    const formdata = new FormData();
-    formdata.append("description", data.description);
-    formdata.append("img_url", data.img_url[0]);
-
-    //   const newAchievement = { description, image_url: imageUrl };
-    //   try {
-    //     const res = await axios.post(
-    //       `${import.meta.env.VITE_BASE_URL}/achievements`,
-    //       formdata
-    //     );
-    //     if (res.status === 201) {
-    //       toast.success("Achievement added successfully");
-    //       refetch();
-    //       setIsLoading(false);
-    //       setImageUrl("");
-    //       document.getElementById("my_modal_2").close();
-    //     }
-    //   } catch (error) {
-    //     setIsLoading(false);
-    //     toast.error("Something went wrong!");
-    //   }
+    try {
+      setIsLoading(true);
+      const formdata = new FormData();
+      formdata.append("description", data.description);
+      formdata.append("img_url", data.img_url[0]);
+      console.log(data.img_url[0])
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/achievements`,
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+      console.log(res);
+      if (res.status === 201) {
+        reset();
+        document.getElementById("my_modal_2").close();
+        refetch();
+        toast.success("Achievement added successfully");
+      }
+    } catch (error) {
+      console.log(error)
+      // toast.error("Something went wrong!");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -41,7 +49,7 @@ const AddSpecialAwardAndAchievement = ({ props }) => {
         <div className="modal-box bg-white text-black ">
           <form method="dialog" className="flex justify-between items-center">
             <h3 className="font-bold text-lg flex text-primary">
-              Add a new Achievement <FaAward className="mt-1.5 ml-1" />
+              Add new Achievement <FaAward className="mt-1.5 ml-1" />
             </h3>
             <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
           </form>
@@ -50,30 +58,41 @@ const AddSpecialAwardAndAchievement = ({ props }) => {
             className="bg-white text-black"
             onSubmit={handleSubmit(handleFormSubmit)}
           >
-            <div className="py-4">
+            <div className="my-2">
+              <label className="block text-sm font-medium mb-2 pl-1">
+                Description <span className="text-red-600">*</span>
+              </label>
               <textarea
                 type="text"
-                placeholder="Description"
-                className="input input-bordered w-full mb-4 bg-white text-black"
+                required
+                className="input input-bordered intput-sm w-full h-20 py-1 bg-white text-black"
                 {...register("description")}
               />
             </div>
             <div className="my-2">
+              <label className="block text-sm font-medium mb-2 pl-1">
+                Award Image <span className="text-red-600">*</span>
+              </label>
               <input
                 type="file"
                 required
-                className="file-input file-input-bordered file-input-sm w-full bg-white text-black"
+                accept="image/png, image/jpg, image/jpeg"
+                className="file-input file-input-bordered file-input-sm w-full  bg-white dark:bg-white text-black"
                 {...register("img_url")}
               />
             </div>
 
             <div className="modal-action">
-              <button
-                className="btn  btn-xs btn-ghost bg-green-500 text-white"
-                onClick={handleFormSubmit}
-              >
-                Add
-              </button>
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button
+                  className="btn  btn-xs btn-ghost bg-primary text-white"
+                  onClick={handleFormSubmit}
+                >
+                  Add
+                </button>
+              )}
             </div>
           </form>
         </div>
