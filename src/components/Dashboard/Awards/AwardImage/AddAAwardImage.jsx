@@ -1,41 +1,43 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaAward } from "react-icons/fa";
-// import axios from "axios";
-// import toast from "react-hot-toast";
+import axios from "axios";
+import toast from "react-hot-toast";
 import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
+import Cookies from "js-cookie";
 
 const AddAAwardImage = ({ props }) => {
-  // const {
-  //   // refetch
-  // } = props;
-  const { register, handleSubmit } = useForm();
+  const { refetch } = props;
+  const { register, handleSubmit , reset} = useForm();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = async (data) => {
-    //   setIsLoading(true);
-    console.log(data);
-    const formdata = new FormData();
-    formdata.append("caption", data.caption);
-    formdata.append("img_url", data.img_url[0]);
+    try {
+      setIsLoading(true);
+      const formdata = new FormData();
+      formdata.append("caption", data.caption);
+      formdata.append("img_url", data.img_url[0]);
 
-    //   const newAchievement = { caption, image_url: imageUrl };
-    //   try {
-    //     const res = await axios.post(
-    //       `${import.meta.env.VITE_BASE_URL}/achievements`,
-    //       formdata
-    //     );
-    //     if (res.status === 201) {
-    //       toast.success("Achievement added successfully");
-    //       refetch();
-    //       setIsLoading(false);
-    //       setImageUrl("");
-    document.getElementById("allAwardImage").close();
-    //     }
-    //   } catch (error) {
-    //     setIsLoading(false);
-    //     toast.error("Something went wrong!");
-    //   }
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/achievements`,
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+      if (res.status === 201) {
+        reset()
+        document.getElementById("allAwardImage").close();
+        refetch();
+        toast.success("Award added successfully");
+      }
+    } catch (error) {
+      toast.error("Something went wrong!");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -55,7 +57,9 @@ const AddAAwardImage = ({ props }) => {
             onSubmit={handleSubmit(handleFormSubmit)}
           >
             <div className="my-2">
-              <label className="block text-sm font-medium mb-2 pl-1">Caption <span className="text-red-600">*</span></label>
+              <label className="block text-sm font-medium mb-2 pl-1">
+                Caption <span className="text-red-600">*</span>
+              </label>
               <input
                 type="text"
                 required
@@ -64,7 +68,9 @@ const AddAAwardImage = ({ props }) => {
               />
             </div>
             <div className="my-2">
-            <label className="block text-sm font-medium mb-2 pl-1">Award Image <span className="text-red-600">*</span></label>
+              <label className="block text-sm font-medium mb-2 pl-1">
+                Award Image <span className="text-red-600">*</span>
+              </label>
               <input
                 type="file"
                 required
@@ -78,10 +84,7 @@ const AddAAwardImage = ({ props }) => {
               {isLoading ? (
                 <ThreeDotLoader />
               ) : (
-                <button
-                  className="btn  btn-xs btn-ghost bg-primary text-white"
-                  onClick={handleFormSubmit}
-                >
+                <button className="btn  btn-xs btn-ghost bg-primary text-white">
                   Add
                 </button>
               )}

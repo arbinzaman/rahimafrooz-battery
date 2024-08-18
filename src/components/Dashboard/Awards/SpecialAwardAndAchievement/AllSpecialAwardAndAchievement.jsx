@@ -1,5 +1,4 @@
 import { LuRefreshCcw } from "react-icons/lu";
-import { useState } from "react";
 import Loader from "../../../shared/Loaders/Loader";
 import AddSpecialAwardAndAchievement from "./AddSpecialAwardAndAchievement";
 import { FaRegImage } from "react-icons/fa";
@@ -7,28 +6,27 @@ import { BiSolidImageAdd } from "react-icons/bi";
 import SpecialAwardAndAchievementList from "./SpecialAwardAndAchievementList";
 import { useQuery } from "@tanstack/react-query";
 
-
 const AllSpecialAwardAndAchievement = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  // const achievementList = achievements;
-
-  const { data: achievementList = null, refetch } = useQuery({
+  const {
+    data: achievementList = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["achievementList"],
     queryFn: async () => {
       const res = await fetch(`${import.meta.env.VITE_BASE_URL}/achievements`);
       const data = await res.json();
-      return data;
+      const filteredData = data.filter(
+        (item) => item.caption == undefined || item.caption == null
+      );
+      return filteredData;
     },
     refetchOnWindowFocus: true,
   });
-
   if (isLoading) return <Loader />;
 
   return (
     <div>
-      <h1 className="flex justify-center text-medium lg:text-semi_large text-center font-bold mb-10 mt-5 text-primary uppercase">
-        Special Awards and Achievements <FaRegImage className="ml-2 mt-2" />
-      </h1>
       <div className="flex justify-between items-center my-3">
         <div>
           <button
@@ -56,8 +54,7 @@ const AllSpecialAwardAndAchievement = () => {
       <SpecialAwardAndAchievementList
         prompts={{
           achievementList,
-          setIsLoading,
-          refetch
+          refetch,
         }}
       />
     </div>
