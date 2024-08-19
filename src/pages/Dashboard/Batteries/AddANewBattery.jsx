@@ -1,55 +1,58 @@
-import { useState } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import AddANewBatteryForm from "../../../components/Dashboard/BatteryDetails/AddANewBatteryForm";
+import UpdateBatteryForm from "../../../components/Dashboard/BatteryDetails/UpdateBatteryFrom";
 import Loader from "../../../components/shared/Loaders/Loader";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-const fetchCategories = async () => {
-  const response = await fetch(
-    `${import.meta.env.VITE_BASE_URL}/categories`
-  );
+const UpdateBattery = () => {
+  const fetchCategories = async () => {
+    const response = await axios.get(
+    `${import.meta.env.VITE_BASE_URL}/categories/`
+    );
+    if (response.status !== 200) {
+      throw new Error("Network response was not ok");
+    }
+    return response.data;
+  };
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-};
-
-const AddANewBattery = () => {
-  const [formData, setFormData] = useState({
-    battery_name: "",
-    short_code: "",
-    brand_code: "",
-    item_code: "",
-    model: "",
-    series: "",
-    voltage: "",
-    free_warranty: "",
-    total_warranty: "",
-    terminal_layout: "",
-    country_of_origin: "",
-    pro_rata_warranty: "",
-    ref_amperehour_ah: "",
-    cold_cranking_ability_cca: "",
-    product_dimensions_lxbxh_mm: "",
-    exchangeable_format_compatible_with: "",
-    price: "",
-    imgurls: [],
-    applicable_categories: [],
-    technology: "",
-    supported_vehicle_makes: [],
-    supported_vehicle_models: {},
-    make_years_models: {},
-  });
-
-  const { data, error, isLoading } = useQuery({
+  const {
+    data: categoriesData,
+    error: categoriesError,
+    isLoading: categoriesLoading,
+  } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategories,
   });
 
-  if (isLoading) return <Loader />;
-  if (error) return <div>Error: {error.message}</div>;
+  const [formData, setFormData] = useState({
+    battery_name: "",
+    short_code: "",
+    material_code: "",
+    new_jis: "",
+    dry_weight: "",
+    wet_weight: "",
+    e_store_link: "",
+    brochure_link: "",
+    imgurls: [],
+    applicable_categories: [],
+    technology: "",
+    price: "",
+    supported_vehicle_makes: [],
+    supported_vehicle_models: {},
+    make_years: {},
+  });
 
-  const categories = data.map((category) => ({
+  if (categoriesLoading) {
+    return <Loader />;
+  }
+  if (categoriesError) {
+    toast.error(categoriesError.message);
+    return <div>Error: {categoriesError.message}</div>;
+  }
+
+  const categories = categoriesData.map((category) => ({
     value: category.category_name,
     label: category.category_name,
   }));
@@ -58,128 +61,6 @@ const AddANewBattery = () => {
     { value: "Non-Hybrid", label: "Non-Hybrid" },
     { value: "Hybrid", label: "Hybrid" },
   ];
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-    const fileUrls = files.map((file) => URL.createObjectURL(file));
-    setFormData({
-      ...formData,
-      imgurls: fileUrls,
-    });
-  };
-
-  const handleTerminalLayoutChange = (e) => {
-    const files = Array.from(e.target.files);
-    const fileUrls = files.map((file) => URL.createObjectURL(file));
-    setFormData({
-      ...formData,
-      terminal_layout: fileUrls[0],
-    });
-  };
-
-  const handleCategoryChange = (selectedOptions) => {
-    const categories = selectedOptions
-      ? selectedOptions.map((option) => option.value)
-      : [];
-    setFormData({
-      ...formData,
-      applicable_categories: categories,
-    });
-  };
-
-  const handleTechnologyChange = (selectedOption) => {
-    setFormData({
-      ...formData,
-      technology: selectedOption ? selectedOption.value : "",
-    });
-  };
-
-  const handleSupportedVehicleMakesChange = (e) => {
-    const makes = e.target.value.split(",").map((make) => make.trim());
-    setFormData({
-      ...formData,
-      supported_vehicle_makes: makes,
-      supported_vehicle_models: {},
-      make_years_models: {},
-    });
-  };
-
-  const handleVehicleModelsChange = (make, models) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      supported_vehicle_models: {
-        ...prevData.supported_vehicle_models,
-        [make]: models,
-      },
-    }));
-  };
-
-  const handleMakeYearsChange = (make, model, years) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      make_years_models: {
-        ...prevData.make_years_models,
-        [make]: {
-          ...prevData.make_years_models[make],
-          [model]: years,
-        },
-      },
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const supportedVehicleModels = Object.keys(
-      formData.supported_vehicle_models
-    ).map((make) => ({
-      make,
-      models: formData.supported_vehicle_models[make],
-    }));
-
-    const makeYears = Object.keys(formData.make_years_models).map((model) => ({
-      model,
-      years: formData.make_years_models[model],
-    }));
-
-    const formattedData = {
-      battery_name: formData.battery_name,
-      short_code: formData.short_code,
-      brand_code: formData.brand_code,
-      item_code: formData.item_code,
-      model: formData.model,
-      series: formData.series,
-      voltage: formData.voltage,
-      free_warranty: formData.free_warranty,
-      total_warranty: formData.total_warranty,
-      terminal_layout: formData.terminal_layout,
-      country_of_origin: formData.country_of_origin,
-      pro_rata_warranty: formData.pro_rata_warranty,
-      ref_amperehour_ah: formData.ref_amperehour_ah,
-      cold_cranking_ability_cca: formData.cold_cranking_ability_cca,
-      product_dimensions_lxbxh_mm: formData.product_dimensions_lxbxh_mm,
-      exchangeable_format_compatible_with:
-        formData.exchangeable_format_compatible_with,
-      price: formData.price,
-      imgurls: formData.imgurls,
-      applicable_categories: formData.applicable_categories,
-      technology: formData.technology,
-      make_years: makeYears,
-      supported_vehicle_makes: formData.supported_vehicle_makes,
-      supported_vehicle_models: supportedVehicleModels,
-    };
-
-    console.log(formattedData);
-    // Add your form submission logic here
-  };
 
   const showVehicleFields =
     formData.applicable_categories.includes("Passenger Car") ||
@@ -190,25 +71,16 @@ const AddANewBattery = () => {
       <h1 className="text-primary text-center text-medium lg:text-large font-bold uppercase mb-2">
         Add Battery Form
       </h1>
-      <AddANewBatteryForm
-        prompts={{
+      <UpdateBatteryForm
+        batteryUpdateProps={{
           showVehicleFields,
-          categories,
-          handleSubmit,
-          handleTerminalLayoutChange,
-          technologyOptions,
-          handleTechnologyChange,
-          handleCategoryChange,
-          handleFileChange,
-          handleChange,
           formData,
-          handleVehicleModelsChange,
-          handleMakeYearsChange,
-          handleSupportedVehicleMakesChange,
+          categories,
+          technologyOptions,
         }}
       />
     </div>
   );
 };
 
-export default AddANewBattery;
+export default UpdateBattery;

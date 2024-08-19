@@ -50,12 +50,12 @@ const SupportedVehicleMakesSelect = ({ prompts }) => {
           supportedVehicleMakes?.map((option, index) => (
             <span
               key={index}
-              className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
+              className="bg-gray-200 text-black px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
             >
               {option}
               <button
                 type="button"
-                className="ml-2 text-white"
+                className="ml-2 text-black"
                 onClick={() => handleRemoveOption(option)}
               >
                 x

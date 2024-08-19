@@ -15,18 +15,18 @@ const BatteryDetailsModal = ({ prompts }) => {
     make_years,
     applicable_categories,
     battery_name,
-    series,
-    itemcode,
-    model,
+    material_code,
+    new_jis,
     product_dimensions_lxbxh_mm,
     voltage,
-    ref_amperehour_ah,
+    capacity,
     cold_cranking_ability_cca,
     total_warranty,
-    free_warranty,
-    pro_rata_warranty,
-    terminal_layout,
-    exchangeable_format_compatible_with,
+    plate,
+    dry_weight,
+    wet_weight,
+    brochure_link,
+    e_store_link,
     country_of_origin,
   } = battery;
 
@@ -50,14 +50,12 @@ const BatteryDetailsModal = ({ prompts }) => {
           <p>
             <strong>Battery Name:</strong> {battery_name}
           </p>
+
           <p>
-            <strong>Series:</strong> {series}
+            <strong>Material Code:</strong> {material_code}
           </p>
           <p>
-            <strong>Item Code:</strong> {itemcode}
-          </p>
-          <p>
-            <strong>Model:</strong> {model}
+            <strong>New JIS:</strong> {new_jis}
           </p>
           <p>
             <strong>Product Dimensions (LxBxH):</strong>{" "}
@@ -67,7 +65,7 @@ const BatteryDetailsModal = ({ prompts }) => {
             <strong>Voltage:</strong> {voltage}
           </p>
           <p>
-            <strong>Reference Ampere Hour (Ah):</strong> {ref_amperehour_ah}
+            <strong>Capacity (Ah):</strong> {capacity}
           </p>
           <p>
             <strong>Cold Cranking Ability (CCA):</strong>{" "}
@@ -77,18 +75,19 @@ const BatteryDetailsModal = ({ prompts }) => {
             <strong>Total Warranty:</strong> {total_warranty} months
           </p>
           <p>
-            <strong>Free Warranty:</strong> {free_warranty} months
+            <strong>Plate:</strong> {plate} 
           </p>
           <p>
-            <strong>Pro-Rata Warranty:</strong> {pro_rata_warranty} months
+            <strong>Dry weight:</strong> {dry_weight.toFixed(3)} KG
           </p>
           <p>
-            <strong>Terminal Layout:</strong>{" "}
-            {terminal_layout ? terminal_layout : "N/A"}
+            <strong>Wet Weight:</strong> {wet_weight.toFixed(3)} KG
           </p>
           <p>
-            <strong>Exchangeable Format Compatible With:</strong>{" "}
-            {exchangeable_format_compatible_with}
+            <strong>Brochure Link:</strong> {brochure_link}
+          </p>
+          <p>
+            <strong>E-Store Link:</strong> {e_store_link}
           </p>
           <p>
             <strong>Country of Origin:</strong> {country_of_origin}

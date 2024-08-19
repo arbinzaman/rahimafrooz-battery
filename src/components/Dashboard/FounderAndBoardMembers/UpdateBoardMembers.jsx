@@ -130,7 +130,7 @@ const UpdateBoardMembers = ({ updateModalProps }) => {
               <input
                 type="file"
                 accept="image/png, image/jpg, image/jpeg"
-                className="file-input file-input-bordered file-input-sm w-full"
+                className="file-input dark:bg-white file-input-bordered file-input-sm w-full"
                 {...register("image_url")}
               />
             </div>
