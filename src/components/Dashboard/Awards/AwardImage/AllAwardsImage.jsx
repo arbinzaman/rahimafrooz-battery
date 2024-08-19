@@ -1,8 +1,6 @@
 import { LuRefreshCcw } from "react-icons/lu";
-import { useState } from "react";
 import Loader from "../../../shared/Loaders/Loader";
 import AddAAwardImage from "./AddAAwardImage";
-import { FaAward } from "react-icons/fa";
 import { BiSolidImageAdd } from "react-icons/bi";
 import AwardImageList from "./AwardImageList";
 import { useQuery } from "@tanstack/react-query";

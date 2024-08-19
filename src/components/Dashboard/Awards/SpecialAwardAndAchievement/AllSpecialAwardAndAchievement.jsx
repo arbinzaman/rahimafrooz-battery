@@ -1,7 +1,6 @@
 import { LuRefreshCcw } from "react-icons/lu";
 import Loader from "../../../shared/Loaders/Loader";
 import AddSpecialAwardAndAchievement from "./AddSpecialAwardAndAchievement";
-import { FaRegImage } from "react-icons/fa";
 import { BiSolidImageAdd } from "react-icons/bi";
 import SpecialAwardAndAchievementList from "./SpecialAwardAndAchievementList";
 import { useQuery } from "@tanstack/react-query";
