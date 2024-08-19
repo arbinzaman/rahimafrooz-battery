@@ -55,12 +55,12 @@ const ModelSelect = ({ props }) => {
         {options?.models?.map((model, index) => (
           <span
             key={index}
-            className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
+            className="bg-gray-200 text-black px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
 
           >
             {model}{" "}
             <span
-              className="text-white gap-2 hover:cursor-pointer"
+              className="text-black gap-2 hover:cursor-pointer ml-2"
               onClick={() => handleRemoveOption(model)}
             >
               x

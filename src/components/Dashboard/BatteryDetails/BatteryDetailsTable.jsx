@@ -11,6 +11,7 @@ const BatteryDetailsTable = ({ prompts }) => {
     useState(null);
   const [loading, setLoading] = useState(false);
   const { allBatteryDetails, selectedIds, setSelectedIds } = prompts;
+  // console.log(allBatteryDetails);
 
   // pagination logic
   const [currentPage, setCurrentPage] = useState(1);
@@ -97,9 +98,8 @@ const BatteryDetailsTable = ({ prompts }) => {
             </th>
             <th>Serial</th>
             <th>Battery Name</th>
-            <th>Series</th>
-            <th>Item Code</th>
-            <th>Model</th>
+            <th>Material code</th>
+            <th>New JIS</th>
             <th>Voltage</th>
             <th>Capacity (Ah)</th>
             <th>CCA</th>
@@ -120,11 +120,10 @@ const BatteryDetailsTable = ({ prompts }) => {
               </td>
               <th>{indexOfFirstData + i + 1}</th>
               <td>{battery.battery_name}</td>
-              <td>{battery.series}</td>
-              <td>{battery.item_code}</td>
-              <td>{battery.model}</td>
+              <td>{battery.material_code}</td>
+              <td>{battery.new_jis}</td>
               <td>{battery.voltage}</td>
-              <td>{battery.ref_amperehour_ah}</td>
+              <td>{battery.capacity}</td>
               <td>{battery.cold_cranking_ability_cca}</td>
               <td>{battery.country_of_origin}</td>
               <td>

@@ -13,6 +13,7 @@ import {
   FaQuestion,
   FaUserTie,
   FaAward,
+  FaUsersRectangle,
 } from "react-icons/fa6";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { PiCertificateFill } from "react-icons/pi";
@@ -74,6 +75,13 @@ const DashboardLayout = () => {
                 {" "}
                 <MdPrecisionManufacturing />
                 Manufacturing Details & Locations
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/board-members">
+                {" "}
+                <FaUsersRectangle  />
+                Founder & Board Members
               </Link>
             </li>
             <li>

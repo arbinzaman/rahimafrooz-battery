@@ -48,12 +48,12 @@ const YearSelect = ({ props }) => {
           ?.years.map((year, index) => (
             <span
               key={index}
-              className="bg-sky-500 text-white px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
+              className="bg-gray-200 text-black px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
 
             >
               {year}{" "}
               <span
-                className="text-white hover:cursor-pointer"
+                className="text-black hover:cursor-pointer ml-2"
                 onClick={() => handleRemoveOption(year)}
               >
                x

@@ -14,7 +14,6 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
     formData,
     handleChange,
     handleFileChange,
-    handleTerminalLayoutChange,
     handleCategoryChange,
     handleTechnologyChange,
     supportedVehicleModels,
@@ -28,13 +27,18 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
   const {
     battery_name = "",
     short_code = "",
-    brand_code = "",
-    item_code = "",
-    model = "",
+    material_code = "",
+    new_jis = "",
+    dry_weight = "",
+    wet_weight = "",
+    e_store_link = "",
+    brochure_link = "",
     imgurls = [],
-    terminal_layout = "",
     applicable_categories = [],
     technology = "",
+    price = "",
+    brand_code = "",
+    country_of_origin = "",
     supported_vehicle_makes = [],
     supported_vehicle_models = {},
     make_years = {},
@@ -103,11 +107,95 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Brand Code:
+              Material Code:
             </label>
             <input
               type="text"
-              name="brand_code"
+              name="material_code"
+              value={material_code}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              New JIS:
+            </label>
+            <input
+              type="text"
+              name="new_jis"
+              value={new_jis}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Dry Weight:
+            </label>
+            <input
+              type="text"
+              name="dry_weight"
+              value={dry_weight}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Wet Weight:
+            </label>
+            <input
+              type="text"
+              name="wet_weight"
+              value={wet_weight}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              E-store Link:
+            </label>
+            <textarea
+              type="text"
+              name="wet_weight"
+              value={e_store_link}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Brochure Link:
+            </label>
+            <textarea
+              type="text"
+              name="wet_weight"
+              value={brochure_link}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Price:
+            </label>
+            <input
+              type="text"
+              name="wet_weight"
+              value={price}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+            Brand Code:
+            </label>
+            <input
+              type="text"
+              name="wet_weight"
               value={brand_code}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
@@ -115,24 +203,12 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Item Code:
+            Country of Origin:
             </label>
             <input
               type="text"
-              name="item_code"
-              value={item_code}
-              onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-small text-gray-800 pb-1">
-              Model:
-            </label>
-            <input
-              type="text"
-              name="model"
-              value={model}
+              name="wet_weight"
+              value={country_of_origin}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
@@ -147,17 +223,6 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
               name="imgurls"
               multiple
               onChange={handleFileChange}
-              className="file-input w-full input-sm rounded-sm max-w-xs bg-white text-black max-h-10"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-small text-gray-800 pb-1">
-              Upload Terminal Layout:
-            </label>
-            <input
-              type="file"
-              name="terminal_layout"
-              onChange={handleTerminalLayoutChange}
               className="file-input w-full input-sm rounded-sm max-w-xs bg-white text-black max-h-10"
             />
           </div>

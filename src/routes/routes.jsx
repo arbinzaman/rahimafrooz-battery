@@ -52,6 +52,7 @@ import News from "../pages/News";
 import SingleNewsCard from "../components/News/SingleNewsCard";
 import AllBannerImg from "../pages/Dashboard/BannerImage/AllBannerImg";
 import AllMaintenanceGuidelines from "../pages/Dashboard/MaintainceGuidelines/AllMaintenanceGuidelines";
+import AllBoardMembers from "../pages/Dashboard/FounderAndBoardMembers/AllBoardMembers";
 
 const routes = createBrowserRouter([
   {
@@ -275,6 +276,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/maintenance-guidelines",
         element: <AllMaintenanceGuidelines />,
+      },
+      {
+        path: "/dashboard/board-members",
+        element: <AllBoardMembers />,
       },
     ],
   },
