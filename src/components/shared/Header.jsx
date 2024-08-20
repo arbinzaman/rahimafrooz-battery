@@ -115,11 +115,6 @@ const Header = () => {
                       Warranty & Services
                     </button>
                   </a>
-                  {/* <select className="header-btn">
-                    <option selected>English</option>
-                    <option>বাংলা</option>
-                    <option>Arabic</option>
-                  </select> */}
                 </div>
               </div>
               {/* Mobile Nav */}

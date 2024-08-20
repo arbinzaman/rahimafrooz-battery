@@ -47,8 +47,8 @@ const Table = () => {
       ) : batteries ? (
         <div className="overflow-x-auto">
           <h1 className="text-primary text-sm md:text-semi_large font-semibold md:font-bold py-3">
-            Suitable Battery for {carInfo.brand} {carInfo.model} {carInfo.year}{" "}
-            ({carInfo.technology})
+            Suitable Battery for {carInfo?.brand} {carInfo?.model} {carInfo?.year}{" "}
+            ({carInfo?.technology})
           </h1>
 
           <table className="table">
@@ -58,7 +58,7 @@ const Table = () => {
                 <th className="text-sm md:text-regular lg:text-semi_large text-wrap grid gap-5"></th>
 
                 {batteries?.map((battery) => (
-                  <th key={battery.id} className="">
+                  <th key={battery?.id} className="">
                     <div className="grid justify-items-center gap-3 my-6">
                       <img
                         src={battery?.imgurls[0] || Product2}
@@ -89,52 +89,52 @@ const Table = () => {
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.battery_name}
+                    {battery?.battery_name}
                   </td>
                 ))}
               </tr>
-              {/* Series Name */}
+              {/* Brand Code */}
               <tr>
                 <td className="bg-primary text-base border border-primary border-b-base">
-                  Series
+                  Brand Code
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.series}
+                    {battery?.brand_code}
                   </td>
                 ))}
               </tr>
-              {/* Item Code */}
+              {/* New JIS */}
               <tr>
                 <td className="bg-primary text-base border border-primary border-b-base">
-                  Item Code
+                  New JIS
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.item_code}
+                    {battery?.new_jis}
                   </td>
                 ))}
               </tr>
-              {/* Model */}
+              {/*Material Code */}
               <tr>
                 <td className="bg-primary text-base border border-primary border-b-base">
-                  Model
+                  Material Code
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.model}
+                    {battery?.material_code}
                   </td>
                 ))}
               </tr>
@@ -145,10 +145,10 @@ const Table = () => {
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.product_dimensions_lxbxh_mm}
+                    {battery?.product_dimensions_lxbxh_mm} mm<sup>3</sup>
                   </td>
                 ))}
               </tr>
@@ -159,24 +159,24 @@ const Table = () => {
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.voltage}
+                    {battery?.voltage}
                   </td>
                 ))}
               </tr>
-              {/* Ref. Amphere Hour */}
+              {/* Capacity */}
               <tr>
                 <td className="bg-primary text-base border border-primary border-b-base">
-                  Ref. Ampere Hour
+                  Capacity
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.ref_amperehour_ah}
+                    {battery?.capacity}
                   </td>
                 ))}
               </tr>
@@ -187,71 +187,38 @@ const Table = () => {
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.cold_cranking_ability_cca}
+                    {battery?.cold_cranking_ability_cca}
                   </td>
                 ))}
               </tr>
-              {/* Total Warranty */}
+              {/* Plate */}
               <tr>
                 <td className="bg-primary text-base border border-primary border-b-base">
-                  Total Warranty
+                  Plate
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.total_warranty}
+                    {battery?.plate}
                   </td>
                 ))}
               </tr>
-              {/* Free Warranty */}
+              {/* Short Code */}
               <tr>
                 <td className="bg-primary text-base border border-primary border-b-base">
-                  Free Warranty
+                  Short Code
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.free_warranty}
-                  </td>
-                ))}
-              </tr>
-              {/* Pro-rata Warranty */}
-              <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
-                  Pro-rata Warranty
-                </td>
-                {batteries?.map((battery) => (
-                  <td
-                    key={battery.id}
-                    className={"text-center text-black border border-primary"}
-                  >
-                    {battery.pro_rata_warranty}
-                  </td>
-                ))}
-              </tr>
-              {/* Terminal Layout */}
-              <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
-                  Terminal Layout
-                </td>
-                {batteries?.map((battery) => (
-                  <td
-                    key={battery.id}
-                    className={"text-center text-black border border-primary"}
-                  >
-                    <img
-                      className="mx-auto"
-                      src={battery.terminal_layout}
-                      width={"100px"}
-                      alt=""
-                    />
+                    {battery?.short_code}
                   </td>
                 ))}
               </tr>
@@ -262,10 +229,10 @@ const Table = () => {
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.country_of_origin}
+                    {battery?.country_of_origin}
                   </td>
                 ))}
               </tr>
@@ -280,5 +247,5 @@ const Table = () => {
     </section>
   );
 };
-// ""
+
 export default Table;

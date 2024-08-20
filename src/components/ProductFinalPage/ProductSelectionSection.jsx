@@ -6,7 +6,7 @@ const ProductSelectionSection = ({ battery }) => {
     battery_name,
     imgurls,
     total_warranty,
-    ref_amperehour_ah,
+    capacity,
     voltage,
     price,
     e_store_link
@@ -53,11 +53,11 @@ const ProductSelectionSection = ({ battery }) => {
             </p>
             <p className="flex ">
               <FaAngleRight className="h-6 mr-3 mt-1" />{" "}
-              <span>Capacity: {ref_amperehour_ah}AH </span>
+              <span>Capacity: {capacity} AH </span>
             </p>
             <p className="flex ">
               <FaAngleRight className="h-6 mr-3 mt-1" />{" "}
-              <span>Battery Voltage: {voltage} </span>
+              <span>Battery Voltage: {voltage} v</span>
             </p>
           </div>
           <p className="text-regular ml-3 font-medium mt-20">

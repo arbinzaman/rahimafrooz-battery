@@ -4,13 +4,14 @@ import { BiDetail } from "react-icons/bi";
 import ButtonLoader from "../../shared/Loaders/ButtonLoader";
 import { useNavigate } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
 
 const BatteryDetailsTable = ({ prompts }) => {
-  const [selectAll, setSelectAll] = useState(false);
+  const { allBatteryDetails } = prompts;
+  const [selectedId, setSelectedId] = useState();
   const [selectTableDetailsForModal, setSelectTableDetailsForModal] =
     useState(null);
   const [loading, setLoading] = useState(false);
-  const { allBatteryDetails, selectedIds, setSelectedIds } = prompts;
   // console.log(allBatteryDetails);
 
   // pagination logic
@@ -19,17 +20,6 @@ const BatteryDetailsTable = ({ prompts }) => {
 
   // reroute to update battery page
   const navigate = useNavigate();
-  
-  //multiSelect functionality
-  const handleCheckboxChange = (short_code) => {
-    setSelectedIds((prevSelectedIds) => {
-      const updatedSelectedIds = prevSelectedIds.includes(short_code)
-        ? prevSelectedIds.filter((selectedId) => selectedId !== short_code)
-        : [...prevSelectedIds, short_code];
-      setSelectAll(updatedSelectedIds.length === allBatteryDetails.length);
-      return updatedSelectedIds;
-    });
-  };
 
   const handleModalOpen = async (short_code) => {
     setLoading(true);
@@ -50,18 +40,6 @@ const BatteryDetailsTable = ({ prompts }) => {
     }
   };
 
-  const handleSelectAllChange = () => {
-    if (selectAll) {
-      setSelectedIds([]);
-    } else {
-      const allshort_codes = allBatteryDetails.map(
-        (battery) => battery.short_code
-      );
-      setSelectedIds(allshort_codes);
-    }
-    setSelectAll(!selectAll);
-  };
-
   const handleUpdateClick = (short_code) => {
     navigate(`/dashboard/update-battery/${short_code}`);
   };
@@ -69,7 +47,10 @@ const BatteryDetailsTable = ({ prompts }) => {
   // Pagination logic
   const indexOfLastData = currentPage * dataPerPage;
   const indexOfFirstData = indexOfLastData - dataPerPage;
-  const currentData = allBatteryDetails.slice(indexOfFirstData, indexOfLastData);
+  const currentData = allBatteryDetails?.slice(
+    indexOfFirstData,
+    indexOfLastData
+  );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -88,14 +69,6 @@ const BatteryDetailsTable = ({ prompts }) => {
       <table className="table w-full text-black">
         <thead>
           <tr className="text-black">
-            <th>
-              <input
-                type="checkbox"
-                onChange={handleSelectAllChange}
-                checked={selectAll}
-                className="bg-white border-0"
-              />
-            </th>
             <th>Serial</th>
             <th>Battery Name</th>
             <th>Material code</th>
@@ -103,7 +76,7 @@ const BatteryDetailsTable = ({ prompts }) => {
             <th>Voltage</th>
             <th>Capacity (Ah)</th>
             <th>CCA</th>
-            <th>Country of Origin</th>
+
             <th>Update</th>
             <th>Details</th>
           </tr>
@@ -111,13 +84,6 @@ const BatteryDetailsTable = ({ prompts }) => {
         <tbody>
           {currentData.map((battery, i) => (
             <tr key={battery.short_code}>
-              <td>
-                <input
-                  type="checkbox"
-                  onChange={() => handleCheckboxChange(battery.short_code)}
-                  checked={selectedIds.includes(battery.short_code)}
-                />
-              </td>
               <th>{indexOfFirstData + i + 1}</th>
               <td>{battery.battery_name}</td>
               <td>{battery.material_code}</td>
@@ -125,7 +91,6 @@ const BatteryDetailsTable = ({ prompts }) => {
               <td>{battery.voltage}</td>
               <td>{battery.capacity}</td>
               <td>{battery.cold_cranking_ability_cca}</td>
-              <td>{battery.country_of_origin}</td>
               <td>
                 <button
                   className="btn btn-xs bg-sky-400 border-0 text-white hover:bg-sky-700 hover:text-white"
@@ -146,6 +111,11 @@ const BatteryDetailsTable = ({ prompts }) => {
                   )}
                 </button>
               </td>
+              <td>
+                <button className="flex gap-2 btn btn-xs bg-red-500 text-white">
+                  <MdDeleteOutline />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -156,17 +126,21 @@ const BatteryDetailsTable = ({ prompts }) => {
         <div className="flex justify-center mt-4">
           <div className="join">
             {[
-              ...Array(Math.ceil(allBatteryDetails.length / dataPerPage)).keys(),
+              ...Array(
+                Math.ceil(allBatteryDetails.length / dataPerPage)
+              ).keys(),
             ].map((number) => (
-              <input
-                key={number}
-                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
-                type="radio"
-                name="options"
-                aria-label={number + 1}
-                checked={currentPage === number + 1}
-                onChange={() => paginate(number + 1)}
-              />
+              <div key={number}>
+                <input
+                  className="join-item btn btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                  type="radio"
+                  name="options"
+                  aria-label={number + 1}
+                  checked={currentPage === number + 1}
+                  onChange={() => paginate(number + 1)}
+                />
+                
+              </div>
             ))}
           </div>
         </div>

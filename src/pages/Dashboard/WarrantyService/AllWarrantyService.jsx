@@ -4,6 +4,7 @@ import { LuRefreshCcw } from "react-icons/lu";
 import WarrantyServiceList from "../../../components/Dashboard/WarrantyService/WarrantyServiceList";
 import { AiOutlineFileDone } from "react-icons/ai";
 import Cookies from "js-cookie";
+import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
 
 const AllWarrantyService = () => {
   const url = `${import.meta.env.VITE_BASE_URL}/warranty-services`;
@@ -39,7 +40,7 @@ const AllWarrantyService = () => {
   }
 
   if (error) {
-    return <div>Error fetching data</div>;
+    return<FetchErrorMessage/>
   }
 
   return (

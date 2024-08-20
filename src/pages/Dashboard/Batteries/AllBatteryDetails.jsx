@@ -1,15 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../components/shared/Loaders/Loader";
 import BatteryDetailsTable from "../../../components/Dashboard/BatteryDetails/BatteryDetailsTable";
-import { MdDeleteOutline } from "react-icons/md";
 import { FaCarBattery } from "react-icons/fa";
-import { useState } from "react";
 import { LuRefreshCcw } from "react-icons/lu";
 import { Link } from "react-router-dom";
-
+import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
 
 const AllBatteryDetails = () => {
-  const [selectedIds, setSelectedIds] = useState([]);
   const url = `${import.meta.env.VITE_BASE_URL}/batteries`;
 
   const {
@@ -27,17 +24,16 @@ const AllBatteryDetails = () => {
     refetchOnWindowFocus: true,
   });
 
-  const handleDelete = async () => {
-    console.log(selectedIds);
-    await refetch();
-  };
-
   if (isLoading) {
     return <Loader />;
   }
 
   if (error) {
-    return <div>Error fetching data</div>;
+    return (
+      <div>
+        <FetchErrorMessage />
+      </div>
+    );
   }
 
   return (
@@ -52,13 +48,6 @@ const AllBatteryDetails = () => {
               Add Battery <FaCarBattery />
             </button>
           </Link>
-          <button
-            className="flex gap-2 btn btn-xs bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
-            onClick={handleDelete}
-          >
-            Delete
-            <MdDeleteOutline />
-          </button>
         </div>
         <div>
           <button
@@ -72,11 +61,9 @@ const AllBatteryDetails = () => {
       </div>
 
       <div className="">
-
         <BatteryDetailsTable
-          prompts={{ allBatteryDetails, selectedIds, setSelectedIds }}
+          prompts={{ allBatteryDetails}}
         />
-
       </div>
     </div>
   );
