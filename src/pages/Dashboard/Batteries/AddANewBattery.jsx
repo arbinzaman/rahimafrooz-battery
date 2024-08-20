@@ -1,15 +1,22 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import UpdateBatteryForm from "../../../components/Dashboard/BatteryDetails/UpdateBatteryFrom";
+import { useParams } from "react-router-dom";
 import Loader from "../../../components/shared/Loaders/Loader";
 import axios from "axios";
 import toast from "react-hot-toast";
+import AddANewBatteryForm from "../../../components/Dashboard/BatteryDetails/AddANewBatteryForm";
 
-const UpdateBattery = () => {
+const AddANewBattery = () => {
+  const [supportedVehicleMakes, setSupportedVehicleMakes] = useState([]);
+  const [supportedVehicleModels, setSupportedVehicleModels] = useState([]);
+  const [vehicleMakeYears, setVehicleMakeYears] = useState([]);
+
+
+
   const fetchCategories = async () => {
     const response = await axios.get(
-    `${import.meta.env.VITE_BASE_URL}/categories/`
+      `${import.meta.env.VITE_BASE_URL}/categories`
     );
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
@@ -21,10 +28,16 @@ const UpdateBattery = () => {
     data: categoriesData,
     error: categoriesError,
     isLoading: categoriesLoading,
+    refetch,
   } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategories,
   });
+
+  // console.log(supportedVehicleMakes);
+  // console.log(supportedVehicleModels);
+  // console.log(vehicleMakeYears);
+
 
   const [formData, setFormData] = useState({
     battery_name: "",
@@ -39,6 +52,8 @@ const UpdateBattery = () => {
     applicable_categories: [],
     technology: "",
     price: "",
+    country_of_origin: "",
+    brand_code: "",
     supported_vehicle_makes: [],
     supported_vehicle_models: {},
     make_years: {},
@@ -52,7 +67,7 @@ const UpdateBattery = () => {
     return <div>Error: {categoriesError.message}</div>;
   }
 
-  const categories = categoriesData.map((category) => ({
+  const categories = categoriesData?.map((category) => ({
     value: category.category_name,
     label: category.category_name,
   }));
@@ -62,6 +77,40 @@ const UpdateBattery = () => {
     { value: "Hybrid", label: "Hybrid" },
   ];
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    const fileUrls = files.map((file) => URL.createObjectURL(file));
+    setFormData((prev) => ({
+      ...prev,
+      imgurls: fileUrls,
+    }));
+  };
+
+  const handleCategoryChange = (selectedOptions) => {
+    const selectedCategories = selectedOptions
+      ? selectedOptions?.map((option) => option.value)
+      : [];
+    setFormData((prev) => ({
+      ...prev,
+      applicable_categories: selectedCategories,
+    }));
+  };
+
+  const handleTechnologyChange = (selectedOption) => {
+    setFormData((prev) => ({
+      ...prev,
+      technology: selectedOption ? selectedOption.value : "",
+    }));
+  };
+
   const showVehicleFields =
     formData.applicable_categories.includes("Passenger Car") ||
     formData.applicable_categories.includes("Commercial Vehicle");
@@ -69,18 +118,28 @@ const UpdateBattery = () => {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       <h1 className="text-primary text-center text-medium lg:text-large font-bold uppercase mb-2">
-        Add Battery Form
+        Update Battery Form
       </h1>
-      <UpdateBatteryForm
+      <AddANewBatteryForm
         batteryUpdateProps={{
           showVehicleFields,
-          formData,
           categories,
           technologyOptions,
+          formData,
+          handleChange,
+          handleFileChange,
+          handleCategoryChange,
+          handleTechnologyChange,
+          supportedVehicleModels,
+          setSupportedVehicleModels,
+          vehicleMakeYears,
+          setVehicleMakeYears,
+          supportedVehicleMakes,
+          setSupportedVehicleMakes
         }}
       />
     </div>
   );
 };
 
-export default UpdateBattery;
+export default AddANewBattery;

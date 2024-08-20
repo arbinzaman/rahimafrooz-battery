@@ -3,6 +3,8 @@ const ModelSelect = ({ props }) => {
     make,
     supportedVehicleModels,
     setSupportedVehicleModels,
+    vehicleMakeYears,
+    setVehicleMakeYears,
     modelInputValue,
     setModelInputValue,
   } = props;
@@ -10,6 +12,7 @@ const ModelSelect = ({ props }) => {
   const options = supportedVehicleModels?.find((model) => model.make === make);
 
   // console.log(options);
+  // console.log(vehicleMakeYears);
 
   // console.log(supportedVehicleModels);
 
@@ -22,9 +25,13 @@ const ModelSelect = ({ props }) => {
       e.preventDefault();
       if (modelInputValue.trim()) {
         const newOption = modelInputValue.trim();
+        // console.log(newOption);
         const newOptions = [...options.models, newOption];
+        // console.log(newOptions);
         options.models = newOptions;
-        console.log(options.make === make && options);
+        // console.log(options.make === make && options);
+        const newObj = { model: newOption, years: [] };
+        setVehicleMakeYears([...vehicleMakeYears, newObj]);
         setModelInputValue("");
       }
     }
@@ -38,8 +45,10 @@ const ModelSelect = ({ props }) => {
       (options) => options.make !== make
     );
     console.log(newArr);
+    const newYears = vehicleMakeYears.filter((year) => year.model !== optionToRemove[0]);
+    setVehicleMakeYears(newYears);
     setSupportedVehicleModels([...newArr, options]);
-    console.log(supportedVehicleModels);
+    // console.log(supportedVehicleModels);
     setModelInputValue("");
   };
 
@@ -55,12 +64,11 @@ const ModelSelect = ({ props }) => {
         {options?.models?.map((model, index) => (
           <span
             key={index}
-            className="bg-gray-200 text-black px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
-
+            className="bg-gray-200 text-black  px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
           >
             {model}{" "}
             <span
-              className="text-black gap-2 hover:cursor-pointer ml-2"
+              className="text-black  ml-2 hover:cursor-pointer"
               onClick={() => handleRemoveOption(model)}
             >
               x

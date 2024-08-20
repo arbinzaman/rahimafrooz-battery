@@ -159,7 +159,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             </label>
             <textarea
               type="text"
-              name="wet_weight"
+              name="e_store_link"
               value={e_store_link}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
@@ -171,7 +171,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             </label>
             <textarea
               type="text"
-              name="wet_weight"
+              name="brochure_link"
               value={brochure_link}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
@@ -183,7 +183,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             </label>
             <input
               type="text"
-              name="wet_weight"
+              name="price"
               value={price}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
@@ -195,7 +195,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             </label>
             <input
               type="text"
-              name="wet_weight"
+              name="brand_code"
               value={brand_code}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
@@ -207,7 +207,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             </label>
             <input
               type="text"
-              name="wet_weight"
+              name="country_of_origin"
               value={country_of_origin}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
@@ -235,8 +235,8 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
               isMulti
               name="applicable_categories"
               options={categories}
-              value={categories.filter((option) =>
-                applicable_categories.includes(option.value)
+              value={categories?.filter((option) =>
+                applicable_categories?.includes(option.value)
               )}
               onChange={handleCategoryChange}
               className="basic-multi-select bg-gray-200 text-black text-small"
