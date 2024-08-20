@@ -1,29 +1,36 @@
-// import { useQuery } from "@tanstack/react-query";
-// import axios from "axios";
-// import { useLoading } from "../../contexts/LoadingContext";
-
-import maintainceGuidelines from "../../demoData/MaintainceGuidelinesData.json";
-
-// const fetchAccordionData = async () => {
-//   const { maintainceGuidelines } = await axios.get(
-//     `${import.meta.env.VITE_BASE_URL}/api-endpoint`
-//   );
-//   return maintainceGuidelines;
-// };
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../shared/Loaders/Loader";
+import FetchErrorMessage from "../shared/Error/FetchErrorMessage";
 
 const Accordion = () => {
-  // const { setIsLoading } = useLoading();
-  // const { maintainceGuidelines, error, isLoading } = useQuery(
-  //   ["accordionData"],
-  //   fetchAccordionData
-  // );
+  const {
+    data: allInstructions = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["allInstructions"],
+    queryFn: async () => {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/instructions`);
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
-  // if (isLoading) setIsLoading(true);
-  // if (error) return <div>Error loading data</div>;
+  if (isLoading)
+    <div>
+      <Loader />
+    </div>;
+  if (error)
+    return (
+      <div>
+        <FetchErrorMessage />
+      </div>
+    );
 
   return (
     <section className="my-10">
-      {maintainceGuidelines.map((item, index) => (
+      {allInstructions.map((item, index) => (
         <div key={index} className="collapse collapse-arrow rounded-none">
           <input
             type="radio"

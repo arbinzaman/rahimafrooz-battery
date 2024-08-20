@@ -5,23 +5,55 @@ import ButtonLoader from "../../shared/Loaders/ButtonLoader";
 import { useNavigate } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import axios from "axios";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 const BatteryDetailsTable = ({ prompts }) => {
-  const { allBatteryDetails } = prompts;
+  const { allBatteryDetails, refetch } = prompts;
+  const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState();
   const [selectTableDetailsForModal, setSelectTableDetailsForModal] =
     useState(null);
   const [loading, setLoading] = useState(false);
-  // console.log(allBatteryDetails);
-
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   // pagination logic
   const [currentPage, setCurrentPage] = useState(1);
   const [dataPerPage] = useState(10);
 
-  // reroute to update battery page
-  const navigate = useNavigate();
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
 
-  const handleModalOpen = async (short_code) => {
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const body = allBatteryDetails.find((item) => item.id === selectedId);
+      const res = await axios.delete(
+        `${import.meta.env.VITE_BASE_URL}/batteries/${id}`,
+        {
+          data: body,
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+      if (res.status === 200) {
+        closeDeleteModal();
+        refetch();
+        toast.success("Deleted successfully!");
+      }
+    } catch (error) {
+      toast.error("Instruction deletion failed.");
+    }
+  };
+
+  const handleDetailsModal = async (short_code) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -82,19 +114,19 @@ const BatteryDetailsTable = ({ prompts }) => {
           </tr>
         </thead>
         <tbody>
-          {currentData.map((battery, i) => (
-            <tr key={battery.short_code}>
+          {currentData?.map((battery, i) => (
+            <tr key={battery?.short_code}>
               <th>{indexOfFirstData + i + 1}</th>
-              <td>{battery.battery_name}</td>
-              <td>{battery.material_code}</td>
-              <td>{battery.new_jis}</td>
-              <td>{battery.voltage}</td>
-              <td>{battery.capacity}</td>
-              <td>{battery.cold_cranking_ability_cca}</td>
+              <td>{battery?.battery_name}</td>
+              <td>{battery?.material_code}</td>
+              <td>{battery?.new_jis}</td>
+              <td>{battery?.voltage}</td>
+              <td>{battery?.capacity}</td>
+              <td>{battery?.cold_cranking_ability_cca}</td>
               <td>
                 <button
                   className="btn btn-xs bg-sky-400 border-0 text-white hover:bg-sky-700 hover:text-white"
-                  onClick={() => handleUpdateClick(battery.short_code)}
+                  onClick={() => handleUpdateClick(battery?.short_code)}
                 >
                   <FaEdit />
                 </button>
@@ -102,7 +134,7 @@ const BatteryDetailsTable = ({ prompts }) => {
               <td>
                 <button
                   className="btn btn-xs bg-blue-400 border-0"
-                  onClick={() => handleModalOpen(battery.short_code)}
+                  onClick={() => handleDetailsModal(battery?.short_code)}
                 >
                   {loading ? (
                     <ButtonLoader />
@@ -112,7 +144,10 @@ const BatteryDetailsTable = ({ prompts }) => {
                 </button>
               </td>
               <td>
-                <button className="flex gap-2 btn btn-xs bg-red-500 text-white">
+                <button
+                  className="flex gap-2 btn btn-xs bg-red-500 text-white"
+                  onClick={() => openDeleteModal(battery?.id)}
+                >
                   <MdDeleteOutline />
                 </button>
               </td>
@@ -122,12 +157,12 @@ const BatteryDetailsTable = ({ prompts }) => {
       </table>
 
       {/* pagination logic */}
-      {allBatteryDetails.length > dataPerPage && (
+      {allBatteryDetails?.length > dataPerPage && (
         <div className="flex justify-center mt-4">
           <div className="join">
             {[
               ...Array(
-                Math.ceil(allBatteryDetails.length / dataPerPage)
+                Math.ceil(allBatteryDetails?.length / dataPerPage)
               ).keys(),
             ].map((number) => (
               <div key={number}>
@@ -139,11 +174,32 @@ const BatteryDetailsTable = ({ prompts }) => {
                   checked={currentPage === number + 1}
                   onChange={() => paginate(number + 1)}
                 />
-                
               </div>
             ))}
           </div>
         </div>
+      )}
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">Do you want to remove this battery?</h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
       )}
     </div>
   );

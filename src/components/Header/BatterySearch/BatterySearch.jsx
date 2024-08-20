@@ -21,10 +21,10 @@ const BatterySearch = ({ searchData }) => {
     if (data) {
       const matchedBattery = data.find(
         (battery) =>
-          battery.battery_name.toLowerCase() === searchData.toLowerCase()
+          battery?.battery_name?.toLowerCase() === searchData?.toLowerCase()
       );
       if (matchedBattery) {
-        navigate(`/product-final-page/${matchedBattery.short_code}`);
+        navigate(`/product-final-page/${matchedBattery?.short_code}`);
       }
     }
   }, [data, searchData, navigate]);
@@ -32,33 +32,33 @@ const BatterySearch = ({ searchData }) => {
   if (isLoading) return <div></div>;
 
   const filteredBatteries = Array.isArray(data)
-    ? data.filter(
+    ? data?.filter(
         (battery) =>
-          battery.battery_name
-            .toLowerCase()
-            .includes(searchData.toLowerCase()) ||
-          battery.series.toLowerCase().includes(searchData.toLowerCase()) ||
-          battery.item_code.toLowerCase().includes(searchData.toLowerCase()) ||
-          battery.model.toLowerCase().includes(searchData.toLowerCase())
+          battery?.battery_name
+            ?.toLowerCase()
+            ?.includes(searchData.toLowerCase()) ||
+          battery?.series?.toLowerCase().includes(searchData?.toLowerCase()) ||
+          battery?.item_code?.toLowerCase().includes(searchData?.toLowerCase()) ||
+          battery?.model?.toLowerCase().includes(searchData?.toLowerCase())
       )
     : [];
 
   return (
     <div className="absolute z-10 w-full bg-white shadow-lg rounded-lg">
       {searchData !== "" &&
-        filteredBatteries.map((battery) => (
-          <div key={battery.id}>
+        filteredBatteries?.map((battery) => (
+          <div key={battery?.id}>
             <ul className="menu dropdown-content menu-xs text-black rounded-box w-56">
               <li className="">
                 <a
                   href="#"
                   className="hover:bg-gray-200 hover:w-fit"
                   onClick={() => {
-                    navigate(`/product-final-page/${battery.short_code}`);
+                    navigate(`/product-final-page/${battery?.short_code}`);
                     window.location.reload();
                   }}
                 >
-                  {battery.battery_name}
+                  {battery?.battery_name}
                 </a>
               </li>
             </ul>

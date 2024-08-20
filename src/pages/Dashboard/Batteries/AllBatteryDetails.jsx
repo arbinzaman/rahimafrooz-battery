@@ -62,7 +62,7 @@ const AllBatteryDetails = () => {
 
       <div className="">
         <BatteryDetailsTable
-          prompts={{ allBatteryDetails}}
+          prompts={{ allBatteryDetails, refetch}}
         />
       </div>
     </div>
