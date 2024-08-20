@@ -12,9 +12,9 @@ const AddMaintainceGuidelines = ({ addModalProps }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   // Define the API URL for adding FAQs
-  const API_URL = `${import.meta.env.VITE_BASE_URL}/faqs`;
+  const API_URL = `${import.meta.env.VITE_BASE_URL}/instructions`;
 
-  const handleMaintaince = async (data) => {
+  const handleAddInstruction = async (data) => {
     try {
       setIsLoading(true);
       const res = await axios.post(API_URL, data, {
@@ -24,46 +24,52 @@ const AddMaintainceGuidelines = ({ addModalProps }) => {
       });
       if (res.status === 201) {
         reset();
-        document.getElementById("addFaq").open = false;
+        document.getElementById("addInstructionModal").open = false;
         refetch();
-        toast.success("FAQ added successfully!");
+        toast.success("New instruction added successfully!");
       }
     } catch (error) {
-      toast.error("Failed to add FAQ. Please try again.");
+      toast.error("Failed to add Instruction. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <dialog id="addAMaintainceGuidelines" className="modal">
+    <dialog id="addInstructionModal" className="modal">
       <div className="modal-box bg-white text-black">
         <form method="dialog" className="flex justify-between items-center">
           <p className="text-primary text-medium font-bold flex gap-2 my-2">
-            Add Maintaince Guidelines <GrHostMaintenance className="inline-block  mt-1" />
+            Add Maintaince Guidelines{" "}
+            <GrHostMaintenance className="inline-block  mt-1" />
           </p>
           <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
         </form>
         <form
-          onSubmit={handleSubmit(handleMaintaince)}
+          onSubmit={handleSubmit(handleAddInstruction)}
           className="space-y-4 text-black"
         >
           <div>
-            <label className="block text-sm font-medium mb-2">Title</label>
+            <label className="block text-sm font-medium mb-2">
+              Title <span className="text-red-600">*</span>
+            </label>
             <input
               type="text"
               placeholder="Enter the Title"
               {...register("title", { required: true })}
-              className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full"
+              className="input-sm border rounded-md p-2 w-full bg-white text-black border-black "
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-2">Description</label>
+          <div className="my-2">
+            <label>
+              Description <span className="text-red-600">*</span>
+            </label>
             <textarea
-              placeholder="Enter the Description"
+              type="text"
+              required
+              className="inputs-sm border rounded-md p-1 w-full h-32 bg-white text-black border-black"
               {...register("description", { required: true })}
-              className="bg-gray-100 border border-gray-300 rounded-md p-2 w-full h-32"
             />
           </div>
 
