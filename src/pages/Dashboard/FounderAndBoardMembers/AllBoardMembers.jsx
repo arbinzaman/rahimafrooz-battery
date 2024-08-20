@@ -5,6 +5,7 @@ import { LuRefreshCcw } from "react-icons/lu";
 import allBoardMembersData from "../../../demoData/FounderAndBoardMembersData.json";
 import AddABoardMembers from "../../../components/Dashboard/FounderAndBoardMembers/AddABoardMembers";
 import BoardMembersList from "../../../components/Dashboard/FounderAndBoardMembers/BoardMembersList";
+import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
 
 const AllBoardMembers = () => {
   const allBoardMembers = allBoardMembersData;
@@ -40,9 +41,9 @@ const AllBoardMembers = () => {
   //     return <Loader />;
   //   }
 
-  //   if (error) {
-  //     return <div>Error fetching data</div>;
-  //   }
+    // if (error) {
+    //   return<FetchErrorMessage/>
+    // }
 
   return (
     <div>

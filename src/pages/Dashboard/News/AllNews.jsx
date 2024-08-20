@@ -4,9 +4,10 @@ import NewsList from "../../../components/Dashboard/News/NewsList";
 import AddANews from "../../../components/Dashboard/News/AddANews";
 import { TiNews } from "react-icons/ti";
 import { useQuery } from "@tanstack/react-query";
+import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
 const AllNews = () => {
   const url = `${import.meta.env.VITE_BASE_URL}/news`;
-  const { data: allNews = [], refetch } = useQuery({
+  const { data: allNews = [], refetch, error } = useQuery({
     queryKey: ["allNews"],
     queryFn: async () => {
       const res = await fetch(url);
@@ -31,9 +32,9 @@ const AllNews = () => {
   //   return <Loader />;
   // }
 
-  // if (error) {
-  //   return <div>Error fetching data</div>;
-  // }
+  if (error) {
+    return<FetchErrorMessage/>
+  }
 
   return (
     <div>

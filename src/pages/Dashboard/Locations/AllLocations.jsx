@@ -4,6 +4,7 @@ import LocationDetailsTable from "../../../components/Dashboard/ContactUsLocatio
 import { FaLocationDot } from "react-icons/fa6";
 import { LuRefreshCcw } from "react-icons/lu";
 import AddALocation from "./AddALocation";
+import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
 
 const AllLocations = () => {
   const url = `${import.meta.env.VITE_BASE_URL}/contact/global-locations`;
@@ -39,7 +40,7 @@ const AllLocations = () => {
   }
 
   if (error) {
-    return <div>Error fetching data</div>;
+    return<FetchErrorMessage/>
   }
 
   return (
