@@ -7,7 +7,8 @@ const YearSelect = ({ props }) => {
     model,
     vehicleMakeYears,
   } = props;
-  // console.log(vehicleMakeYears);
+  console.log(vehicleMakeYears);
+  console.log(matchedYears);
 
   const handleInputChange = (e) => {
     setYearInputValue(e.target.value);
@@ -20,6 +21,8 @@ const YearSelect = ({ props }) => {
         const newOption = yearInputValue.trim();
         // const newOptions = [...matchedYears, newOption];
         const newOptions = matchedYears.push(newOption);
+        setVehicleMakeYears(newOptions);
+        console.log(newOption);
         console.log(newOptions);
         setYearInputValue("");
       }
