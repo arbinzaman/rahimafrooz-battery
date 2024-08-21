@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import { TiEdit } from "react-icons/ti";
 
 const BannerImageList = ({ prompts }) => {
-  const { BannerImageData, refetch } = prompts;
+  const { bannerImages, refetch } = prompts;
   const [selectedId, setSelectedId] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
@@ -28,9 +28,9 @@ const BannerImageList = ({ prompts }) => {
 
   const handleDelete = async (id) => {
     try {
-      const body = BannerImageData.find((details) => details.id === id);
+      const body = bannerImages.find((details) => details.id === id);
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/brands/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/banner-images/${id}`,
         {
           data: body,
           headers: {
@@ -52,38 +52,47 @@ const BannerImageList = ({ prompts }) => {
   // Pagination calculations
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = BannerImageData.slice(indexOfFirstItem, indexOfLastItem);
-  // const totalPages = Math.ceil(BannerImageData.length / itemsPerPage);
+  const currentItems =
+    Array.isArray(bannerImages) &&
+    bannerImages.slice(indexOfFirstItem, indexOfLastItem);
+  // const totalPages = Math.ceil(bannerImages.length / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div>
       <div className="overflow-x-auto">
-        {BannerImageData === null ? (
-          <FetchErrorMessage />
-        ) : (
-          <table className="table w-full text-black">
-            <thead>
-              <tr className="text-black">
-                <th>Serial</th>
-                <th>Brand</th>
-                <th>Image</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentItems.map((details, i) => (
+        <table className="table w-full text-black">
+          <thead>
+            <tr className="text-black">
+              <th>Serial</th>
+              <th>Brand</th>
+              <th>Image <small className="text-gray-500">(Click on the images to see)</small></th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.isArray(currentItems) &&
+              currentItems?.map((details, i) => (
                 <tr key={details.id}>
                   <th>{indexOfFirstItem + i + 1}</th>
                   <td>{details.page_name}</td>
-                  <td>
-                    <img
-                      src={details.image_url}
-                      alt={`${details.page_name} image`}
-                      className="w-52"
-                    />
+                  <td className="flex gap-2">
+                    {details.img_url.map((src, i) => (
+                      <a
+                        key={i}
+                        href={src}
+                        target="_blank"
+                        title="Click to see the image"
+                      >
+                        <img
+                          src={src}
+                          alt={`${details.page_name} image`}
+                          className="w-20"
+                        />
+                      </a>
+                    ))}
                   </td>
                   <td>
                     <button
@@ -98,7 +107,7 @@ const BannerImageList = ({ prompts }) => {
                     <UpdateBannerImg
                       updateModalProps={{
                         selectedId,
-                        BannerImageData,
+                        bannerImages,
                         refetch,
                       }}
                     />
@@ -113,17 +122,16 @@ const BannerImageList = ({ prompts }) => {
                   </td>
                 </tr>
               ))}
-            </tbody>
-          </table>
-        )}
+          </tbody>
+        </table>
       </div>
 
       {/* Pagination Controls */}
-      {BannerImageData && BannerImageData.length > itemsPerPage && (
+      {bannerImages && bannerImages.length > itemsPerPage && (
         <div className="flex justify-center mt-4">
           <div className="join">
             {[
-              ...Array(Math.ceil(BannerImageData.length / itemsPerPage)).keys(),
+              ...Array(Math.ceil(bannerImages.length / itemsPerPage)).keys(),
             ].map((number) => (
               <input
                 key={number}
@@ -143,7 +151,9 @@ const BannerImageList = ({ prompts }) => {
       {deleteModalOpen && (
         <dialog open className="modal modal-bottom sm:modal-middle">
           <div className="modal-box bg-white text-red-500">
-            <h2 className="text-lg ">You want to remove this Brand Image?</h2>
+            <h2 className="text-lg ">
+              Do you want to remove this banner image?
+            </h2>
             <div className="modal-action">
               <button
                 className="btn bg-red-500 text-white border-0 btn-ghost btn-xs hover:bg-red-700 hover:text-white"

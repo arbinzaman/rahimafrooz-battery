@@ -13,12 +13,15 @@ const AddBannerImg = ({ props }) => {
   const handleAddBrandImage = async (data) => {
     try {
       setIsLoading(true);
+      const files = data.img_url;
       const formdata = new FormData();
-      formdata.append("banner_category", data.banner_category);
-      formdata.append("image_url", data.image_url[0]);
-
+      formdata.append("page_name", data.page_name);
+      Array.from(files).forEach((image) => {
+        formdata.append("img_url", image);
+      });
+      
       const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/brands`,
+        `${import.meta.env.VITE_BASE_URL}/banner-images`,
         formdata,
         {
           headers: {
@@ -34,8 +37,8 @@ const AddBannerImg = ({ props }) => {
         toast.success("New record has been added.");
       }
     } catch (error) {
-      const message = error.response.data.message.split(":")[1];
-      toast.error(message);
+      console.log(error);
+      toast.error("Failed to add banner image");
     } finally {
       setIsLoading(false);
     }
@@ -60,16 +63,18 @@ const AddBannerImg = ({ props }) => {
             >
               <div className="my-2">
                 <label>
-                  Select Page  <span className="text-red-600">*</span>
+                  Select Page <span className="text-red-600">*</span>
                 </label>
                 <select
                   required
                   className="border rounded-md p-1 w-full bg-white text-black border-black"
-                  {...register("banner_category")}
+                  {...register("page_name")}
                 >
                   <option value="home">Home</option>
                   <option value="board_members">Founder & Board Member</option>
-                  <option value="storage_power">RahimAfrooz Storage Power</option>
+                  <option value="storage_power">
+                    Rahimafrooz Storage Power
+                  </option>
                   <option value="manufacturing">Manufacturing</option>
                   <option value="achievement">Special & Achievement</option>
                   <option value="products_bd">Products - Bangladesh</option>
@@ -82,15 +87,22 @@ const AddBannerImg = ({ props }) => {
 
               <div className="my-2">
                 <label>
-                  Image <span className="text-red-600">*</span>
+                  Image <span className="text-red-600">*</span>{" "}
+                  <small className="text-gray-600">
+                    (1280px X 460px recommended)
+                  </small>
                 </label>
                 <input
                   type="file"
                   required
+                  multiple="multiple"
                   accept="image/png,image/jpg,image/jpeg"
                   className="file-input file-input-bordered file-input-sm w-full bg-white"
-                  {...register("image_url")}
+                  {...register("img_url")}
                 />
+                <small className="text-gray-600 p-2">
+                  Please select less than 6 files less than 3 MB each.
+                </small>
               </div>
 
               <div className="flex justify-end gap-3 items-center mt-3">
