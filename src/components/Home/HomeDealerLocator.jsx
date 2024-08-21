@@ -24,7 +24,7 @@ const HomeDealerLocator = () => {
 
   const getUniqueDivisions = (data) => {
     return [
-      ...new Set(Array.isArray(data) && data?.map((item) => item?.division)),
+      ...new Set(data?.map((item) => item?.division)),
     ];
   };
 

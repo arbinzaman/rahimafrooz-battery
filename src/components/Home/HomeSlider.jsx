@@ -16,7 +16,7 @@ const settingsForHeroSlide = {
 };
 
 const HomeSlider = () => {
-  const { data: bannerImages = [] } = useQuery({
+  const { data: bannerImages = [], error } = useQuery({
     queryKey: ["bannerImages"],
     queryFn: async () => {
       const res = await fetch(`${import.meta.env.VITE_BASE_URL}/banner-images`);
@@ -32,9 +32,26 @@ const HomeSlider = () => {
       bannerImages?.find((item) => item.page_name === pageKey)?.img_url) ||
     [];
 
+  const dummySlider = (
+    <div className="slider-container">
+      <Slider {...settingsForHeroSlide}>
+        {homeSlider?.map((slide) => (
+          <img
+            className="w-full z-10 md:"
+            key={slide?.id}
+            src={slide?.sliderImage}
+            alt={slide?.sliderAlt}
+          />
+        ))}
+      </Slider>
+    </div>
+  );
+
   return (
     <section className="Home-Slider">
-      {Array.isArray(homeImages) && homeImages?.length !== 0 ? (
+      {error ? (
+        dummySlider
+      ) : Array.isArray(homeImages) && homeImages?.length !== 0 ? (
         <div className="slider-container">
           <Slider {...settingsForHeroSlide}>
             {homeImages?.map((src, i) => (
@@ -48,18 +65,7 @@ const HomeSlider = () => {
           </Slider>
         </div>
       ) : (
-        <div className="slider-container">
-          <Slider {...settingsForHeroSlide}>
-            {homeSlider?.map((slide) => (
-              <img
-                className="w-full z-10 md:"
-                key={slide?.id}
-                src={slide?.sliderImage}
-                alt={slide?.sliderAlt}
-              />
-            ))}
-          </Slider>
-        </div>
+        dummySlider
       )}
     </section>
   );
