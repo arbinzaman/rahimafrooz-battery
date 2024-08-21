@@ -52,7 +52,7 @@ const BrandImgList = ({ prompts }) => {
   // Pagination calculations
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = brandImgs.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = brandImgs?.slice(indexOfFirstItem, indexOfLastItem);
   // const totalPages = Math.ceil(brandImgs.length / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -118,19 +118,19 @@ const BrandImgList = ({ prompts }) => {
       {brandImgs && brandImgs.length > itemsPerPage && (
         <div className="flex justify-center mt-4">
           <div className="join">
-            {[
-              ...Array(Math.ceil(brandImgs.length / itemsPerPage)).keys(),
-            ].map((number) => (
-              <input
-                key={number}
-                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
-                type="radio"
-                name="options"
-                aria-label={number + 1}
-                checked={currentPage === number + 1}
-                onChange={() => paginate(number + 1)}
-              />
-            ))}
+            {[...Array(Math.ceil(brandImgs.length / itemsPerPage)).keys()].map(
+              (number) => (
+                <input
+                  key={number}
+                  className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                  type="radio"
+                  name="options"
+                  aria-label={number + 1}
+                  checked={currentPage === number + 1}
+                  onChange={() => paginate(number + 1)}
+                />
+              )
+            )}
           </div>
         </div>
       )}
@@ -139,9 +139,7 @@ const BrandImgList = ({ prompts }) => {
       {deleteModalOpen && (
         <dialog open className="modal modal-bottom sm:modal-middle">
           <div className="modal-box bg-white text-red-500">
-            <h2 className="text-lg ">
-              You want to remove this Brand Image?
-            </h2>
+            <h2 className="text-lg ">You want to remove this Brand Image?</h2>
             <div className="modal-action">
               <button
                 className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
