@@ -1,33 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import UpdateBatteryForm from "../../../components/Dashboard/BatteryDetails/UpdateBatteryFrom";
 import Loader from "../../../components/shared/Loaders/Loader";
 import axios from "axios";
 import toast from "react-hot-toast";
+import AddANewBatteryForm from "../../../components/Dashboard/BatteryDetails/AddANewBatteryForm";
 
 const AddANewBattery = () => {
-  const { short_code } = useParams();
   const [supportedVehicleMakes, setSupportedVehicleMakes] = useState([]);
   const [supportedVehicleModels, setSupportedVehicleModels] = useState([]);
-  const [vehicleMakeYears, setVehicleMakeYears] = useState([]);
+  let [vehicleMakeYears, setVehicleMakeYears] = useState([]);
 
-  const fetchBatteryDetails = async ({ queryKey }) => {
-    const [_key, { short_code }] = queryKey;
-    const response = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`
-    );
-    // console.log(response.data);
-    setSupportedVehicleMakes(response.data.supported_vehicle_makes);
-    setSupportedVehicleModels(response.data.supported_vehicle_models);
-    setVehicleMakeYears(response.data.make_years);
-    return response.data;
-  };
 
   const fetchCategories = async () => {
     const response = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/categories/`
+      `${import.meta.env.VITE_BASE_URL}/categories`
     );
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
@@ -36,60 +23,49 @@ const AddANewBattery = () => {
   };
 
   const {
-    data: batteryDetails,
-    error: batteryError,
-    isLoading: batteryLoading,
-  } = useQuery({
-    queryKey: ["batteryDetails", { short_code }],
-    queryFn: fetchBatteryDetails,
-  });
-
-  const {
     data: categoriesData,
     error: categoriesError,
     isLoading: categoriesLoading,
+    refetch,
   } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategories,
   });
 
+  // console.log(supportedVehicleMakes);
+  // console.log(supportedVehicleModels);
+  // console.log(vehicleMakeYears);
+
   const [formData, setFormData] = useState({
-    battery_name: "",
-    short_code: "",
-    material_code: "",
-    new_jis: "",
-    dry_weight: "",
-    wet_weight: "",
-    e_store_link: "",
-    brochure_link: "",
-    imgurls: [],
-    applicable_categories: [],
-    technology: "",
-    price: "",
-    country_of_origin: "",
-    brand_code: "",
-    supported_vehicle_makes: [],
-    supported_vehicle_models: {},
-    make_years: {},
+    battery_name : "",
+    short_code : "",
+    material_code : "",
+    new_jis : "",
+    dry_weight : "",
+    wet_weight : "",
+    e_store_link : "",
+    brochure_link : "",
+    imgurls : [],
+    applicable_categories : [],
+    technology : "",
+    price : "",
+    brand_code : "",
+    country_of_origin : "",
+    supported_vehicle_makes : [],
+    supported_vehicle_models : {},
+    make_years : {},
   });
 
-  useEffect(() => {
-    if (batteryDetails) {
-      setFormData(batteryDetails);
-    }
-  }, [batteryDetails]);
+  if (categoriesLoading) {
+    return <Loader />;
+  } 
 
-  if (batteryLoading || categoriesLoading) return <Loader />;
-  if (batteryError) {
-    toast.error(batteryError.message);
-    return <div>Error: {batteryError.message}</div>;
-  }
   if (categoriesError) {
     toast.error(categoriesError.message);
     return <div>Error: {categoriesError.message}</div>;
   }
 
-  const categories = categoriesData.map((category) => ({
+  const categories = categoriesData?.map((category) => ({
     value: category.category_name,
     label: category.category_name,
   }));
@@ -116,6 +92,7 @@ const AddANewBattery = () => {
     }));
   };
 
+
   const handleCategoryChange = (selectedOptions) => {
     const selectedCategories = selectedOptions
       ? selectedOptions?.map((option) => option.value)
@@ -140,9 +117,9 @@ const AddANewBattery = () => {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       <h1 className="text-primary text-center text-medium lg:text-large font-bold uppercase mb-2">
-        Update Battery Form
+        Add Battery Form
       </h1>
-      <UpdateBatteryForm
+      <AddANewBatteryForm
         batteryUpdateProps={{
           showVehicleFields,
           categories,
@@ -157,7 +134,7 @@ const AddANewBattery = () => {
           vehicleMakeYears,
           setVehicleMakeYears,
           supportedVehicleMakes,
-          setSupportedVehicleMakes,
+          setSupportedVehicleMakes
         }}
       />
     </div>

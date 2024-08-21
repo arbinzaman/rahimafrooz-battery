@@ -45,7 +45,7 @@ const SupportedVehicleMakesSelect = ({ prompts }) => {
       //console.log(vehicleMakeYears);
       setVehicleMakeYears(vehicleMakeYears);
     });
-    const newOptions = supportedVehicleMakes.filter(
+    const newOptions = supportedVehicleMakes?.filter(
       (opt) => opt !== valueToRemove
     );
     const newModels = supportedVehicleModels.filter(
