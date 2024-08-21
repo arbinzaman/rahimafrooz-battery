@@ -235,8 +235,8 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
               isMulti
               name="applicable_categories"
               options={categories}
-              value={categories?.filter((option) =>
-                applicable_categories?.includes(option.value)
+              value={categories.filter((option) =>
+                applicable_categories.includes(option.value)
               )}
               onChange={handleCategoryChange}
               className="basic-multi-select bg-gray-200 text-black text-small"
@@ -271,6 +271,8 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
                     inputValue,
                     setSupportedVehicleMakes,
                     supportedVehicleMakes,
+                    supportedVehicleModels,
+                    setSupportedVehicleModels,
                   }}
                   placeholder="press enter to add supported makes"
                 />
@@ -287,14 +289,18 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
                       setSupportedVehicleModels,
                       modelInputValue,
                       setModelInputValue,
+                      supportedVehicleMakes,
+                      setSupportedVehicleMakes,
+                      vehicleMakeYears,
+                      setVehicleMakeYears,
                     }}
                   />
 
                   {supportedVehicleModels
                     ?.find((vehicle) => vehicle.make === make)
-                    ?.models.map((model, modelIndex) => {
+                    ?.models?.map((model, modelIndex) => {
                       const matchedYears =
-                        vehicleMakeYears.find(
+                        vehicleMakeYears?.find(
                           (yearData) => yearData.model === model
                         )?.years || [];
                       return (
@@ -327,7 +333,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
           >
             <FaCarBattery className="inline-block mr-2" />
-            Update Battery
+            Add Battery
           </button>
         </div>
       </form>

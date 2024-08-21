@@ -7,7 +7,7 @@ import ModelSelect from "./ModelSelect";
 import YearSelect from "./YearSelect";
 
 const UpdateBatteryForm = ({ batteryUpdateProps }) => {
-  let {
+  const {
     showVehicleFields,
     categories,
     technologyOptions,
@@ -134,7 +134,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
               Dry Weight:
             </label>
             <input
-              type="number"
+              type="text"
               name="dry_weight"
               value={dry_weight}
               onChange={handleChange}
@@ -146,7 +146,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
               Wet Weight:
             </label>
             <input
-              type="number"
+              type="text"
               name="wet_weight"
               value={wet_weight}
               onChange={handleChange}
@@ -157,7 +157,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
             <label className="block text-small text-gray-800 pb-1">
               E-store Link:
             </label>
-            <input
+            <textarea
               type="text"
               name="e_store_link"
               value={e_store_link}
@@ -169,7 +169,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
             <label className="block text-small text-gray-800 pb-1">
               Brochure Link:
             </label>
-            <input
+            <textarea
               type="text"
               name="brochure_link"
               value={brochure_link}
@@ -182,7 +182,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
               Price:
             </label>
             <input
-              type="number"
+              type="text"
               name="price"
               value={price}
               onChange={handleChange}
@@ -191,7 +191,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Brand Code:
+            Brand Code:
             </label>
             <input
               type="text"
@@ -203,7 +203,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Country of Origin:
+            Country of Origin:
             </label>
             <input
               type="text"
@@ -273,8 +273,6 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
                     supportedVehicleMakes,
                     supportedVehicleModels,
                     setSupportedVehicleModels,
-                    vehicleMakeYears,
-                    setVehicleMakeYears,
                   }}
                   placeholder="press enter to add supported makes"
                 />
@@ -298,29 +296,32 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
                     }}
                   />
 
-                  <div>
-                    {supportedVehicleModels
-                      ?.find((vehicle) => vehicle.make === make)
-                      ?.models?.map((model, modelIndex) => {
-                        return (
-                          <div key={modelIndex} className="mt-2 ml-4">
-                            <label className="block text-small text-gray-800 pb-1">
-                              {model} Years:
-                            </label>
-                            <YearSelect
-                              props={{
-                                make,
-                                model,
-                                yearInputValue,
-                                setYearInputValue,
-                                setVehicleMakeYears,
-                                vehicleMakeYears,
-                              }}
-                            />
-                          </div>
-                        );
-                      })}
-                  </div>
+                  {supportedVehicleModels
+                    ?.find((vehicle) => vehicle.make === make)
+                    ?.models?.map((model, modelIndex) => {
+                      const matchedYears =
+                        vehicleMakeYears?.find(
+                          (yearData) => yearData.model === model
+                        )?.years || [];
+                      return (
+                        <div key={modelIndex} className="mt-2 ml-4">
+                          <label className="block text-small text-gray-800 pb-1">
+                            {model} Years:
+                          </label>
+                          <YearSelect
+                            props={{
+                              make,
+                              model,
+                              matchedYears,
+                              yearInputValue,
+                              setYearInputValue,
+                              setVehicleMakeYears,
+                              vehicleMakeYears,
+                            }}
+                          />
+                        </div>
+                      );
+                    })}
                 </div>
               ))}
             </>

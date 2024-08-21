@@ -88,7 +88,7 @@ const DashboardLayout = () => {
               <Link to="/dashboard/instructions">
                 {" "}
                 <GrHostMaintenance  />
-                Instructions Tabs - Warranty & Services{" "}
+                Instructions Tabs
               </Link>
             </li>
             <li>

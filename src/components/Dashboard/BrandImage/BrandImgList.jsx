@@ -52,7 +52,7 @@ const BrandImgList = ({ prompts }) => {
   // Pagination calculations
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = brandImgs.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = brandImgs?.slice(indexOfFirstItem, indexOfLastItem);
   // const totalPages = Math.ceil(brandImgs.length / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
