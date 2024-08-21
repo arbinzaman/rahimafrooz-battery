@@ -1,16 +1,17 @@
-
 const SupportedVehicleMakesSelect = ({ prompts }) => {
-  const {
+  let {
     setInputValue,
     inputValue,
     supportedVehicleMakes,
     setSupportedVehicleMakes,
     supportedVehicleModels,
     setSupportedVehicleModels,
+    vehicleMakeYears,
+    setVehicleMakeYears,
   } = prompts;
-  // console.log(supportedVehicleMakes);
-  // console.log(supportedVehicleModels);
-
+  //console.log(supportedVehicleMakes);
+  //console.log(supportedVehicleModels);
+  //console.log(vehicleMakeYears);
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -20,29 +21,39 @@ const SupportedVehicleMakesSelect = ({ prompts }) => {
       e.preventDefault();
       if (inputValue.trim()) {
         const newOption = inputValue.trim();
-        // console.log(newOption);
-        const newOptions =[...supportedVehicleMakes, newOption];
-        // const newOptions = supportedVehicleMakes.push(newOption);
-        // console.log(newOptions);
-        // [...supportedVehicleModels ,newOption];
-        // console.log(newOptions);
-        const newObj = {make : newOption, models: []};
+        const newOptions = [...supportedVehicleMakes, newOption];
+        const newObj = { make: newOption, models: [] };
         setSupportedVehicleModels([...supportedVehicleModels, newObj]);
         setSupportedVehicleMakes(newOptions);
         setInputValue("");
       }
     }
   };
-  // console.log(supportedVehicleMakes);
+
   const handleRemoveOption = (optionToRemove) => {
     const index = supportedVehicleMakes.indexOf(optionToRemove);
     const valueToRemove = supportedVehicleMakes.splice(index, 1);
-    // console.log(valueToRemove);
-    const newOptions = supportedVehicleMakes.filter((opt) => opt !== valueToRemove);
-    const newModels = supportedVehicleModels.filter((model) => model.make !== valueToRemove[0]);
-    // console.log(newModels);
+    //console.log(valueToRemove[0]);
+    const targetedMakeModels = supportedVehicleModels.find(
+      (item) => item.make == valueToRemove[0]
+    ).models;
+    //console.log(targetedMakeModels);
+    targetedMakeModels?.map((model) => {
+      vehicleMakeYears = vehicleMakeYears?.filter(
+        (item) => item.model !== model
+      );
+      //console.log(vehicleMakeYears);
+      setVehicleMakeYears(vehicleMakeYears);
+    });
+    const newOptions = supportedVehicleMakes.filter(
+      (opt) => opt !== valueToRemove
+    );
+    const newModels = supportedVehicleModels.filter(
+      (model) => model.make !== valueToRemove[0]
+    );
+    //console.log(newModels);
     setSupportedVehicleModels(newModels);
-    // console.log(newOptions);
+    //console.log(newOptions);
     setSupportedVehicleMakes(newOptions);
     setInputValue("");
   };
@@ -61,18 +72,17 @@ const SupportedVehicleMakesSelect = ({ prompts }) => {
         {supportedVehicleMakes.length > 0 &&
           supportedVehicleMakes?.map((option, index) => (
             <span
-            key={index}
-            className="bg-gray-200 text-black px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
-
-          >
-            {option}{" "}
-            <span
-              className="text-black hover:cursor-pointer ml-2"
-              onClick={() => handleRemoveOption(option)}
+              key={index}
+              className="bg-gray-200 text-black px-2 py-1 rounded-md text-sm m-1 inline-flex items-center"
             >
-             x
+              {option}{" "}
+              <span
+                className="text-black hover:cursor-pointer ml-2"
+                onClick={() => handleRemoveOption(option)}
+              >
+                x
+              </span>
             </span>
-          </span>
           ))}
       </div>
     </div>

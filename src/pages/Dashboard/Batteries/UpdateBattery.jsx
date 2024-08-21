@@ -11,7 +11,7 @@ const UpdateBattery = () => {
   const { short_code } = useParams();
   const [supportedVehicleMakes, setSupportedVehicleMakes] = useState([]);
   const [supportedVehicleModels, setSupportedVehicleModels] = useState([]);
-  const [vehicleMakeYears, setVehicleMakeYears] = useState([]);
+  let [vehicleMakeYears, setVehicleMakeYears] = useState([]);
 
   const fetchBatteryDetails = async ({ queryKey }) => {
     const [_key, { short_code }] = queryKey;
