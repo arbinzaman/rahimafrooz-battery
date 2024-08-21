@@ -5,12 +5,11 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 
-
 const UpdateBrandImgModal = ({ updateModalProps }) => {
-  const { selectedId, BannerImageData, refetch } = updateModalProps;
+  const { selectedId, bannerImages, refetch } = updateModalProps;
   const [isLoading, setIsLoading] = useState(false);
 
-  const bannerImg = BannerImageData?.find((details) => details.id === selectedId);
+  const bannerImg = bannerImages?.find((details) => details.id === selectedId);
   const { register, handleSubmit, reset } = useForm({
     defaultValues: bannerImg,
   });
@@ -24,12 +23,16 @@ const UpdateBrandImgModal = ({ updateModalProps }) => {
   const handleUpdate = async (data) => {
     try {
       setIsLoading(true);
+      
+      const files = data.img_url;
       const formdata = new FormData();
-      formdata.append("brand_name", data.brand_name);
-      formdata.append("image_url", data.image_url[0]);
+      formdata.append("page_name", data.page_name);
+      Array.from(files).forEach((image) => {
+        formdata.append("img_url", image);
+      });
 
       const res = await axios.patch(
-        `${import.meta.env.VITE_BASE_URL}/brands/${selectedId}`,
+        `${import.meta.env.VITE_BASE_URL}/banner-images/${selectedId}`,
         formdata,
         {
           headers: {
@@ -80,22 +83,44 @@ const UpdateBrandImgModal = ({ updateModalProps }) => {
               </div>
 
               <div className="my-2">
-                {bannerImg?.image_url && (
+                {bannerImg?.img_url && (
                   <div className="flex flex-col items-center justify-center my-1">
                     <p>Current Image</p>
-                    <img src={bannerImg?.image_url} className="w-20 shadow-lg" alt="" />
+                    <div className="flex gap-2">
+                      {bannerImg?.img_url.map((src, i) => (
+                        <a
+                          key={i}
+                          href={src}
+                          target="_blank"
+                          title="Click to see the image"
+                        >
+                          <img
+                            src={src}
+                            alt={`${bannerImg.page_name} image`}
+                            className="w-20"
+                          />
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 )}
 
                 <label>
-                  Image <span className="text-red-600">*</span>
+                  Image <span className="text-red-600">*</span>{" "}
+                  <small className="text-gray-600">
+                    (1280px X 460px recommended)
+                  </small>
                 </label>
                 <input
                   type="file"
+                  multiple="multiple"
                   accept="image/png, image/jpeg, image/jpg"
                   className="file-input file-input-bordered file-input-sm w-full bg-white"
-                  {...register("image_url")}
+                  {...register("img_url")}
                 />
+                <small className="text-gray-600 p-2">
+                  Please select less than 6 files less than 3 MB each.
+                </small>
               </div>
 
               <div className="flex justify-end gap-3 items-center mt-3">

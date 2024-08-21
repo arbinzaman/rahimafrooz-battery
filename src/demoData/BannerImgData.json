@@ -2,52 +2,52 @@
     {
         "id": 1,
         "page_name": "home_page",
-        "image_url": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0"
+        "img_url": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0"
     },
     {
         "id": 2,
         "page_name": "about_page",
-        "image_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+        "img_url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
     },
     {
         "id": 3,
         "page_name": "contact_page",
-        "image_url": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308"
+        "img_url": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308"
     },
     {
         "id": 4,
         "page_name": "services_page",
-        "image_url": "https://images.unsplash.com/photo-1472214103451-9374bd1c798e"
+        "img_url": "https://images.unsplash.com/photo-1472214103451-9374bd1c798e"
     },
     {
         "id": 5,
         "page_name": "portfolio_page",
-        "image_url": "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8"
+        "img_url": "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8"
     },
     {
         "id": 6,
         "page_name": "team_page",
-        "image_url": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61"
+        "img_url": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61"
     },
     {
         "id": 7,
         "page_name": "blog_page",
-        "image_url": "https://images.unsplash.com/photo-1501426026826-31c667bdf23d"
+        "img_url": "https://images.unsplash.com/photo-1501426026826-31c667bdf23d"
     },
     {
         "id": 8,
         "page_name": "careers_page",
-        "image_url": "https://images.unsplash.com/photo-1486401899868-0e29a08a8c0d"
+        "img_url": "https://images.unsplash.com/photo-1486401899868-0e29a08a8c0d"
     },
     {
         "id": 9,
         "page_name": "testimonials_page",
-        "image_url": "https://images.unsplash.com/photo-1519681393784-d120267933ba"
+        "img_url": "https://images.unsplash.com/photo-1519681393784-d120267933ba"
     },
     {
         "id": 10,
         "page_name": "faq_page",
-        "image_url": "https://images.unsplash.com/photo-1504198453319-5ce911bafcde"
+        "img_url": "https://images.unsplash.com/photo-1504198453319-5ce911bafcde"
     }
 ]
 
