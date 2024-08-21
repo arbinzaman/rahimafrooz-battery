@@ -11,10 +11,9 @@ const ModelSelect = ({ props }) => {
 
   const options = supportedVehicleModels?.find((model) => model.make === make);
 
-  // console.log(options);
-  // console.log(vehicleMakeYears);
-
-  // console.log(supportedVehicleModels);
+  //console.log(options);
+  //console.log(vehicleMakeYears);
+  //console.log(supportedVehicleModels);
 
   const handleInputChange = (e) => {
     setModelInputValue(e.target.value);
@@ -25,11 +24,11 @@ const ModelSelect = ({ props }) => {
       e.preventDefault();
       if (modelInputValue.trim()) {
         const newOption = modelInputValue.trim();
-        // console.log(newOption);
+        //console.log(newOption);
         const newOptions = [...options.models, newOption];
-        // console.log(newOptions);
+        //console.log(newOptions);
         options.models = newOptions;
-        // console.log(options.make === make && options);
+        //console.log(options.make === make && options);
         const newObj = { model: newOption, years: [] };
         setVehicleMakeYears([...vehicleMakeYears, newObj]);
         setModelInputValue("");
@@ -40,15 +39,16 @@ const ModelSelect = ({ props }) => {
   const handleRemoveOption = (optionToRemove) => {
     const newOptions = options.models.filter((opt) => opt !== optionToRemove);
     options.models = newOptions;
-    console.log(options.make === make && options);
+    //console.log(options.make === make && options);
     const newArr = supportedVehicleModels.filter(
       (options) => options.make !== make
     );
-    console.log(newArr);
-    const newYears = vehicleMakeYears.filter((year) => year.model !== optionToRemove[0]);
+    //console.log(newArr);
+    //console.log(optionToRemove)
+    const newYears = vehicleMakeYears.filter((year) => year.model !== optionToRemove);
     setVehicleMakeYears(newYears);
     setSupportedVehicleModels([...newArr, options]);
-    // console.log(supportedVehicleModels);
+    //console.log(supportedVehicleModels);
     setModelInputValue("");
   };
 
