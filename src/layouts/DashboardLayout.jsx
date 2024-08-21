@@ -174,7 +174,7 @@ const DashboardLayout = () => {
             <li>
               <Link
                 to="/dashboard/all-battery-details-list"
-                className="text-primary font-semibold"
+                className="text-primary font-semibold my-1"
               >
                 <FaCarBattery /> Batteries
               </Link>
@@ -183,7 +183,7 @@ const DashboardLayout = () => {
             <li>
               <Link
                 to="/dashboard/global-presence-country-list"
-                className="text-primary font-semibold"
+                className="text-primary font-semibold my-1"
               >
                 {" "}
                 <AiOutlineGlobal />
@@ -193,7 +193,7 @@ const DashboardLayout = () => {
             <li>
               <Link
                 to="/dashboard/banner-image"
-                className="text-primary font-semibold"
+                className="text-primary font-semibold my-1"
               >
                 {" "}
                 <IoMdImages />
@@ -203,7 +203,7 @@ const DashboardLayout = () => {
             <li>
               <Link
                 to="/dashboard/profile"
-                className="text-primary font-semibold"
+                className="text-primary font-semibold my-1"
               >
                 <LuUserCircle2 color="" /> Admin Profile
               </Link>
@@ -211,7 +211,7 @@ const DashboardLayout = () => {
             <li>
               <Link
                 to="/dashboard/all-users"
-                className="text-primary font-semibold"
+                className="text-primary font-semibold my-1"
               >
                 {" "}
                 <FaUserLock />
@@ -221,7 +221,7 @@ const DashboardLayout = () => {
             <li>
               <button
                 onClick={() => logout()}
-                className="text-red-400 font-semibold"
+                className="text-red-400 font-semibold my-1"
               >
                 <RiLogoutBoxLine />
                 Logout
