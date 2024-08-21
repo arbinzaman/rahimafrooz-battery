@@ -80,15 +80,15 @@ const DashboardLayout = () => {
             <li>
               <Link to="/dashboard/board-members">
                 {" "}
-                <FaUsersRectangle  />
+                <FaUsersRectangle />
                 Founder & Board Members
               </Link>
             </li>
             <li>
               <Link to="/dashboard/instructions">
                 {" "}
-                <GrHostMaintenance  />
-                Instructions Tabs - Warranty & Services{" "}
+                <GrHostMaintenance />
+                Instructions Tabs{" "}
               </Link>
             </li>
             <li>
@@ -98,7 +98,7 @@ const DashboardLayout = () => {
                 Warranty & Service{" "}
               </Link>
             </li>
-         
+
             <li>
               <Link to="/dashboard/customers-queries">
                 {" "}
