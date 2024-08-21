@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
 import Loader from "../../../components/shared/Loaders/Loader";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -10,8 +9,7 @@ import AddANewBatteryForm from "../../../components/Dashboard/BatteryDetails/Add
 const AddANewBattery = () => {
   const [supportedVehicleMakes, setSupportedVehicleMakes] = useState([]);
   const [supportedVehicleModels, setSupportedVehicleModels] = useState([]);
-  const [vehicleMakeYears, setVehicleMakeYears] = useState([]);
-
+  let [vehicleMakeYears, setVehicleMakeYears] = useState([]);
 
 
   const fetchCategories = async () => {
@@ -38,30 +36,30 @@ const AddANewBattery = () => {
   // console.log(supportedVehicleModels);
   // console.log(vehicleMakeYears);
 
-
   const [formData, setFormData] = useState({
-    battery_name: "",
-    short_code: "",
-    material_code: "",
-    new_jis: "",
-    dry_weight: "",
-    wet_weight: "",
-    e_store_link: "",
-    brochure_link: "",
-    imgurls: [],
-    applicable_categories: [],
-    technology: "",
-    price: "",
-    country_of_origin: "",
-    brand_code: "",
-    supported_vehicle_makes: [],
-    supported_vehicle_models: {},
-    make_years: {},
+    battery_name : "",
+    short_code : "",
+    material_code : "",
+    new_jis : "",
+    dry_weight : "",
+    wet_weight : "",
+    e_store_link : "",
+    brochure_link : "",
+    imgurls : [],
+    applicable_categories : [],
+    technology : "",
+    price : "",
+    brand_code : "",
+    country_of_origin : "",
+    supported_vehicle_makes : [],
+    supported_vehicle_models : {},
+    make_years : {},
   });
 
   if (categoriesLoading) {
     return <Loader />;
-  }
+  } 
+
   if (categoriesError) {
     toast.error(categoriesError.message);
     return <div>Error: {categoriesError.message}</div>;
@@ -94,6 +92,7 @@ const AddANewBattery = () => {
     }));
   };
 
+
   const handleCategoryChange = (selectedOptions) => {
     const selectedCategories = selectedOptions
       ? selectedOptions?.map((option) => option.value)
@@ -118,7 +117,7 @@ const AddANewBattery = () => {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       <h1 className="text-primary text-center text-medium lg:text-large font-bold uppercase mb-2">
-        Update Battery Form
+        Add Battery Form
       </h1>
       <AddANewBatteryForm
         batteryUpdateProps={{
