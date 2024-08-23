@@ -127,3 +127,17 @@
         left: 12px;
     }
 }
+
+    /* @media screen and (max-width: 375px ) {
+        .icon-BG{
+            width: 100%;
+            background-image: url('../assets/images/HomePage/Icon-Bg.png'), url('../assets/images/HomePage/Icon-Bg-texture.png');
+            background-blend-mode: darken;
+            background-repeat: round;
+            background-size: cover;
+            top: -34px;
+            z-index: 10;
+            position: relative;
+            padding-bottom: 66px;
+        }
+    } */
