@@ -53,7 +53,7 @@ const HomeSocialEmbed = () => {
           )}
 
           {/* Social Media Section */}
-          <div className="text-left ml-20">
+          <div className="hidden md:block lg:block xl:block text-left xl:ml-20">
             <div className="flex bg-gray-200 w-[500px] ">
               {socialSelectButtons.map((button, index) => (
                 <button
