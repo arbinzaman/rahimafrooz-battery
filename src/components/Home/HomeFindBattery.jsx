@@ -1,4 +1,3 @@
-import React from 'react'
 import Slider from "react-slick";
 import Car from "../../assets/images/HomePage/Icons/Passenger-Car.png";
 import CommercialVehicle from "../../assets/images/HomePage/Icons/Commercial-Vehicle.png";

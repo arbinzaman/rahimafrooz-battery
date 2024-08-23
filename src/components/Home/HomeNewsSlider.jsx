@@ -43,7 +43,7 @@ const NewsEvents = () => {
       <div className="shadow-2xl relative">
         <div className="bg-primary h-72"></div>
         <div className="bg-white h-52"></div>
-        <div className="absolute w-80 top-8  left-5 lg:left-7  bg-white">
+        <div className="absolute w-80 top-8 left-10 lg:left-7  bg-white">
           <h2 className="text-primary font-bold text-center my-4 text-regular lg:text-semi_large bg-white ">
             NEWS & EVENT
           </h2>

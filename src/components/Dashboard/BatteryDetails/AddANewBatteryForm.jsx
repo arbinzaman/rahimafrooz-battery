@@ -421,7 +421,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
         </div>
         <div className="mt-4 flex justify-between">
           <button
-           onClick={() => navigate("/dashboard/all-battery-details-list")}
+           onClick={() => navigate("/dashboard/all-battery-details")}
             className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
           >
             <IoMdArrowRoundBack className="inline-block mr-2" />

@@ -173,7 +173,7 @@ const DashboardLayout = () => {
             </Accordion>
             <li>
               <Link
-                to="/dashboard/all-battery-details-list"
+                to="/dashboard/all-battery-details"
                 className="text-primary font-semibold my-1 shadow-sm"
               >
                 <FaCarBattery /> Batteries

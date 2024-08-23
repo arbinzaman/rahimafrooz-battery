@@ -48,7 +48,7 @@ const HomeSlider = () => {
   );
 
   return (
-    <section className="Home-Slider">
+    <section className="Home-Slider ">
       {error ? (
         dummySlider
       ) : Array.isArray(homeImages) && homeImages?.length !== 0 ? (
