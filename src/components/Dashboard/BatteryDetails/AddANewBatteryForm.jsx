@@ -8,8 +8,11 @@ import YearSelect from "./YearSelect";
 import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const AddANewBatteryForm = ({ batteryUpdateProps }) => {
+  const navigate = useNavigate();
   let {
     showVehicleFields,
     categories,
@@ -416,7 +419,15 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             </>
           )}
         </div>
-        <div className="mt-4 flex justify-end">
+        <div className="mt-4 flex justify-between">
+          <button
+           onClick={() => navigate("/dashboard/all-battery-details-list")}
+            className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
+          >
+            <IoMdArrowRoundBack className="inline-block mr-2" />
+            Batteries Table
+          </button>
+    
           <button
             type="submit"
             className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
