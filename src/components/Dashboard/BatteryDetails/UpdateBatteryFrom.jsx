@@ -5,22 +5,19 @@ import { FaCarBattery } from "react-icons/fa";
 import SupportedVehicleMakesSelect from "./SupportedVehicleMakesSelect";
 import ModelSelect from "./ModelSelect";
 import YearSelect from "./YearSelect";
-import { IoMdArrowRoundBack } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
 
 const UpdateBatteryForm = ({ batteryUpdateProps }) => {
-  const [inputValue, setInputValue] = useState("");
-  const [modelInputValue, setModelInputValue] = useState("");
-  const [yearInputValue, setYearInputValue] = useState({});
-  const navigate = useNavigate();
-
   let {
     showVehicleFields,
     categories,
     technologyOptions,
     formData,
     handleChange,
-    handleFileChange,
+    // handleFileChange,
     handleCategoryChange,
     handleTechnologyChange,
     supportedVehicleModels,
@@ -30,6 +27,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
     supportedVehicleMakes,
     setSupportedVehicleMakes,
   } = batteryUpdateProps;
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     battery_name = "",
@@ -51,26 +49,62 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
     make_years = {},
   } = formData;
 
+  const [inputValue, setInputValue] = useState("");
+  const [modelInputValue, setModelInputValue] = useState("");
+  const [yearInputValue, setYearInputValue] = useState({});
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formattedData = {
-      ...formData,
-      supported_vehicle_makes: supportedVehicleMakes,
-      supported_vehicle_models: supportedVehicleModels,
-      make_years: vehicleMakeYears,
-    };
-    console.log(formattedData);
     try {
-      // const response = await axios.patch(
-      //   `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`,
-      //   formattedData,
-      //   { headers: { "Content-Type": "multipart/form-data" } }
-      // );
-      // console.log("Update successful:", response.data);
-      // Optionally, redirect or show a success message
+      setIsLoading(true);
+      const files = e.target.imgurls.files;
+      const formdata = new FormData();
+      formdata.append("short_code", e.target.short_code.value);
+      Array.from(files).forEach((image) => {
+        formdata.append("batteryImages", image);
+      });
+
+      const formattedData = {
+        ...formData,
+        supported_vehicle_makes: supportedVehicleMakes,
+        supported_vehicle_models: supportedVehicleModels,
+        make_years: vehicleMakeYears,
+      };
+      console.log(formattedData);
+
+      const dataRes = await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`,
+        formattedData,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+      console.log(dataRes.data);
+      const imgRes = await axios.patch(
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/batteries/upload-images/${short_code}`,
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+      console.log(imgRes.data);
+
+      if (dataRes.status === 200 && imgRes.status === 200) {
+        toast.success(`${e.target.battery_name.value} updated successfully`);
+      } else {
+        toast.error(`${e.target.battery_name.value} update failed!`);
+      }
     } catch (error) {
       console.error("Update failed:", error);
-      // Optionally, show an error message
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -225,7 +259,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
               type="file"
               name="imgurls"
               multiple
-              onChange={handleFileChange}
+              accept="image/png,image/jpg,image/jpeg"
               className="file-input w-full input-sm rounded-sm max-w-xs bg-white text-black max-h-10"
             />
           </div>
@@ -246,24 +280,24 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
               classNamePrefix="select"
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-small text-gray-800 pb-1">
-              Technology:
-            </label>
-            <Select
-              name="technology"
-              options={technologyOptions}
-              value={technologyOptions.find(
-                (option) => option.value === technology
-              )}
-              onChange={handleTechnologyChange}
-              className="basic-select bg-gray-200 text-black text-small"
-              classNamePrefix="select"
-            />
-          </div>
 
           {showVehicleFields && (
             <>
+              <div className="mb-4">
+                <label className="block text-small text-gray-800 pb-1">
+                  Technology:
+                </label>
+                <Select
+                  name="technology"
+                  options={technologyOptions}
+                  value={technologyOptions.find(
+                    (option) => option.value === technology
+                  )}
+                  onChange={handleTechnologyChange}
+                  className="basic-select bg-gray-200 text-black text-small"
+                  classNamePrefix="select"
+                />
+              </div>
               <div className="mb-4">
                 <label className="block text-small text-gray-800 pb-1">
                   Supported Vehicle Makes:
@@ -329,22 +363,18 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
             </>
           )}
         </div>
-        <div className="mt-4 flex justify-between">
-          <button
-            onClick={() => navigate("/dashboard/all-battery-details-list")}
-            className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
-          >
-            <IoMdArrowRoundBack className="inline-block mr-2" />
-            Batteries Table
-          </button>
-
-          <button
-            type="submit"
-            className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
-          >
-            <FaCarBattery className="inline-block mr-2" />
-            Update Battery
-          </button>
+        <div className="mt-4 flex justify-end">
+          {isLoading ? (
+            <ThreeDotLoader />
+          ) : (
+            <button
+              type="submit"
+              className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
+            >
+              <FaCarBattery className="inline-block mr-2" />
+              Update Battery
+            </button>
+          )}
         </div>
       </form>
     </div>

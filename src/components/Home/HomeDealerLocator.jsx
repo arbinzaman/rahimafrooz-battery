@@ -23,9 +23,7 @@ const HomeDealerLocator = () => {
   });
 
   const getUniqueDivisions = (data) => {
-    return [
-      ...new Set(data?.map((item) => item?.division)),
-    ];
+    return [...new Set(data?.map((item) => item?.division))];
   };
 
   const divisions = getUniqueDivisions(dealerLocs);
