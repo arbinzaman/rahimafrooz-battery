@@ -5,8 +5,15 @@ import { FaCarBattery } from "react-icons/fa";
 import SupportedVehicleMakesSelect from "./SupportedVehicleMakesSelect";
 import ModelSelect from "./ModelSelect";
 import YearSelect from "./YearSelect";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const UpdateBatteryForm = ({ batteryUpdateProps }) => {
+  const [inputValue, setInputValue] = useState("");
+  const [modelInputValue, setModelInputValue] = useState("");
+  const [yearInputValue, setYearInputValue] = useState({});
+  const navigate = useNavigate();
+
   let {
     showVehicleFields,
     categories,
@@ -43,10 +50,6 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
     supported_vehicle_models = {},
     make_years = {},
   } = formData;
-
-  const [inputValue, setInputValue] = useState("");
-  const [modelInputValue, setModelInputValue] = useState("");
-  const [yearInputValue, setYearInputValue] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -326,7 +329,15 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
             </>
           )}
         </div>
-        <div className="mt-4 flex justify-end">
+        <div className="mt-4 flex justify-between">
+          <button
+            onClick={() => navigate("/dashboard/all-battery-details-list")}
+            className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
+          >
+            <IoMdArrowRoundBack className="inline-block mr-2" />
+            Batteries Table
+          </button>
+
           <button
             type="submit"
             className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
