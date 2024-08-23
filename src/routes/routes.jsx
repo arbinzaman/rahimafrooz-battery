@@ -178,7 +178,7 @@ const routes = createBrowserRouter([
         element: <DealerLocationAndDetailsList />,
       },
       {
-        path: "/dashboard/all-battery-details-list",
+        path: "/dashboard/all-battery-details",
         element: <AllBatteryDetails />,
       },
       {

@@ -5,7 +5,7 @@ import HomeMotionGif from "../components/Home/HomeMotionGif";
 import HomeOurBrands from "../components/Home/HomeOurBrands";
 import HomeCounter from "../components/Home/HomeCounter";
 import HomeReviewNews from "../components/Home/HomeReviewNews";
-import HomeSocialEmbed from "../components/Home/HomeSocialEmbed";
+import HomeSocialEmbed from "../components/Home/SocialMediaEmbed/HomeSocialEmbed";
 import HomeCertificate from "../components/Home/HomeCertificate";
 import HomeDealerLocator from "../components/Home/HomeDealerLocator";
 import "../styles/Home.css";
