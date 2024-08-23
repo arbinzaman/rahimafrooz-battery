@@ -84,11 +84,12 @@ const AddANewBattery = () => {
   };
 
   const handleFileChange = (e) => {
+    console.log(e.target.files)
     const files = Array.from(e.target.files);
     const fileUrls = files.map((file) => URL.createObjectURL(file));
     setFormData((prev) => ({
       ...prev,
-      imgurls: fileUrls,
+      imgurls: e.target.files,
     }));
   };
 

@@ -5,6 +5,9 @@ import { FaCarBattery } from "react-icons/fa";
 import SupportedVehicleMakesSelect from "./SupportedVehicleMakesSelect";
 import ModelSelect from "./ModelSelect";
 import YearSelect from "./YearSelect";
+import axios from "axios";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 const AddANewBatteryForm = ({ batteryUpdateProps }) => {
   let {
@@ -13,7 +16,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
     technologyOptions,
     formData,
     handleChange,
-    handleFileChange,
+    // handleFileChange,
     handleCategoryChange,
     handleTechnologyChange,
     supportedVehicleModels,
@@ -50,24 +53,49 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const files = e.target.imgurls.files;
+    const formdata = new FormData();
+    formdata.append("short_code", e.target.short_code.value);
+    Array.from(files).forEach((image) => {
+      formdata.append("batteryImages", image);
+    });
+
     const formattedData = {
       ...formData,
       supported_vehicle_makes: supportedVehicleMakes,
       supported_vehicle_models: supportedVehicleModels,
       make_years: vehicleMakeYears,
     };
-    console.log(formattedData);
+
     try {
-      // const response = await axios.patch(
-      //   `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`,
-      //   formattedData,
-      //   { headers: { "Content-Type": "multipart/form-data" } }
-      // );
-      // console.log("Update successful:", response.data);
-      // Optionally, redirect or show a success message
+      const dataRes = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/batteries`,
+        formattedData,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+
+      const imgRes = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/batteries/upload-images`,
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+
+      if (dataRes.status === 201 && imgRes.status === 201) {
+        toast.success(`${e.target.battery_name.value} added successfully`);
+      } else {
+        toast.error(`${e.target.battery_name.value} insertion failed!`);
+      }
     } catch (error) {
-      console.error("Update failed:", error);
-      // Optionally, show an error message
+      console.error("Insertion failed:", error);
+      toast.error(error?.response?.data?.message);
     }
   };
 
@@ -83,36 +111,36 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Battery Name:
+              Battery Name <span className="text-red-600">*</span> :
             </label>
             <input
               type="text"
               name="battery_name"
-              value={battery_name}
+              required
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Short Code:
+              Short Code <span className="text-red-600">*</span> :
             </label>
             <input
               type="text"
               name="short_code"
-              value={short_code}
+              required
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Material Code:
+              Material Code <span className="text-red-600">*</span> :
             </label>
             <input
               type="text"
               name="material_code"
-              value={material_code}
+              required
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
@@ -124,7 +152,62 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             <input
               type="text"
               name="new_jis"
-              value={new_jis}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Voltage <span className="text-red-600">*</span> :
+            </label>
+            <input
+              type="number"
+              name="voltage"
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Capacity <span className="text-red-600">*</span> :
+            </label>
+            <input
+              type="number"
+              name="capacity"
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              CCA <span className="text-red-600">*</span> :
+            </label>
+            <input
+              type="number"
+              name="cold_cranking_ability_cca"
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Plate :
+            </label>
+            <input
+              type="number"
+              name="plate"
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Product Dimension (LxWxH) <span className="text-red-600">*</span>{" "}
+              :
+            </label>
+            <input
+              type="text"
+              name="product_dimensions_lxbxh_mm"
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
@@ -136,7 +219,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             <input
               type="number"
               name="dry_weight"
-              value={dry_weight}
+              step="any"
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
@@ -148,7 +231,28 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             <input
               type="number"
               name="wet_weight"
-              value={wet_weight}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Total Warranty <span className="text-red-600">*</span> :
+            </label>
+            <input
+              type="number"
+              name="total_warranty"
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Price <span className="text-red-600">*</span> :
+            </label>
+            <input
+              type="number"
+              name="price"
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
@@ -160,7 +264,6 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             <input
               type="text"
               name="e_store_link"
-              value={e_store_link}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
@@ -172,43 +275,29 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             <input
               type="text"
               name="brochure_link"
-              value={brochure_link}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Price:
-            </label>
-            <input
-              type="number"
-              name="price"
-              value={price}
-              onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-small text-gray-800 pb-1">
-              Brand Code:
+              Brand Code <span className="text-red-600">*</span> :
             </label>
             <input
               type="text"
               name="brand_code"
-              value={brand_code}
+              required
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Country of Origin:
+              Country of Origin <span className="text-red-600">*</span> :
             </label>
             <input
               type="text"
               name="country_of_origin"
-              value={country_of_origin}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
@@ -216,20 +305,21 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
 
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Upload Image:
+              Upload Image :
             </label>
             <input
               type="file"
-              name="imgurls"
               multiple
-              onChange={handleFileChange}
+              name="imgurls"
+              accept="image/png,image/jpg,image/jpeg"
+              // onChange={handleFileChange}e
               className="file-input w-full input-sm rounded-sm max-w-xs bg-white text-black max-h-10"
             />
           </div>
 
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Applicable Categories:
+              Applicable Categories :
             </label>
             <Select
               isMulti
@@ -243,27 +333,27 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
               classNamePrefix="select"
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-small text-gray-800 pb-1">
-              Technology:
-            </label>
-            <Select
-              name="technology"
-              options={technologyOptions}
-              value={technologyOptions.find(
-                (option) => option.value === technology
-              )}
-              onChange={handleTechnologyChange}
-              className="basic-select bg-gray-200 text-black text-small"
-              classNamePrefix="select"
-            />
-          </div>
 
           {showVehicleFields && (
             <>
               <div className="mb-4">
                 <label className="block text-small text-gray-800 pb-1">
-                  Supported Vehicle Makes:
+                  Technology :
+                </label>
+                <Select
+                  name="technology"
+                  options={technologyOptions}
+                  value={technologyOptions.find(
+                    (option) => option.value === technology
+                  )}
+                  onChange={handleTechnologyChange}
+                  className="basic-select bg-gray-200 text-black text-small"
+                  classNamePrefix="select"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-small text-gray-800 pb-1">
+                  Supported Vehicle Makes :
                 </label>
                 <SupportedVehicleMakesSelect
                   prompts={{
@@ -282,7 +372,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
               {supportedVehicleMakes?.map((make, index) => (
                 <div key={index} className="mb-4">
                   <label className="block text-small text-gray-800 pb-1">
-                    {make} Models:
+                    {make} Models :
                   </label>
                   <ModelSelect
                     props={{
@@ -305,7 +395,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
                         return (
                           <div key={modelIndex} className="mt-2 ml-4">
                             <label className="block text-small text-gray-800 pb-1">
-                              {model} Years:
+                              {model} Years :
                             </label>
                             <YearSelect
                               props={{

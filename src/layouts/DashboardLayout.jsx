@@ -221,7 +221,7 @@ const DashboardLayout = () => {
             <li>
               <button
                 onClick={() => logout()}
-                className="text-red-400 font-semibold my-1 shadow-sm"
+                className="text-red-600 font-semibold my-1 shadow-sm"
               >
                 <RiLogoutBoxLine />
                 Logout
