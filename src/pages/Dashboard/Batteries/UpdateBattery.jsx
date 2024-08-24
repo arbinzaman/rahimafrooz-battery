@@ -40,6 +40,7 @@ const UpdateBattery = () => {
     data: batteryDetails,
     error: batteryError,
     isLoading: batteryLoading,
+    refetch: batteryRefetch,
   } = useQuery({
     queryKey: ["batteryDetails", { short_code }],
     queryFn: fetchBatteryDetails,
@@ -49,7 +50,7 @@ const UpdateBattery = () => {
     data: categoriesData,
     error: categoriesError,
     isLoading: categoriesLoading,
-    refetch,
+    refetch: categoryRefetch,
   } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategories,
@@ -175,7 +176,8 @@ const UpdateBattery = () => {
           vehicleMakeYears,
           setVehicleMakeYears,
           supportedVehicleMakes,
-          setSupportedVehicleMakes
+          setSupportedVehicleMakes,
+          batteryRefetch,
         }}
       />
     </div>
