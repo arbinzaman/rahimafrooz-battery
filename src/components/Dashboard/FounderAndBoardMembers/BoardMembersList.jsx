@@ -12,13 +12,15 @@ const BoardMembersList = ({ prompts }) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [readMore, setReadMore] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [dataPerPage] = useState(4); // Number of items per page
+  const [dataPerPage] = useState(4);
 
   const handleDelete = async (id) => {
     try {
+      const body = allBoardMembers?.find((item) => item.id === id);
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/contact/global-locations/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/board-members/${id}`,
         {
+          data: body,
           headers: {
             Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
           },
@@ -34,7 +36,7 @@ const BoardMembersList = ({ prompts }) => {
       console.error("Error updating location:", error);
       toast.error("Please try again!");
     }
-  };
+  };  
 
   const openDeleteModal = (id) => {
     setSelectedId(id);
@@ -107,27 +109,27 @@ const BoardMembersList = ({ prompts }) => {
                   </td>
                   <td>
                     <div className="flex space-x-2">
-                      {member.social_media_links[0].facebook && (
+                      {member.facebook && (
                         <a
-                          href={member.social_media_links[0].facebook}
+                          href={member.facebook}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
                           <FaFacebook className="text-blue-600 hover:text-blue-800" />
                         </a>
                       )}
-                      {member.social_media_links[0].instagram && (
+                      {member.instagram && (
                         <a
-                          href={member.social_media_links[0].instagram}
+                          href={member.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
                           <FaInstagram className="text-pink-500 hover:text-pink-700" />
                         </a>
                       )}
-                      {member.social_media_links[0].linkedin && (
+                      {member.linkedin && (
                         <a
-                          href={member.social_media_links[0].linkedin}
+                          href={member.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
                         >

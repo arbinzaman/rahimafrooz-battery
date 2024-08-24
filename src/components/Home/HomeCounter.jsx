@@ -48,7 +48,7 @@ const HomeCounter = () => {
     const fetchDealers = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_BASE_URL}/dealer-applications`
+          `${import.meta.env.VITE_BASE_URL}/dealer-details`
         );
         const data = await res.json();
         setDealersCount(data.length); // Assuming the response is an array

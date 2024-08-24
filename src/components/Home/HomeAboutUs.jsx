@@ -11,7 +11,7 @@ const HomeAboutUs = () => {
                     <h1 className="text-4xl font-semibold text-cyan-700 opacity-95 mb-8">
                         ABOUT US
                     </h1>
-                    <p className="text-2xl text-gray-500 opacity-95 mb-8">
+                    <p className="text-2xl text-black opacity-95 mb-8 text-justify">
                         Rahimafrooz was founded in 1954 as a pioneer in the Bangladeshi
                         battery industry. Rahimafrooz Storage Power Business (RSPB) is the
                         core business of the Group, with leadership in the local and some
