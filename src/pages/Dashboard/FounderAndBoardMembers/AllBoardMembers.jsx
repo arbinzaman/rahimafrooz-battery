@@ -1,49 +1,47 @@
-// import { useQuery } from "@tanstack/react-query";
-// import Loader from "../../../components/shared/Loaders/Loader";
-import {  FaUsersRectangle } from "react-icons/fa6";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../../components/shared/Loaders/Loader";
+import { FaUsersRectangle } from "react-icons/fa6";
 import { LuRefreshCcw } from "react-icons/lu";
-import allBoardMembersData from "../../../demoData/FounderAndBoardMembersData.json";
 import AddABoardMembers from "../../../components/Dashboard/FounderAndBoardMembers/AddABoardMembers";
 import BoardMembersList from "../../../components/Dashboard/FounderAndBoardMembers/BoardMembersList";
 import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
 
 const AllBoardMembers = () => {
-  const allBoardMembers = allBoardMembersData;
-  //   const url = `${import.meta.env.VITE_BASE_URL}/contact/global-locations`;
+  const url = `${import.meta.env.VITE_BASE_URL}/board-members`;
 
-  //   const {
-  //     data: allBoardMembers = [],
-  //     isLoading,
-  //     error,
-  //     refetch,
-  //   } = useQuery({
-  //     queryKey: ["allBoardMembers"],
-  //     queryFn: async () => {
-  //       const res = await fetch(url);
-  //       if (!res.ok) {
-  //         throw new Error("Network response was not ok");
-  //       }
-  //       const data = await res.json();
-  //       return data;
-  //     },
-  //     refetchOnWindowFocus: true,
-  //   });
+  const {
+    data: allBoardMembers = [],
+    isLoading,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["allBoardMembers"],
+    queryFn: async () => {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
   const handleRefresh = async () => {
-    // await refetch();
+    await refetch();
   };
 
   const openModal = () => {
     document.getElementById("addBoardMembers").open = true;
   };
 
-  //   if (isLoading) {
-  //     return <Loader />;
-  //   }
+  if (isLoading) {
+    return <Loader />;
+  }
 
-    // if (error) {
-    //   return<FetchErrorMessage/>
-    // }
+  if (error) {
+    return <FetchErrorMessage />;
+  }
 
   return (
     <div>
@@ -72,11 +70,11 @@ const AllBoardMembers = () => {
       <BoardMembersList
         prompts={{
           allBoardMembers,
-          //  refetch
+           refetch
         }}
       />
-      <AddABoardMembers 
-    //   addBoardMembersProps = {{refetch}}
+      <AddABoardMembers
+        addBoardMembersProps = {{refetch}}
       />
     </div>
   );

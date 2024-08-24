@@ -34,8 +34,8 @@ const UpdateBoardMembers = ({ updateModalProps }) => {
       formdata.append("instagram", data.instagram);
       formdata.append("linkedin", data.linkedin);
 
-      const res = await axios.put(
-        `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${selectedId}`,
+      const res = await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/board-members/${selectedId}`,
         formdata,
         {
           headers: {
@@ -45,8 +45,8 @@ const UpdateBoardMembers = ({ updateModalProps }) => {
       );
 
       if (res.status === 200) {
-        refetch();
         document.getElementById("boardMembers").open = false;
+        refetch();
         toast.success("Record updated successfully");
       }
       setIsLoading(false);
@@ -56,7 +56,6 @@ const UpdateBoardMembers = ({ updateModalProps }) => {
       toast.error("Something error occurred!");
     }
   };
-  if (isLoading) return <Loader />;
 
   return (
     <div>
