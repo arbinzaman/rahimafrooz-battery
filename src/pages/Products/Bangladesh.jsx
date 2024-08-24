@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import BangladeshPageBanner from "../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
 import ProductsCarousel from "../../components/Products/ProductsCarousel";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
-import { Hourglass } from "react-loader-spinner";
+// import { Hourglass } from "react-loader-spinner";
 import axios from "axios";
 
 const Bangladesh = () => {
@@ -78,7 +78,7 @@ const Bangladesh = () => {
       <section className={allDeviceMaxWidth}>
         {isLoading ? (
           <div className="flex justify-center my-20">
-            <Hourglass
+            {/* <Hourglass
               visible={true}
               height="80"
               width="80"
@@ -86,7 +86,7 @@ const Bangladesh = () => {
               wrapperStyle={{}}
               wrapperClass=""
               colors={["#306cce", "#72a1ed"]}
-            />
+            /> */}
           </div>
         ) : (
           <>

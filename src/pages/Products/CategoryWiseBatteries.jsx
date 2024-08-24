@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../../components/Products/Product";
-import { Hourglass } from "react-loader-spinner";
+// import { Hourglass } from "react-loader-spinner";
 import axios from "axios";
 import BangladeshPageBanner from "../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
@@ -73,7 +73,7 @@ const CategoryWiseBatteries = () => {
       <section className={allDeviceMaxWidth}>
         {isLoading ? (
           <div className="flex justify-center my-20">
-            <Hourglass
+            {/* <Hourglass
               visible={true}
               height="80"
               width="80"
@@ -81,7 +81,7 @@ const CategoryWiseBatteries = () => {
               wrapperStyle={{}}
               wrapperClass=""
               colors={["#306cce", "#72a1ed"]}
-            />
+            /> */}
           </div>
         ) : (
           <>
