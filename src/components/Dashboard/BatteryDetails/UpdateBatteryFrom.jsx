@@ -9,6 +9,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const UpdateBatteryForm = ({ batteryUpdateProps }) => {
   let {
@@ -26,7 +28,9 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
     setVehicleMakeYears,
     supportedVehicleMakes,
     setSupportedVehicleMakes,
+    batteryRefetch,
   } = batteryUpdateProps;
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -70,7 +74,6 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
         supported_vehicle_models: supportedVehicleModels,
         make_years: vehicleMakeYears,
       };
-      console.log(formattedData);
 
       const dataRes = await axios.patch(
         `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`,
@@ -81,7 +84,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
           },
         }
       );
-      console.log(dataRes.data);
+      
       const imgRes = await axios.patch(
         `${
           import.meta.env.VITE_BASE_URL
@@ -92,11 +95,11 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
             Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
           },
         }
-      );
-      console.log(imgRes.data);
+      )
 
       if (dataRes.status === 200 && imgRes.status === 200) {
         toast.success(`${e.target.battery_name.value} updated successfully`);
+        batteryRefetch();
       } else {
         toast.error(`${e.target.battery_name.value} update failed!`);
       }
@@ -363,10 +366,18 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
             </>
           )}
         </div>
-        <div className="mt-4 flex justify-end">
-          {isLoading ? (
-            <ThreeDotLoader />
-          ) : (
+
+        {isLoading ? (
+          <ThreeDotLoader />
+        ) : (
+          <div className="mt-4 flex justify-between">
+            <button
+              onClick={() => navigate("/dashboard/all-battery-details-list")}
+              className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
+            >
+              <IoMdArrowRoundBack className="inline-block mr-2" />
+              Batteries Table
+            </button>
             <button
               type="submit"
               className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
@@ -374,8 +385,8 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
               <FaCarBattery className="inline-block mr-2" />
               Update Battery
             </button>
-          )}
-        </div>
+          </div>
+        )}
       </form>
     </div>
   );
