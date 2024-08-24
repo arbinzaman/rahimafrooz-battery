@@ -1,8 +1,9 @@
 import {
   ChevronDownIcon,
-  ArrowUpIcon,
   GlobeAltIcon,
 } from "@heroicons/react/24/outline";
+import { IoIosArrowDropupCircle } from "react-icons/io";
+
 
 import Logo from "../../assets/70-Years-Logo.png";
 import Facebook from "../../assets/icons/facebook-icon.svg";
@@ -300,7 +301,7 @@ const Footer = () => {
             </div>
             <div>
               <button onClick={scrollUp} className="mr-4">
-                <ArrowUpIcon className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-300 text-sky-700 font-bold" />
+                <IoIosArrowDropupCircle className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-300 text-sky-700 font-bold" />
               </button>
             </div>
           </div>
