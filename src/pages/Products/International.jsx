@@ -3,7 +3,7 @@ import InternationalPageBanner from "../../assets/images/ProductPageImages/Inter
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Hourglass } from "react-loader-spinner";
+// import { Hourglass } from "react-loader-spinner";
 
 const International = () => {
   const [batteries, setBatteries] = useState([]);
@@ -73,7 +73,7 @@ const International = () => {
       <section className={allDeviceMaxWidth}>
         {isLoading ? (
           <div className="flex justify-center my-20">
-            <Hourglass
+            {/* <Hourglass
               visible={true}
               height="80"
               width="80"
@@ -81,7 +81,7 @@ const International = () => {
               wrapperStyle={{}}
               wrapperClass=""
               colors={["#306cce", "#72a1ed"]}
-            />
+            /> */}
           </div>
         ) : (
           <>
