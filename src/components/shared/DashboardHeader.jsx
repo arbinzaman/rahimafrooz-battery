@@ -15,13 +15,13 @@ const DashboardHeader = () => {
   return (
     <div className="sticky top-0 z-50">
       <nav>
-        <div className="p-6 text-white diagonal-background">
+        <div className="p-6 text-white bg-primary">
           <div className=" mx-auto">
             <div className="flex justify-between items-center">
               <Link to="/dashboard">
                 <div className="flex items-center">
                   <img className="w-5 lg:w-8 " src={Logo} alt="logo" />
-                  <p className="text-white lg:text-primary ml-3 text-medium lg:text-semi_large font-bold">
+                  <p className="text-white lg:text-white ml-3 text-medium lg:text-semi_large font-bold">
                     Dashboard
                   </p>
                 </div>
