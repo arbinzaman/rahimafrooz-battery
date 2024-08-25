@@ -1,14 +1,15 @@
-import { RotatingSquare } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 
 const Loader = () => {
   return (
     <div className="flex justify-center items-center h-full">
-      <RotatingSquare
+      <ThreeDots
         visible={true}
-        height="100"
-        width="100"
-        color="#0476D0"
-        ariaLabel="rotating-square-loading"
+        height="80"
+        width="80"
+        color="#0d72b9"
+        radius="9"
+        ariaLabel="three-dots-loading"
         wrapperStyle={{}}
         wrapperClass=""
       />

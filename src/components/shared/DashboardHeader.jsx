@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Logo from "../../assets/images/RahimAfrozRLogo/RahimafroozRLogo.png";
+// import Logo from "../../assets/images/RahimAfrozRLogo/RahimafroozRLogo.png";
+import whiteLogo from "../../assets/images/RahimAfrozRLogo/Rahimafrooz Logo.png";
 import { RiMenuUnfold4Line } from "react-icons/ri";
 import { RiMenuUnfold3Line2 } from "react-icons/ri";
 import "../../styles/Header.css";
@@ -20,7 +21,7 @@ const DashboardHeader = () => {
             <div className="flex justify-between items-center">
               <Link to="/dashboard">
                 <div className="flex items-center">
-                  <img className="w-5 lg:w-8 " src={Logo} alt="logo" />
+                  <img className="w-5 lg:w-8 " src={whiteLogo} alt="logo" />
                   <p className="text-white lg:text-white ml-3 text-medium lg:text-semi_large font-bold">
                     Dashboard
                   </p>
