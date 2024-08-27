@@ -2,7 +2,6 @@ import Slider from "react-slick";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-
 const fetchContinents = async () => {
   const res = await axios.get(
     `${import.meta.env.VITE_BASE_URL}/global-presence/`
@@ -11,46 +10,18 @@ const fetchContinents = async () => {
 };
 
 const GlobalPresenceSlider = () => {
-  const {
-    data,
-    //  error,
-    //  isLoading
-  } = useQuery({
+  const { data } = useQuery({
     queryKey: ["continents"],
     queryFn: fetchContinents,
   });
 
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", marginRight: "50px" }}
-        onClick={onClick}
-      />
-    );
-  }
-
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", marginLeft: "50px" }}
-        onClick={onClick}
-      />
-    );
-  }
-
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    arrows: false,
   };
 
   return (
@@ -67,7 +38,9 @@ const GlobalPresenceSlider = () => {
                   key={idx}
                   className="flex flex-col text-medium items-center space-y-3 mt-2"
                 >
-                  <p className="text-center font-normal">{country}</p>
+                  <p className="text-center font-normal">
+                    {country.toUpperCase()}
+                  </p>
                 </div>
               ))}
             </div>
