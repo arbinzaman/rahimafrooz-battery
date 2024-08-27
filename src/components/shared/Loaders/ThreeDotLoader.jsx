@@ -3,6 +3,7 @@ import { ThreeDots } from "react-loader-spinner";
 const ThreeDotLoader = () => {
   return (
     // <button type="" className="flex gap-2 btn btn-sm bg-background ">
+    
       <ThreeDots
         visible={true}
         height="30"
