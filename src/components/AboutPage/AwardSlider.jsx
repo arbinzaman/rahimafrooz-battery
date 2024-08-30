@@ -53,20 +53,24 @@ const AwardSlider = ({ awardsProps }) => {
   return (
     <section>
       <Slider {...settings} className="mb-20 mx-4 md:mx-16">
-        {awards && awards?.map((award) => (
-          <div className="w-auto flex flex-col justify-center" key={award?.id}>
-            <div className="flex flex-col justify-center items-center">
-              <img
-                src={award?.img_url}
-                className="h-60 md:h-68 lg:h-72 "
-                alt="Awards Image"
-              />
-              <p className="text-center font-semibold text-small w-3/4 py-2">
-                {award?.caption}
-              </p>
+        {awards &&
+          awards?.map((award) => (
+            <div
+              className="w-auto flex flex-col justify-center"
+              key={award?.id}
+            >
+              <div className="flex flex-col justify-center items-center">
+                <img
+                  src={award?.img_url}
+                  className="h-60 md:h-68 lg:h-72 "
+                  alt="Awards Image"
+                />
+                <p className="text-center text-black font-medium text-regular w-3/4 py-2">
+                  {award?.caption}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </Slider>
     </section>
   );

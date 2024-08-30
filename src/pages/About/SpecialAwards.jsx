@@ -43,7 +43,7 @@ const SpecialAwards = () => {
             achievements?.map(
               (achievement, i) =>
                 i % 2 != 0 && (
-                  <div key={i} className="grid  mt-20 lg:mt-32 lg:mb-44">
+                  <div key={i} className="grid  mt-20 lg:mt-32 lg:mb-10">
                     <div>
                       <img
                         src={achievement?.img_url}
