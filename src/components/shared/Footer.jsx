@@ -292,7 +292,7 @@ const Footer = () => {
         </footer>
         <div className="max-w-screen-xl mx-auto text-white text-xs pt-6 pb-6 font-semibold">
           <div className="flex justify-center lg:justify-between items-center">
-            <div className="flex flex-col lg:flex-row items-center pl-12 lg:pl-3 pr-4">
+            <div className="flex flex-col lg:flex-row items-center lg:pl-3 ">
               <img className="ml-5 lg:ml-0" src={FooterLogo} alt="yt" width={120} height={120} />
               <p className="text-center opacity-80 pl-4 pt-2 lg:pt-0 flex flex-col lg:flex-row justify-center items-center">
                 <span>Copyright © 2017-2023 <br className="sm:hidden" /> Rahimafrooz Batteries Ltd.</span>{" "}
@@ -300,7 +300,7 @@ const Footer = () => {
               </p>
             </div>
             <div>
-              <button onClick={scrollUp} className="mr-4">
+              <button onClick={scrollUp} className="mr-4 hidden md:block lg:block xl:block">
                 <IoIosArrowDropupCircle className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-300 text-sky-700 font-bold" />
               </button>
             </div>
