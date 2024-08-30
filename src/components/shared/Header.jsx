@@ -216,7 +216,7 @@ const Header = () => {
                     type="text"
                     id="search-navbar"
                     onChange={(e) => setSearchData(e.target.value)}
-                    className="input input-bordered input-info w-full h-auto py-1 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                    className="input input-bordered input-info w-96 h-auto py-1 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Search"
                   />
                   <div className="relative">

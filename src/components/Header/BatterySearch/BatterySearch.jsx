@@ -48,7 +48,7 @@ const BatterySearch = ({ searchData }) => {
       {searchData !== "" &&
         filteredBatteries?.map((battery) => (
           <div key={battery?.id}>
-            <ul className="menu dropdown-content menu-xs text-black rounded-box w-56">
+            <ul className="menu dropdown-content menu-xs text-black rounded-box ">
               <li className="">
                 <a
                   href="#"

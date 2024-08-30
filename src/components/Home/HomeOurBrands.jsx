@@ -31,7 +31,7 @@ const settingsForProductsMobileScreen = {
 };
 
 const HomeOurBrands = () => {
-  const { data: brandImgs = [] } = useQuery({
+  const { data: brandImgs = [], error } = useQuery({
     queryKey: ["brandImg"],
     queryFn: async () => {
       const res = await fetch(`${import.meta.env.VITE_BASE_URL}/brands`);
@@ -51,13 +51,18 @@ const HomeOurBrands = () => {
             className={allDeviceMaxWidth + " slider-container w-10/12 mx-auto"}
           >
             <Slider {...settingsForProductsDesktopScreen}>
-              {brandImgs?.map((brandImg) => (
-                <img
-                  className="max-w-80 max-h-80"
-                  key={brandImg?.id}
-                  src={brandImg?.image_url}
-                  alt={brandImg?.brand_name + " Product Image"}
-                />
+           { error ? (
+                  <></>
+                ) : (
+              brandImgs?.map((brandImg) =>
+              
+                  <img
+                    className="max-w-80 max-h-80"
+                    key={brandImg?.id}
+                    src={brandImg?.image_url}
+                    alt={brandImg?.brand_name + " Product Image"}
+                  />
+                
               ))}
             </Slider>
           </div>
@@ -73,14 +78,18 @@ const HomeOurBrands = () => {
           </h1>
           <div className="slider-container w-10/12 mx-auto">
             <Slider {...settingsForProductsMobileScreen}>
-              {brandImgs?.map((brandImg) => (
-                <img
-                  className="max-w-80 max-h-80 mb-8"
-                  key={brandImg?.id}
-                  src={brandImg?.image_url}
-                  alt={brandImg?.brand_name + " Product Image"}
-                />
-              ))}
+            { error ? (
+                  <></>
+                ) : (
+              brandImgs?.map((brandImg) =>
+              
+                  <img
+                    className="max-w-80 max-h-80 mb-8"
+                    key={brandImg?.id}
+                    src={brandImg?.image_url}
+                    alt={brandImg?.brand_name + " Product Image"}
+                  />
+                ))}   
             </Slider>
           </div>
         </div>
