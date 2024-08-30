@@ -12,7 +12,7 @@ import "../styles/Home.css";
 
 const Home = () => {
   return (
-    <div className="Home-BG">
+    <div className="">
       <HomeSlider />
       <HomeFindBattery />
       <div className="border-y-2 relative" style={{ top: "-32px" }}>
