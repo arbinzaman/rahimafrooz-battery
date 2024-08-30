@@ -2,12 +2,12 @@ import { useNavigate } from "react-router-dom";
 import Product2 from "../../assets/images/BatteryFinalPage/Product-02.png";
 import { fetchBatteries } from "../../utils/BatterySearchPage/TableFetches";
 import { useEffect, useState } from "react";
-import { RotatingSquare } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 
 const Table = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [batteries, setBatteries] = useState(null);
-  
+
   const batteryShortCodes = window.localStorage.getItem("short_codes")
     ? JSON.parse(window.localStorage.getItem("short_codes"))
     : [];
@@ -34,12 +34,13 @@ const Table = () => {
     <section className="bg-[#e6f2ff] p-3 md:p-10 lg:p-14">
       {isLoading ? (
         <div className="flex justify-center my-20">
-          <RotatingSquare
+          <ThreeDots
             visible={true}
-            height="100"
-            width="100"
+            height="80"
+            width="80"
             color="#0d72b9"
-            ariaLabel="rotating-square-loading"
+            radius="9"
+            ariaLabel="three-dots-loading"
             wrapperStyle={{}}
             wrapperClass=""
           />
@@ -47,8 +48,8 @@ const Table = () => {
       ) : batteries ? (
         <div className="overflow-x-auto">
           <h1 className="text-primary text-sm md:text-semi_large font-semibold md:font-bold py-3">
-            Suitable Battery for {carInfo?.brand} {carInfo?.model} {carInfo?.year}{" "}
-            ({carInfo?.technology})
+            Suitable Battery for {carInfo?.brand} {carInfo?.model}{" "}
+            {carInfo?.year} ({carInfo?.technology})
           </h1>
 
           <table className="table">
