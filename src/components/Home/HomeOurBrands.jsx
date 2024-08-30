@@ -44,26 +44,27 @@ const HomeOurBrands = () => {
     <>
       <section className="relative hidden lg:block" style={{ top: "-32px" }}>
         <div className="our-brands text-center">
-          <h1 className="text-medium lg:text-large font-semibold text-cyan-700 opacity-95 pt-16">
+          <h1 className="text-medium lg:text-large font-semibold text-cyan-700 opacity-95 pt-10  ">
             OUR BRANDS
           </h1>
           <div
             className={allDeviceMaxWidth + " slider-container w-10/12 mx-auto"}
           >
             <Slider {...settingsForProductsDesktopScreen}>
-           { error ? (
-                  <></>
-                ) : (
-              brandImgs?.map((brandImg) =>
-              
-                  <img
-                    className="max-w-80 max-h-80"
-                    key={brandImg?.id}
-                    src={brandImg?.image_url}
-                    alt={brandImg?.brand_name + " Product Image"}
-                  />
-                
-              ))}
+              {error ? (
+                <></>
+              ) : (
+                brandImgs?.map((brandImg) => (
+                  <div key={brandImg?.id} className="mx-auto flex flex-col items-center justify-center">
+                    <img
+                      className="max-w-80 max-h-80 mx-auto"
+                      src={brandImg?.image_url}
+                      alt={brandImg?.brand_name + " Product Image"}
+                    />
+                    <p className="-mt-12 mx-auto text-primary font-bold text-regular">{brandImg?.brand_name}</p>
+                  </div>
+                ))
+              )}
             </Slider>
           </div>
         </div>
@@ -78,18 +79,20 @@ const HomeOurBrands = () => {
           </h1>
           <div className="slider-container w-10/12 mx-auto">
             <Slider {...settingsForProductsMobileScreen}>
-            { error ? (
-                  <></>
-                ) : (
-              brandImgs?.map((brandImg) =>
-              
+              {error ? (
+                <></>
+              ) : (
+                brandImgs?.map((brandImg) => (
+                  <div key={brandImg?.id} className="mx-auto flex flex-col items-center justify-center">
                   <img
-                    className="max-w-80 max-h-80 mb-8"
-                    key={brandImg?.id}
+                    className="max-w-80 max-h-80 mx-auto mb-8"
                     src={brandImg?.image_url}
                     alt={brandImg?.brand_name + " Product Image"}
                   />
-                ))}   
+                  <p className="-mt-12 mx-auto text-primary font-bold text-regular">{brandImg?.brand_name}</p>
+                </div>
+                ))
+              )}
             </Slider>
           </div>
         </div>
