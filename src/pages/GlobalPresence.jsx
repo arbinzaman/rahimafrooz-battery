@@ -1,4 +1,4 @@
-import banner from "../assets/images/7. Global Presence-ai.png";
+import banner from "../assets/images/7. Global Presence.png";
 import GlobalPresenceSlider from "../components/GlobalPresence/GlobalPresenceSlider";
 import InternationalOperations from "../components/GlobalPresence/InternationalOperations";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
