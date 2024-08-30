@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../shared/Loaders/Loader";
-import FetchErrorMessage from "../shared/Error/FetchErrorMessage";
+import Loader from "../shared/Loaders/Loader"
+import UiErrorPage from "../shared/Error/UiErrorPage";
 
 const Accordion = () => {
   const {
@@ -24,7 +24,7 @@ const Accordion = () => {
   if (error)
     return (
       <div>
-        <FetchErrorMessage />
+        <UiErrorPage />
       </div>
     );
 
