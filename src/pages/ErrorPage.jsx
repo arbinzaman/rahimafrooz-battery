@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
+import errorImg from "../assets/images/UiErrorPageGif/dino.gif";
+import { IoIosHome,    } from "react-icons/io";
 
 const ErrorPage = () => {
   return (
     <div>
       <section className="flex items-center h-screen  max-h-screen sm:p-16 text-primary my-auto">
         <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8 space-y-8 text-center sm:max-w-md">
-          <svg
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
             className="w-40 h-40 "
@@ -29,7 +31,8 @@ const ErrorPage = () => {
               fill="currentColor"
               points="383.958 182.63 360.042 161.37 338.671 185.412 314.63 164.042 293.37 187.958 317.412 209.329 296.042 233.37 319.958 254.63 341.329 230.588 365.37 251.958 386.63 228.042 362.588 206.671 383.958 182.63"
             ></polygon>
-          </svg>
+          </svg> */}
+          <img src={errorImg} alt="" />
           <p className="text-3xl">
             Are you lost? Let&apos;s get you back on track.
           </p>
@@ -38,9 +41,9 @@ const ErrorPage = () => {
             <a
               rel="noopener noreferrer"
               href="#"
-              className="px-8 py-3 font-semibold rounded bg-background"
+              className="px-8 py-3 font-semibold rounded bg-background flex "
             >
-              Back to homepage
+             <IoIosHome  className="mt-0.5 text-xl mr-2" /> Back to homepage
             </a>
           </Link>
         </div>

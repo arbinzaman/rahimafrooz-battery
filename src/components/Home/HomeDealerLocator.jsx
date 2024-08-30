@@ -10,7 +10,7 @@ const HomeDealerLocator = () => {
   const [district, setDistrict] = useState("");
   const [thana, setThana] = useState("");
 
-  const { data: dealerLocs = [] } = useQuery({
+  const { data: dealerLocs = [], error } = useQuery({
     queryKey: ["dealerLocs"],
     queryFn: async () => {
       const res = await fetch(
@@ -30,11 +30,12 @@ const HomeDealerLocator = () => {
 
   // Function to get districts of a selected division
   const getDistrictsByDivision = (division) => {
+    if (error) return [];
     const filteredDistricts = dealerLocs
       ?.filter((item) => item?.division === division)
       ?.map((item) => item?.district);
-
-    return [...new Set(filteredDistricts)];
+    
+    return [...new Set(filteredDistricts)]; 
   };
 
   // Function to get thanas of a selected district
@@ -62,7 +63,9 @@ const HomeDealerLocator = () => {
     navigate("/find-dealer");
     window.location.reload(false);
   };
-
+  if (error) {
+    return <h1>Something went wrong</h1>;
+  }
   return (
     <section className={allDeviceMaxWidth}>
       <h1 className="uppercase text-center text-medium lg:text-large text-primary font-semibold pt-10 lg:pt-20">
