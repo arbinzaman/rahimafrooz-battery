@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
+import { useQuery } from "@tanstack/react-query";
 
 import EstablishedIcon from "../../assets/icons/factory.png";
 import WorldIcon from "../../assets/icons/world.png";
@@ -10,57 +11,45 @@ import "../../styles/Home.css";
 
 const HomeCounter = () => {
   const [counterOn, setCounterOn] = useState(false);
-  const [businessPartnersCount, setBusinessPartnersCount] = useState(0);
-  const [productInUseCount, setProductInUseCount] = useState(0);
-  const [dealersCount, setDealersCount] = useState(0);
 
-  useEffect(() => {
-    // Fetch BUSINESS PARTNERS data
-    const fetchBusinessPartners = async () => {
-      try {
-        const res = await fetch(
-          `${import.meta.env.VITE_BASE_URL}/global-presence/`
-        );
-        const data = await res.json();
-        // Calculate the total number of countries
-        const totalCountries = data.reduce(
-          (acc, continent) => acc + continent.countries.length,
-          0
-        );
-        setBusinessPartnersCount(totalCountries);
-      } catch (error) {
-        console.error("Error fetching business partners data:", error);
-      }
-    };
+  // Fetch BUSINESS PARTNERS
+  const { data: businessPartnersCount = 0 } = useQuery({
+    queryKey: ["businessPartners"],
+    queryFn: async () => {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/global-presence/`);
+      const data = await res.json();
+      return data.reduce((acc, continent) => acc + continent.countries.length, 0);
+    },
+    staleTime: 1000 * 60 * 10, // 10 minutes, data is considered fresh for 10 minutes
+    cacheTime: 1000 * 60 * 60, // 1 hour, data is cached for 1 hour
+    refetchOnWindowFocus: false, // Disable refetch on window focus
+  });
 
-    // Fetch PRODUCT IN-USE data
-    const fetchProductInUse = async () => {
-      try {
-        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/batteries`);
-        const data = await res.json();
-        setProductInUseCount(data.length); // Assuming the response is an array
-      } catch (error) {
-        console.error("Error fetching product in-use data:", error);
-      }
-    };
+  // Fetch PRODUCT IN-USE
+  const { data: productInUseCount = 0 } = useQuery({
+    queryKey: ["productInUse"],
+    queryFn: async () => {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/batteries`);
+      const data = await res.json();
+      return data.length; // Assuming the response is an array
+    },
+    staleTime: 1000 * 60 * 10,
+    cacheTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: false,
+  });
 
-    // Fetch DEALERS data
-    const fetchDealers = async () => {
-      try {
-        const res = await fetch(
-          `${import.meta.env.VITE_BASE_URL}/dealer-details`
-        );
-        const data = await res.json();
-        setDealersCount(data.length); // Assuming the response is an array
-      } catch (error) {
-        console.error("Error fetching dealers data:", error);
-      }
-    };
-
-    fetchBusinessPartners();
-    fetchProductInUse();
-    fetchDealers();
-  }, []);
+  // Fetch DEALERS
+  const { data: dealersCount = 0 } = useQuery({
+    queryKey: ["dealers"],
+    queryFn: async () => {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/dealer-details`);
+      const data = await res.json();
+      return data.length; // Assuming the response is an array
+    },
+    staleTime: 1000 * 60 * 10,
+    cacheTime: 1000 * 60 * 60,
+    refetchOnWindowFocus: false,
+  });
 
   return (
     <section className="relative bg-circuit-texture" style={{ top: "-32px" }}>
