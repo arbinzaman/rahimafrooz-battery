@@ -34,7 +34,7 @@ const ProductFinalPage = () => {
             <ProductInformation battery={battery} />
           </div>
           <div className="mx-3">
-            <SimilarProduct />
+            <SimilarProduct similarProductProps={{ battery }} />
           </div>
         </>
       )}

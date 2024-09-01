@@ -1,11 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
-import Product1 from "../../assets/images/BatteryFinalPage/Product-01.png";
-import Product2 from "../../assets/images/BatteryFinalPage/Product-02.png";
 import { useQuery } from "@tanstack/react-query";
 import Product from "../Products/Product";
+import axios from "axios";
 
-const RelatedProducts = () => {
+const RelatedProductsInProductFinal = ({ relatedProductsProps }) => {
+  const { battery } = relatedProductsProps;
+  const { applicable_categories } = battery;
+
   const slider = React.useRef(null);
   var settings = {
     dots: true,
@@ -22,7 +24,7 @@ const RelatedProducts = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
           dots: true,
@@ -55,29 +57,24 @@ const RelatedProducts = () => {
     ],
   };
 
-  const queryDatas = JSON.parse(window.localStorage.getItem("query_datas")|| {});
-  const categoryId = queryDatas.category;
+  const BATTERIES_BY_CATEGORIES_API = `${
+    import.meta.env.VITE_BASE_URL
+  }/batteries/category-wise-batteries`;
 
-  const CATEGORIES_API_URL = `${import.meta.env.VITE_BASE_URL}/categories`;
-  const { data: categories = [] } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      const res = await fetch(CATEGORIES_API_URL);
-      const data = await res.json();
-      return data;
-    },
-  });
-  
-  const category = categories?.find((category) => category.category_id == categoryId);
-  console.log(category)
-  const CATEGORY_WISE_PRODUCT_API_URL = `${import.meta.env.VITE_BASE_URL}/categories/${category?.category_name}`;
   const { data: categoryWiseBatteries = [] } = useQuery({
     queryKey: ["categoryWiseBatteries"],
     queryFn: async () => {
-      const res = await fetch(CATEGORY_WISE_PRODUCT_API_URL);
-      const data = await res.json();
-      return data;
+      try {
+        const res = await axios.post(
+          BATTERIES_BY_CATEGORIES_API,
+          applicable_categories
+        );
+        return res.data;
+      } catch (error) {
+        console.log(error);
+      }
     },
+    refetchOnWindowFocus: true,
   });
 
   return (
@@ -86,12 +83,16 @@ const RelatedProducts = () => {
         Related Products
       </p>
       <Slider ref={slider} {...settings} className="my-14">
-        {categoryWiseBatteries !== null ? categoryWiseBatteries?.map((product) => (
-          <Product key={product.id} productInfo={product} />
-        )): <p>No Related Products Found</p>}
+        {categoryWiseBatteries !== null ? (
+          categoryWiseBatteries?.map((product) => (
+            <Product key={product.id} productInfo={product} />
+          ))
+        ) : (
+          <p>No Related Products Found</p>
+        )}
       </Slider>
     </section>
   );
 };
 
-export default RelatedProducts;
+export default RelatedProductsInProductFinal;
