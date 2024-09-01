@@ -26,7 +26,7 @@ const ProductSearchField = () => {
     brand: "",
     model: "",
     year: "",
-    category: ""
+    category: "",
   });
 
   const navigate = useNavigate();
@@ -118,8 +118,7 @@ const ProductSearchField = () => {
 
     if (
       categoryName === "Passenger Car" ||
-      categoryName === "Commercial Vehicle" ||
-      categoryName === "IPS"
+      categoryName === "Commercial Vehicle"
     ) {
       navigate("/product-search");
     } else {
