@@ -46,8 +46,8 @@ const HomeCounter = () => {
       const data = await res.json();
       return data.length; // Assuming the response is an array
     },
-    staleTime: 1000 * 60 * 10,
-    cacheTime: 1000 * 60 * 60,
+    // staleTime: 20 * 60 * 10,
+    // cacheTime: 1000 * 60 * 60,
     refetchOnWindowFocus: false,
   });
 
