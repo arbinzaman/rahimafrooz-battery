@@ -38,7 +38,7 @@ const GlobalPresenceSlider = () => {
                   key={idx}
                   className="flex flex-col text-medium items-center space-y-3 mt-2"
                 >
-                  <p className="text-center font-normal">
+                  <p className="text-center text-sm lg:text-regular font-normal">
                     {country.toUpperCase()}
                   </p>
                 </div>

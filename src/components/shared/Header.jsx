@@ -356,11 +356,11 @@ const Header = () => {
         {/* sidebar mobile menu */}
         <div
           className={clsx(
-            "fixed z-50 h-full w-screen lg:hidden bg-black/50  backdrop-blur-sm top-0 right-0  -translate-x-full  transition-all ",
+            "fixed z-50 h-full w-screen lg:hidden bg-black/50  backdrop-blur-sm  top-0 right-0  -translate-x-full  transition-all ",
             isSideMenuOpen && "translate-x-0"
           )}
         >
-          <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 pr-0 gap-8 w-4/5 flex">
+          <section className="text-black bg-white flex-col absolute -left-2 top-0 h-screen p-8 pr-0 gap-8 w-4/5 flex">
             <XMarkIcon
               onClick={() => setMenu(false)}
               className="w-8 h-8 cursor-pointer"
