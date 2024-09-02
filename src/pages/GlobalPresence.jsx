@@ -31,7 +31,7 @@ const GlobalPresence = () => {
       <div className="relative">
         <img src={banner} alt="Global Presence" className="w-full" />
         {/* Display total countries and country list at the bottom left of the banner */}
-        <div className="absolute bottom-0 lg:bottom-1 left-4  lg:left-40 text-primary text-large lg:p-6 rounded text-center">
+        <div className="absolute -bottom-2 lg:bottom-1 left-6  lg:left-40 text-primary text-large lg:p-6 rounded text-center">
           {/* Responsive Text for Mobile */}
           <p className="text-primary text-[8px] lg:text-2xl -mt-[3px] font-bold">
             Our automotive batteries
@@ -47,8 +47,8 @@ const GlobalPresence = () => {
           </p>
 
           {/* Added border to this span */}
-          <span className="border border-blue-700 p-1 lg:p-2 rounded-md inline-block -mt-[3px] lg:mt-0">
-            <p className="text-black text-[8px] lg:text-3xl -mt-[5px]  font-extrabold">
+          <span className="border border-blue-700 p-1 lg:p-2 rounded-sm lg:rounded-md inline-block -mt-[3px] lg:mt-0">
+            <p className="text-black text-[8px] lg:text-3xl -mt-[5px] font-extrabold">
               COUNTRIES
             </p>
             <p className="text-black text-[8px] lg:text-3xl -mb-[5px] -mt-[3px] lg:-mt-2">
