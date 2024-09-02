@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../components/shared/Loaders/Loader";
 import BatteryDetailsTable from "../../../components/Dashboard/BatteryDetails/BatteryDetailsTable";
 import { FaCarBattery } from "react-icons/fa";
+import { TbCategoryPlus } from "react-icons/tb";
 import { LuRefreshCcw } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
@@ -48,7 +49,13 @@ const AllBatteryDetails = () => {
               Add Battery <FaCarBattery />
             </button>
           </Link>
+          <div className="flex gap-5">
+            <button className="flex gap-2 btn btn-xs border-0 hover:bg-lime-700 text-white bg-lime-500">
+              Categories<TbCategoryPlus />
+            </button>
         </div>
+        </div>
+       
         <div>
           <button
             className="flex gap-2 btn btn-xs border-0 text-white bg-teal-400 hover:bg-teal-700 hover:text-white"
