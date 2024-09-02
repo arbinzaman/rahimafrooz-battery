@@ -17,8 +17,6 @@ const GlobalPresence = () => {
   const { data: countryList = [] } = useQuery({
     queryKey: ["countryList"],
     queryFn: fetchCountries,
-    // staleTime: 1 * 60 * 1000, // Cache data for 5 minutes
-    // cacheTime: 10 * 60 * 1000, // Keep the cache for 10 minutes
     refetchOnWindowFocus: false, // Don't refetch when window is focused
   });
 
@@ -33,25 +31,27 @@ const GlobalPresence = () => {
       <div className="relative">
         <img src={banner} alt="Global Presence" className="w-full" />
         {/* Display total countries and country list at the bottom left of the banner */}
-        <div className="absolute bottom-4 left-4 lg:left-8 text-primary text-large lg:p-6 rounded text-center ">
+        <div className="absolute bottom-0 left-4 lg:left-8 text-primary text-large lg:p-6 rounded text-center">
           {/* Responsive Text for Mobile */}
-          <p className="text-primary text-[8px] lg:text-xs -mt-[3px] font-bold">
+          <p className="text-primary text-[8px] lg:text-medium -mt-[3px] font-bold">
             Our automotive batteries
           </p>
-          <p className="text-black text-[8px] lg:text-xs -mt-[3px] ">
+          <p className="text-black text-[9px] lg:text-regular -mt-[3px] ">
             reach consumers
           </p>
-          <p className="text-black text-[8px] lg:text-xs -mt-[3px] ">
+          <p className="text-black text-[9px] lg:text-regular -mt-[3px] ">
             in more than
           </p>
-          <p className="font-extrabold text-lg lg:text-md -mt-[7px]  -mb-[7px] ">
+          <p className="font-extrabold text-lg lg:text-xlarge -mt-[7px] lg:mt-2 -mb-[20px] lg:mb-2">
             {totalCountries}
           </p>
-          <span className="">
-            <p className="text-black text-[8px] lg:text-xs -mt-[3px]  font-extrabold">
+
+          {/* Added border to this span */}
+          <span className="border border-blue-700 p-1 lg:p-2 rounded-sm inline-block -mt-[3px] lg:mt-0">
+            <p className="text-black text-[8px] lg:text-regular -mt-[5px]  font-extrabold">
               COUNTRIES
             </p>
-            <p className="text-black text-[8px] lg:text-xs -mt-[3px] ">
+            <p className="text-black text-[8px] lg:text-regular -mb-[5px] -mt-[3px] lg:-mt-2">
               across the world
             </p>
           </span>
