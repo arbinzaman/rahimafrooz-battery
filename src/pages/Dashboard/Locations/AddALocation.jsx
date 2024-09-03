@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useLoading } from "../../../contexts/LoadingContext";
 import Cookies from "js-cookie";
 import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
+
 const AddALocation = ({ addLocationModalProps }) => {
   const { refetch } = addLocationModalProps;
   const { isLoading, setIsLoading } = useLoading();
@@ -38,7 +39,7 @@ const AddALocation = ({ addLocationModalProps }) => {
   return (
     <div>
       <dialog id="my_modal_69" className="modal">
-        <div className="modal-box bg-white text-black ">
+        <div className="modal-box bg-white text-black">
           <form method="dialog" className="flex justify-between items-center">
             <p className="text-primary text-medium font-bold flex gap-2 my-2">
               Add A Location
@@ -46,6 +47,7 @@ const AddALocation = ({ addLocationModalProps }) => {
             <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
           </form>
           <form method="dialog" onSubmit={handleSubmit(handleAddData)}>
+            {/* Existing Fields */}
             <div className="my-2">
               <label>
                 Enter title <span className="text-red-600">*</span>
@@ -53,7 +55,7 @@ const AddALocation = ({ addLocationModalProps }) => {
               <input
                 type="text"
                 required
-                className="bg-white border rounded-md px- py-1 w-full"
+                className="bg-white border rounded-md px-2 py-1 w-full"
                 {...register("location_title")}
               />
             </div>
@@ -81,6 +83,7 @@ const AddALocation = ({ addLocationModalProps }) => {
                 {...register("location")}
               />
             </div>
+
             <div className="my-2">
               <label>
                 Phone Numbers <span className="text-red-600">*</span>
@@ -92,9 +95,10 @@ const AddALocation = ({ addLocationModalProps }) => {
                 {...register("phone_numbers")}
               />
             </div>
+
             <div className="my-2">
               <label>
-                Email<span className="text-red-600">*</span>
+                Email <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
@@ -104,13 +108,38 @@ const AddALocation = ({ addLocationModalProps }) => {
               />
             </div>
 
+            {/* New Fields for Longitude and Latitude */}
+            <div className="my-2">
+              <label>
+                Longitude <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                className="bg-white border rounded-md px-2 py-1 w-full"
+                {...register("lng")}
+              />
+            </div>
+
+            <div className="my-2">
+              <label>
+                Latitude <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                className="bg-white border rounded-md px-2 py-1 w-full"
+                {...register("lat")}
+              />
+            </div>
+
             <div className="flex justify-end gap-3 items-center mt-3">
               {isLoading ? (
                 <ThreeDotLoader />
               ) : (
                 <button
-                  type=""
-                  disabled={isLoading ? true : false}
+                  type="submit"
+                  disabled={isLoading}
                   className="flex gap-2 btn btn-sm bg-sky-500 border-0 text-white hover:bg-primary hover:text-white"
                 >
                   Add

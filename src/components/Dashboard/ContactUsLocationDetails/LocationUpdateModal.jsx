@@ -26,9 +26,7 @@ const LocationUpdateModal = ({ updateModalProps }) => {
     try {
       setIsLoading(true);
       const res = await axios.patch(
-        `${
-          import.meta.env.VITE_BASE_URL
-        }/contact/global-locations/${selectedId}`,
+        `${import.meta.env.VITE_BASE_URL}/contact/global-locations/${selectedId}`,
         data,
         {
           headers: {
@@ -115,12 +113,35 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               />
             </div>
 
+            {/* New Fields for Longitude and Latitude */}
+            <div className="my-2">
+              <label>
+                Longitude <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                className="bg-white border  rounded-md px-2 py-1 w-full"
+                {...register("lng")}
+              />
+            </div>
+
+            <div className="my-2">
+              <label>
+                Latitude <span className="text-red-600">*</span>
+              </label>
+              <input
+                type="text"
+                className="bg-white border  rounded-md px-2 py-1 w-full"
+                {...register("lat")}
+              />
+            </div>
+
             <div className="flex justify-end gap-3 items-center mt-3">
               {isLoading ? (
                 <ThreeDotLoader />
               ) : (
                 <button
-                  type=""
+                  type="submit"
                   className="flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white"
                 >
                   Update
