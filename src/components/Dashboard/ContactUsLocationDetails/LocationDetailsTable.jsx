@@ -9,6 +9,7 @@ const LocationDetailsTable = ({ prompts }) => {
   const { allLocationDetails, refetch } = prompts;
   const [selectedId, setSelectedId] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
@@ -52,6 +53,9 @@ const LocationDetailsTable = ({ prompts }) => {
             <th>Location</th>
             <th>Phone Numbers</th>
             <th>Email</th>
+            <th>Longitude</th> {/* Add Longitude */}
+            <th>Latitude</th>  {/* Add Latitude */}
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -63,6 +67,8 @@ const LocationDetailsTable = ({ prompts }) => {
               <td>{location.location}</td>
               <td>{location.phone_numbers}</td>
               <td>{location.email}</td>
+              <td>{location.lng}</td> {/* Show Longitude */}
+              <td>{location.lat}</td> {/* Show Latitude */}
               <td>
                 <button
                   title="Update Global Location"
@@ -102,12 +108,9 @@ const LocationDetailsTable = ({ prompts }) => {
                 className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
                 onClick={() => handleDelete(selectedId)}
               >
-                Yes, Remove
+                Yes, Delete
               </button>
-              <button
-                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
-                onClick={closeDeleteModal}
-              >
+              <button className="btn btn-xs" onClick={closeDeleteModal}>
                 Cancel
               </button>
             </div>
