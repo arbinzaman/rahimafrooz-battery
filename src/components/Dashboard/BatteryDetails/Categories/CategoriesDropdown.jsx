@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import ThreeDotLoader from "../../../shared/Loaders/ThreeDotLoader";
-    
+
 const CategoriesDropdown = ({
   categories,
   isFetchingCategories,
@@ -11,13 +11,13 @@ const CategoriesDropdown = ({
 
   return (
     <div className="relative my-4">
-      <h2 className="text-lg font-semibold mb-2">Categories</h2>    
+      {/* <h2 className="text-lg font-semibold mb-2">Existing Categories</h2>     */}
       <div className="relative">
         <button
-          className="btn btn-sm border bg-gray-200 p-2 rounded-lg w-full text-left"
+          className="btn btn-sm border bg-gray-200 p-2 rounded-lg w-full text-left text-primary border-gray-200 hover:bg-gray-300 hover:border-0"
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          Select Category
+          Existing Categories
         </button>
 
         {dropdownOpen && (

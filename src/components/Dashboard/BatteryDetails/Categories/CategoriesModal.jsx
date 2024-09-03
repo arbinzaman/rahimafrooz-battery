@@ -80,7 +80,7 @@ const CategoriesModal = ({ refetch }) => {
                 <input
                   required
                   placeholder="Enter category name"
-                  className="border rounded-md p-2 w-full"
+                  className="border rounded-md p-2 w-full bg-white text-black border-primary mt-2"
                   {...register("category_name")}
                 />
               </div>
