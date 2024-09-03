@@ -113,26 +113,25 @@ const LocationUpdateModal = ({ updateModalProps }) => {
               />
             </div>
 
-            {/* New Fields for Longitude and Latitude */}
             <div className="my-2">
               <label>
-                Longitude <span className="text-red-600">*</span>
+                Latitude
               </label>
               <input
                 type="text"
-                className="bg-white border  rounded-md px-2 py-1 w-full"
-                {...register("lng")}
+                className="bg-white border rounded-md px-2 py-1 w-full"
+                {...register("lat")}
               />
             </div>
 
             <div className="my-2">
               <label>
-                Latitude <span className="text-red-600">*</span>
+                Longitude
               </label>
               <input
                 type="text"
-                className="bg-white border  rounded-md px-2 py-1 w-full"
-                {...register("lat")}
+                className="bg-white border rounded-md px-2 py-1 w-full"
+                {...register("lng")}
               />
             </div>
 

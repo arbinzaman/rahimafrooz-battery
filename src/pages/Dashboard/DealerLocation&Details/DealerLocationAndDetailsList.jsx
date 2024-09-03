@@ -9,6 +9,7 @@ import AddADealerDetailsModal from "./AddADealerDetailsModal";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { FaLocationArrow } from "react-icons/fa6";
 
 const DealerLocationAndDetailsList = () => {
   const [selectedId, setSelectedId] = useState();
@@ -74,7 +75,10 @@ const DealerLocationAndDetailsList = () => {
   // Pagination calculations
   const indexOfLastData = currentPage * dataPerPage;
   const indexOfFirstData = indexOfLastData - dataPerPage;
-  const currentData = allDealersDetails?.slice(indexOfFirstData, indexOfLastData);
+  const currentData = allDealersDetails?.slice(
+    indexOfFirstData,
+    indexOfLastData
+  );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -132,7 +136,21 @@ const DealerLocationAndDetailsList = () => {
                 <td>{dealerLocationDetail.proprietor_name}</td>
                 <td>{dealerLocationDetail.phone_numbers}</td>
                 <td>{dealerLocationDetail.email}</td>
-                <td>{dealerLocationDetail.google_map_link}</td>
+                <td>
+                  {dealerLocationDetail.google_map_link ? (
+                    <a
+                      href={dealerLocationDetail.google_map_link}
+                      target="_blank"
+                      className={"flex items-center gap-3 text-blue-500"}
+                    >
+                      <FaLocationArrow /> Location
+                    </a>
+                  ) : (
+                    <p className="flex items-center gap-3 text-gray-500">
+                      <FaLocationArrow /> Location
+                    </p>
+                  )}
+                </td>
                 <td>{dealerLocationDetail.division}</td>
                 <td>{dealerLocationDetail.district}</td>
                 <td>{dealerLocationDetail.thana}</td>
@@ -182,7 +200,9 @@ const DealerLocationAndDetailsList = () => {
         <div className="flex justify-center mt-4">
           <div className="join">
             {[
-              ...Array(Math.ceil(allDealersDetails.length / dataPerPage)).keys(),
+              ...Array(
+                Math.ceil(allDealersDetails.length / dataPerPage)
+              ).keys(),
             ].map((number) => (
               <input
                 key={number}
