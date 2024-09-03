@@ -53,8 +53,8 @@ const LocationDetailsTable = ({ prompts }) => {
             <th>Location</th>
             <th>Phone Numbers</th>
             <th>Email</th>
-            <th>Longitude</th> {/* Add Longitude */}
-            <th>Latitude</th>  {/* Add Latitude */}
+            <th>Latitude</th>
+            <th>Longitude</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -67,8 +67,8 @@ const LocationDetailsTable = ({ prompts }) => {
               <td>{location.location}</td>
               <td>{location.phone_numbers}</td>
               <td>{location.email}</td>
-              <td>{location.lng}</td> {/* Show Longitude */}
-              <td>{location.lat}</td> {/* Show Latitude */}
+              <td>{location.lat}</td>
+              <td>{location.lng}</td>
               <td>
                 <button
                   title="Update Global Location"
@@ -100,9 +100,7 @@ const LocationDetailsTable = ({ prompts }) => {
       {deleteModalOpen && (
         <dialog open className="modal modal-bottom sm:modal-middle">
           <div className="modal-box bg-white text-red-500">
-            <h2 className="text-lg ">
-              You want to remove this location?
-            </h2>
+            <h2 className="text-lg ">You want to remove this location?</h2>
             <div className="modal-action">
               <button
                 className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"

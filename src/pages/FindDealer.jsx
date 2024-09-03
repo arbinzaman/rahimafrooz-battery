@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import HomeDealerLocator from "../components/Home/HomeDealerLocator";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
 import axios from "axios";
+import { FaLocationArrow } from "react-icons/fa6";
 
 const FindDealer = () => {
   const [dealers, setDealers] = useState([]);
@@ -62,8 +63,15 @@ const FindDealer = () => {
                         <h2 className="text-sky-700 font-normal text-lg lg:pt-3">
                           Email: {dealer.email}
                         </h2>
-                        <h2 className="text-sky-700 font-normal text-lg lg:pt-3">
-                          {dealer.coordinates !== "" && <p>Locate On Map</p>}
+                        <h2 className="text-sky-700 font-semibold text-lg lg:pt-3">
+                          {dealer.google_map_link !== "" && (
+                            <div className="flex items-center gap-3">
+                              <FaLocationArrow />{" "}
+                              <a href={dealer.google_map_link} target="_blank">
+                                Locate On Map
+                              </a>
+                            </div>
+                          )}
                         </h2>
                       </div>
                     </div>
