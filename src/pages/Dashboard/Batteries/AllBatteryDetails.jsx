@@ -6,6 +6,7 @@ import { TbCategoryPlus } from "react-icons/tb";
 import { LuRefreshCcw } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
+import CategoriesModal from "../../../components/Dashboard/BatteryDetails/Categories/CategoriesModal"; 
 
 const AllBatteryDetails = () => {
   const url = `${import.meta.env.VITE_BASE_URL}/batteries`;
@@ -24,6 +25,10 @@ const AllBatteryDetails = () => {
     },
     refetchOnWindowFocus: true,
   });
+
+  const openCategoriesModal = () => {
+    document.getElementById("categoriesModal").showModal();
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -50,12 +55,15 @@ const AllBatteryDetails = () => {
             </button>
           </Link>
           <div className="flex gap-5">
-            <button className="flex gap-2 btn btn-xs border-0 hover:bg-lime-700 text-white bg-lime-500">
-              Categories<TbCategoryPlus />
+            <button
+              className="flex gap-2 btn btn-xs border-0 hover:bg-lime-700 text-white bg-lime-500"
+              onClick={openCategoriesModal}
+            >
+              Categories <TbCategoryPlus />
             </button>
+          </div>
         </div>
-        </div>
-       
+
         <div>
           <button
             className="flex gap-2 btn btn-xs border-0 text-white bg-teal-400 hover:bg-teal-700 hover:text-white"
@@ -68,10 +76,11 @@ const AllBatteryDetails = () => {
       </div>
 
       <div className="">
-        <BatteryDetailsTable
-          prompts={{ allBatteryDetails, refetch}}
-        />
+        <BatteryDetailsTable prompts={{ allBatteryDetails, refetch }} />
       </div>
+
+      {/* Categories Modal */}
+      <CategoriesModal refetch={refetch} />
     </div>
   );
 };
