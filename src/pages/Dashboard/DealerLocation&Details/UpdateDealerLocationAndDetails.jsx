@@ -32,7 +32,7 @@ const UpdateDealerLocationAndDetails = ({ updateModalProps }) => {
       formData.append("proprietor_name", data.proprietor_name);
       formData.append("phone_numbers", data.phone_numbers);
       formData.append("email", data.email);
-      formData.append("coordinates", data.coordinates);
+      formData.append("google_map_link", data.google_map_link);
       formData.append("division", data.division);
       formData.append("district", data.district);
       formData.append("thana", data.thana);
@@ -132,11 +132,11 @@ const UpdateDealerLocationAndDetails = ({ updateModalProps }) => {
             </div>
 
             <div className="my-2">
-              <label>Coordinates</label>
+              <label>Google Map Link</label>
               <input
                 type="text"
                 className="bg-white border rounded-md px-2 py-1 w-full"
-                {...register("coordinates")}
+                {...register("google_map_link")}
               />
             </div>
 

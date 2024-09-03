@@ -113,7 +113,7 @@ const DealerLocationAndDetailsList = () => {
             <th>Proprietor Name</th>
             <th>Phone Numbers</th>
             <th>Email</th>
-            <th>Google Map Coordinates</th>
+            <th>Google Map Link</th>
             <th>Division</th>
             <th>District</th>
             <th>Thana</th>
@@ -132,7 +132,7 @@ const DealerLocationAndDetailsList = () => {
                 <td>{dealerLocationDetail.proprietor_name}</td>
                 <td>{dealerLocationDetail.phone_numbers}</td>
                 <td>{dealerLocationDetail.email}</td>
-                <td>{dealerLocationDetail.coordinates}</td>
+                <td>{dealerLocationDetail.google_map_link}</td>
                 <td>{dealerLocationDetail.division}</td>
                 <td>{dealerLocationDetail.district}</td>
                 <td>{dealerLocationDetail.thana}</td>
