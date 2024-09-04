@@ -23,7 +23,7 @@ const CategoriesModal = ({ refetch }) => {
   const handleAddCategory = async (data) => {
     try {
       const newCategory = { category_name: data.category_name };
-      await axios.post(
+      const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/categories`,
         newCategory,
         {
@@ -32,9 +32,12 @@ const CategoriesModal = ({ refetch }) => {
           },
         }
       );
-      toast.success("Category added successfully!");
-      reset();
-      refetch();
+
+      if (res.status === 201) {
+        reset();
+        refetch();
+        toast.success("Category added successfully!");
+      }
     } catch (error) {
       toast.error("Failed to add category.");
     }
@@ -43,7 +46,7 @@ const CategoriesModal = ({ refetch }) => {
   // Handle delete category
   const handleDeleteCategory = async (categoryId) => {
     try {
-      await axios.delete(
+      const res = await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/categories/${categoryId}`,
         {
           headers: {
@@ -51,8 +54,11 @@ const CategoriesModal = ({ refetch }) => {
           },
         }
       );
-      toast.success("Category deleted successfully!");
-      refetch();
+
+      if (res.status === 200) {
+        refetch();
+        toast.success("Category deleted successfully!");
+      }
     } catch (error) {
       toast.error("Failed to delete category.");
     }
