@@ -36,27 +36,27 @@ const GlobalPresence = () => {
         <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
 
         {/* Display total countries and country list at the bottom left of the banner */}
-        <div className="absolute -bottom-2 lg:bottom-1 left-6  lg:left-40 text-primary text-large lg:p-6 rounded text-center">
+        <div className="absolute -bottom-2 lg:bottom-1 left-1.5 lg:left-14  text-primary text-large lg:p-6 rounded text-center">
           {/* Responsive Text for Mobile */}
-          <p className="text-primary text-[8px] lg:text-2xl -mt-[3px] font-bold">
+          <p className="text-primary text-[8px] lg:text-xl -mt-[3px] font-bold">
             Our automotive batteries
           </p>
-          <p className="text-black text-[9px] lg:text-3xl -mt-[3px] ">
+          <p className="text-black text-[9px] lg:text-2xl -mt-[3px] ">
             reach consumers
           </p>
-          <p className="text-black text-[9px] lg:text-3xl -mt-[3px] ">
+          <p className="text-black text-[9px] lg:text-2xl -mt-[3px] ">
             in more than
           </p>
-          <p className="font-extrabold text-lg lg:text-9xl -mt-[7px] lg:mt-0 -mb-[20px] lg:mb-0">
+          <p className="font-extrabold text-lg lg:text-8xl -mt-[7px] lg:mt-0 -mb-[20px] lg:mb-0">
             {totalCountries}
           </p>
 
           {/* Added border to this span */}
           <span className="border border-blue-700 p-1 lg:p-2 rounded-sm lg:rounded-md inline-block -mt-[3px] lg:mt-0">
-            <p className="text-black text-[8px] lg:text-3xl -mt-[5px] font-extrabold">
+            <p className="text-black text-[8px] lg:text-2xl -mt-[5px] font-extrabold">
               COUNTRIES
             </p>
-            <p className="text-black text-[8px] lg:text-3xl -mb-[5px] -mt-[3px] lg:-mt-2">
+            <p className="text-black text-[8px] lg:text-2xl -mb-[5px] -mt-[3px] lg:-mt-2">
               across the world
             </p>
           </span>
