@@ -27,10 +27,10 @@ const DashboardHeader = () => {
                   </p>
                 </div>
               </Link>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-6">
                 <label
                   htmlFor="my-drawer-2"
-                  className="drawer-button lg:hidden"
+                  className="drawer-button lg:hidden -ml-10 lg:ml-0"
                   onClick={toggleMenu}
                 >
                   {isMenuOpen ? (
@@ -39,7 +39,7 @@ const DashboardHeader = () => {
                     <RiMenuUnfold4Line className="ml-48 text-medium text-background" />
                   )}
                 </label>
-                <Link to="/" className="flex gap-3 ">
+                <Link to="/" className="">
                   <FaHome className="text-medium lg:text-large lg:mb-2 block" />{" "}
                 </Link>
               </div>
