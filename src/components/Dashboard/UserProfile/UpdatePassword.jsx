@@ -123,7 +123,7 @@ const UpdatePassword = () => {
   if (!user) return <Loader />;
 
   return (
-    <section className="pt-16 w-full px-4 sm:px-6 lg:px-20">
+    <section className="pt-16 w-full sm:px-6 lg:px-20">
       <div className="w-full mx-auto">
         <div className="relative bg-white flex flex-col sm:flex-row items-start sm:items-center w-full mb-6 shadow-xl rounded-lg">
           <div className="px-6 w-full">

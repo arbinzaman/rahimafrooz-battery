@@ -10,33 +10,33 @@ const StoragePowerTabs = () => {
     <div>
       <div
         role="tablist"
-        className="tabs text-xs md:text-regular rounded-md bg-white tab text-black w-full justify-around"
+        className="tabs text-xxsmall md:text-regular rounded-md bg-white tab text-black w-full justify-around"
       >
         <a
           role="tab"
           onClick={() => setTab("ytLink")}
-          className={tab === "ytLink" ? "text-xs md:text-regular bg-primary  text-white tab" : ""}
+          className={tab === "ytLink" ? "text-xxsmall md:text-regular bg-primary  text-white tab" : ""}
         >
           Video URL
         </a>
         <a
           role="tab"
           onClick={() => setTab("imgText")}
-          className={tab === "imgText" ? "text-xs md:text-regular bg-primary  text-white tab" : ""}
+          className={tab === "imgText" ? "text-xxsmall md:text-regular bg-primary  text-white tab" : ""}
         >
           Factory Information
         </a>
         <a
           role="tab"
           onClick={() => setTab("milestone")}
-          className={tab === "milestone" ? "text-xs md:text-regular bg-primary  text-white tab" : ""}
+          className={tab === "milestone" ? "text-xxsmall md:text-regular bg-primary  text-white tab" : ""}
         >
           Milestone
         </a>
         <a
           role="tab"
           onClick={() => setTab("ourValues")}
-          className={tab === "ourValues" ? "text-xs md:text-regular bg-primary  text-white tab" : ""}
+          className={tab === "ourValues" ? "text-xxsmall md:text-regular bg-primary  text-white tab" : ""}
         >
           Our Values
         </a>

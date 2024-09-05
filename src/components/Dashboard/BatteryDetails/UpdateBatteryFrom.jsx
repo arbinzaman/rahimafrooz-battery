@@ -373,14 +373,14 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
           <div className="mt-4 flex justify-between">
             <button
               onClick={() => navigate("/dashboard/all-battery-details-list")}
-              className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
+              className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"
             >
               <IoMdArrowRoundBack className="inline-block mr-2" />
               Batteries Table
             </button>
             <button
               type="submit"
-              className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
+              className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"
             >
               <FaCarBattery className="inline-block mr-2" />
               Update Battery
