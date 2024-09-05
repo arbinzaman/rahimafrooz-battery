@@ -1,8 +1,9 @@
 import ProductsCarousel from "../../components/Products/ProductsCarousel";
-import InternationalPageBanner from "../../assets/images/ProductPageImages/International-products-banner.jpg";
+import LocallySavedBanner from "../../assets/images/BannerImages/ProductsPage/International-products-banner.jpg";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import BannerImage from "../../components/shared/BannerImage";
 
 const International = () => {
   const [batteries, setBatteries] = useState([]);
@@ -46,19 +47,20 @@ const International = () => {
     })
   );
 
-  console.log(filteredBrandAndProducts);
+  // Key for banner image
+  const pageKey = "products_int";
   return (
     <section>
       <div className="relative">
-        <div className="absolute text-center bg-primary top-6 left-12 md:top-12 md:left-20 lg:top-20 lg:left-32 text-regular md:text-large lg:text-xlarge text-base px-3 md:px-6 md:py-3 lg:px-10 lg:py-6">
+        <div className="absolute
+         bg-primary top-6 left-12 md:top-12 md:left-20 
+         lg:top-20 lg:left-32 text-regular md:text-large 
+         lg:text-xlarge text-base px-3 md:px-6 md:py-3 lg:px-10
+         lg:py-6">
           <p>INTERNATIONAL</p>
           <p className="mt-0 md:mt-3 lg:mt-8">PRODUCTS</p>
         </div>
-        <img
-          src={InternationalPageBanner}
-          className="w-full"
-          alt="A banner showing Rahimafrooz's Globat Ace in a scenario"
-        />
+        <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
       </div>
 
       <section className={allDeviceMaxWidth}>

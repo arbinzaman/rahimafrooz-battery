@@ -1,8 +1,13 @@
-import BannerImage from "../../assets/images/AboutPage/RahimafroozBatteriesLtd.png";
+import LocallySavedBanner from "../../assets/images/BannerImages/AboutPage/RahimafroozBatteriesLtd.jpg";
+import BannerImage from "../../components/shared/BannerImage";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import { useQuery } from "@tanstack/react-query";
 
 const StoragePower = () => {
+  //Key for Banner Image
+  const pageKey = "storage_power";
+
+  // Video URL fetch
   const { data: allYoutubeLinks = [] } = useQuery({
     queryKey: ["allYoutubeLinks"],
     queryFn: async () => {
@@ -15,6 +20,7 @@ const StoragePower = () => {
     refetchOnWindowFocus: true,
   });
 
+  // Factory Informations Fetch
   const { data: allFactoryInformations = [] } = useQuery({
     queryKey: ["allFactoryInformations"],
     queryFn: async () => {
@@ -27,6 +33,7 @@ const StoragePower = () => {
     refetchOnWindowFocus: true,
   });
 
+  // Milestone Image Fetch
   const { data: milestoneInfo = [] } = useQuery({
     queryKey: ["milestoneInfo"],
     queryFn: async () => {
@@ -39,6 +46,7 @@ const StoragePower = () => {
     refetchOnWindowFocus: true,
   });
 
+  // All Values Info Fetch
   const { data: allValues = [] } = useQuery({
     queryKey: ["allValues"],
     queryFn: async () => {
@@ -53,9 +61,8 @@ const StoragePower = () => {
 
   return (
     <section>
-      <div>
-        <img src={BannerImage} alt="" />
-      </div>
+      <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
+
       <section className={allDeviceMaxWidth + " my-10"}>
         {/* Heading */}
         <div className="text-center text-regular md:text-semi_large lg:text-large text-primary font-semibold">
@@ -65,17 +72,17 @@ const StoragePower = () => {
         {/* Paragraphs */}
         <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-10 my-10 text-justify text-black">
           <div>
-            Rahimafrooz was founded in 1954 as a pioneer in the Bangladeshi bat-
-            tery industry. Rahimafrooz Storage Power Business (RSPB) is the core
-            business of the Group, with leadership in the local and some
-            interna- tional markets. As the leading supplier of lead acid
-            batteries in Bangla- desh with the latest technology of batteries,
+            Rahimafrooz was founded in 1954 as a pioneer in the Bangladeshi
+            battery industry. Rahimafrooz Storage Power Business (RSPB) is the
+            core business of the Group, with leadership in the local and some
+            international markets. As the leading supplier of lead acid
+            batteries in Bangladesh with the latest technology of batteries,
             RSPB serves the most extensive network of dealers and retailers. It
             is the only company that has batteries to offer for every segment in
             the industry. RSPB produces a complete range of products ranging
-            from 2.5 Ah to 3000 Ah, for appli- cations primarily in Automotive,
+            from 2.5 Ah to 3000 Ah, for applications primarily in Automotive,
             Inverters, Solar, Marine, Traction and Telecoms. With exports
-            starting in 1992, GLOBATT, VOLTA, IGNUS, and DELTA have taken RSPB
+            starting in 1992. GLOBATT, VOLTA, IGNUS, and DELTA have taken RSPB
             across global frontiers.
           </div>
           <div>
@@ -182,7 +189,10 @@ const StoragePower = () => {
           <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-items-center items-start gap-16 text-black">
             {allValues.length > 0 ? (
               allValues?.map((item) => (
-                <div key={item.id} className="flex flex-col justify-center items-center">
+                <div
+                  key={item.id}
+                  className="flex flex-col justify-center items-center"
+                >
                   <img
                     src={item.image_url}
                     alt="Integrity in All Our Dealings image"

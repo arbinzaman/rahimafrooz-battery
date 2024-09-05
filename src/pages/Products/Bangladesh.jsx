@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import BangladeshPageBanner from "../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
+import LocallySavedBanner from "../../assets/images/BannerImages/ProductsPage/Bangladesh-products-banner-1.jpg";
 import ProductsCarousel from "../../components/Products/ProductsCarousel";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import axios from "axios";
+import BannerImage from "../../components/shared/BannerImage";
 
 const Bangladesh = () => {
   const [batteries, setBatteries] = useState([]);
@@ -46,7 +47,9 @@ const Bangladesh = () => {
     })
   );
 
-  console.log(filteredBrandAndProducts);
+  // Key for banner image
+  const pageKey = "products_bd";
+
   return (
     <section>
       <div className="relative">
@@ -59,11 +62,7 @@ const Bangladesh = () => {
         >
           LOCAL PRODUCTS
         </p>
-        <img
-          src={BangladeshPageBanner}
-          className="w-full"
-          alt="A banner showing Rahimafrooz's Globat Ace in a scenario"
-        />
+        <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
       </div>
 
       <section className={allDeviceMaxWidth}>

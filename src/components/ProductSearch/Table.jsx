@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Product2 from "../../assets/images/BatteryFinalPage/Product-02.png";
 import { fetchBatteries } from "../../utils/BatterySearchPage/TableFetches";
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
@@ -62,7 +61,7 @@ const Table = () => {
                   <th key={battery?.id} className="">
                     <div className="grid justify-items-center gap-3 my-6">
                       <img
-                        src={battery?.imgurls[0] || Product2}
+                        src={battery?.imgurls[0] || "https://www.google.com/url?sa=i&url=https%3A%2F%2Fthy-hood-roblox.fandom.com%2Fwiki%2FLeech_blunderbuss&psig=AOvVaw38gqsOYixwpuwBP2M88I40&ust=1725615781695000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKDAnvDBq4gDFQAAAAAdAAAAABAS"}
                         alt={battery?.battery_name}
                         className="h-24 md:h-48 lg:h-52"
                       />

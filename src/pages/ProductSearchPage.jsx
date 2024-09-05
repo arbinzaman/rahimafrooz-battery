@@ -1,4 +1,4 @@
-import BangladeshPageBanner from "../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
+import BangladeshPageBanner from "../assets/images/BannerImages/ProductsPage/Bangladesh-products-banner-1.jpg";
 import ProductSearchField from "../components/ProductSearch/ProductSearchField";
 import RelatedProductsInProductSearch from "../components/ProductSearch/RelatedProductsInProductSearch";
 import Table from "../components/ProductSearch/Table";

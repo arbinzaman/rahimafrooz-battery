@@ -1,30 +1,32 @@
-import img1 from "../../assets/images/FounderAndBoardMembers/Management.png";
+import LocallySavedBanner from "../../assets/images/BannerImages/AboutPage/Management.jpg";
 import { ImFacebook2 } from "react-icons/im";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import { useQuery } from "@tanstack/react-query";
 import FetchErrorMessage from "../../components/shared/Error/FetchErrorMessage";
+import BannerImage from "../../components/shared/BannerImage";
 const FounderAndBoardMembers = () => {
+  // Key for Banner Image
   const pageKey = "board_members";
 
-  const {
-    data: allBoardMembers = [],
-    error,
-  } = useQuery({
-    queryKey: ["allBoardMembers"],
-    queryFn: async () => {
-      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/board-members`);
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await res.json();
-      return data;
-    },
-    refetchOnWindowFocus: true,
-  });
-
-  // console.log(allBoardMembers);
+  // Board Member Information
+  const { data: allBoardMembers = [], error: boardMemberFetchError } = useQuery(
+    {
+      queryKey: ["allBoardMembers"],
+      queryFn: async () => {
+        const res = await fetch(
+          `${import.meta.env.VITE_BASE_URL}/board-members`
+        );
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await res.json();
+        return data;
+      },
+      refetchOnWindowFocus: true,
+    }
+  );
   const founderInfo = allBoardMembers.find((item) =>
     item.designation.toLowerCase().replace(/\s/g, "").includes("founder")
   );
@@ -32,14 +34,11 @@ const FounderAndBoardMembers = () => {
     (item) =>
       !item.designation.toLowerCase().replace(/\s/g, "").includes("founder")
   );
-  
+
   return (
     <section className="">
-      <div>
-        <img src={img1} className="" alt="" />
-      </div>
-
-      {error ? (
+      <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
+      {boardMemberFetchError ? (
         <FetchErrorMessage />
       ) : (
         <div className={`${allDeviceMaxWidth} text-justify`}>
