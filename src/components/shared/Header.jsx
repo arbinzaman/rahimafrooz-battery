@@ -16,12 +16,11 @@ import Cart from "../../assets/icons/cart.png";
 import Battery from "../../assets/icons/car-battery.png";
 import "../../styles/Header.css";
 import clsx from "clsx";
-// import BatterySearch from "../Header/BatterySearch/BatterySearch";
+import BatterySearch from "../Header/BatterySearch/BatterySearch";
 
 const Header = () => {
   const [isSideMenuOpen, setMenu] = useState(false);
-  // const [searchData, setSearchData] = useState("");
-
+  const [searchData, setSearchData] = useState("");
 
   return (
     <div>
@@ -116,21 +115,15 @@ const Header = () => {
                       Warranty & Services
                     </button>
                   </a>
-                  {/* <select className="header-btn">
-                    <option selected>English</option>
-                    <option>বাংলা</option>
-                    <option>Arabic</option>
-                  </select> */}
                 </div>
               </div>
               {/* Mobile Nav */}
               <div className="lg:hidden">
-                <div className="flex">
+                <div className="flex items-center">
                   <a href="/global-presence">
-                    <button className="header-btn-mobile">
+                    <button className="">
                       {" "}
-                      <GlobeAltIcon className="w-4 h-4 mt-1 mr-1" />
-                      <p>Global Presence</p>
+                      <GlobeAltIcon className="w-8 h-8 mt-2 mr-1" />
                     </button>
                   </a>
                   <Bars3Icon
@@ -164,8 +157,10 @@ const Header = () => {
                 type="text"
                 id="search-navbar"
                 className="search block w-full p-2 pl-3 text-black text-sm border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                onChange={(e) => setSearchData(e.target.value)}
                 placeholder="Search"
               />
+              <BatterySearch searchData={searchData} />
             </div>
           </div>
         </div>
@@ -221,19 +216,21 @@ const Header = () => {
                     type="text"
                     id="search-navbar"
                     onChange={(e) => setSearchData(e.target.value)}
-                    className="search block w-full p-2 pl-3 text-black text-sm border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                    className="input input-bordered input-info w-96 h-auto py-1 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Search"
                   />
-                    {/* <BatterySearch searchData={searchData} /> */}
+                  <div className="relative">
+                    <BatterySearch searchData={searchData} />
+                  </div>
                 </div>
                 <a href="/become-a-dealer">
                   <button className="header-btn">Become A Partner</button>
                 </a>
                 <a href="/global-presence">
-                  <button className="header-btn">
+                  <button title="Global Presence" className="header-btn">
                     {" "}
                     <GlobeAltIcon className="w-4 h-4 mt-1 mr-1" />
-                    Global Presence
+                    <span className="">Global Presence</span>
                   </button>
                 </a>
               </div>
@@ -359,11 +356,11 @@ const Header = () => {
         {/* sidebar mobile menu */}
         <div
           className={clsx(
-            "fixed z-50 h-full w-screen lg:hidden bg-black/50  backdrop-blur-sm top-0 right-0  -translate-x-full  transition-all ",
+            "fixed z-50 h-full w-screen lg:hidden bg-black/50  backdrop-blur-sm  top-0 right-0  -translate-x-full  transition-all ",
             isSideMenuOpen && "translate-x-0"
           )}
         >
-          <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 pr-0 gap-8 w-4/5 flex">
+          <section className="text-black bg-white flex-col absolute -left-2 top-0 h-screen p-8 pr-0 gap-8 w-4/5 flex">
             <XMarkIcon
               onClick={() => setMenu(false)}
               className="w-8 h-8 cursor-pointer"

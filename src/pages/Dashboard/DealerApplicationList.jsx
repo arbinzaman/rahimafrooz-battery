@@ -1,11 +1,18 @@
-import { SiTicktick } from "react-icons/si";
+import { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../components/shared/Loaders/Loader";
+import FetchErrorMessage from "../../components/shared/Error/FetchErrorMessage";
+import toast from "react-hot-toast";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const DealerApplicationList = () => {
-
-  const url = `${import.meta.env.VITE_BASE_URL}/dealer-applications`;
+  const [selectedId, setSelectedId] = useState(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage] = useState(10);
+  const API_URL = `${import.meta.env.VITE_BASE_URL}/dealer-applications`;
 
   const {
     data: allDealerApplicationDetails = [],
@@ -15,26 +22,97 @@ const DealerApplicationList = () => {
   } = useQuery({
     queryKey: ["allDealerApplicationDetails"],
     queryFn: async () => {
-      // console.log("Fetching data...");
-      const res = await fetch(url);
-      const data = await res.json();
-      // console.log("Data fetched:", data);
-      return data;
+      const res = await fetch(API_URL, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+        },
+      });
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return res.json();
     },
     refetchOnWindowFocus: true,
   });
 
-  refetch();
+  const handleDelete = async (selectedIds) => {
+    try {
+      const res = await axios.delete(API_URL + `/${selectedIds}`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+        },
+      });
+
+      if (res.status === 200) {
+        refetch();
+        setDeleteModalOpen(false);
+        toast.success("Selected queries deleted successfully.");
+      } else {
+        throw new Error("Failed to delete the selected queries.");
+      }
+    } catch (error) {
+      console.error("Error deleting queries:", error);
+    }
+  };
+
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
+  };
+
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentData = allDealerApplicationDetails.slice(
+    indexOfFirstData,
+    indexOfLastData
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   if (isLoading) {
     return <Loader />;
   }
 
   if (error) {
-    return <div>Error fetching data</div>;
+    return <FetchErrorMessage />;
   }
+
   return (
     <div>
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">Dealers List</h1>
+      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+        Dealership Applicants
+      </h1>
+
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">
+              Are you sure you want to remove this application?
+            </h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
+
       <div className="overflow-x-auto">
         <table className="table w-full text-black">
           <thead>
@@ -48,14 +126,13 @@ const DealerApplicationList = () => {
               <th>Thana</th>
               <th>Zip</th>
               <th>Applied at</th>
-              <th>Approve</th>
               <th>Reject</th>
             </tr>
           </thead>
           <tbody>
-            {allDealerApplicationDetails.map((becomeADealer, i) => (
+            {currentData.map((becomeADealer, i) => (
               <tr key={becomeADealer.id}>
-                <th>{i + 1}</th>
+                <th>{indexOfFirstData + i + 1}</th>
                 <td>{becomeADealer.email}</td>
                 <td>{becomeADealer.full_name}</td>
                 <td>{becomeADealer.phone}</td>
@@ -65,13 +142,11 @@ const DealerApplicationList = () => {
                 <td>{becomeADealer.zip}</td>
                 <td>{becomeADealer.applied_at}</td>
                 <td>
-                  <button className="btn btn-xs border-0 bg-green-500">
-                    <SiTicktick className="text-white"/>
-                  </button>
-                </td>
-                <td>
-                  <button className="btn btn-xs border-0 bg-red-400">
-                  <MdDeleteForever className="text-white" />
+                  <button
+                    className="btn btn-xs border-0 bg-red-400"
+                    onClick={() => openDeleteModal(becomeADealer.id)}
+                  >
+                    <MdDeleteForever className="text-white" />
                   </button>
                 </td>
               </tr>
@@ -79,6 +154,28 @@ const DealerApplicationList = () => {
           </tbody>
         </table>
       </div>
+
+      {allDealerApplicationDetails.length > dataPerPage && (
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[
+              ...Array(
+                Math.ceil(allDealerApplicationDetails.length / dataPerPage)
+              ).keys(),
+            ].map((number) => (
+              <input
+                key={number}
+                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                type="radio"
+                name="options"
+                aria-label={number + 1}
+                checked={currentPage === number + 1}
+                onChange={() => paginate(number + 1)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

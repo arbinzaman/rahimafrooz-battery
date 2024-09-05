@@ -1,104 +1,159 @@
-import { useState } from 'react';
-import Loader from '../../../components/shared/Loaders/Loader';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import ThreeDotLoader from "../../shared/Loaders/ThreeDotLoader";
 
-const LocationUpdateModal = ({ location, onClose, onUpdate }) => {
-  const [updatedLocation, setUpdatedLocation] = useState(location);
-  const [loading, setLoading] = useState(false);
-  
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUpdatedLocation((prevLocation) => ({
-      ...prevLocation,
-      [name]: value
-    }));
-  };
+const LocationUpdateModal = ({ updateModalProps }) => {
+  const { selectedId, allLocationDetails, refetch } = updateModalProps;
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  const singleLocationDetails = allLocationDetails?.find(
+    (details) => details.id === selectedId
+  );
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: singleLocationDetails,
+  });
+
+  useEffect(() => {
+    if (singleLocationDetails) {
+      reset(singleLocationDetails);
+    }
+  }, [singleLocationDetails, reset]);
+
+  const handleUpdate = async (data) => {
     try {
-      await onUpdate(updatedLocation);
-      onClose(); // Close the modal on successful update
+      setIsLoading(true);
+      const res = await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/contact/global-locations/${selectedId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+
+      if (res.status === 200) {
+        refetch();
+        document.getElementById("my_modal_2").open = false;
+        toast.success("Record updated successfully");
+      }
+      setIsLoading(false);
     } catch (error) {
-      console.error('Error updating location:', error);
+      console.log(error);
+      toast.error("Something error occurred!");
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   return (
-    <dialog id="updateLocationModal" className="modal modal-bottom sm:modal-middle">
-      <div className="modal-box bg-white p-4">
-        <h2 className="text-xl font-bold mb-4">Update Location</h2>
-        {loading ? (
-          <div className="flex justify-center items-center h-32">
-            <Loader /> {/* Display loader while updating */}
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <label className="block">
-              <span className="text-gray-700">Location Title</span>
+    <div>
+      <dialog id="my_modal_2" className="modal">
+        <div className="modal-box bg-white text-black ">
+          <form method="dialog" className="flex justify-between items-center">
+            <p className="text-primary text-medium font-bold flex gap-2 my-2">
+              Update Location
+            </p>
+            <button className="btn btn-sm btn-circle btn-ghost ">✕</button>
+          </form>
+          <form method="dialog" onSubmit={handleSubmit(handleUpdate)}>
+            <div className="my-2">
+              <label>
+                Enter title <span className="text-red-600">*</span>
+              </label>
               <input
                 type="text"
-                name="location_title"
-                value={updatedLocation.location_title || ''}
-                onChange={handleChange}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 bg-white text-black"
-                required
+                className="bg-white border  rounded-md px-2 py-1 w-full"
+                {...register("location_title")}
               />
-            </label>
-            <label className="block">
-              <span className="text-gray-700">Location</span>
+            </div>
+
+            <div className="my-2">
+              <label>
+                Location Name <span className="text-red-600">*</span>
+              </label>
               <input
                 type="text"
-                name="location"
-                value={updatedLocation.location || ''}
-                onChange={handleChange}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 bg-white text-black"
-                required
+                className="bg-white border  rounded-md px-2 py-1 w-full"
+                {...register("location_name")}
               />
-            </label>
-            <label className="block">
-              <span className="text-gray-700">Phone Numbers</span>
+            </div>
+
+            <div className="my-2">
+              <label>
+                Location <span className="text-red-600">*</span>
+              </label>
+              <textarea
+                type="text"
+                className="bg-white border  rounded-md px-2 py-1 w-full"
+                {...register("location")}
+              />
+            </div>
+            <div className="my-2">
+              <label>
+                Phone Numbers <span className="text-red-600">*</span>
+              </label>
               <input
                 type="text"
-                name="phone_numbers"
-                value={updatedLocation.phone_numbers || ''}
-                onChange={handleChange}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 bg-white text-black"
-                required
+                className="bg-white border  rounded-md px-2 py-1 w-full"
+                {...register("phone_numbers")}
               />
-            </label>
-            <label className="block">
-              <span className="text-gray-700">Email</span>
+            </div>
+            <div className="my-2">
+              <label>
+                Email<span className="text-red-600">*</span>
+              </label>
               <input
-                type="email"
-                name="email"
-                value={updatedLocation.email || ''}
-                onChange={handleChange}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 bg-white text-black"
-                required
+                type="text"
+                className="bg-white border  rounded-md px-2 py-1 w-full"
+                {...register("email")}
               />
-            </label>
-            <div className="flex gap-4 justify-end mt-4">
-              <button
-                type="submit"
-                className="btn bg-green-500 text-white border-none text-xs hover:bg-emerald-300 btn-xs"
-              >
-                Update
-              </button>
-              <button
-                type="button"
-                className="btn btn-ghost bg-gray-100 hover:bg-red-600 text-black hover:text-white btn-xs"
-                onClick={onClose}
-              >
-                Cancel
-              </button>
+            </div>
+
+            <div className="my-2">
+              <label>
+                Latitude
+              </label>
+              <input
+                type="text"
+                className="bg-white border rounded-md px-2 py-1 w-full"
+                {...register("lat")}
+              />
+            </div>
+
+            <div className="my-2">
+              <label>
+                Longitude
+              </label>
+              <input
+                type="text"
+                className="bg-white border rounded-md px-2 py-1 w-full"
+                {...register("lng")}
+              />
+            </div>
+
+            <div className="flex justify-end gap-3 items-center mt-3">
+              {isLoading ? (
+                <ThreeDotLoader />
+              ) : (
+                <button
+                  type="submit"
+                  className="flex gap-2 btn btn-sm bg-primary text-white hover:bg-secondary hover:text-white"
+                >
+                  Update
+                </button>
+              )}
             </div>
           </form>
-        )}
-      </div>
-    </dialog>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+    </div>
   );
 };
 

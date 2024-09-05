@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import Product2 from "../../assets/images/BatteryFinalPage/Product-02.png";
 import { fetchBatteries } from "../../utils/BatterySearchPage/TableFetches";
 import { useEffect, useState } from "react";
-import { RotatingSquare } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 
 const Table = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [batteries, setBatteries] = useState(null);
-  
+
   const batteryShortCodes = window.localStorage.getItem("short_codes")
     ? JSON.parse(window.localStorage.getItem("short_codes"))
     : [];
@@ -34,12 +33,13 @@ const Table = () => {
     <section className="bg-[#e6f2ff] p-3 md:p-10 lg:p-14">
       {isLoading ? (
         <div className="flex justify-center my-20">
-          <RotatingSquare
+          <ThreeDots
             visible={true}
-            height="100"
-            width="100"
+            height="80"
+            width="80"
             color="#0d72b9"
-            ariaLabel="rotating-square-loading"
+            radius="9"
+            ariaLabel="three-dots-loading"
             wrapperStyle={{}}
             wrapperClass=""
           />
@@ -47,8 +47,8 @@ const Table = () => {
       ) : batteries ? (
         <div className="overflow-x-auto">
           <h1 className="text-primary text-sm md:text-semi_large font-semibold md:font-bold py-3">
-            Suitable Battery for {carInfo.brand} {carInfo.model} {carInfo.year}{" "}
-            ({carInfo.technology})
+            Suitable Battery for {carInfo?.brand} {carInfo?.model}{" "}
+            {carInfo?.year} ({carInfo?.technology})
           </h1>
 
           <table className="table">
@@ -58,10 +58,10 @@ const Table = () => {
                 <th className="text-sm md:text-regular lg:text-semi_large text-wrap grid gap-5"></th>
 
                 {batteries?.map((battery) => (
-                  <th key={battery.id} className="">
+                  <th key={battery?.id} className="">
                     <div className="grid justify-items-center gap-3 my-6">
                       <img
-                        src={battery?.imgurls[0] || Product2}
+                        src={battery?.imgurls[0] || "https://www.google.com/url?sa=i&url=https%3A%2F%2Fthy-hood-roblox.fandom.com%2Fwiki%2FLeech_blunderbuss&psig=AOvVaw38gqsOYixwpuwBP2M88I40&ust=1725615781695000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKDAnvDBq4gDFQAAAAAdAAAAABAS"}
                         alt={battery?.battery_name}
                         className="h-24 md:h-48 lg:h-52"
                       />
@@ -84,188 +84,155 @@ const Table = () => {
             <tbody className="text-xs ">
               {/* Battery Name */}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
                   Battery Name
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.battery_name}
+                    {battery?.battery_name}
                   </td>
                 ))}
               </tr>
-              {/* Series Name */}
+              {/* Brand Code */}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
-                  Series
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
+                  Brand Code
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.series}
+                    {battery?.brand_code}
                   </td>
                 ))}
               </tr>
-              {/* Item Code */}
+              {/* New JIS */}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
-                  Item Code
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
+                  New JIS
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.item_code}
+                    {battery?.new_jis}
                   </td>
                 ))}
               </tr>
-              {/* Model */}
+              {/*Material Code */}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
-                  Model
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
+                  Material Code
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.model}
+                    {battery?.material_code}
                   </td>
                 ))}
               </tr>
               {/* Product Dimensions */}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
                   Product Dimensions
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.product_dimensions_lxbxh_mm}
+                    {battery?.product_dimensions_lxbxh_mm} mm<sup>3</sup>
                   </td>
                 ))}
               </tr>
               {/* Voltage */}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
                   Voltage
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.voltage}
+                    {battery?.voltage}
                   </td>
                 ))}
               </tr>
-              {/* Ref. Amphere Hour */}
+              {/* Capacity */}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
-                  Ref. Ampere Hour
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
+                  Capacity
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.ref_amperehour_ah}
+                    {battery?.capacity}
                   </td>
                 ))}
               </tr>
               {/* Cold Cranking Ability */}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
                   Cold Cranking Ability
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.cold_cranking_ability_cca}
+                    {battery?.cold_cranking_ability_cca}
                   </td>
                 ))}
               </tr>
-              {/* Total Warranty */}
+              {/* Plate */}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
-                  Total Warranty
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
+                  Plate
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.total_warranty}
+                    {battery?.plate}
                   </td>
                 ))}
               </tr>
-              {/* Free Warranty */}
+              {/* Short Code */}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
-                  Free Warranty
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
+                  Short Code
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.free_warranty}
-                  </td>
-                ))}
-              </tr>
-              {/* Pro-rata Warranty */}
-              <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
-                  Pro-rata Warranty
-                </td>
-                {batteries?.map((battery) => (
-                  <td
-                    key={battery.id}
-                    className={"text-center text-black border border-primary"}
-                  >
-                    {battery.pro_rata_warranty}
-                  </td>
-                ))}
-              </tr>
-              {/* Terminal Layout */}
-              <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
-                  Terminal Layout
-                </td>
-                {batteries?.map((battery) => (
-                  <td
-                    key={battery.id}
-                    className={"text-center text-black border border-primary"}
-                  >
-                    <img
-                      className="mx-auto"
-                      src={battery.terminal_layout}
-                      width={"100px"}
-                      alt=""
-                    />
+                    {battery?.short_code}
                   </td>
                 ))}
               </tr>
               {/* Country of Origin*/}
               <tr>
-                <td className="bg-primary text-base border border-primary border-b-base">
+                <td className="bg-primary text-base border border-primary border-b-base w-[300px]">
                   Country of Origin
                 </td>
                 {batteries?.map((battery) => (
                   <td
-                    key={battery.id}
+                    key={battery?.id}
                     className={"text-center text-black border border-primary"}
                   >
-                    {battery.country_of_origin}
+                    {battery?.country_of_origin}
                   </td>
                 ))}
               </tr>
@@ -280,5 +247,5 @@ const Table = () => {
     </section>
   );
 };
-// ""
+
 export default Table;

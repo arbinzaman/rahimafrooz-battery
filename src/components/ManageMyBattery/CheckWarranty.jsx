@@ -1,38 +1,38 @@
 import { useForm } from "react-hook-form";
 import WarrantyStatus from "./WarrantyStatus";
-import {
-  errorPopup,
-} from "../../utils/Toasts/WarrantyRelated/warrantyToasts";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
+import ThreeDotLoader from "../shared/Loaders/ThreeDotLoader";
 
 const CheckWarranty = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit } = useForm();
-  const [isVerified, setIsVerified] = useState();
+  const [warrantyInformation, setWarrantyInformation] = useState();
 
-  const warrantyInformation = JSON.parse(
-    localStorage.getItem("warrantyInformation")
-  );
-
-  const handleGetStatus = (data) => {
-    console.log(data);
+  const handleGetStatus = async (data) => {
     try {
-      if (data?.serialNumber == "") {
-        errorPopup();
-        return;
+      setIsLoading(true);
+
+      if (data?.short_code == "") {
+        toast.error("Provide Product's Short Code");
       }
 
-      if (
-        data?.serialNumber === warrantyInformation?.serialNumber &&
-        data?.phoneNumber === warrantyInformation?.phoneNumber
-      ) {
-        setIsVerified(true);
-        console.log(warrantyInformation);
-      } else {
-        errorPopup("No records found. Please try again!")
-        setIsVerified(false);
+      const res = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/warranty-services/status-check/${
+          data?.short_code
+        }/${data.phone_number}`
+      );
+
+      setWarrantyInformation(res?.data[0]);
+
+      if (warrantyInformation?.approval_status === false) {
+        toast.error("Sorry your warranty application is not approved yet!");
       }
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.response.data);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -46,30 +46,34 @@ const CheckWarranty = () => {
           <div className="col-span-2">
             <input
               type="text"
-              placeholder="Phone Number*"
+              placeholder="Phone Number *"
               className="bg-base border border-border_primary rounded-md p-1 w-full"
-              {...register("phoneNumber")}
+              {...register("phone_number")}
             />
           </div>
 
           <div className="col-span-2">
             <input
-              type="number"
-              placeholder="Serial Number*"
+              type="text"
+              placeholder="Product Short Code *"
               className="bg-base border border-border_primary rounded-md p-1 w-full"
-              {...register("serialNumber")}
+              {...register("short_code")}
             />
           </div>
           <div className="lg:flex justify-end">
-            <button className="bg-button px-8 py-1 text-2xl text-base font-bold rounded-md lg:w-full">
-              Search
-            </button>
+            {isLoading ? (
+              <ThreeDotLoader />
+            ) : (
+              <button className="bg-button px-8 py-1 text-2xl text-base font-bold rounded-md lg:w-full">
+                Search
+              </button>
+            )}
           </div>
         </div>
       </form>
-      {isVerified && (
+      {warrantyInformation?.approval_status && (
         <WarrantyStatus warrantyInformation={warrantyInformation} />
-      ) }
+      )}
     </section>
   );
 };

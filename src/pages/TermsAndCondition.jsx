@@ -2,13 +2,15 @@ import { LuDot } from "react-icons/lu";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
 const TermsAndCondition = () => {
   return (
-    <section className= "text-justify text-small md:text-regular text-black">
-      <section className={allDeviceMaxWidth + "my-5 lg:my-16"}>
+    <section className="text-justify text-small md:text-regular text-black">
+      <section className={allDeviceMaxWidth + " my-5 lg:my-16"}>
         <p className="mb-4 md:mb-10 text-left">
           <span className="text-regular md:text-medium lg:text-xlarge text-primary font-bold">
             TERMS AND CONDITIONS{" "}
           </span>
-          <span className="text-small md:text-regular text-black lg:text-large font-semibold">OF WEBSITE USE</span>
+          <span className="text-small md:text-regular text-black lg:text-large font-semibold">
+            OF WEBSITE USE
+          </span>
         </p>
         <div>
           The Terms and Conditions contained on this web page shall govern your
@@ -134,11 +136,11 @@ const TermsAndCondition = () => {
           <p className="my-2">
             We exclude all representations, warranties, and conditions to the
             maximum extent permitted by applicable law. The website is provided
-            on an as its basis without any warranties, either express or
-            implied whatsoever, including the warranty of ﬁtness for a
-            particular purpose. No information on this site shall constitute an
-            invitation to invest in the Amara Raja Energy & Mobility Limited
-            and/or its legal entities.
+            on an as its basis without any warranties, either express or implied
+            whatsoever, including the warranty of ﬁtness for a particular
+            purpose. No information on this site shall constitute an invitation
+            to invest in the Amara Raja Energy & Mobility Limited and/or its
+            legal entities.
           </p>
         </div>
         <div className="my-5">
@@ -164,31 +166,28 @@ const TermsAndCondition = () => {
         </div>
       </section>
       <section className="bg-background2 py-1">
-        <div className={allDeviceMaxWidth+ "my-5 lg:my-16"}>
-          <ul>
-            <li className="my-2 flex items-center gap-1">
-              <LuDot />
-              <p>
-                Total warranty includes pro-rata warranty. Please refer to the
-                warranty card for terms and conditions.
-              </p>
-            </li>
-            <li className="my-2 flex items-center gap-1">
-              <LuDot />
-              <p>
-                Battery image shown is only for reference. Actual image may
-                vary.
-              </p>
-            </li>
-            <li className="my-2 flex items-center gap-1">
-              <LuDot />
-              <p>
-                Updation of Application chart is a continuous process in Amara
-                Raja. As a result battery recommendation may subject to change
-                without prior notice.
-              </p>
-            </li>
-          </ul>
+        <div className={"py-10 "+allDeviceMaxWidth}>
+          <p className="my-2 flex items-center gap-1">
+            <LuDot />
+            <p>
+              Total warranty includes pro-rata warranty. Please refer to the
+              warranty card for terms and conditions.
+            </p>
+          </p>
+          <p className="my-2 flex items-center gap-1">
+            <LuDot />
+            <p>
+              Battery image shown is only for reference. Actual image may vary.
+            </p>
+          </p>
+          <p className="my-2 flex items-center gap-1">
+            <LuDot />
+            <p>
+              Updation of Application chart is a continuous process in Amara
+              Raja. As a result battery recommendation may subject to change
+              without prior notice.
+            </p>
+          </p>
         </div>
       </section>
     </section>

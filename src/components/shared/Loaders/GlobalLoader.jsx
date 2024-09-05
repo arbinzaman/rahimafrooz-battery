@@ -1,4 +1,4 @@
-import { RotatingSquare } from "react-loader-spinner";
+import {  ThreeDots } from "react-loader-spinner";
 import { useLoading } from "../../../contexts/LoadingContext";
 
 const GlobalLoader = () => {
@@ -9,12 +9,13 @@ const GlobalLoader = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="loader">
-        <RotatingSquare
+        <ThreeDots
           visible={true}
-          height="100"
-          width="100"
-          color="#deebf6"
-          ariaLabel="rotating-square-loading"
+          height="80"
+          width="80"
+          color="#4fa94d"
+          radius="9"
+          ariaLabel="three-dots-loading"
           wrapperStyle={{}}
           wrapperClass=""
         />

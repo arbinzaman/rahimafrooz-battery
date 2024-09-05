@@ -6,14 +6,14 @@ const ProductSelectionSection = ({ battery }) => {
     battery_name,
     imgurls,
     total_warranty,
-    ref_amperehour_ah,
+    capacity,
     voltage,
     price,
-    e_store_link
+    e_store_link,
   } = battery;
-  
+
   const navigate = useNavigate();
-  const [img, setImg] = useState(imgurls[0]);
+  const [img, setImg] = useState(imgurls ? imgurls[0] : "");
 
   const featuresImg = (imgSrc) => {
     setImg(imgSrc);
@@ -25,19 +25,23 @@ const ProductSelectionSection = ({ battery }) => {
         <div className="mx-auto">
           <img src={img} className="w-60 md:w-96 mx-auto" alt="" />
           <div className="flex justify-center lg:my-10 mt-5">
-            {imgurls.map((imageUrl, i) => (
-              <img
-                key={i}
-                src={imageUrl}
-                alt=""
-                className={
-                  img === imageUrl
-                    ? "bg-white border border-primary h-7 lg:h-16 mr-5"
-                    : "bg-white h-7 lg:h-16 mr-5"
-                }
-                onClick={() => featuresImg(imageUrl)}
-              />
-            ))}
+            {imgurls ? (
+              imgurls?.map((imageUrl, i) => (
+                <img
+                  key={i}
+                  src={imageUrl}
+                  alt=""
+                  className={
+                    img === imageUrl
+                      ? "bg-white border border-primary h-7 lg:h-16 mr-5"
+                      : "bg-white h-7 lg:h-16 mr-5"
+                  }
+                  onClick={() => featuresImg(imageUrl)}
+                />
+              ))
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div className="">
@@ -53,11 +57,11 @@ const ProductSelectionSection = ({ battery }) => {
             </p>
             <p className="flex ">
               <FaAngleRight className="h-6 mr-3 mt-1" />{" "}
-              <span>Capacity: {ref_amperehour_ah}AH </span>
+              <span>Capacity: {capacity} AH </span>
             </p>
             <p className="flex ">
               <FaAngleRight className="h-6 mr-3 mt-1" />{" "}
-              <span>Battery Voltage: {voltage} </span>
+              <span>Battery Voltage: {voltage} v</span>
             </p>
           </div>
           <p className="text-regular ml-3 font-medium mt-20">
@@ -66,7 +70,8 @@ const ProductSelectionSection = ({ battery }) => {
           </p>
 
           <div className="mt-10 lg:mt-28 flex flex-col gap-5 items-center justify-center lg:flex-row lg:justify-start">
-            <Link to={e_store_link}
+            <Link
+              to={e_store_link}
               className="btn btn-ghost text-white bg-primary px-10 text-regular"
             >
               Buy Now

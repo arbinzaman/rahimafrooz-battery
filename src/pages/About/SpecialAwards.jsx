@@ -1,17 +1,34 @@
-import SpecialAwardBanner from "../../assets/images/AboutPage/SpecialAwardsAndAchievement.png";
-import Achievement1 from "../../assets/images/AboutPage/Achievement-Image-01.png";
-import Achievement2 from "../../assets/images/AboutPage/Achievement-Image-02.png";
-import Achievement3 from "../../assets/images/AboutPage/Achievement-Image-03.png";
-import Achievement4 from "../../assets/images/AboutPage/Achievement-Image-04.png";
+import LocallySavedBanner from "../../assets/images/BannerImages/AboutPage/SpecialAwardsAndAchievement.jpg";
 import AwardSlider from "../../components/AboutPage/AwardSlider";
+import BannerImage from "../../components/shared/BannerImage";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
+import { useQuery } from "@tanstack/react-query";
 const SpecialAwards = () => {
-  
+  const { data: achievementsAndAwards = [] } = useQuery({
+    queryKey: ["achievementsAndAwards"],
+    queryFn: async () => {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/achievements`);
+      const data = await res.json();
+
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
+
+  const achievements = achievementsAndAwards.filter(
+    (item) => item.caption == undefined || item.caption == null
+  );
+
+  const awards = achievementsAndAwards.filter(
+    (item) => item.description == undefined || item.description == null
+  );
+
+  // Key for banner image
+  const pageKey = "achievement";
+
   return (
     <section>
-      <div>
-        <img src={SpecialAwardBanner} alt="" />
-      </div>
+      <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
       <section
         className={`${allDeviceMaxWidth} grid grid-cols-1 lg:grid-cols-2 gap-20 items-start my-5 text-justify`}
       >
@@ -24,62 +41,48 @@ const SpecialAwards = () => {
             </p>
           </div>
           {/* Achievement 2 */}
-          <div className="grid  mt-20 lg:mt-32 lg:mb-44">
-            <div>
-              <img src={Achievement2} alt="" width={"100%"} />
-            </div>
-            <p className="my-10">
-              Ms. Nadia Rahim receiving The Ashden Award for Sustainable Energy
-              in 2006 from H.E. Prince Charles, UK.
-            </p>
-            <p className="border border-b-primary"></p>
-          </div>
-          {/* Achievement 4 */}
-          <div className="grid  mt-20 lg:mt-32">
-            <div>
-              <img src={Achievement4} alt="" width={"100%"} />
-            </div>
-            <p className="my-10">
-              Mr. Feroz Rahim, Group Managing Director, receiving the presti-
-              gious “Green Business” award from the Finance Minister, A.M.A
-              Muhith given by Metropolitan Chamber of Commerce and Indus- tries
-              (MCCI).
-            </p>
-            <p className="border border-b-primary"></p>
-          </div>
+          {achievements &&
+            achievements?.map(
+              (achievement, i) =>
+                i % 2 != 0 && (
+                  <div key={i} className="grid  mt-20 lg:mt-32 lg:mb-10">
+                    <div>
+                      <img
+                        src={achievement?.img_url}
+                        alt="Achievement Image"
+                        width={"100%"}
+                      />
+                    </div>
+                    <p className="my-10">{achievement?.description}</p>
+                    <p className="border border-b-primary"></p>
+                  </div>
+                )
+            )}
         </section>
         {/* Right Side */}
         <section className="text-black">
           {/* Achievement 1 */}
-          <div className="lg:mb-16">
-            <div>
-              <img src={Achievement1} alt="" width={"100%"} />
-            </div>
-            <p className="my-10">
-              Mr. Niaz Rahim, Group Director, receiving Social Initiative Award
-              from Honorable Vice President and Prime Minister of UAE, Moham-
-              med Bin Rashid Al Maktoum, during Global Economic Summit in 2015.
-            </p>
-            <p className="border border-b-primary"></p>
-          </div>
-          {/* Achievement 3 */}
-          <div className="grid mt-20 mb-10 lg:my-32">
-            <div>
-              <img src={Achievement3} alt="" width={"100%"} />
-            </div>
-            <p className="my-10">
-              Mr. Munawar Moin, Director, receiving National Export (Gold Award)
-              Trophy for the ﬁscal year 2010-11 from Honorable Prime Minister of
-              Bangladesh, Sheikh Hasina, for extraordinary contribu- tion
-              towards the export sector of Bangladesh. Rahimafrooz has also
-              received the same award back in 2001-02.
-            </p>
-            <p className="border border-b-primary"></p>
-          </div>
+          {achievements &&
+            achievements?.map(
+              (achievement, i) =>
+                i % 2 == 0 && (
+                  <div key={i} className="lg:mb-16">
+                    <div>
+                      <img
+                        src={achievement?.img_url}
+                        alt="Achievement Image"
+                        width={"100%"}
+                      />
+                    </div>
+                    <p className="my-10">{achievement?.description}</p>
+                    <p className="border border-b-primary"></p>
+                  </div>
+                )
+            )}
         </section>
-      </section>  
+      </section>
       <section className={allDeviceMaxWidth}>
-        <AwardSlider />
+        <AwardSlider awardsProps={{ awards }} />
       </section>
     </section>
   );

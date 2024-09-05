@@ -1,47 +1,115 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { FaCarBattery } from "react-icons/fa";
-import CustomMultiSelect from "./CustomMultiSelect";
+import SupportedVehicleMakesSelect from "./SupportedVehicleMakesSelect";
+import ModelSelect from "./ModelSelect";
+import YearSelect from "./YearSelect";
+import axios from "axios";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import ThreeDotLoader from "../../../components/shared/Loaders/ThreeDotLoader";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
-const UpdateBatteryForm = ({
-  showVehicleFields,
-  categories,
-  technologyOptions,
-  formData,
-  handleSubmit,
-  handleChange,
-  handleFileChange,
-  handleTerminalLayoutChange,
-  handleCategoryChange,
-  handleTechnologyChange,
-  handleSupportedVehicleMakesChange,
-  handleVehicleModelsChange,
-  handleMakeYearsChange,
-}) => {
+const UpdateBatteryForm = ({ batteryUpdateProps }) => {
+  let {
+    showVehicleFields,
+    categories,
+    technologyOptions,
+    formData,
+    handleChange,
+    // handleFileChange,
+    handleCategoryChange,
+    handleTechnologyChange,
+    supportedVehicleModels,
+    setSupportedVehicleModels,
+    vehicleMakeYears,
+    setVehicleMakeYears,
+    supportedVehicleMakes,
+    setSupportedVehicleMakes,
+    batteryRefetch,
+  } = batteryUpdateProps;
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     battery_name = "",
     short_code = "",
-    brand_code = "",
-    item_code = "",
-    model = "",
+    material_code = "",
+    new_jis = "",
+    dry_weight = "",
+    wet_weight = "",
+    e_store_link = "",
+    brochure_link = "",
     imgurls = [],
-    terminal_layout = "",
     applicable_categories = [],
     technology = "",
+    price = "",
+    brand_code = "",
+    country_of_origin = "",
     supported_vehicle_makes = [],
     supported_vehicle_models = {},
-    make_years_models = {},
+    make_years = {},
   } = formData;
 
-  // Utility functions to safely access arrays
-  const getModels = (make) => Array.isArray(supported_vehicle_models[make])
-    ? supported_vehicle_models[make]
-    : [];
+  const [inputValue, setInputValue] = useState("");
+  const [modelInputValue, setModelInputValue] = useState("");
+  const [yearInputValue, setYearInputValue] = useState({});
 
-  const getYears = (make, model) => Array.isArray(make_years_models[make]?.[model])
-    ? make_years_models[make][model]
-    : [];
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setIsLoading(true);
+      const files = e.target.imgurls.files;
+      const formdata = new FormData();
+      formdata.append("short_code", e.target.short_code.value);
+      Array.from(files).forEach((image) => {
+        formdata.append("batteryImages", image);
+      });
+
+      const formattedData = {
+        ...formData,
+        supported_vehicle_makes: supportedVehicleMakes,
+        supported_vehicle_models: supportedVehicleModels,
+        make_years: vehicleMakeYears,
+      };
+
+      const dataRes = await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`,
+        formattedData,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      );
+      
+      const imgRes = await axios.patch(
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/batteries/upload-images/${short_code}`,
+        formdata,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
+      )
+
+      if (dataRes.status === 200 && imgRes.status === 200) {
+        toast.success(`${e.target.battery_name.value} updated successfully`);
+        batteryRefetch();
+      } else {
+        toast.error(`${e.target.battery_name.value} update failed!`);
+      }
+    } catch (error) {
+      console.error("Update failed:", error);
+      toast.error(error?.response?.data?.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -53,7 +121,6 @@ const UpdateBatteryForm = ({
           Battery Form
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
-          {/* Form Fields */}
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
               Battery Name:
@@ -80,6 +147,90 @@ const UpdateBatteryForm = ({
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
+              Material Code:
+            </label>
+            <input
+              type="text"
+              name="material_code"
+              value={material_code}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              New JIS:
+            </label>
+            <input
+              type="text"
+              name="new_jis"
+              value={new_jis}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Dry Weight:
+            </label>
+            <input
+              type="number"
+              name="dry_weight"
+              value={dry_weight}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Wet Weight:
+            </label>
+            <input
+              type="number"
+              name="wet_weight"
+              value={wet_weight}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              E-store Link:
+            </label>
+            <input
+              type="text"
+              name="e_store_link"
+              value={e_store_link}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Brochure Link:
+            </label>
+            <input
+              type="text"
+              name="brochure_link"
+              value={brochure_link}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
+              Price:
+            </label>
+            <input
+              type="number"
+              name="price"
+              value={price}
+              onChange={handleChange}
+              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-small text-gray-800 pb-1">
               Brand Code:
             </label>
             <input
@@ -92,30 +243,17 @@ const UpdateBatteryForm = ({
           </div>
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
-              Item Code:
+              Country of Origin:
             </label>
             <input
               type="text"
-              name="item_code"
-              value={item_code}
-              onChange={handleChange}
-              className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-small text-gray-800 pb-1">
-              Model:
-            </label>
-            <input
-              type="text"
-              name="model"
-              value={model}
+              name="country_of_origin"
+              value={country_of_origin}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />
           </div>
 
-          {/* File Inputs */}
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
               Upload Image:
@@ -124,23 +262,11 @@ const UpdateBatteryForm = ({
               type="file"
               name="imgurls"
               multiple
-              onChange={handleFileChange}
-              className="file-input w-full input-sm rounded-sm max-w-xs bg-white text-black max-h-10"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-small text-gray-800 pb-1">
-              Upload Terminal Layout:
-            </label>
-            <input
-              type="file"
-              name="terminal_layout"
-              onChange={handleTerminalLayoutChange}
+              accept="image/png,image/jpg,image/jpeg"
               className="file-input w-full input-sm rounded-sm max-w-xs bg-white text-black max-h-10"
             />
           </div>
 
-          {/* Select Inputs */}
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
               Applicable Categories:
@@ -157,71 +283,110 @@ const UpdateBatteryForm = ({
               classNamePrefix="select"
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-small text-gray-800 pb-1">
-              Technology:
-            </label>
-            <Select
-              name="technology"
-              options={technologyOptions}
-              value={technologyOptions.find(
-                (option) => option.value === technology
-              )}
-              onChange={handleTechnologyChange}
-              className="basic-select bg-gray-200 text-black text-small"
-              classNamePrefix="select"
-            />
-          </div>
 
-          {/* Conditional Vehicle Fields */}
           {showVehicleFields && (
             <>
               <div className="mb-4">
                 <label className="block text-small text-gray-800 pb-1">
-                  Supported Vehicle Makes:
+                  Technology:
                 </label>
-                <CustomMultiSelect
-                  options={supported_vehicle_makes}
-                  setOptions={(newMakes) => handleSupportedVehicleMakesChange(newMakes)}
-                  placeholder="Type and press space to add"
+                <Select
+                  name="technology"
+                  options={technologyOptions}
+                  value={technologyOptions.find(
+                    (option) => option.value === technology
+                  )}
+                  onChange={handleTechnologyChange}
+                  className="basic-select bg-gray-200 text-black text-small"
+                  classNamePrefix="select"
                 />
               </div>
-              {supported_vehicle_makes.map((make, index) => (
+              <div className="mb-4">
+                <label className="block text-small text-gray-800 pb-1">
+                  Supported Vehicle Makes:
+                </label>
+                <SupportedVehicleMakesSelect
+                  prompts={{
+                    setInputValue,
+                    inputValue,
+                    setSupportedVehicleMakes,
+                    supportedVehicleMakes,
+                    supportedVehicleModels,
+                    setSupportedVehicleModels,
+                    vehicleMakeYears,
+                    setVehicleMakeYears,
+                  }}
+                  placeholder="press enter to add supported makes"
+                />
+              </div>
+              {supportedVehicleMakes?.map((make, index) => (
                 <div key={index} className="mb-4">
                   <label className="block text-small text-gray-800 pb-1">
                     {make} Models:
                   </label>
-                  <CustomMultiSelect
-                    options={getModels(make)}
-                    setOptions={(newModels) => handleVehicleModelsChange(make, newModels)}
-                    placeholder="Type and press space to add"
+                  <ModelSelect
+                    props={{
+                      make,
+                      supportedVehicleModels,
+                      setSupportedVehicleModels,
+                      modelInputValue,
+                      setModelInputValue,
+                      supportedVehicleMakes,
+                      setSupportedVehicleMakes,
+                      vehicleMakeYears,
+                      setVehicleMakeYears,
+                    }}
                   />
-                  {getModels(make).map((model, modelIndex) => (
-                    <div key={modelIndex} className="mt-2 ml-4">
-                      <label className="block text-small text-gray-800 pb-1">
-                        {model} Years:
-                      </label>
-                      <CustomMultiSelect
-                        options={getYears(make, model)}
-                        setOptions={(newYears) => handleMakeYearsChange(make, model, newYears)}
-                        placeholder="Type and press space to add"
-                      />
-                    </div>
-                  ))}
+
+                  <div>
+                    {supportedVehicleModels
+                      ?.find((vehicle) => vehicle.make === make)
+                      ?.models?.map((model, modelIndex) => {
+                        return (
+                          <div key={modelIndex} className="mt-2 ml-4">
+                            <label className="block text-small text-gray-800 pb-1">
+                              {model} Years:
+                            </label>
+                            <YearSelect
+                              props={{
+                                make,
+                                model,
+                                yearInputValue,
+                                setYearInputValue,
+                                setVehicleMakeYears,
+                                vehicleMakeYears,
+                              }}
+                            />
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
               ))}
             </>
           )}
         </div>
 
-        <div className="text-center">
-          <button
-            type="submit"
-            className="btn btn-sm btn-ghost bg-primary text-white hover:bg-blue-800"
-          >
-            Update Battery <FaCarBattery />
-          </button>
-        </div>
+        {isLoading ? (
+          <ThreeDotLoader />
+        ) : (
+          <div className="mt-4 flex justify-between">
+            <button
+              onClick={() => navigate("/dashboard/all-battery-details-list")}
+              className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
+            >
+              <IoMdArrowRoundBack className="inline-block mr-2" />
+              Batteries Table
+            </button>
+            <button
+              type="submit"
+              className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
+            >
+              <FaCarBattery className="inline-block mr-2" />
+              Update Battery
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );

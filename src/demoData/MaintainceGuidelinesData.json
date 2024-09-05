@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "title": "Maintenance Guidelines",
+        "description": "Standard Maintenance means the first maintenance phase for a product. Standard maintenance begins with the delivery of the respective product and is guaranteed for a minimum period of three (3) years (end of standard maintenance)."
+    },
+    {
+        "id": 2,
+        "title": "Warranty Information",
+        "description": "The warranty period for our products is two (2) years from the date of purchase. This warranty covers any defects in materials or workmanship under normal use during the warranty period."
+    },
+    {
+        "id": 3,
+        "title": "Safety Precautions",
+        "description": "Always follow safety guidelines when using our products. Ensure the product is used in accordance with the user manual, and avoid exposing it to extreme conditions. Safety precautions are crucial to prevent accidents and injuries."
+    },
+    {
+        "id": 4,
+        "title": "Installation Instructions",
+        "description": "Proper installation is essential for optimal performance. Follow the detailed installation instructions provided in the manual to ensure the product is installed correctly and safely. Incorrect installation can lead to operational issues and void the warranty."
+    },
+    {
+        "id": 5,
+        "title": "User Manual",
+        "description": "The user manual provides comprehensive information about the product, including setup, operation, and troubleshooting tips. Refer to the user manual for guidance on how to use the product effectively and maintain it in good condition."
+    }
+]

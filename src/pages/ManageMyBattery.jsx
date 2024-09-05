@@ -1,19 +1,19 @@
-import ManageMyBatteryBanner from "../assets/images/ManageMyBatteryImages/Manage_My_Battery_Registration_Page_Banner.jpg";
+import LocallySavedBanner from "../assets/images/BannerImages/WarrantyAndServicesPage/Manage_My_Battery_Registration_Page_Banner.jpg";
 import Accordion from "../components/ManageMyBattery/Accordion";
 import CheckWarranty from "../components/ManageMyBattery/CheckWarranty";
 import Faq from "../components/ManageMyBattery/BatteryFaq";
 import WarrantyApplicationForm from "../components/ManageMyBattery/WarrantyApplicationForm";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
 import HomeDeliverySection from "../components/ManageMyBattery/HomeDeliverySection";
+import BannerImage from "../components/shared/BannerImage";
 const ManageMyBattery = () => {
+  // Key for banner image
+  const pageKey = "warranty";
+
   return (
     <section>
       <div>
-        <img
-          src={ManageMyBatteryBanner}
-          className="w-full"
-          alt="A picture represnting batter with waranty paper on the left side, text in the middle and another new battery on the right side."
-        />
+        <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
       </div>
       <section className={allDeviceMaxWidth}>
         <div className="text-center text-primary my-10">

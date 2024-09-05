@@ -1,43 +1,38 @@
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../components/shared/Loaders/Loader";
 import LocationDetailsTable from "../../../components/Dashboard/ContactUsLocationDetails/LocationDetailsTable";
-import { MdDeleteOutline } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
-import { useState } from "react";
 import { LuRefreshCcw } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import AddALocation from "./AddALocation";
+import FetchErrorMessage from "../../../components/shared/Error/FetchErrorMessage";
 
 const AllLocations = () => {
-  const [selectedIds, setSelectedIds] = useState([]);
   const url = `${import.meta.env.VITE_BASE_URL}/contact/global-locations`;
 
-  const { data: allLocationDetails = [], isLoading, error, refetch } = useQuery({
+  const {
+    data: allLocationDetails = [],
+    isLoading,
+    error,
+    refetch,
+  } = useQuery({
     queryKey: ["allLocationDetails"],
     queryFn: async () => {
       const res = await fetch(url);
       if (!res.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
       const data = await res.json();
       return data;
     },
-    // refetchOnWindowFocus: true,
+    refetchOnWindowFocus: true,
   });
-
-  const handleDelete = async () => {
-    try {
-      await Promise.all(selectedIds.map(id => 
-        fetch(`${url}/${id}`, { method: 'DELETE' })
-      ));
-      setSelectedIds([]); // Clear selected IDs after deletion
-      await refetch(); // Refresh the list after deletion
-    } catch (error) {
-      console.error("Error deleting locations:", error);
-    }
-  };
 
   const handleRefresh = async () => {
     await refetch();
+  };
+
+  const openModal = () => {
+    document.getElementById("my_modal_69").open = true;
   };
 
   if (isLoading) {
@@ -45,27 +40,21 @@ const AllLocations = () => {
   }
 
   if (error) {
-    return <div>Error fetching data</div>;
+    return<FetchErrorMessage/>
   }
 
   return (
     <div>
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
-        Locations Table
+      <h1 className="flex justify-center text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+       Contact Locations <FaLocationDot className="mt-2 ml-2" />
       </h1>
-      <div className="flex gap-4 justify-between">
+      <div className="flex gap-4 justify-between mb-3">
         <div className="flex gap-5">
-          <Link to="/dashboard/add-a-location">
-            <button className="flex gap-2 btn btn-xs  border-0  hover:bg-sky-700 text-white bg-sky-400">
-              Add A Location <FaLocationDot />
-            </button>
-          </Link>
           <button
-            className="flex gap-2 btn btn-xs bg-red-500 border-0 text-white hover:bg-red-700 hover:text-white"
-            onClick={handleDelete}
+            className="flex gap-2 btn btn-xs bg-primary hover:bg-secondary text-white"
+            onClick={openModal}
           >
-            Delete
-            <MdDeleteOutline />
+            Add A Location <FaLocationDot />
           </button>
         </div>
         <div>
@@ -78,9 +67,8 @@ const AllLocations = () => {
           </button>
         </div>
       </div>
-      <LocationDetailsTable
-        prompts={{ allLocationDetails, selectedIds, setSelectedIds }}
-      />
+      <LocationDetailsTable prompts={{ allLocationDetails, refetch }} />
+      <AddALocation addLocationModalProps = {{refetch}}/>
     </div>
   );
 };

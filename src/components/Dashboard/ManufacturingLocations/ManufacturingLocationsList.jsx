@@ -4,33 +4,58 @@ import toast from "react-hot-toast";
 import { MdDeleteForever } from "react-icons/md";
 import UpdateManufacturingLocationsModal from "./UpdateManufacturingLocationsModal";
 import FetchErrorMessage from "../../shared/Error/FetchErrorMessage";
+import { FaEdit } from "react-icons/fa";
+import Cookies from "js-cookie";
 
 const ManufacturingLocationsList = ({ manufacturingProps }) => {
-  const [selectedId, setSelectedId] = useState();
+  const { manufacturingDetails, refetch } = manufacturingProps;
+
+  const [selectedId, setSelectedId] = useState(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [readMore, setReadMore] = useState(false);
-  const { manufacturingDetails, setIsLoading, refetch } = manufacturingProps;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage] = useState(4); // Number of items per page
 
   const handleDelete = async (id) => {
     try {
-      setIsLoading(true);
       const body = manufacturingDetails.find((details) => details.id === id);
       const res = await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/manufacturing-locations/${id}`,
-        { data: body }
+        {
+          data: body,
+          headers: {
+            Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+          },
+        }
       );
 
       if (res.status === 200) {
-        toast.success("Record deleted successfully");
+        setDeleteModalOpen(false);
         refetch();
-        setIsLoading(false);
+        toast.success("Record deleted successfully");
       }
     } catch (error) {
-      setIsLoading(false);
-      // console.log(error);
       toast.error("Something error occurred!");
     }
   };
-  // console.log(manufacturingDetails);
+
+  const openDeleteModal = (id) => {
+    setSelectedId(id);
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+    setSelectedId(null);
+  };
+
+  // Pagination calculations
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentData = manufacturingDetails?.slice(indexOfFirstData, indexOfLastData);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -46,12 +71,13 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
                 <th>Description</th>
                 <th>Image</th>
                 <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
-              {manufacturingDetails.map((details, i) => (
+              {currentData && currentData.map((details, i) => (
                 <tr key={details.id}>
-                  <th>{i + 1}</th>
+                  <th>{indexOfFirstData + i + 1}</th>
                   <td>{details.title}</td>
                   <td>{details.location}</td>
                   <td>
@@ -81,38 +107,22 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
                     )}
                   </td>
                   <td>
-                    <img src={details.imageurl} alt="" className="w-96" />
+                    <img src={details.imageurl} alt="" className="w-[384px]" />
                   </td>
                   <td title="Edit">
                     <button
                       className=""
                       onClick={() => {
-                        {
-                          document.getElementById("my_modal_3").showModal();
-                          setSelectedId(details.id);
-                        }
+                        document.getElementById("my_modal_3").open = true;
+                        setSelectedId(details.id);
                       }}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="size-6 hover:cursor-pointer hover:text-gray-700"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-                        />
-                      </svg>
+                      <FaEdit />
                     </button>
                     <UpdateManufacturingLocationsModal
                       updateModalProps={{
                         selectedId,
                         manufacturingDetails,
-                        setIsLoading,
                         refetch,
                       }}
                     />
@@ -120,7 +130,7 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
                   <td>
                     <button
                       className="btn btn-xs border-0 bg-red-400"
-                      onClick={() => handleDelete(details.id)}
+                      onClick={() => openDeleteModal(details.id)}
                     >
                       <MdDeleteForever className="text-white" />
                     </button>
@@ -131,6 +141,50 @@ const ManufacturingLocationsList = ({ manufacturingProps }) => {
           </table>
         )}
       </div>
+      {/* Pagination */}
+      {manufacturingDetails && manufacturingDetails.length > dataPerPage && (
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[
+              ...Array(Math.ceil(manufacturingDetails.length / dataPerPage)).keys(),
+            ].map((number) => (
+              <input
+                key={number}
+                className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                type="radio"
+                name="options"
+                aria-label={number + 1}
+                checked={currentPage === number + 1}
+                onChange={() => paginate(number + 1)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+      {/* Delete Confirmation Modal */}
+      {deleteModalOpen && (
+        <dialog open className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box bg-white text-red-500">
+            <h2 className="text-lg ">
+              You want to remove this manufacturing location?
+            </h2>
+            <div className="modal-action">
+              <button
+                className="btn bg-red-500 text-white border-0 btn-ghost  btn-xs hover:bg-red-700 hover:text-white"
+                onClick={() => handleDelete(selectedId)}
+              >
+                Yes, Remove
+              </button>
+              <button
+                className="btn  text-red-500 border-0  btn-ghost  btn-xs bg-gray-200"
+                onClick={closeDeleteModal}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

@@ -1,60 +1,49 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../../components/Products/Product";
-import { Hourglass } from "react-loader-spinner";
 import axios from "axios";
-import BangladeshPageBanner from "../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
+import BangladeshPageBanner from "../../assets/images/BannerImages/ProductsPage/Bangladesh-products-banner-1.jpg";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 
 const CategoryWiseBatteries = () => {
   const { category_name } = useParams();
   const [batteries, setBatteries] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchBatteries = async () => {
-      setIsLoading(true);
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/categories/${category_name}`
+        `${import.meta.env.VITE_BASE_URL}/categories/name/${category_name}`
       );
       setBatteries(response.data);
-      setIsLoading(false);
     };
     fetchBatteries();
   }, [category_name]);
 
-  console.log(`All batteries of ${category_name} : `, batteries);
+  const groupBatteriesByBrand = (batteries) => {
+    const grouped = batteries?.reduce((acc, battery) => {
+      const { brand_code } = battery;
 
-  const getProductsByBrand = (batteries, brandCode) => {
-    return batteries?.filter((battery) => battery?.brand_code === brandCode);
+      if (!acc[brand_code]) {
+        acc[brand_code] = {
+          id: Object.keys(acc).length + 1,
+          brandName: brand_code,
+          products: [],
+        };
+      }
+      acc[brand_code]?.products?.push(battery);
+      return acc;
+    }, {});
+    return Object.values(grouped);
   };
 
-  const brandAndProducts = [
-    {
-      id: 1,
-      brandName: "LUCAS",
-      products: getProductsByBrand(batteries, "LUCAS"),
-    },
-    {
-      id: 2,
-      brandName: "GLOBATT",
-      products: getProductsByBrand(batteries, "GLOBATT"),
-    },
-    {
-      id: 3,
-      brandName: "DELTA",
-      products: getProductsByBrand(batteries, "DELTA"),
-    },
-    {
-      id: 4,
-      brandName: "SPARK",
-      products: getProductsByBrand(batteries, "SPARK"),
-    },
-  ];
+  const batteriesGroupedByBrand = groupBatteriesByBrand(batteries);
 
-  // Filter out brands with no products
-  const filteredBrandAndProducts = brandAndProducts.filter(
-    (brand) => brand.products.length > 0
+  const filteredBrandAndProducts = Object.values(batteriesGroupedByBrand)?.map(
+    (brand, index) => ({
+      id: index + 1,
+      brandName: brand?.brandName,
+      products: brand?.products,
+    })
   );
 
   return (
@@ -71,37 +60,21 @@ const CategoryWiseBatteries = () => {
       </div>
 
       <section className={allDeviceMaxWidth}>
-        {isLoading ? (
-          <div className="flex justify-center my-20">
-            <Hourglass
-              visible={true}
-              height="80"
-              width="80"
-              ariaLabel="hourglass-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              colors={["#306cce", "#72a1ed"]}
-            />
+        {filteredBrandAndProducts.map((brand) => (
+          <div className="my-10" key={brand.id}>
+            <div>
+              <p className="text-semi_large text-primary font-bold mb-2">
+                {brand?.brandName}
+              </p>
+              <p className="border border-primary mb-4"></p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+              {brand.products.map((product) => (
+                <Product key={product.id} productInfo={product} />
+              ))}
+            </div>
           </div>
-        ) : (
-          <>
-            {filteredBrandAndProducts.map((brand) => (
-              <div className="my-10" key={brand.id}>
-                <div>
-                  <p className="text-semi_large text-primary font-bold mb-2">
-                    {brand?.brandName}
-                  </p>
-                  <p className="border border-primary mb-4"></p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
-                  {brand.products.map((product) => (
-                    <Product key={product.id} productInfo={product} />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </>
-        )}
+        ))}
       </section>
     </section>
   );

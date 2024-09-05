@@ -1,129 +1,226 @@
-.Home-BG{
-    background-image: url('../assets/images/Texture2.png');
+.Home-BG {
+  background-image: url("../assets/images/Texture2.png");
 }
-.Home-bg{
-    background-image: url('../assets/images/Texture.png');
-}
-
-.Home-Slider{
-    position: relative;
+.Home-bg {
+  background-image: url("../assets/images/Texture.png");
 }
 
-.icon-BG{
-    width: 100%;
-    background-image: url('../assets/images/HomePage/Icon-Bg.png'), url('../assets/images/HomePage/Icon-Bg-texture.png');
-    background-blend-mode: darken;
-    background-repeat: round;
-    background-size: cover;
-    top: -34px;
-    z-index: 10;
-    position: relative;
-    padding-bottom: 66px;
-}
-.icon-BG .slick-prev{
-    left: -26px;
-}
-.icon-BG .slick-prev::before{
-    font-size: 24px;
-    color: #deebf6;
-    line-height: 0;
-    opacity: 1;
-}
-.icon-BG .slick-next{
-    right: -21px;
-}
-.icon-BG .slick-next::before{
-    font-size: 24px;
-    color: #deebf6;
-    line-height: 0;
-    opacity: 1;
+.Home-Slider {
+  position: relative;
 }
 
-.our-brands{
-    width: 100%;
-    height: 440px;
-    background-image: url("../assets/images/HomePage/side-icon-left.png"), url("../assets/images/HomePage/side-icon-right.png");
-    background-repeat: no-repeat;
-    background-position: left, right;
+.icon-BG {
+  width: 100%;
+  background-image: url("../assets/images/HomePage/Icon-Bg.png"),
+    url("../assets/images/HomePage/Icon-Bg-texture.png");
+  background-blend-mode: darken;
+  background-repeat: round;
+  background-size: cover;
+  top: -34px;
+  z-index: 10;
+  position: relative;
+  padding-bottom: 66px;
+}
+.icon-BG-Mobile {
+  width: 100%;
+  background-image: url("../assets/images/HomePage/Icon-BgMobile.png"),
+    url("../assets/images/HomePage/Icon-Bg-texture.png");
+  background-blend-mode: darken;
+  background-repeat: round;
+  background-size: cover;
+  top: -34px;
+  z-index: 10;
+  position: relative;
+  padding-bottom: 66px;
+}
+.icon-BG .slick-prev {
+  left: -26px;
+}
+.icon-BG .slick-prev::before {
+  font-size: 24px;
+  color: #deebf6;
+  line-height: 0;
+  opacity: 1;
+}
+.icon-BG .slick-next {
+  right: -21px;
+}
+.icon-BG .slick-next::before {
+  font-size: 24px;
+  color: #deebf6;
+  line-height: 0;
+  opacity: 1;
 }
 
-.Home-Slider .slick-arrow{
-    display: none !important;
+.our-brands {
+  width: 100%;
+  height: 440px;
+  background-image: url("../assets/images/HomePage/side-icon-left.png"),
+    url("../assets/images/HomePage/side-icon-right.png");
+  background-repeat: no-repeat;
+  background-position: left, right;
 }
 
-.home-counter{
-    width: 100%;
-    background-color: #005cab;
-    background-image: url('../assets/images/HomePage/Icon-Bg-texture.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-blend-mode: inherit;
+.Home-Slider .slick-arrow {
+  display: none !important;
+}
+
+.home-counter {
+  width: 100%;
+  background-color: #005cab;
+  background-image: url("../assets/images/HomePage/Icon-Bg-texture.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: inherit;
 }
 
 .slick-dots li {
-    width: 4px;
-    height: 4px;
+  width: 4px;
+  height: 4px;
 }
-.slick-prev{
-    left: -40px;
+.slick-prev {
+  left: -40px;
 }
-.slick-prev::before{
-    font-size: 40px;
-    color: #005cab;
-    line-height: 0;
-    opacity: 1;
+.slick-prev::before {
+  font-size: 40px;
+  color: #005cab;
+  line-height: 0;
+  opacity: 1;
 }
-.slick-next{
-    right: -20px;
+.slick-next {
+  right: -20px;
 }
-.slick-next::before{
-    font-size: 40px;
-    color: #005cab;
-    line-height: 0;
-    opacity: 1;
-}
-
-.HomeSocial iframe{
-    width: 560px;
-    height: 315px;
-    margin-left: auto;
-    margin-right: auto;
+.slick-next::before {
+  font-size: 40px;
+  color: #005cab;
+  line-height: 0;
+  opacity: 1;
 }
 
-.HomeSocialButtom{
-    padding: 6px 10px;
-    background-color: #f2f2f2;
-    color: #167ac6;
-    font-weight: 600;
+.HomeSocial iframe {
+  width: 560px;
+  height: 315px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.HomeSocialButtomSelect{
-    padding: 6px 10px;
-    background-color: #fff;
-    color: #167ac6;
-    font-weight: 600;
+
+.HomeSocialButtom {
+  padding: 6px 10px;
+  background-color: #f2f2f2;
+  color: #167ac6;
+  font-weight: 600;
+}
+.HomeSocialButtomSelect {
+  padding: 6px 10px;
+  background-color: #fff;
+  color: #167ac6;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 767px) {
-    .icon-BG{
-        top: -46px;
-        z-index: 0;
-        padding-bottom: 46px;
-    }
-    .our-brands{
-        background-image: none;
-        height: 512px;
-    }
-    .HomeSocial iframe{
-        width: 380px;
-        height: 220px;
-    }
-    .slick-next {
-        right: 22px;
-    }
-    .slick-next::before, .slick-prev::before {
-        font-size: 26px;
-    }
-    .slick-prev{
-        left: 12px;
-    }
+  .icon-BG {
+    top: -46px;
+    z-index: 0;
+    padding-bottom: 46px;
+  }
+  .our-brands {
+    background-image: none;
+    height: 512px;
+  }
+  .HomeSocial iframe {
+    width: 380px;
+    height: 220px;
+  }
+  .slick-next {
+    right: 22px;
+  }
+  .slick-next::before,
+  .slick-prev::before {
+    font-size: 26px;
+  }
+  .slick-prev {
+    left: 12px;
+  }
+}
+
+/* code for mobile device find battery section bg img  */
+
+/* General mobile devices */
+@media screen and (max-width: 480px) {
+  .icon-BG {
+    width: 100%;
+    background-image: url("../assets/images/HomePage/Icon-BgMobile.png"),
+      url("../assets/images/HomePage/Icon-Bg-texture.png");
+    background-blend-mode: darken;
+    background-repeat: round;
+    background-size: cover;
+    top: 0;
+    z-index: 10;
+    position: relative;
+    padding-bottom: 66px;
+  }
+}
+
+/* Small phones (portrait, under 320px) */
+@media screen and (max-width: 320px) {
+  .icon-BG {
+    width: 100%;
+    background-image: url("../assets/images/HomePage/Icon-BgMobile.png"),
+      url("../assets/images/HomePage/Icon-Bg-texture.png");
+    background-blend-mode: darken;
+    background-repeat: round;
+    background-size: cover;
+    top: 0;
+    z-index: 10;
+    position: relative;
+    padding-bottom: 66px;
+  }
+}
+
+/* Larger phones (portrait, between 375px and 425px) */
+@media screen and (min-width: 376px) and (max-width: 425px) {
+  .icon-BG {
+    width: 100%;
+    background-image: url("../assets/images/HomePage/Icon-BgMobile.png"),
+      url("../assets/images/HomePage/Icon-Bg-texture.png");
+    background-blend-mode: darken;
+    background-repeat: round;
+    background-size: cover;
+    top: 0;
+    z-index: 10;
+    position: relative;
+    padding-bottom: 66px;
+  }
+}
+
+/* Small tablets (landscape, between 426px and 768px) */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .icon-BG {
+    width: 100%;
+    background-image: url("../assets/images/HomePage/Icon-BgMobile.png"),
+      url("../assets/images/HomePage/Icon-Bg-texture.png");
+    background-blend-mode: darken;
+    background-repeat: round;
+    background-size: cover;
+    top: 0;
+    z-index: 10;
+    position: relative;
+    padding-bottom: 66px;
+  }
+}
+
+/* Tablets and small desktop devices (between 768px and 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .icon-BG {
+    width: 100%;
+    background-image: url("../assets/images/HomePage/Icon-BgMobile.png"),
+      url("../assets/images/HomePage/Icon-Bg-texture.png");
+    background-blend-mode: darken;
+    background-repeat: round;
+    background-size: cover;
+    top: 0;
+    z-index: 10;
+    position: relative;
+    padding-bottom: 66px;
+  }
 }

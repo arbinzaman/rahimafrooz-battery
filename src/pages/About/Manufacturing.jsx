@@ -1,7 +1,8 @@
-import ManufacturingBanner from "../../assets/images/AboutPage/Manufacturing/Manufacturing.png";
+import LocallySavedBanner from "../../assets/images/BannerImages/AboutPage/Manufacturing.jpg";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import BannerImage from "../../components/shared/BannerImage";
 
 const Manufacturing = () => {
   const [details, setDetails] = useState([]);
@@ -12,11 +13,13 @@ const Manufacturing = () => {
         setDetails(res.data);
       });
   }, []);
+
+  // Key for Banner Image
+  const pageKey = "manufacturing";
+
   return (
     <section>
-      <div>
-        <img src={ManufacturingBanner} alt="Manufacturing Banner" />
-      </div>
+      <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
       <section
         className={`${allDeviceMaxWidth} grid grid-cols-1 lg:grid-cols-2 gap-20 items-start my-5 text-justify`}
       >

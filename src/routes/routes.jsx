@@ -33,10 +33,26 @@ import AllCerificates from "../pages/Dashboard/Certificates/AllCerificates";
 import AddACertificateData from "../pages/Dashboard/Certificates/AddACertificateData";
 import AllFaqs from "../pages/Dashboard/Faq/AllFaq";
 import AllUsers from "../pages/Dashboard/Users/AllUsers";
-import AddAUser from "../pages/Dashboard/Users/AddAUser";
 import AddAFaq from "../pages/Dashboard/Faq/AddAFaq";
 import UpdateBattery from "../pages/Dashboard/Batteries/UpdateBattery";
-import CustomMultiSelect from "../components/Dashboard/BatteryDetails/CustomMultiSelect";
+import PrivateRoute from "./PrivateRoutes/PrivateRoute";
+import RestricIfLoggedInRoute from "./RestricIfLoggedInRoute/RestricIfLoggedInRoute";
+import DealerLocationAndDetailsList from "../pages/Dashboard/DealerLocation&Details/DealerLocationAndDetailsList";
+import AllBrandImg from "../pages/Dashboard/BrandsImage/AllBrandImg";
+import StoragePowerSection from "../pages/Dashboard/StoragePower/StoragePowerSection";
+import MultoSelect from "../components/Dashboard/MultiSelect";
+import AllGlobalPresenceCountry from "../pages/Dashboard/GlobalPresence/AllGlobalPresenceCountry";
+import Awards from "../pages/Dashboard/Awards/Awards";
+import AllNews from "../pages/Dashboard/News/AllNews";
+import Profile from "../pages/Dashboard/UserProfile/Profile";
+import AllReviews from "../pages/Dashboard/Review/AllReviews";
+import ForgotPass from "../pages/Dashboard/ForgotPass";
+import AllWarrantyService from "../pages/Dashboard/WarrantyService/AllWarrantyService";
+import News from "../pages/News";
+import SingleNewsCard from "../components/News/SingleNewsCard";
+import AllBannerImg from "../pages/Dashboard/BannerImage/AllBannerImg";
+import AllBoardMembers from "../pages/Dashboard/FounderAndBoardMembers/AllBoardMembers";
+import AllInstructions from "../pages/Dashboard/Instructions/AllInstructions";
 
 const routes = createBrowserRouter([
   {
@@ -104,6 +120,14 @@ const routes = createBrowserRouter([
         element: <FindDealer />,
       },
       {
+        path: "/News",
+        element: <News />,
+      },
+      {
+        path: "/News/:id",
+        element: <SingleNewsCard />,
+      },
+      {
         path: "/manufacturing",
         element: <Manufacturing />,
       },
@@ -115,11 +139,27 @@ const routes = createBrowserRouter([
   },
   {
     path: "/admin-login",
-    element: <Login />,
+    element: (
+      <RestricIfLoggedInRoute>
+        <Login />
+      </RestricIfLoggedInRoute>
+    ),
+  },
+  {
+    path: "/forgot-password",
+    element: (
+      <RestricIfLoggedInRoute>
+        <ForgotPass />
+      </RestricIfLoggedInRoute>
+    ),
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard",
@@ -134,7 +174,11 @@ const routes = createBrowserRouter([
         element: <DealerApplicationList />,
       },
       {
-        path: "/dashboard/all-battery-details-list",
+        path: "/dashboard/dealers-location-and-details",
+        element: <DealerLocationAndDetailsList />,
+      },
+      {
+        path: "/dashboard/all-battery-details",
         element: <AllBatteryDetails />,
       },
       {
@@ -190,12 +234,52 @@ const routes = createBrowserRouter([
         element: <AllUsers />,
       },
       {
-        path: "/dashboard/add-a-user",
-        element: <AddAUser />,
+        path: "/dashboard/brand-image",
+        element: <AllBrandImg />,
       },
       {
         path: "/dashboard/custom-multi-select",
-        element: <CustomMultiSelect />,
+        element: <MultoSelect />,
+      },
+      {
+        path: "/dashboard/storage-power",
+        element: <StoragePowerSection />,
+      },
+      {
+        path: "/dashboard/global-presence-country-list",
+        element: <AllGlobalPresenceCountry />,
+      },
+      {
+        path: "/dashboard/awards",
+        element: <Awards />,
+      },
+      {
+        path: "/dashboard/news",
+        element: <AllNews />,
+      },
+      {
+        path: "/dashboard/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/dashboard/reviews",
+        element: <AllReviews />,
+      },
+      {
+        path: "/dashboard/warranty-service",
+        element: <AllWarrantyService />,
+      },
+      {
+        path: "/dashboard/banner-image",
+        element: <AllBannerImg />,
+      },
+      {
+        path: "/dashboard/instructions",
+        element: <AllInstructions />,
+      },
+      {
+        path: "/dashboard/board-members",
+        element: <AllBoardMembers />,
       },
     ],
   },

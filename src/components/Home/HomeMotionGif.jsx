@@ -1,6 +1,5 @@
-import React from 'react'
 import homeMotionGif from "../../assets/images/HomePage/rahimafrooz-motion-Gif.gif";
-import motionMobileGif from "../../assets/images/HomePage/motion-mobile-Gif.gif";
+import motionMobileGif from "../../assets/images/HomePage/milstone_motion mobile_gif_30_sec.gif";
 import "../../styles/Home.css"
 
 const HomeMotionGif = () => {

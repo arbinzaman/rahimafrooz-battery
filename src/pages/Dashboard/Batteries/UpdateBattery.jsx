@@ -9,18 +9,26 @@ import toast from "react-hot-toast";
 
 const UpdateBattery = () => {
   const { short_code } = useParams();
+  const [supportedVehicleMakes, setSupportedVehicleMakes] = useState([]);
+  const [supportedVehicleModels, setSupportedVehicleModels] = useState([]);
+  let [vehicleMakeYears, setVehicleMakeYears] = useState([]);
 
   const fetchBatteryDetails = async ({ queryKey }) => {
     const [_key, { short_code }] = queryKey;
     const response = await axios.get(
-      `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries/${short_code}`
+      `${import.meta.env.VITE_BASE_URL}/batteries/${short_code}`
     );
+    // console.log(response.data);
+    setSupportedVehicleMakes(response.data.supported_vehicle_makes);
+    setSupportedVehicleModels(response.data.supported_vehicle_models);
+    setVehicleMakeYears(response.data.make_years);
+    setFormData(response.data);
     return response.data;
   };
 
   const fetchCategories = async () => {
     const response = await axios.get(
-      "https://rahimafrooz-battery-backend.vercel.app/api/v1/categories/"
+      `${import.meta.env.VITE_BASE_URL}/categories`
     );
     if (response.status !== 200) {
       throw new Error("Network response was not ok");
@@ -32,6 +40,7 @@ const UpdateBattery = () => {
     data: batteryDetails,
     error: batteryError,
     isLoading: batteryLoading,
+    refetch: batteryRefetch,
   } = useQuery({
     queryKey: ["batteryDetails", { short_code }],
     queryFn: fetchBatteryDetails,
@@ -41,10 +50,15 @@ const UpdateBattery = () => {
     data: categoriesData,
     error: categoriesError,
     isLoading: categoriesLoading,
+    refetch: categoryRefetch,
   } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategories,
   });
+
+  // console.log(supportedVehicleMakes);
+  // console.log(supportedVehicleModels);
+  // console.log(vehicleMakeYears);
 
   const [formData, setFormData] = useState({
     battery_name: "",
@@ -69,26 +83,22 @@ const UpdateBattery = () => {
     technology: "",
     supported_vehicle_makes: [],
     supported_vehicle_models: {},
-    make_years_models: {},
+    make_years: {},
   });
 
-  useEffect(() => {
-    if (batteryDetails) {
-      setFormData(batteryDetails);
-    }
-  }, [batteryDetails]);
-
   if (batteryLoading || categoriesLoading) return <Loader />;
+
   if (batteryError) {
     toast.error(batteryError.message);
     return <div>Error: {batteryError.message}</div>;
   }
+
   if (categoriesError) {
     toast.error(categoriesError.message);
     return <div>Error: {categoriesError.message}</div>;
   }
 
-  const categories = categoriesData.map((category) => ({
+  const categories = categoriesData?.map((category) => ({
     value: category.category_name,
     label: category.category_name,
   }));
@@ -117,7 +127,7 @@ const UpdateBattery = () => {
 
   const handleTerminalLayoutChange = (e) => {
     const files = Array.from(e.target.files);
-    const fileUrls = files.map((file) => URL.createObjectURL(file));
+    const fileUrls = files?.map((file) => URL.createObjectURL(file));
     setFormData((prev) => ({
       ...prev,
       terminal_layout: fileUrls[0],
@@ -126,7 +136,7 @@ const UpdateBattery = () => {
 
   const handleCategoryChange = (selectedOptions) => {
     const selectedCategories = selectedOptions
-      ? selectedOptions.map((option) => option.value)
+      ? selectedOptions?.map((option) => option.value)
       : [];
     setFormData((prev) => ({
       ...prev,
@@ -141,108 +151,6 @@ const UpdateBattery = () => {
     }));
   };
 
-  const handleSupportedVehicleMakesChange = (e) => {
-    const makes = e.target.value.split(",").map((make) => make.trim());
-    setFormData((prev) => ({
-      ...prev,
-      supported_vehicle_makes: makes,
-      supported_vehicle_models: {},
-      make_years_models: {},
-    }));
-  };
-
-  const handleVehicleModelsChange = (make, models) => {
-    setFormData((prev) => ({
-      ...prev,
-      supported_vehicle_models: {
-        ...prev.supported_vehicle_models,
-        [make]: models,
-      },
-    }));
-  };
-
-//   const handleMakeYearsChange = (make, model, years) => {
-//     setFormData((prev) => ({
-//       ...prev,
-//       make_years_models: {
-//         ...prev.make_years_models,
-//         [make]: {
-//           ...prev.make_years_models[make],
-//           [model]: years,
-//         },
-//       },
-//     }));
-//   };
-
-
-
-
-
-const handleMakeYearsChange = (make, model, years) => {
-    setFormData((prev) => {
-      const updatedMakeYearsModels = { ...prev.make_years_models };
-  
-      // Initialize the make if not already present
-      if (!updatedMakeYearsModels[make]) {
-        updatedMakeYearsModels[make] = {};
-      }
-  
-      // Initialize the model if not already present
-      if (!updatedMakeYearsModels[make][model]) {
-        updatedMakeYearsModels[make][model] = [];
-      }
-  
-      // Update the years
-      updatedMakeYearsModels[make][model] = years;
-  
-      return {
-        ...prev,
-        make_years_models: updatedMakeYearsModels,
-      };
-    });
-  };
-  
-
-
-
-
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const supportedVehicleModels = Object.keys(
-      formData.supported_vehicle_models
-    ).map((make) => ({
-      make,
-      models: formData.supported_vehicle_models[make],
-    }));
-
-    const makeYears = Object.keys(formData.make_years_models).map((model) => ({
-      model,
-      years: formData.make_years_models[model],
-    }));
-
-    const formattedData = {
-      ...formData,
-      supported_vehicle_models: supportedVehicleModels,
-      make_years: makeYears,
-    };
-console.log(formattedData);
-    try {
-      const response = await axios.patch(
-        `https://rahimafrooz-battery-backend.vercel.app/api/v1/batteries/${short_code}`,
-        formattedData,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
-      console.log("Update successful:", response.data);
-      // Optionally, redirect or show a success message
-    } catch (error) {
-      console.error("Update failed:", error);
-      // Optionally, show an error message
-    }
-  };
-
   const showVehicleFields =
     formData.applicable_categories.includes("Passenger Car") ||
     formData.applicable_categories.includes("Commercial Vehicle");
@@ -253,19 +161,24 @@ console.log(formattedData);
         Update Battery Form
       </h1>
       <UpdateBatteryForm
-        showVehicleFields={showVehicleFields}
-        categories={categories}
-        technologyOptions={technologyOptions}
-        formData={formData}
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        handleFileChange={handleFileChange}
-        handleTerminalLayoutChange={handleTerminalLayoutChange}
-        handleCategoryChange={handleCategoryChange}
-        handleTechnologyChange={handleTechnologyChange}
-        handleSupportedVehicleMakesChange={handleSupportedVehicleMakesChange}
-        handleVehicleModelsChange={handleVehicleModelsChange}
-        handleMakeYearsChange={handleMakeYearsChange}
+        batteryUpdateProps={{
+          showVehicleFields,
+          categories,
+          technologyOptions,
+          formData,
+          handleChange,
+          handleFileChange,
+          handleTerminalLayoutChange,
+          handleCategoryChange,
+          handleTechnologyChange,
+          supportedVehicleModels,
+          setSupportedVehicleModels,
+          vehicleMakeYears,
+          setVehicleMakeYears,
+          supportedVehicleMakes,
+          setSupportedVehicleMakes,
+          batteryRefetch,
+        }}
       />
     </div>
   );

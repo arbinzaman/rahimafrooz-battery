@@ -1,8 +1,9 @@
 import {
   ChevronDownIcon,
-  ArrowUpIcon,
   GlobeAltIcon,
 } from "@heroicons/react/24/outline";
+import { IoIosArrowDropupCircle } from "react-icons/io";
+
 
 import Logo from "../../assets/70-Years-Logo.png";
 import Facebook from "../../assets/icons/facebook-icon.svg";
@@ -92,7 +93,7 @@ const Footer = () => {
               to={"/manage-my-battery"}
               className="link link-hover opacity-80"
             >
-              Find Your Battery
+              Warranty and Services
             </Link>
             <Link to={"/find-dealer"} className="link link-hover opacity-80">
               Nearest Dealer
@@ -121,10 +122,7 @@ const Footer = () => {
               className="link link-hover opacity-80"
               href="/privacy-policy"
             >
-              Privacy policy
-            </Link>
-            <Link to={""} className="link link-hover opacity-80" href="#">
-              Cookies ppolicy
+              Privacy Policy
             </Link>
             <Link to={""} className="link link-hover opacity-80" href="#">
               Copyright notification
@@ -194,7 +192,7 @@ const Footer = () => {
                 to={"/manage-my-battery"}
                 className="link link-hover opacity-80"
               >
-                Find Your Battery
+                Warrany and Services
               </Link>
               <br />
               <Link to={"/find-dealer"} className="link link-hover opacity-80">
@@ -233,12 +231,8 @@ const Footer = () => {
                 className="link link-hover opacity-80"
                 href="/privacy-policy"
               >
-                Privacy policy
+                Privacy Policy
               </Link>{" "}
-              <br />
-              <a className="link link-hover opacity-80" href="#">
-                Cookies ppolicy
-              </a>
               <br />
               <a className="link link-hover opacity-80" href="#">
                 Copyright notification
@@ -298,16 +292,16 @@ const Footer = () => {
         </footer>
         <div className="max-w-screen-xl mx-auto text-white text-xs pt-6 pb-6 font-semibold">
           <div className="flex justify-center lg:justify-between items-center">
-            <div className="flex flex-col lg:flex-row items-center pl-12 lg:pl-3 pr-4">
-              <img className="ml-5 lg:ml-0" src={FooterLogo} alt="yt" width={120} height={120} />
-              <p className="text-center opacity-80 pl-4 pt-2 lg:pt-0 flex flex-col lg:flex-row justify-center items-center">
+            <div className="flex flex-col lg:flex-row items-center lg:pl-3 ">
+              <img className=" lg:ml-0" src={FooterLogo} alt="yt" width={120} height={120} />
+              <p className="text-center opacity-80 ml-0 lg:ml-4 pt-2 lg:pt-0 flex flex-col lg:flex-row justify-center items-center">
                 <span>Copyright © 2017-2023 <br className="sm:hidden" /> Rahimafrooz Batteries Ltd.</span>{" "}
                 <span> All rights reserved.</span>
               </p>
             </div>
             <div>
-              <button onClick={scrollUp} className="mr-4">
-                <ArrowUpIcon className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-300 text-sky-700 font-bold" />
+              <button onClick={scrollUp} className="mr-4 hidden md:block lg:block xl:block">
+                <IoIosArrowDropupCircle className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sky-300 text-sky-700 font-bold" />
               </button>
             </div>
           </div>
@@ -315,7 +309,7 @@ const Footer = () => {
       </div>
       <div style={{backgroundColor: '#0059a3'}}>
         <div className="max-w-screen-xl mx-auto">
-          <div className="text-small text-white px-2 py-4 flex flex-col items-center lg:flex-row lg:justify-between">
+          <div className="mx-auto text-small text-white px-2 py-4 flex flex-col items-center lg:flex-row lg:justify-between">
             <p>A Subsidiary of Rahimafrooz</p>
             <p>Powered by Prionty Digital</p>
           </div>

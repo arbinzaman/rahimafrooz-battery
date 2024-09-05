@@ -1,8 +1,7 @@
-import React from 'react'
 import Slider from "react-slick";
 import { homeSlider } from "../../utils/Home/slider";
-
-import "../../styles/Home.css"
+import "../../styles/Home.css";
+import { useQuery } from "@tanstack/react-query";
 
 const settingsForHeroSlide = {
   dots: false,
@@ -17,22 +16,59 @@ const settingsForHeroSlide = {
 };
 
 const HomeSlider = () => {
-  return (
-    <section className="Home-Slider">
-      <div className="slider-container">
-        <Slider {...settingsForHeroSlide}>
-          {homeSlider?.map((slide) => (
-            <img
-              className="w-full"
-              key={slide?.id}
-              src={slide?.sliderImage}
-              alt={slide?.sliderAlt}
-            />
-          ))}
-        </Slider>
-      </div>
-    </section>
-  )
-}
+  const { data: bannerImages = [], error } = useQuery({
+    queryKey: ["bannerImages"],
+    queryFn: async () => {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/banner-images`);
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
-export default HomeSlider
+  const pageKey = "home";
+  const homeImages =
+    (Array.isArray(bannerImages) &&
+      bannerImages?.find((item) => item.page_name === pageKey)?.img_url) ||
+    [];
+
+  const dummySlider = (
+    <div className="slider-container">
+      <Slider {...settingsForHeroSlide}>
+        {homeSlider?.map((slide) => (
+          <img
+            className="w-full z-10 md:"
+            key={slide?.id}
+            src={slide?.sliderImage}
+            alt={slide?.sliderAlt}
+          />
+        ))}
+      </Slider>
+    </div>
+  );
+
+  return (
+    <section className="Home-Slider ">
+      {error ? (
+        dummySlider
+      ) : Array.isArray(homeImages) && homeImages?.length !== 0 ? (
+        <div className="slider-container">
+          <Slider {...settingsForHeroSlide}>
+            {homeImages?.map((src, i) => (
+              <img
+                className="w-full z-10 md:"
+                key={i}
+                src={src}
+                alt={"Home page banner image"}
+              />
+            ))}
+          </Slider>
+        </div>
+      ) : (
+        dummySlider
+      )}
+    </section>
+  );
+};
+
+export default HomeSlider;

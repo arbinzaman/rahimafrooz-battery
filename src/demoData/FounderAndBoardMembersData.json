@@ -1,0 +1,38 @@
+[
+    {
+        "id": 8,
+        "name": "Arbin Zaman",
+        "designation": "Founder",
+        "social_media_links": [{
+            "facebook": "https://www.facebook.com/arbin.zaman.9",
+            "instagram": "https://www.instagram.com/zamanarbin",
+            "linkedin": "https://www.linkedin.com/zamanarbin"
+        }],
+        "description": "A man of strict religious values, yet a believer in progressive dynamism, and a dreamer who thought nothing is impossible – Late A C Abdur Rahim overcame numerous challenges and obstacles to become one of the most accomplished entrepreneurs of this country. Born on the 20th of January 1915, he lost both his parents by the time he was seven years of age. Deprived of formal schooling and a typically comfortable childhood, he grew up as a man with strong determination, hardworking diligence, and humane compassion. By the early 1940s, Mr. Rahim started small scale commercial trading on his own. He moved to Chittagong in 1947 and started afresh with very little capital in hand, but with a whole world of courage and faith. In 1950, he established the small trading concern dealing in various items. This proprietary business was formally incorporated on April 15, 1954 as Rahimafrooz & Co. Till date, Rahimafrooz Group commemorates this as its “Foundation Day”.",
+        "image_url": "https://arbin.live/static/media/ArbinZaman2.5c6b09a681732ba21f79.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Nazim Uddin",
+        "designation": "Co-Founder",
+        "social_media_links": [{
+            "facebook": "https://www.facebook.com/arbin.zaman.9",
+            "instagram": "https://www.instagram.com/zamanarbin",
+            "linkedin": "https://www.linkedin.com/zamanarbin"
+        }],
+        "description": "Nazim Uddin, a visionary leader with a keen eye for business opportunities, played a pivotal role in the establishment of Rahimafrooz. Born in 1920, Nazim Uddin faced many hardships during his early life, but his determination and entrepreneurial spirit led him to join forces with A.C. Abdur Rahim. Together, they laid the foundation for what would become one of the leading business conglomerates in the country. Known for his innovative thinking and dedication to quality, Nazim Uddin was instrumental in expanding the company's operations and diversifying its portfolio.",
+        "image_url": "https://example.com/image_url2.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Sultana Rahman",
+        "designation": "Chief Operating Officer",
+        "social_media_links": [{
+            "facebook": "https://www.facebook.com/sultana.rahman",
+            "instagram": "https://www.instagram.com/sultana_rahman",
+            "linkedin": "https://www.linkedin.com/sultana_rahman"
+        }],
+        "description": "Sultana Rahman, the dynamic Chief Operating Officer of Rahimafrooz, has been with the company for over two decades. Her exceptional leadership skills and strategic vision have been critical in driving the company's growth and success. Born in 1975, Sultana Rahman holds a degree in Business Administration and has worked in various capacities within the organization. Her deep understanding of the industry and her ability to inspire and motivate her team have made her a respected figure in the business community. Sultana is committed to fostering a culture of innovation and excellence at Rahimafrooz.",
+        "image_url": "https://example.com/image_url3.jpg"
+    }
+]

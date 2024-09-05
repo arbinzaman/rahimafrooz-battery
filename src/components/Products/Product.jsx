@@ -11,7 +11,10 @@ const Product = ({ productInfo }) => {
       <div className="flex flex-col justify-center items-center">
         <p className="text-small text-black my-2">{battery_name}</p>
         <button
-          onClick={() => navigate(`/product-final-page/${short_code}`)}
+          onClick={() => {
+            navigate(`/product-final-page/${short_code}`);
+            window.location.reload();
+          }}
           className="px-6 my-2 border border-button  text-xxsmall text-button"
         >
           VIEW DETAILS

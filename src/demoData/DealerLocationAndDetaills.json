@@ -1,0 +1,123 @@
+[
+    {
+      "id": 1,
+      "shop_name": "Zaman Motors",
+      "address": "Bhulta Bazar, Narayanganj",
+      "proprietor_name": "Arbin Zaman",
+      "phone_numbers": "017116-21552, 01717-156527",
+      "email": "arbinzmn@gmail.com",
+      "coordinates": "",
+      "division": "Dhaka",
+      "district": "Narayanganj",
+      "thana": "Narayanganj"
+    },
+    {
+      "id": 2,
+      "shop_name": "Rahim Auto Parts",
+      "address": "Motijheel, Dhaka",
+      "proprietor_name": "Rahim Uddin",
+      "phone_numbers": "01817-215622, 01818-156528",
+      "email": "rahimauto@gmail.com",
+      "coordinates": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Motijheel"
+    },
+    {
+      "id": 3,
+      "shop_name": "Khan Motors",
+      "address": "Agrabad, Chattogram",
+      "proprietor_name": "Imran Khan",
+      "phone_numbers": "01713-215633, 01714-156529",
+      "email": "khanmotors@gmail.com",
+      "coordinates": "",
+      "division": "Chattogram",
+      "district": "Chattogram",
+      "thana": "Agrabad"
+    },
+    {
+      "id": 4,
+      "shop_name": "Alif Auto Service",
+      "address": "Kazir Dewri, Chattogram",
+      "proprietor_name": "Alif Chowdhury",
+      "phone_numbers": "01712-215644, 01713-156530",
+      "email": "alifauto@gmail.com",
+      "coordinates": "",
+      "division": "Chattogram",
+      "district": "Chattogram",
+      "thana": "Kazir Dewri"
+    },
+    {
+      "id": 5,
+      "shop_name": "Haque Auto",
+      "address": "Khilgaon, Dhaka",
+      "proprietor_name": "Shamim Haque",
+      "phone_numbers": "01715-215655, 01716-156531",
+      "email": "haqueauto@gmail.com",
+      "coordinates": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Khilgaon"
+    },
+    {
+      "id": 6,
+      "shop_name": "Shah Motors",
+      "address": "Mirpur, Dhaka",
+      "proprietor_name": "Sajid Shah",
+      "phone_numbers": "01718-215666, 01719-156532",
+      "email": "shahmotors@gmail.com",
+      "coordinates": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Mirpur"
+    },
+    {
+      "id": 7,
+      "shop_name": "Amin Auto",
+      "address": "Gulshan, Dhaka",
+      "proprietor_name": "Aminul Islam",
+      "phone_numbers": "01711-215677, 01712-156533",
+      "email": "aminauto@gmail.com",
+      "coordinates": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Gulshan"
+    },
+    {
+      "id": 8,
+      "shop_name": "Kazi Auto Parts",
+      "address": "Manikganj, Dhaka",
+      "proprietor_name": "Kazi Mahmud",
+      "phone_numbers": "01713-215688, 01714-156534",
+      "email": "kaziautoparts@gmail.com",
+      "coordinates": "",
+      "division": "Dhaka",
+      "district": "Manikganj",
+      "thana": "Murapara"
+    },
+    {
+      "id": 9,
+      "shop_name": "Jahan Motors",
+      "address": "Banani, Dhaka",
+      "proprietor_name": "Jahan Ara",
+      "phone_numbers": "01717-215699, 01718-156535",
+      "email": "jahanmotors@gmail.com",
+      "coordinates": "",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Banani"
+    },
+    {
+      "id": 10,
+      "shop_name": "Morshed Auto",
+      "address": "Chairman Bari, Dhaka",
+      "proprietor_name": "Morshed Alam",
+      "phone_numbers": "01719-215700, 01720-156536",
+      "email": "morshedauto@gmail.com",
+      "coordinates": "123456789",
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "thana": "Banani"
+    }
+  ]
+  

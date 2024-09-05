@@ -1,60 +1,46 @@
 import Slider from "react-slick";
-import regions from "./Data/regions.json";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
+const fetchContinents = async () => {
+  const res = await axios.get(
+    `${import.meta.env.VITE_BASE_URL}/global-presence/`
+  );
+  return res.data;
+};
 
 const GlobalPresenceSlider = () => {
-  
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", marginRight: "50px" }}
-        onClick={onClick}
-      />
-    );
-  }
-
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", marginLeft: "50px" }}
-        onClick={onClick}
-      />
-    );
-  }
+  const { data } = useQuery({
+    queryKey: ["continents"],
+    queryFn: fetchContinents,
+  });
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    arrows: false,
   };
 
   return (
     <div className="w-full max-w-4xl mx-auto">
       <Slider {...settings}>
-        {regions.map((region, index) => (
+        {data?.map((continent, index) => (
           <div key={index} className="text-base p-16">
             <h3 className="text-semi_large lg:text-xlarge mb-10 text-center mt-5">
-              {region.name}
+              {continent?.continent}
             </h3>
-            <div className="grid grid-cols-2">
-              {region.countries.map((countryList, idx) => (
+            <div className="grid grid-cols-2 gap-4">
+              {continent?.countries?.map((country, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col text-medium items-center space-y-3 mt-10"
+                  className="flex flex-col text-medium items-center space-y-3 mt-2"
                 >
-                  {countryList.map((country, countryIdx) => (
-                    <p key={countryIdx} className="text-center">
-                      {country}
-                    </p>
-                  ))}
+                  <p className="text-center text-sm lg:text-regular font-normal">
+                    {country.toUpperCase()}
+                  </p>
                 </div>
               ))}
             </div>

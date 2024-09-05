@@ -34,6 +34,9 @@ export default {
         "cross-pattern": "url('src/assets/images/Texture2.png')",
         "circuit-texture": "url('src/assets/images/Circuit-texture.png')",
       },
+      screens: {
+        "xs": "375px",
+      },
     },
   },
   plugins: [daisyui],

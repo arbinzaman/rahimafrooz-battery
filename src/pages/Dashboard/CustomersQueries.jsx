@@ -1,50 +1,39 @@
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { BiDetail, BiTrash } from "react-icons/bi";
+import axios from "axios";
 import Loader from "../../components/shared/Loaders/Loader";
 import Modal from "../../components/Dashboard/CustomerQueries/Modal";
+import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const CustomersQueries = () => {
   const [selectedQuery, setSelectedQuery] = useState(null);
   const [selectedIds, setSelectedIds] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const queryClient = useQueryClient();
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [queriesPerPage] = useState(10); // Number of items per page
+
   const CONTACT_API_URL = `${import.meta.env.VITE_BASE_URL}/contact`;
 
-  const { data: customersQueries = [], isLoading, isError, error } = useQuery({
+  const {
+    data: customersQueries = [],
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useQuery({
     queryKey: ["customersQueries"],
     queryFn: async () => {
-      const res = await fetch(CONTACT_API_URL);
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return res.json();
-    },
-  });
-
-  const deleteMutation = useMutation({
-    mutationFn: async (ids) => {
-      const res = await fetch(`${CONTACT_API_URL}/delete`, {
-        method: "DELETE",
+      const res = await fetch(CONTACT_API_URL, {
         headers: {
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
         },
-        body: JSON.stringify(ids),
       });
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
       return res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(["customersQueries"]);
-      setDeleteModalOpen(false);
-      setSelectedIds([]);
-    },
-    onError: (error) => {
-      console.error("Error deleting queries:", error);
     },
   });
 
@@ -53,8 +42,27 @@ const CustomersQueries = () => {
     document.getElementById("customerDetails").showModal();
   };
 
-  const handleDelete = () => {
-    deleteMutation.mutate(selectedIds);
+  const handleDelete = async () => {
+    console.log(selectedIds);
+    try {
+      const res = await axios.delete(CONTACT_API_URL, {
+        data: selectedIds,
+        headers: {
+          Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
+        },
+      });
+
+      if (res.status === 200) {
+        setSelectedIds([]);
+        refetch();
+        setDeleteModalOpen(false);
+        toast.success("Selected queries deleted successfully.");
+      } else {
+        throw new Error("Failed to delete the selected queries.");
+      }
+    } catch (error) {
+      console.error("Error deleting queries:", error);
+    }
   };
 
   const handleCheckboxChange = (id) => {
@@ -75,6 +83,13 @@ const CustomersQueries = () => {
     }
   };
 
+  // Pagination calculations
+  const indexOfLastQuery = currentPage * queriesPerPage;
+  const indexOfFirstQuery = indexOfLastQuery - queriesPerPage;
+  const currentQueries = customersQueries?.slice(indexOfFirstQuery, indexOfLastQuery);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   if (isLoading) {
     return <Loader />;
   }
@@ -85,23 +100,38 @@ const CustomersQueries = () => {
 
   return (
     <div>
-      <h1 className="text-semi_large text-center font-bold mb-10 mt-5 text-primary">
+      <h1 className="flex justify-center text-semi_large text-center font-bold mb-10 mt-5 text-primary">
         Customer Queries
       </h1>
 
-      <dialog id="customerDetails" className="modal modal-bottom sm:modal-middle">
+      <dialog
+        id="customerDetails"
+        className="modal modal-bottom sm:modal-middle"
+      >
         {selectedQuery && <Modal customersQuery={selectedQuery} />}
       </dialog>
 
-      <dialog id="deleteConfirmation" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+      {/* deleteConfirmation modal */}
+      <dialog
+        id="deleteConfirmation"
+        className={`modal modal-bottom sm:modal-middle ${
+          deleteModalOpen ? "modal-open" : ""
+        }`}
+      >
+        <div className="modal-box bg-white text-red-500">
           <h2 className="text-lg font-bold">Confirm Deletion</h2>
           <p>Are you sure you want to delete the selected queries?</p>
           <div className="modal-action">
-            <button className="btn btn-primary" onClick={handleDelete}>
+            <button
+              className="btn bg-red-500 text-white btn-ghost btn-xs hover:bg-red-700 hover:text-white"
+              onClick={handleDelete}
+            >
               Yes, Delete
             </button>
-            <button className="btn" onClick={() => setDeleteModalOpen(false)}>
+            <button
+              className="btn btn-ghost btn-xs bg-gray-200"
+              onClick={() => setDeleteModalOpen(false)}
+            >
               Cancel
             </button>
           </div>
@@ -112,7 +142,7 @@ const CustomersQueries = () => {
         <button
           className="btn btn-xs bg-red-500 text-white border-0"
           onClick={() => setDeleteModalOpen(true)}
-          // disabled={selectedIds.length === 0}
+          disabled={selectedIds.length === 0}
         >
           <BiTrash /> Delete
         </button>
@@ -135,7 +165,7 @@ const CustomersQueries = () => {
             </tr>
           </thead>
           <tbody>
-            {customersQueries.map((customersQuery, i) => (
+            {currentQueries.map((customersQuery, i) => (
               <tr key={customersQuery.id}>
                 <td>
                   <input
@@ -144,9 +174,10 @@ const CustomersQueries = () => {
                     onChange={() => handleCheckboxChange(customersQuery.id)}
                   />
                 </td>
-                <th>{i + 1}</th>
+                <th>{indexOfFirstQuery + i + 1}</th>
                 <td>{customersQuery.email}</td>
                 <td>{customersQuery.customer_name}</td>
+                <td>{customersQuery.phone_number}</td>
                 <td>
                   {customersQuery.message.length > 100
                     ? customersQuery.message.slice(0, 100) + "..."
@@ -165,6 +196,26 @@ const CustomersQueries = () => {
             ))}
           </tbody>
         </table>
+        {/* Pagination */}
+        {customersQueries.length > queriesPerPage && (
+          <div className="flex justify-center mt-4">
+            <div className="join">
+              {[
+                ...Array(Math.ceil(customersQueries.length / queriesPerPage)).keys(),
+              ].map((number) => (
+                <input
+                  key={number}
+                  className="join-item btn btn-ghost btn-sm bg-primary text-white border-white active:bg-gray-400 checked:bg-gray-400"
+                  type="radio"
+                  name="options"
+                  aria-label={number + 1}
+                  checked={currentPage === number + 1}
+                  onChange={() => paginate(number + 1)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
