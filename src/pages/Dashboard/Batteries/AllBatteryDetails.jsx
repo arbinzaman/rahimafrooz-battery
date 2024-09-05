@@ -50,13 +50,13 @@ const AllBatteryDetails = () => {
       <div className="flex gap-4 justify-between mb-4 px-4">
         <div className="flex gap-5">
           <Link to="/dashboard/add-new-battery">
-            <button className="flex gap-2 btn btn-xs border-0 hover:bg-sky-700 text-white bg-sky-400">
+            <button className="flex gap-2 btn btn-xs border-0 hover:bg-sky-700 text-white bg-sky-400 text-xxsmall lg:text-xsmall">
               Add Battery <FaCarBattery />
             </button>
           </Link>
           <div className="flex gap-5">
             <button
-              className="flex gap-2 btn btn-xs border-0 hover:bg-lime-700 text-white bg-lime-500"
+              className="flex gap-2 btn btn-xs border-0 hover:bg-lime-700 text-white bg-lime-500 text-xxsmall lg:text-xsmall"
               onClick={openCategoriesModal}
             >
               Categories <TbCategoryPlus />
@@ -66,7 +66,7 @@ const AllBatteryDetails = () => {
 
         <div>
           <button
-            className="flex gap-2 btn btn-xs border-0 text-white bg-teal-400 hover:bg-teal-700 hover:text-white"
+            className="flex gap-2 btn btn-xs border-0 text-white bg-teal-400 hover:bg-teal-700 hover:text-white text-xxsmall lg:text-xsmall"
             onClick={refetch}
           >
             Refresh
