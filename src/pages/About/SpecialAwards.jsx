@@ -1,5 +1,6 @@
-import SpecialAwardBanner from "../../assets/images/AboutPage/SpecialAwardsAndAchievement.png";
+import LocallySavedBanner from "../../assets/images/BannerImages/AboutPage/SpecialAwardsAndAchievement.jpg";
 import AwardSlider from "../../components/AboutPage/AwardSlider";
+import BannerImage from "../../components/shared/BannerImage";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import { useQuery } from "@tanstack/react-query";
 const SpecialAwards = () => {
@@ -22,11 +23,12 @@ const SpecialAwards = () => {
     (item) => item.description == undefined || item.description == null
   );
 
+  // Key for banner image
+  const pageKey = "achievement";
+
   return (
     <section>
-      <div>
-        <img src={SpecialAwardBanner} alt="" />
-      </div>
+      <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
       <section
         className={`${allDeviceMaxWidth} grid grid-cols-1 lg:grid-cols-2 gap-20 items-start my-5 text-justify`}
       >

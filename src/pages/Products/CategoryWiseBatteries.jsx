@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../../components/Products/Product";
 import axios from "axios";
-import BangladeshPageBanner from "../../assets/images/ProductPageImages/Bangladesh-products-banner-1.jpg";
+import BangladeshPageBanner from "../../assets/images/BannerImages/ProductsPage/Bangladesh-products-banner-1.jpg";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
 
 const CategoryWiseBatteries = () => {

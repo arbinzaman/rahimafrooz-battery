@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import banner from "../assets/images/7. Global Presence.png";
+import LocallySavedBanner from "../assets/images/BannerImages/GlobalPresencePage/GlobalPresenceBanner.png";
 import GlobalPresenceSlider from "../components/GlobalPresence/GlobalPresenceSlider";
 import InternationalOperations from "../components/GlobalPresence/InternationalOperations";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
+import BannerImage from "../components/shared/BannerImage";
 
 const GlobalPresence = () => {
   // Fetch the country list from the global presence API
@@ -25,11 +26,15 @@ const GlobalPresence = () => {
     return acc + continent.countries.length;
   }, 0);
 
+  // Key for banner image
+  const pageKey = 'global_presence'
+
   return (
     <section>
       {/* Banner Section */}
       <div className="relative">
-        <img src={banner} alt="Global Presence" className="w-full" />
+        <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
+
         {/* Display total countries and country list at the bottom left of the banner */}
         <div className="absolute -bottom-2 lg:bottom-1 left-6  lg:left-40 text-primary text-large lg:p-6 rounded text-center">
           {/* Responsive Text for Mobile */}

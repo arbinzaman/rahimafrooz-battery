@@ -76,7 +76,7 @@ const AddBannerImg = ({ props }) => {
                     Rahimafrooz Storage Power
                   </option>
                   <option value="manufacturing">Manufacturing</option>
-                  <option value="achievement">Special & Achievement</option>
+                  <option value="achievement">Special Awards & Achievement</option>
                   <option value="products_bd">Products - Bangladesh</option>
                   <option value="products_int">Products - International</option>
                   <option value="warranty">Warranty & Services</option>
