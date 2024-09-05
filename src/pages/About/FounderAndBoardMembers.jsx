@@ -1,3 +1,4 @@
+import { useState } from "react";
 import LocallySavedBanner from "../../assets/images/BannerImages/AboutPage/Management.jpg";
 import { ImFacebook2 } from "react-icons/im";
 import { FaInstagramSquare } from "react-icons/fa";
@@ -6,6 +7,7 @@ import { allDeviceMaxWidth } from "../../styles/maxWidth";
 import { useQuery } from "@tanstack/react-query";
 import FetchErrorMessage from "../../components/shared/Error/FetchErrorMessage";
 import BannerImage from "../../components/shared/BannerImage";
+
 const FounderAndBoardMembers = () => {
   // Key for Banner Image
   const pageKey = "board_members";
@@ -34,6 +36,49 @@ const FounderAndBoardMembers = () => {
     (item) =>
       !item.designation.toLowerCase().replace(/\s/g, "").includes("founder")
   );
+
+  const [showMore, setShowMore] = useState({}); // State for tracking "See More" for each board member
+
+  const toggleShowMore = (id) => {
+    setShowMore((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id], // Toggle the state for each specific board member
+    }));
+  };
+
+  const getDescriptionPreview = (description, id) => {
+    const words = description.split(" ");
+    const showFullDescription = showMore[id];
+
+    if (words.length <= 350 || showFullDescription) {
+      return (
+        <>
+          {description}{" "}
+          {words.length > 350 && (
+            <button
+              onClick={() => toggleShowMore(id)}
+              className="text-primary font-bold"
+            >
+              See Less
+            </button>
+          )}
+        </>
+      );
+    }
+
+    const first100Words = words.slice(0, 350).join(" ");
+    return (
+      <>
+        {first100Words}...{" "}
+        <button
+          onClick={() => toggleShowMore(id)}
+          className="text-primary font-bold"
+        >
+          See More
+        </button>
+      </>
+    );
+  };
 
   return (
     <section className="">
@@ -92,8 +137,10 @@ const FounderAndBoardMembers = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-regular p-5 text-black text-justify mx-3">
-                    <p>{info?.description}</p>
+                  <div className="text-regular p-5 text-black mx-3">
+                    <p className="whitespace-normal text-justify break-words">
+                      {getDescriptionPreview(info?.description, info.id)}
+                    </p>
                   </div>
                 </div>
               ))}
