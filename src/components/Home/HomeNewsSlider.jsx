@@ -61,7 +61,7 @@ const NewsEvents = () => {
               {groupedData.map((group, index) => (
                 <div key={index} className="text-blue-900 p-3 "> 
                   {/* Column layout: display 3 news items vertically */}
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-4  mb-10">
                     {group.map((item) => (
                       <div
                         key={item?.id}

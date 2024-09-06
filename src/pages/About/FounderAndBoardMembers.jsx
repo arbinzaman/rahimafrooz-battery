@@ -9,10 +9,8 @@ import FetchErrorMessage from "../../components/shared/Error/FetchErrorMessage";
 import BannerImage from "../../components/shared/BannerImage";
 
 const FounderAndBoardMembers = () => {
-  // Key for Banner Image
   const pageKey = "board_members";
 
-  // Board Member Information
   const { data: allBoardMembers = [], error: boardMemberFetchError } = useQuery(
     {
       queryKey: ["allBoardMembers"],
@@ -29,6 +27,7 @@ const FounderAndBoardMembers = () => {
       refetchOnWindowFocus: true,
     }
   );
+
   const founderInfo = allBoardMembers.find((item) =>
     item.designation.toLowerCase().replace(/\s/g, "").includes("founder")
   );
@@ -37,12 +36,12 @@ const FounderAndBoardMembers = () => {
       !item.designation.toLowerCase().replace(/\s/g, "").includes("founder")
   );
 
-  const [showMore, setShowMore] = useState({}); // State for tracking "See More" for each board member
+  const [showMore, setShowMore] = useState({});
 
   const toggleShowMore = (id) => {
     setShowMore((prevState) => ({
       ...prevState,
-      [id]: !prevState[id], // Toggle the state for each specific board member
+      [id]: !prevState[id],
     }));
   };
 
@@ -90,11 +89,13 @@ const FounderAndBoardMembers = () => {
           <p className="text-2xl text-center lg:text-4xl font-semibold lg:font-bold text-primary my-10 uppercase">
             Board Members & Management
           </p>
+
           {/* Founder And Chairman */}
           <div className="bg-[#e6f2ff] p-5 my-5 shadow-sm">
             <div className="none lg:flex lg:items-center gap-10">
               <div className="flex justify-center">
-                <img src={founderInfo?.image_url} className="h-3/4" />
+                {/* Apply the fade-in swipe-right class */}
+                <img src={founderInfo?.image_url} className="h-3/4 animate-fade-in-swipe-right" />
               </div>
               <div className="w-full">
                 <h1 className="text-center lg:text-left text-medium lg:text-semi_large font-bold text-primary">
@@ -115,11 +116,12 @@ const FounderAndBoardMembers = () => {
                   className="flex flex-col justify-items-center mb-10 bg-[#e6f2ff] shadow-sm"
                 >
                   <div className="flex flex-col justify-center items-center">
+                    {/* Apply the fade-in swipe-right class */}
                     <img
                       src={info?.image_url}
                       alt=""
                       style={{ height: "250px" }}
-                      className="mt-10 mb-3"
+                      className="mt-10 mb-3 animate-fade-in-swipe-right"
                     />
                     <div className="flex flex-col text-black items-center my-2">
                       <p className="font-semibold">{info?.name}</p>
