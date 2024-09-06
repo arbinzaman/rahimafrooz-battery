@@ -21,6 +21,26 @@ body{
   
     .animate-fade-in-swipe-right {
       @apply opacity-0 transform translate-x-[-30px];
-      animation: fadeInSwipeRight 0.8s ease forwards;
+      animation: fadeInSwipeRight 3s ease forwards;
     }
-  }
+
+    @keyframes fadeInSwipeLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  
+    .animate-fade-in-swipe-left {
+      @apply opacity-0 transform translate-x-[30px];
+      animation: fadeInSwipeLeft 3s ease forwards;
+    }
+    .in-view {
+        opacity: 1;
+        transform: translateX(0);
+      }
+}

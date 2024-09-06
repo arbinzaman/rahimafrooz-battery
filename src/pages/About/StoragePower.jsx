@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import LocallySavedBanner from "../../assets/images/BannerImages/AboutPage/RahimafroozBatteriesLtd.jpg";
 import BannerImage from "../../components/shared/BannerImage";
 import { allDeviceMaxWidth } from "../../styles/maxWidth";
@@ -59,6 +60,31 @@ const StoragePower = () => {
     refetchOnWindowFocus: true,
   });
 
+  // Scroll-triggered animation on element visibility
+  useEffect(() => {
+    const elements = document.querySelectorAll(
+      ".animate-fade-in-swipe-right, .animate-fade-in-swipe-left"
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Add classes for the animation when in view
+            entry.target.classList.add("opacity-100", "translate-x-0");
+            entry.target.style.transition = "all 0.6s ease"; // Adjust the transition speed
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => {
+      elements.forEach((element) => observer.unobserve(element));
+    };
+  }, []);
+
   return (
     <section>
       <BannerImage bannerImageProps={{ pageKey, LocallySavedBanner }} />
@@ -112,12 +138,13 @@ const StoragePower = () => {
           </div>
         )}
         {/* Factory Images */}
+        {/* Factory Informations Section */}
         <div className="my-10">
           {allFactoryInformations.map((information, i) => (
             <div key={information.id}>
-              {/* Factory Image 1 */}
-              {i % 2 == 0 && (
-                <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
+              {/* Factory Image Right */}
+              {i % 2 === 0 && (
+                <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center my-10 md:my-20 animate-fade-in-swipe-right opacity-0 translate-x-10">
                   <div>
                     <div className="bg-primary text-base text-sm md:text-regular py-6 lg:py-12 px-6">
                       <p className="text-medium font-semibold">
@@ -131,7 +158,7 @@ const StoragePower = () => {
                       {information?.corner_text}
                     </p>
                   </div>
-                  <div className="">
+                  <div>
                     <img
                       src={information?.image_url}
                       alt="Rahimafrooz Batteries Factory"
@@ -139,10 +166,11 @@ const StoragePower = () => {
                   </div>
                 </div>
               )}
-              {/* Factory Image 2 */}
-              {i % 2 != 0 && (
-                <div className="flex flex-col lg:grid lg:grid-cols-2 items-center my-10 md:my-20">
-                  <div className="">
+
+              {/* Factory Image Left */}
+              {i % 2 !== 0 && (
+                <div className="flex flex-col lg:grid lg:grid-cols-2 items-center my-10 md:my-20 animate-fade-in-swipe-left opacity-0 translate-x-[-10px]">
+                  <div>
                     <img
                       src={information?.image_url}
                       className="w-full"
@@ -189,15 +217,8 @@ const StoragePower = () => {
           <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 justify-items-center items-start gap-16 text-black">
             {allValues.length > 0 ? (
               allValues?.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex flex-col justify-center items-center"
-                >
-                  <img
-                    src={item.image_url}
-                    alt="Integrity in All Our Dealings image"
-                    className="h-28"
-                  />
+                <div key={item.id} className="flex flex-col justify-center items-center">
+                  <img src={item.image_url} alt={item.caption} className="h-28" />
                   <p className="my-5 text-center text-small md:text-regular">
                     {item.caption}
                   </p>
