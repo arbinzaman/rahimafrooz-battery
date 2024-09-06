@@ -39,6 +39,8 @@ const AddFactoryInformationModal = ({ props }) => {
     } catch (error) {
       console.log(error.message);
       toast.error("Something error occurred!");
+    } finally {
+      setIsLoading(false);
     }
   };
 

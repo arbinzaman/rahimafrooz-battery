@@ -13,7 +13,7 @@ const AddALocation = ({ addLocationModalProps }) => {
   const handleAddData = async (data) => {
     try {
       setIsLoading(true);
-      
+
       const res = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/contact/global-locations`,
         data,
@@ -28,11 +28,13 @@ const AddALocation = ({ addLocationModalProps }) => {
         document.getElementById("my_modal_69").open = false;
         refetch();
         toast.success("New global location added successfully");
-        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
       toast.error("Something error occurred!");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -109,9 +111,7 @@ const AddALocation = ({ addLocationModalProps }) => {
             </div>
 
             <div className="my-2">
-              <label>
-                Latitude
-              </label>
+              <label>Latitude</label>
               <input
                 type="text"
                 className="bg-white border rounded-md px-2 py-1 w-full"
@@ -120,9 +120,7 @@ const AddALocation = ({ addLocationModalProps }) => {
             </div>
 
             <div className="my-2">
-              <label>
-                Longitude
-              </label>
+              <label>Longitude</label>
               <input
                 type="text"
                 className="bg-white border rounded-md px-2 py-1 w-full"

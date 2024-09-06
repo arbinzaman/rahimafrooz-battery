@@ -35,10 +35,6 @@ const AllBoardMembers = () => {
     document.getElementById("addBoardMembers").open = true;
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   if (error) {
     return <FetchErrorMessage />;
   }
