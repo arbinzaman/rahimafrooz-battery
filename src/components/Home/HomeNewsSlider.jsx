@@ -32,14 +32,14 @@ const NewsEvents = () => {
     cssEase: "linear",
   };
 
-  // Split allNews into groups of 4 items each
+  // Split allNews into groups of 3 items each for each slide
   const groupedData = [];
-  for (let i = 0; i < allNews?.length; i += 4) {
-    groupedData.push(allNews?.slice(i, i + 4));
+  for (let i = 0; i < allNews?.length; i += 3) {
+    groupedData.push(allNews?.slice(i, i + 3));
   }
 
   return (
-    <section className="w-full">
+    <section className="w-full shadow-lg">
       <div
         className="mx-auto max-w-6xl px-4 w-full h-full"
         style={{
@@ -49,63 +49,44 @@ const NewsEvents = () => {
           backgroundRepeat: "no-repeat",
           padding: "20px", // Adjust padding for layout
           width: "100%",
-          minHeight: "500px", // Set minimum height for better coverage
+          minHeight: "495px", // Set minimum height for better coverage
         }}
       >
-        <h2 className="text-primary font-bold text-center my-4 text-regular lg:text-semi_large mt-10">
-          NEWS & EVENT
+        <h2 className="text-primary font-bold text-center  text-regular lg:text-semi_large mt-7 ">
+          NEWS & EVENTS
         </h2>
-        <div className="p-2 rounded-md">
-          {groupedData?.length > 4 ? (
+        <div className="p-1 rounded-md lg:px-3 ">
+          {groupedData.length > 0 ? (
             <Slider {...settings}>
-              {groupedData?.map((group, index) => (
-                <div key={index} className="text-blue-900 p-4">
-                  {group?.map((item) => (
-                    <div
-                      key={item?.id}
-                      className="flex items-center bg-gray-200 px-2 my-2 hover:cursor-pointer"
-                      onClick={() => navigate(`/news/${item.id}`)}
-                    >
-                      <img
-                        src={item?.image_url}
-                        alt={item?.title}
-                        className="w-14 h-10 object-cover mr-4"
-                      />
-                      <div className="text-left">
-                        <p className="font-medium text-xs">{item?.title}</p>
-                        <p className="text-gray-500 text-xsmall">
-                          {item?.description.slice(0, 50)}
-                        </p>
+              {groupedData.map((group, index) => (
+                <div key={index} className="text-blue-900 p-3 "> 
+                  {/* Column layout: display 3 news items vertically */}
+                  <div className="flex flex-col gap-4">
+                    {group.map((item) => (
+                      <div
+                        key={item?.id}
+                        className="flex items-center bg-gray-200 hover:cursor-pointer lg:py-2"
+                        onClick={() => navigate(`/news/${item.id}`)}
+                      >
+                        <img
+                          src={item?.image_url}
+                          alt={item?.title}
+                          className="w-16 h-11 object-cover mr-4"
+                        />
+                        <div className="text-left">
+                          <p className="font-medium text-xsmall">{item?.title}</p>
+                          {/* <p className="text-gray-500 text-xs">
+                            {item?.description.slice(0, 50)}...
+                          </p> */}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               ))}
             </Slider>
           ) : (
-            groupedData?.map((group, index) => (
-              <div key={index} className="text-blue-900 p-4">
-                {group?.map((item) => (
-                  <div
-                    key={item?.id}
-                    className="flex items-center bg-gray-200 px-2 my-2 hover:cursor-pointer"
-                    onClick={() => navigate(`/news/${item.id}`)}
-                  >
-                    <img
-                      src={item?.image_url}
-                      alt={item?.title}
-                      className="w-14 h-10 object-cover mr-4"
-                    />
-                    <div className="text-left">
-                      <p className="font-medium text-xs">{item?.title}</p>
-                      <p className="text-gray-500 text-xsmall">
-                        {item?.description.slice(0, 50)}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ))
+            <p className="text-center text-gray-500">No news available</p>
           )}
         </div>
       </div>
