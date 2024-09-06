@@ -42,6 +42,8 @@ const AddABoardMembers = ({ addBoardMembersProps }) => {
       setIsLoading(false);
       console.log(error);
       toast.error("Something error occurred!");
+    }finally{
+      setIsLoading(false);
     }
   };
 

@@ -48,11 +48,12 @@ const UpdateManufacturingLocationsModal = ({ updateModalProps }) => {
         document.getElementById("my_modal_3").open = false;
         toast.success("Record updated successfully");
       }
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       console.log(error);
       toast.error("Something error occurred!");
+    } finally {
+      setIsLoading(false);
     }
   };
   if (isLoading) return <Loader />;

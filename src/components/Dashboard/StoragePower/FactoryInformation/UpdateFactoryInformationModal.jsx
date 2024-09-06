@@ -53,6 +53,8 @@ const UpdateFactoryInformationModal = ({ updateModalProps }) => {
       setIsLoading(false);
       console.log(error);
       toast.error("Something error occurred!");
+    } finally {
+      setIsLoading(false);
     }
   };
 
