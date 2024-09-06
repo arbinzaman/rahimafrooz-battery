@@ -234,6 +234,7 @@ const Header = () => {
                   </button>
                 </a>
               </div>
+              {/* PC Nav Bar */}
               <div
                 className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                 id="navbar-search"
@@ -248,96 +249,99 @@ const Header = () => {
                       Home
                     </a>
                   </li>
-                  <li className="md:ml-0 xl:ml-4">
-                    <div className="dropdown dropdown-bottom">
-                      <div className="flex" tabIndex={0} role="button">
-                        <div className="btn text-white opacity-80 h-0 min-h-0 border-none text-base">
-                          About
-                        </div>
-                        <ChevronDownIcon
-                          style={{ marginLeft: "-10px" }}
-                          className="w-4 h-4 mt-1 text-base"
-                        />
+                  <li className="md:ml-0 xl:ml-4 relative group">
+                    <div
+                      className="flex items-center"
+                      tabIndex={0}
+                      role="button"
+                    >
+                      <div className="btn text-white opacity-80 h-0 min-h-0 border-none text-base -mt-5">
+                        About
                       </div>
-                      <ul
-                        tabIndex={0}
-                        className="dropdown-content z-[1] menu p-2 shadow bg-sky-100 text-sky-600 mt-6 rounded-sm w-64"
-                      >
-                        <li>
-                          <a
-                            href="https://www.rahimafrooz.com/"
-                            target="_blank"
-                            className="nav-active-bg"
-                          >
-                            Rahimafrooz Group
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/Founder-and-Board-Members"
-                            className="nav-active-bg"
-                          >
-                            Founder & Board Members
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/rahimafrooz-storage-power"
-                            className="nav-active-bg"
-                          >
-                            Rahimafrooz Storage Power
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/manufacturing" className="nav-active-bg">
-                            Manufacturing
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/special-awards-achievement"
-                            className="nav-active-bg"
-                          >
-                            Special Awards & Achievement
-                          </a>
-                        </li>
-                      </ul>
+                      <ChevronDownIcon
+                        style={{ marginLeft: "-10px" }}
+                        className="w-4 h-4 mt-1 text-base"
+                      />
                     </div>
+                    <ul className="absolute left-0 top-4 hidden group-hover:block z-[1] menu p-2 shadow bg-sky-100 text-sky-600 mt-2 rounded-sm w-64">
+                      <li>
+                        <a
+                          href="https://www.rahimafrooz.com/"
+                          target="_blank"
+                          className="nav-active-bg block p-2 rounded hover:bg-sky-200"
+                        >
+                          Rahimafrooz Group
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/Founder-and-Board-Members"
+                          className="nav-active-bg block p-2 rounded hover:bg-sky-200"
+                        >
+                          Founder & Board Members
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/rahimafrooz-storage-power"
+                          className="nav-active-bg block p-2 rounded hover:bg-sky-200"
+                        >
+                          Rahimafrooz Storage Power
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/manufacturing"
+                          className="nav-active-bg block p-2 rounded hover:bg-sky-200"
+                        >
+                          Manufacturing
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/special-awards-achievement"
+                          className="nav-active-bg block p-2 rounded hover:bg-sky-200"
+                        >
+                          Special Awards & Achievement
+                        </a>
+                      </li>
+                    </ul>
                   </li>
-                  <li className="md:ml-0 xl:ml-4">
-                    <div className="dropdown dropdown-bottom">
-                      <div tabIndex={0} role="button" className="flex">
-                        <div className="btn text-white opacity-80 h-0 min-h-0 border-none text-base">
-                          Products
-                        </div>
-                        <ChevronDownIcon
-                          style={{ marginLeft: "-10px" }}
-                          className="w-4 h-4 mt-1 text-white"
-                        />
+
+                  <li className="md:ml-0 xl:ml-4 relative group">
+                    <div
+                      className="flex items-center"
+                      tabIndex={0}
+                      role="button"
+                    >
+                      <div className="btn text-white opacity-80 h-0 min-h-0 border-none text-base -mt-5">
+                        Products
                       </div>
-                      <ul
-                        tabIndex={0}
-                        className="dropdown-content z-[1] menu p-2 shadow bg-sky-100 text-sky-600 mt-6 rounded-sm w-32"
-                      >
-                        <li>
-                          <a
-                            href="/products-bangladesh"
-                            className="nav-active-bg"
-                          >
-                            Bangladesh
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/products-international"
-                            className="nav-active-bg"
-                          >
-                            International
-                          </a>
-                        </li>
-                      </ul>
+                      <ChevronDownIcon
+                        style={{ marginLeft: "-10px" }}
+                        className="w-4 h-4 mt-1 text-white"
+                      />
                     </div>
+                    <ul className="absolute left-0 top-4 hidden group-hover:block z-[1] menu p-2 shadow bg-sky-100 text-sky-600 mt-2 rounded-sm w-32">
+                      <li>
+                        <a
+                          href="/products-bangladesh"
+                          className="nav-active-bg block p-2 rounded hover:bg-sky-200"
+                        >
+                          Bangladesh
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/products-international"
+                          className="nav-active-bg block p-2 rounded hover:bg-sky-200"
+                        >
+                          International
+                        </a>
+                      </li>
+                    </ul>
                   </li>
+
                   <li>
                     <a
                       href="/contact-us"
@@ -348,6 +352,7 @@ const Header = () => {
                   </li>
                 </ul>
               </div>
+              {/* PC Nav Bar */}
             </div>
           </div>
         </div>
