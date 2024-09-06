@@ -39,7 +39,7 @@ const NewsEvents = () => {
   }
 
   return (
-    <section className="w-full">
+    <section className="w-full shadow-lg">
       <div
         className="mx-auto max-w-6xl px-4 w-full h-full"
         style={{
@@ -55,7 +55,7 @@ const NewsEvents = () => {
         <h2 className="text-primary font-bold text-center  text-regular lg:text-semi_large mt-7 ">
           NEWS & EVENTS
         </h2>
-        <div className="p-1 rounded-md px-3">
+        <div className="p-1 rounded-md lg:px-3 ">
           {groupedData.length > 0 ? (
             <Slider {...settings}>
               {groupedData.map((group, index) => (
@@ -65,7 +65,7 @@ const NewsEvents = () => {
                     {group.map((item) => (
                       <div
                         key={item?.id}
-                        className="flex items-center bg-gray-200  hover:cursor-pointer py-2"
+                        className="flex items-center bg-gray-200 hover:cursor-pointer lg:py-2"
                         onClick={() => navigate(`/news/${item.id}`)}
                       >
                         <img
