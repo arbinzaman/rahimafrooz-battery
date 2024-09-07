@@ -380,7 +380,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
               {supportedVehicleMakes?.map((make, index) => (
                 <div key={index} className="mb-4">
                   <label className="block text-small text-gray-800 pb-1">
-                    {make} Models :
+                    {make} Models : 
                   </label>
                   <ModelSelect
                     props={{

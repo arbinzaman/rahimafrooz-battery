@@ -20,7 +20,7 @@ const ModelSelect = ({ props }) => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" || e.key === " ") {
+    if (e.key === "Enter" ) {
       e.preventDefault();
       if (modelInputValue.trim()) {
         const newOption = modelInputValue.trim();
@@ -60,6 +60,7 @@ const ModelSelect = ({ props }) => {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
+      <span className="text-[9.5px] my-1">&apos;Enter&apos; to add and clear field to add next value</span>
       <div>
         {options?.models?.map((model, index) => (
           <span

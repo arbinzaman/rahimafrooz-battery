@@ -19,7 +19,7 @@ const YearSelect = ({ props }) => {
   // console.log(matchedYears);
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" || e.key === " ") {
+    if (e.key === "Enter") {
       e.preventDefault();
       if (yearInputValue.trim()) {
         const newOption = yearInputValue.trim();
@@ -54,6 +54,9 @@ const YearSelect = ({ props }) => {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
+      <span className="text-[10px]">
+        &apos;Enter&apos; to add and clear field to add next value
+      </span>
       <div>
         {vehicleMakeYears
           .find((yearData) => yearData.model === model)
