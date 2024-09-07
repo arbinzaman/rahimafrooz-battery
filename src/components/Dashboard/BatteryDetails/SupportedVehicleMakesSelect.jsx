@@ -17,7 +17,7 @@ const SupportedVehicleMakesSelect = ({ prompts }) => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" || e.key === " ") {
+    if (e.key === "Enter" ) {
       e.preventDefault();
       if (inputValue.trim()) {
         const newOption = inputValue.trim();
