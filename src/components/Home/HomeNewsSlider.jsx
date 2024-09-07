@@ -66,7 +66,7 @@ const NewsEvents = () => {
                       <div
                         key={item?.id}
                         className="flex items-center bg-gray-200 hover:cursor-pointer lg:py-2"
-                        onClick={() => navigate(`/news/${item.id}`)}
+                        onClick={() => navigate(`/news`)}
                       >
                         <img
                           src={item?.image_url}
