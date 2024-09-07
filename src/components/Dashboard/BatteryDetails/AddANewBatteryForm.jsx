@@ -423,8 +423,8 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
         </div>
         <div className="mt-4 flex flex-col lg:flex-row justify-between items-center">
           <button
-            onClick={() => navigate("/dashboard/all-battery-details")}
-            className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
+           onClick={() => navigate("/dashboard/all-battery-details")}
+           className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"
           >
             <IoMdArrowRoundBack className="inline-block mr-2" />
             Batteries Table
@@ -432,7 +432,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
 
           <button
             type="submit"
-            className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
+              className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"
           >
             <FaCarBattery className="inline-block mr-2" />
             Add Battery
