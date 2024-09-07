@@ -84,7 +84,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
           },
         }
       );
-      
+
       const imgRes = await axios.patch(
         `${
           import.meta.env.VITE_BASE_URL
@@ -95,7 +95,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
             Authorization: `Bearer ${Cookies.get("XTOKEN")}`,
           },
         }
-      )
+      );
 
       if (dataRes.status === 200 && imgRes.status === 200) {
         toast.success(`${e.target.battery_name.value} updated successfully`);
@@ -370,7 +370,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
         {isLoading ? (
           <ThreeDotLoader />
         ) : (
-          <div className="mt-4 flex justify-between">
+          <div className="mt-4 flex flex-col lg:flex-row justify-between items-center">
             <button
               onClick={() => navigate("/dashboard/all-battery-details")}
               className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"

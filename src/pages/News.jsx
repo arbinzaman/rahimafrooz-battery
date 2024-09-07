@@ -3,8 +3,12 @@ import NewsBanner from "../utils/News/News.png";
 import NewsCard from "../components/News/NewsCard";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 const News = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);  // Scrolls to the top of the page when News is loaded
+  }, []);
 
   const url = `${import.meta.env.VITE_BASE_URL}/news`;
   const { data: allNews = [] } = useQuery({

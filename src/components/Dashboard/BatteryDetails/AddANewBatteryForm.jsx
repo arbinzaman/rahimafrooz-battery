@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
 import { FaCarBattery } from "react-icons/fa";
 import SupportedVehicleMakesSelect from "./SupportedVehicleMakesSelect";
@@ -29,7 +29,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
     supportedVehicleMakes,
     setSupportedVehicleMakes,
   } = batteryUpdateProps;
-
+  const formRef = useRef();
   const {
     battery_name = "",
     short_code = "",
@@ -92,6 +92,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
       );
 
       if (dataRes.status === 201 && imgRes.status === 201) {
+        formRef.current.reset();
         toast.success(`${e.target.battery_name.value} added successfully`);
       } else {
         toast.error(`${e.target.battery_name.value} insertion failed!`);
@@ -105,6 +106,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
   return (
     <div>
       <form
+        ref={formRef}
         onSubmit={handleSubmit}
         className="p-6 bg-white rounded shadow-md w-full max-w-5xl"
       >
@@ -419,15 +421,15 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             </>
           )}
         </div>
-        <div className="mt-4 flex justify-between">
+        <div className="mt-4 flex flex-col lg:flex-row justify-between items-center">
           <button
-           onClick={() => navigate("/dashboard/all-battery-details")}
+            onClick={() => navigate("/dashboard/all-battery-details")}
             className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
           >
             <IoMdArrowRoundBack className="inline-block mr-2" />
             Batteries Table
           </button>
-    
+
           <button
             type="submit"
             className="btn btn-ghost bg-primary text-white w-full max-w-xs rounded-sm"
