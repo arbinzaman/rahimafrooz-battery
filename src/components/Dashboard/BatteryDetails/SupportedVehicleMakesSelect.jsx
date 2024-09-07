@@ -66,8 +66,11 @@ const SupportedVehicleMakesSelect = ({ prompts }) => {
         className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        placeholder="press enter to add items"
+        // placeholder="press enter to add items"
       />
+       <span className="text-[10px]">
+        &apos;Enter&apos; to add and clear field to add next value
+      </span>
       <div className="my-2">
         {supportedVehicleMakes.length > 0 &&
           supportedVehicleMakes?.map((option, index) => (
