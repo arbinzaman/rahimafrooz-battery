@@ -104,6 +104,8 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
       setIsLoading(false);
       console.error("Insertion failed:", error);
       toast.error(error?.response?.data?.message);
+    }finally{
+      setIsLoading(false);
     }
   };
 
