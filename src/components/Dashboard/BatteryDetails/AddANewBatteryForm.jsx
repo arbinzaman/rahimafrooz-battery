@@ -10,6 +10,7 @@ import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import ThreeDotLoader from "../../shared/Loaders/ThreeDotLoader";
 
 const AddANewBatteryForm = ({ batteryUpdateProps }) => {
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
   const [inputValue, setInputValue] = useState("");
   const [modelInputValue, setModelInputValue] = useState("");
   const [yearInputValue, setYearInputValue] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,6 +73,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
     };
 
     try {
+      setIsLoading(true);
       const dataRes = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/batteries`,
         formattedData,
@@ -98,8 +101,11 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
         toast.error(`${e.target.battery_name.value} insertion failed!`);
       }
     } catch (error) {
+      setIsLoading(false);
       console.error("Insertion failed:", error);
       toast.error(error?.response?.data?.message);
+    }finally{
+      setIsLoading(false);
     }
   };
 
@@ -110,9 +116,6 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
         onSubmit={handleSubmit}
         className="p-6 bg-white rounded shadow-md w-full max-w-5xl"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-primary">
-          Battery Form
-        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
           <div className="mb-4">
             <label className="block text-small text-gray-800 pb-1">
@@ -421,22 +424,36 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             </>
           )}
         </div>
-        <div className="mt-4 flex flex-col lg:flex-row justify-between items-center">
-          <button
-           onClick={() => navigate("/dashboard/all-battery-details")}
-           className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"
-          >
-            <IoMdArrowRoundBack className="inline-block mr-2" />
-            Batteries Table
-          </button>
-
-          <button
-            type="submit"
+        <div className="mt-4 flex flex-row justify-between items-center">
+          {isLoading ? (
+            <ThreeDotLoader />
+          ) : (
+            <button
+              type="submit"
               className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"
-          >
-            <FaCarBattery className="inline-block mr-2" />
-            Add Battery
-          </button>
+            >
+              <FaCarBattery className="inline-block mr-2" />
+              Add Battery
+            </button>
+          )}
+
+          {isLoading ? (
+            <button
+              disabled
+              className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-gray-500 text-white  max-w-xs rounded-sm text-xxsmall"
+            >
+              <IoMdArrowRoundBack className="inline-block mr-2" />
+              Batteries Table
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate("/dashboard/all-battery-details")}
+              className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"
+            >
+              <IoMdArrowRoundBack className="inline-block mr-2" />
+              Batteries Table
+            </button>
+          )}
         </div>
       </form>
     </div>

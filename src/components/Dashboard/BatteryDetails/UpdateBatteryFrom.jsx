@@ -367,17 +367,10 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
           )}
         </div>
 
-        {isLoading ? (
-          <ThreeDotLoader />
-        ) : (
-          <div className="mt-4 flex flex-col lg:flex-row justify-between items-center">
-            <button
-              onClick={() => navigate("/dashboard/all-battery-details")}
-              className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"
-            >
-              <IoMdArrowRoundBack className="inline-block mr-2" />
-              Batteries Table
-            </button>
+        <div className="mt-4 flex flex-row justify-between items-center">
+          {isLoading ? (
+            <ThreeDotLoader />
+          ) : (
             <button
               type="submit"
               className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"
@@ -385,8 +378,26 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
               <FaCarBattery className="inline-block mr-2" />
               Update Battery
             </button>
-          </div>
-        )}
+          )}
+
+          {isLoading ? (
+            <button
+              disabled
+              className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-gray-500 text-white  max-w-xs rounded-sm text-xxsmall"
+            >
+              <IoMdArrowRoundBack className="inline-block mr-2" />
+              Batteries Table
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate("/dashboard/all-battery-details")}
+              className="btn btn-xs sm:btn-sm md:btn-md  btn-ghost bg-primary text-white  max-w-xs rounded-sm text-xxsmall"
+            >
+              <IoMdArrowRoundBack className="inline-block mr-2" />
+              Batteries Table
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );
