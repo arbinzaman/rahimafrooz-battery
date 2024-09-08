@@ -36,22 +36,21 @@ const HomeSocialEmbed = () => {
 
   return (
     <section>
-      <div className="max-w-screen-xl mx-auto justify-between">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-16 text-center pt-8 pb-8">
+      <div className="max-w-screen-xl mx-auto justify-between px-4">
+        <div className="w-full flex flex-col lg:flex-row justify-center items-center lg:grid lg:grid-cols-2 lg:gap-16 text-center pt-8 pb-8">
           {/* YouTube Embed */}
           {allYoutubeLinks.length > 0 && (
-            <div className="HomeSocial">
+            <div className="HomeSocial relative pb-[53%] w-full max-w-[100%] md:max-w-[600px] lg:max-w-[600px] h-0 overflow-hidden flex justify-items-center">
               <iframe
                 src={allYoutubeLinks[0].video_url}
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-                className="w-full h-80"
+                className="absolute top-0 left-0 w-full h-full"
               ></iframe>
             </div>
           )}
-
           {/* Social Media Section */}
           <div className="hidden md:block lg:block xl:block text-left xl:ml-20">
             <div className="flex bg-gray-200 w-[500px] ">
