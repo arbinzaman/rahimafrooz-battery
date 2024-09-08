@@ -1,5 +1,5 @@
 import Slider from "react-slick";
-import ReviewImg from "../../assets/images/HomePage/review.png";
+import ReviewImg from "../../assets/images/HomePage/review.jpg";
 import { useQuery } from "@tanstack/react-query";
 const HomeReviews = () => {
   const settingsForCertificatesLarge = {
