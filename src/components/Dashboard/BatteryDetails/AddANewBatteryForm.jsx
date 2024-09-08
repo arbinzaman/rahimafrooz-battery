@@ -239,6 +239,7 @@ const AddANewBatteryForm = ({ batteryUpdateProps }) => {
             <input
               type="number"
               name="wet_weight"
+              step="any"
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
             />

@@ -176,6 +176,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
             <input
               type="number"
               name="dry_weight"
+              step="any"
               value={dry_weight}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
@@ -188,6 +189,7 @@ const UpdateBatteryForm = ({ batteryUpdateProps }) => {
             <input
               type="number"
               name="wet_weight"
+              step="any"
               value={wet_weight}
               onChange={handleChange}
               className="input input-bordered input-sm rounded-sm w-full text-black bg-white"
