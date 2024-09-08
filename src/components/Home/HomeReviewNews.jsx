@@ -5,17 +5,23 @@ import HomeNewsSlider from "./HomeNewsSlider";
 const HomeReviewNews = () => {
   return (
     <section>
-      <div className="max-w-screen-xl mx-auto">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8">
         <div
-          className="grid grid-cols-1 lg:grid-cols-3
-         gap-4 mr-4 ml-4 lg:gap-16 text-center
-          text-white pt-8 pb-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 xl:gap-16 
+          text-center text-white py-8"
         >
-          <WhyChooseUs />
-          <div className="">
+          {/* WhyChooseUs Section */}
+          <div className="col-span-1">
+            <WhyChooseUs />
+          </div>
+
+          {/* HomeReviews Section */}
+          <div className="col-span-1">
             <HomeReviews />
           </div>
-          <div className="">
+
+          {/* HomeNewsSlider Section */}
+          <div className="col-span-1">
             <HomeNewsSlider />
           </div>
         </div>
