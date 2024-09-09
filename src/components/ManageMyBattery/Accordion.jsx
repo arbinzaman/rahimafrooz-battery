@@ -17,10 +17,6 @@ const Accordion = () => {
     refetchOnWindowFocus: true,
   });
 
-  if (isLoading)
-    <div>
-      <Loader />
-    </div>;
   if (error)
     return (
       <div>

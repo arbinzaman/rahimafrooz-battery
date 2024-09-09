@@ -49,7 +49,7 @@ const Bangladesh = () => {
 
   // Key for banner image
   const pageKey = "products_bd";
-
+  
   return (
     <section>
       <div className="relative">

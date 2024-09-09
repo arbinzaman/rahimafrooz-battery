@@ -157,7 +157,7 @@ const DealerLocationAndDetailsList = () => {
                 <td>
                   {dealerLocationDetail.image_url ? (
                     <img
-                      src={dealerLocationDetail.image_url}
+                      src={dealerLocationDetail?.image_url}
                       alt="Dealer's shop image"
                     />
                   ) : (

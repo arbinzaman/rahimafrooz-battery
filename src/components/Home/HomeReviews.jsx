@@ -36,7 +36,7 @@ const HomeReviews = () => {
       <div className="shadow-2xl">
         <img src={ReviewImg} alt="" />
 
-        <div className="bg-white h-52 ">
+        <div className="bg-white h-52">
           <Slider
             {...settingsForCertificatesLarge}
             className="bg-white text-blue-900 text-center"
