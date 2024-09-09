@@ -38,7 +38,7 @@ const NewsEvents = () => {
           minHeight: "495px", // Set minimum height for better coverage
         }}
       > */}
-      <div className="bg-primary p-[26px]">
+      <div className="bg-primary p-6">
         <div className="p-1 lg:px-3 bg-white">
           <h2 className="text-primary font-bold text-center  text-regular lg:text-semi_large mt-7 ">
             NEWS & EVENTS
