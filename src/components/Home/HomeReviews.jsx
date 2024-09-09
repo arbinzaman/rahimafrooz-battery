@@ -1,58 +1,58 @@
-    import Slider from "react-slick";
-    import ReviewImg from "../../assets/images/HomePage/review.jpg";
-    import { useQuery } from "@tanstack/react-query";
-    const HomeReviews = () => {
-      const settingsForCertificatesLarge = {
-        dots: true,
-        arrows: false,
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        speed: 1000,
-        autoplaySpeed: 4000,
-        pauseOnHover: false,
-        cssEase: "linear",
-      };
+import Slider from "react-slick";
+import ReviewImg from "../../assets/images/HomePage/review.jpg";
+import { useQuery } from "@tanstack/react-query";
 
-      const url = `${import.meta.env.VITE_BASE_URL}/reviews`;
-      const {
-        data: allReviews = [],
-      } = useQuery({
-        queryKey: ["allReviews"],
-        queryFn: async () => {
-          const res = await fetch(url);
-          if (!res.ok) {
-            throw new Error("Network response was not ok");
-          }
-          const data = await res.json();
-          return data;
-        },
-        refetchOnWindowFocus: true,
-      });
+const HomeReviews = () => {
+  const settingsForCertificatesLarge = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 4000,
+    pauseOnHover: false,
+    cssEase: "linear",
+  };
 
-      return (
-        <section>
-          <div className="shadow-2xl">
-            <img src={ReviewImg} alt="" />
+  const url = `${import.meta.env.VITE_BASE_URL}/reviews`;
+  const {
+    data: allReviews = [],
+  } = useQuery({
+    queryKey: ["allReviews"],
+    queryFn: async () => {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await res.json();
+      return data;
+    },
+    refetchOnWindowFocus: true,
+  });
 
-            <div className="bg-white h-52">
-              <Slider
-                {...settingsForCertificatesLarge}
-                className="bg-white text-blue-900 text-center"
-              >
-                {allReviews?.map((review) => (
-                  <div key={review?.id} className="card-body">
-                    <p> {review.review}</p>
-                    <p>- {review.user_name}</p>
-                  </div>
-                ))}
-              </Slider>
-            </div>
+  return (
+    <section>
+      <div className="shadow-2xl">
+        <img src={ReviewImg} alt="Reviews" />
 
-          </div>
-        </section>
-      );
-    };
+        <div className="bg-white h-40 md:h-48  lg:h-40 xl:h-52 ">
+          <Slider
+            {...settingsForCertificatesLarge}
+            className="bg-white text-blue-900 text-center"
+          >
+            {allReviews?.map((review) => (
+              <div key={review?.id} className="card-body p-4">
+                <p>{review.review}</p>
+                <p>- {review.user_name}</p> 
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-    export default HomeReviews;
+export default HomeReviews;

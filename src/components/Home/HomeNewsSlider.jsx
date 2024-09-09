@@ -46,7 +46,7 @@
       const latestNews = sortedNews.slice(0, numOfNews);
 
       return (
-        <section className="w-full shadow-lg">
+        <section className="w-full shadow-lg ">
           <div
             className="mx-auto max-w-6xl px-4 w-full h-full "
             style={{
@@ -93,7 +93,7 @@
 
           {/* Custom styles for 540x720 device */}
         <style jsx>{`
-          @media (max-width: 540px) and (max-height: 720px) { 
+          @media (max-width: 540px) and (max-height: 720px) {
             div.custom-size {
               padding: 30px; /* Set padding specifically for 540x720 device */
               min-height: 383.52px; /* Adjust height for this screen */
