@@ -1,4 +1,4 @@
-import homeMotionGif from "../../assets/images/HomePage/rahimafrooz-motion-gif.gif";
+import homeMotionGif from "../../assets/images/HomePage/rahimafrooz-motion-Gif.gif";
 import motionMobileGif from "../../assets/images/HomePage/milstone_motion_mobile_gif_30_sec.gif";
 import "../../styles/Home.css"
 

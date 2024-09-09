@@ -23,21 +23,13 @@ const ProductFinalPage = () => {
 
   return (
     <section className={`${allDeviceMaxWidth} bg-background `}>
-      {isLoading && battery === null ? (
-        <div className="flex justify-center my-20">
-          <Loader />
-        </div>
-      ) : (
-        <>
-          <ProductSelectionSection battery={battery} />
-          <div className="mb-10 mx-3">
-            <ProductInformation battery={battery} />
-          </div>
-          <div className="mx-3">
-            <SimilarProduct similarProductProps={{ battery }} />
-          </div>
-        </>
-      )}
+      <ProductSelectionSection battery={battery} />
+      <div className="mb-10 mx-3">
+        <ProductInformation battery={battery} />
+      </div>
+      <div className="mx-3">
+        <SimilarProduct similarProductProps={{ battery }} />
+      </div>
     </section>
   );
 };

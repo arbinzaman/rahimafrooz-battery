@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Loader from "../../../components/shared/Loaders/Loader";
 import { useLoading } from "../../../contexts/LoadingContext";
 import { useQuery } from "@tanstack/react-query";
 import SocialMediaEmbeds from "./SocialMediaEmbeds";
@@ -68,8 +67,6 @@ const HomeSocialEmbed = () => {
               ))}
             </div>
 
-            {/* Loader and Embed */}
-            {isLoading && <Loader />}
             <div className="">
               <SocialMediaEmbeds
                 socialSelect={socialSelect}

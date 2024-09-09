@@ -7,6 +7,7 @@ import ContactUsInformationForm from "../components/ContactUs/ContactUsInformati
 import ContactUsGoogleMap from "../components/ContactUs/ContactUsGoogleMap";
 import { allDeviceMaxWidth } from "../styles/maxWidth";
 import Loader from "../components/shared/Loaders/Loader";
+import FetchErrorMessage from "../components/shared/Error/FetchErrorMessage";
 
 const ContactUs = () => {
   const GLOBAL_LOCATION_API_URL = `${
@@ -32,12 +33,12 @@ const ContactUs = () => {
     refetchOnWindowFocus: true,
   });
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   if (isError) {
-    return <div>Error: {error.message}</div>;
+    return (
+      <div>
+        <FetchErrorMessage />
+      </div>
+    );
   }
 
   return (

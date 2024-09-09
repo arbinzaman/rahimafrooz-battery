@@ -28,10 +28,6 @@ const AllNews = () => {
     document.getElementById("addNews").open = true;
   };
 
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
-
   if (error) {
     return<FetchErrorMessage/>
   }
