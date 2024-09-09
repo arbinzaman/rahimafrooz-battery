@@ -83,7 +83,7 @@ const HomeDealerLocator = () => {
                 <select
                   name="category"
                   id="cars"
-                  className="select select-sm select-bordered bg-secondary text-white font-semibold px-10 mt-2 rounded-md w-44"
+                  className="select select-sm select-bordered bg-secondary text-white font-semibold px-10 md:px-2 mt-2 rounded-md w-44 md:w-32"
                   onChange={(e) => {
                     setDivision(e.target.value);
                   }}
@@ -106,7 +106,7 @@ const HomeDealerLocator = () => {
                 <select
                   name="technology"
                   id="cars"
-                  className="select select-sm select-bordered bg-secondary text-white font-semibold px-10 mt-2 rounded-md w-44"
+                  className="select select-sm select-bordered bg-secondary text-white font-semibold px-10 md:px-2 mt-2 rounded-md w-44 md:w-32"
                   onChange={(e) => {
                     setDistrict(e.target.value);
                   }}
@@ -129,7 +129,7 @@ const HomeDealerLocator = () => {
                 <select
                   name="brand"
                   id="cars"
-                  className="select select-sm select-bordered bg-secondary text-white font-semibold px-10 mt-2 rounded-md w-44"
+                  className="select select-sm select-bordered bg-secondary text-white font-semibold px-10 md:px-2 mt-2 rounded-md w-44 md:w-32"
                   onChange={(e) => {
                     setThana(e.target.value);
                   }}
