@@ -56,7 +56,7 @@
               backgroundRepeat: "no-repeat",
               padding: "20px", // Adjust padding for layout
               width: "100%",
-              minHeight: "495px", // Set minimum height for better coverage
+              minHeight: "490px", // Set minimum height for better coverage
             }}
           >
             <h2 className="text-primary font-bold text-center text-regular lg:text-semi_large mt-7">
@@ -77,7 +77,7 @@
                         alt={item?.title}
                         className="w-16 h-11 object-cover mr-4"
                       />
-                      <div className="text-left">
+                      <div className="text-left"> 
                         <p className="font-medium text-primary  text-xsmall">{item?.title}</p>
                         {/* Optionally show a snippet of the description */}
                         {/* <p className="text-gray-500 text-xs">{item?.description.slice(0, 50)}...</p> */}
@@ -93,7 +93,7 @@
 
           {/* Custom styles for 540x720 device */}
         <style jsx>{`
-          @media (max-width: 540px) and (max-height: 720px) {
+          @media (max-width: 540px) and (max-height: 720px) { 
             div.custom-size {
               padding: 30px; /* Set padding specifically for 540x720 device */
               min-height: 383.52px; /* Adjust height for this screen */
