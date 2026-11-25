@@ -48,7 +48,7 @@ const SpecialAwards = () => {
     return () => {
       elements.forEach((element) => observer.unobserve(element));
     };
-  }, []);
+  }, [achievementsAndAwards]);
 
   return (
     <section>

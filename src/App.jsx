@@ -3,6 +3,7 @@ import "./App.css";
 import routes from "./routes/routes";
 import { Toaster } from "react-hot-toast";
 import GlobalLoader from "./components/shared/Loaders/GlobalLoader";
+import DemoBanner from "./demo/DemoBanner";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <RouterProvider router={routes} />
       <GlobalLoader />
       <Toaster />
+      <DemoBanner />
     </section>
   );
 }

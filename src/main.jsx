@@ -1,3 +1,4 @@
+import "./demo"; // demo mode: in-browser mock API (must load before anything fetches)
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";

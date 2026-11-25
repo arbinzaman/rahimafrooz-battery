@@ -41,7 +41,7 @@ const Manufacturing = () => {
     return () => {
       elements.forEach((element) => observer.unobserve(element));
     };
-  }, []);
+  }, [details]);
 
   return (
     <section>

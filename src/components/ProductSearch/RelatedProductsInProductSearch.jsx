@@ -54,7 +54,7 @@ const RelatedProductsInProductSearch = () => {
 
   const queryDatas = JSON.parse(window.localStorage.getItem("query_datas"));
 
-  const categoryId = queryDatas.category;
+  const categoryId = queryDatas?.category || 1;
 
   const BATTERIES_BY_CATEGORY_API = `${
     import.meta.env.VITE_BASE_URL

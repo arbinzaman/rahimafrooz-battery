@@ -6,7 +6,7 @@ import axios from "axios";
 
 const RelatedProductsInProductFinal = ({ relatedProductsProps }) => {
   const { battery } = relatedProductsProps;
-  const { applicable_categories } = battery;
+  const applicable_categories = battery?.applicable_categories || [];
 
   const slider = React.useRef(null);
   var settings = {
@@ -62,7 +62,7 @@ const RelatedProductsInProductFinal = ({ relatedProductsProps }) => {
   }/batteries/category-wise-batteries`;
 
   const { data: categoryWiseBatteries = [] } = useQuery({
-    queryKey: ["categoryWiseBatteries"],
+    queryKey: ["categoryWiseBatteries", battery?.short_code],
     queryFn: async () => {
       try {
         const res = await axios.post(

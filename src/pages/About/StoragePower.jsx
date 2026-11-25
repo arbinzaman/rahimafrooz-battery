@@ -83,7 +83,7 @@ const StoragePower = () => {
     return () => {
       elements.forEach((element) => observer.unobserve(element));
     };
-  }, []);
+  }, [allFactoryInformations]);
 
   return (
     <section>

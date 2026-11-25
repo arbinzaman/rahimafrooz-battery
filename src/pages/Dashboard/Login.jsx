@@ -1,15 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../contexts/AuthContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { DEMO_ADMIN, DEMO_MODE } from "../../demo/config";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useUser();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const fillDemoCredentials = () => {
+    if (emailRef.current) emailRef.current.value = DEMO_ADMIN.email;
+    if (passwordRef.current) passwordRef.current.value = DEMO_ADMIN.password;
+  };
 
   const handleLogin = async (event) => {
     try {
@@ -36,12 +44,29 @@ const Login = () => {
         <h1 className="text-2xl font-bold text-center text-gray-800">
           Admin Login
         </h1>
+        {DEMO_MODE && (
+          <div className="rounded-lg bg-blue-50 border border-blue-200 p-3 text-xs text-gray-700 space-y-1.5">
+            <p className="font-semibold text-primary">Demo Mode Credentials</p>
+            <p>
+              Email: <code className="font-mono font-semibold">{DEMO_ADMIN.email}</code> · Password:{" "}
+              <code className="font-mono font-semibold">{DEMO_ADMIN.password}</code>
+            </p>
+            <button
+              type="button"
+              onClick={fillDemoCredentials}
+              className="mt-1 px-3 py-1 rounded bg-primary text-white hover:bg-secondary font-medium"
+            >
+              Fill Demo Credentials
+            </button>
+          </div>
+        )}
         <form onSubmit={handleLogin} noValidate className="space-y-6">
           <div className="space-y-1 text-sm">
             <label htmlFor="email" className="block text-gray-700">
               Email
             </label>
             <input
+              ref={emailRef}
               type="email"
               name="email"
               id="email"
@@ -54,6 +79,7 @@ const Login = () => {
               Password
             </label>
             <input
+              ref={passwordRef}
               type={showPassword ? "text" : "password"}
               name="password"
               id="password"

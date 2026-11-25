@@ -7,7 +7,7 @@ const SingleNewsCard = () => {
 
   const url = `${import.meta.env.VITE_BASE_URL}/news/${id}`;
   const { data: news = [] } = useQuery({
-    queryKey: ["news"],
+    queryKey: ["news", id],
     queryFn: async () => {
       const res = await fetch(url);
       if (!res.ok) {

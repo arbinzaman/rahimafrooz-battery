@@ -74,10 +74,10 @@
                                 />
                                 <h1 className="text-sky-100 text-xl">Special Purpose</h1>
                             </Link>
-                            <div>
+                            <Link to={`/categories/IPS`}>
                                 <img className="w-32 mx-auto" src={IPS} alt="car" />
                                 <h1 className="text-sky-100 text-xl">IPS</h1>
-                            </div>
+                            </Link>
                             <Link to={`/categories/Solar`}>
                                 <img className="w-32 mx-auto" src={Solar} alt="car" />
                                 <h1 className="text-sky-100 text-xl">Solar</h1>
@@ -165,10 +165,10 @@
                             </div>
                             <div>
                                 <div className="grid grid-cols-3 gap-4 text-center">
-                                    <div>
+                                    <Link to={`/categories/IPS`}>
                                         <img className="w-24 mx-auto" src={IPS} alt="car" />
                                         <h1 className="text-sky-100 text-sm">IPS</h1>
-                                    </div>
+                                    </Link>
                                     <Link to={`/categories/Solar`}>
                                         <img className="w-24 mx-auto" src={Solar} alt="car" />
                                         <h1 className="text-sky-100 text-sm">Solar</h1>

@@ -46,6 +46,14 @@ const ProductSearchField = () => {
   const fetchTechnologies = async (category_id, category_name) => {
     setCategory(category_id);
     setCategoryName(category_name);
+    setTechnology("");
+    setBrand("");
+    setModel("");
+    setVehicleMakes([]);
+    setVehicleModels([]);
+    setMakeYears([]);
+    setShortCodes(null);
+    setQueryDatas((prev) => ({ ...prev, category: category_id, technology: "", brand: "", model: "", year: "" }));
     const TECHNOLOGIES_API_URL = `${
       import.meta.env.VITE_BASE_URL
     }/filtered-vehicle-batteries/${category_id}`;
@@ -272,9 +280,13 @@ const ProductSearchField = () => {
 
           <div>
             <button
-              className="w-full flex items-center justify-center bg-button2 text-primary font-semibold px-3 py-[3px] rounded-md border border-primary"
+              className="w-full flex items-center justify-center bg-button2 text-primary font-semibold px-3 py-[3px] rounded-md border border-primary disabled:opacity-50"
               onClick={handleFindBattery}
-              disabled={shortCodes === null ? true : false}
+              disabled={
+                category == 1 || category == 2
+                  ? shortCodes === null
+                  : !categoryName || categoryName === "Select Category"
+              }
             >
               <p className="mx-2">Find Battery</p>
               <IoSearchSharp />
